@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>{{ .Title }}</title>
+		
+		{{ $css := "css/main.css" | absURL }}
+		<link rel="stylesheet" href="{{ $css }}">
+		
   </head>  
   <body>
 		<header>
@@ -18,7 +22,7 @@
 		</main>
 		
 		<footer>
-		
+			<small>&copy; {{ now.Format "2006"}}</small>
 		</footer>
   </body>
 </html>
