@@ -1,0 +1,7 @@
+baseURL = "http://example.org/"
+languageCode = "en-us"
+title = "David Kaye's blog"
+
+[params]
+	homeText = "HOME"
+	
