@@ -25,4 +25,7 @@
 			<small>&copy; {{ now.Format "2006"}}</small>
 		</footer>
   </body>
+	
+	{{ $js := "js/hello.js" | absURL }}
+	<script src="{{ $js }}"></script>		
 </html>
