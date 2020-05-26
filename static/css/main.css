@@ -1,3 +1,5 @@
 /* dfkaye blog styles */
 
-p { color: aqua; }
+[home-text] {
+	font-weight: bold;
+}
