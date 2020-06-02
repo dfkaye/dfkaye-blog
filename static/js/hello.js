@@ -1,3 +1,3 @@
 /* hello.js */
 
-console.log('hello');
+console.log('BLACK LIVES MATTER.');

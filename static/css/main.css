@@ -1,5 +1,16 @@
 /* dfkaye blog styles */
 
+html {
+	background: #000;
+	
+	color: #fff;
+	font-size: 1em;
+	line-height: 1.6;
+	text-align: center;
+	
+}
+
 [home-text] {
+	font-size: 3em;
 	font-weight: bold;
 }
