@@ -6,5 +6,5 @@ title = "David Kaye's blog"
   blog = "/:filename/"
 	
 [params]
-	homeText = "BLACK LIVES MATTER."
+	homeText = "...conversion to Hugo in progress..."
 	
