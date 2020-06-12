@@ -30,7 +30,7 @@
 		</a>
 	</nav>
 	
-	{{ $js := "js/hello.js" | absURL }}
+	{{ $js := "js/hello.js" | relURL }}
 	<script src="{{ $js }}"></script>
 	
 </footer>
