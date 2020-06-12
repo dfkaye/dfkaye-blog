@@ -1,6 +1,7 @@
 baseURL = "https://dfkaye.com"
 languageCode = "en-us"
 title = "David Kaye's blog"
+theme = "dfkaye"
 
 [permalinks]
   blog = "/:filename/"
