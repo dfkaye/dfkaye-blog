@@ -1,10 +1,14 @@
 <header>
-	<h1><small>{{ .Site.Title }}</small></h1>
+	<div header-banner></div>
+	
+	<h1 site-title><small>{{ .Site.Title }}</small></h1>
+	
+	<nav>
+		<ul>
+			<li><a href="/">Home</a></li>
+			<li><a href="/about/">About</a></li>
+			<li><a href="/posts/">Posts</a></li>
+			<li><a href="/demos/">Demos</a></li>			
+		</ul>
+	</nav>
 </header>
-
-<nav>
-	<ul>
-		<li><a href="/">Home</a></li>
-		<li><a href="/about/">About</a></li>
-	</ul>
-</nav>

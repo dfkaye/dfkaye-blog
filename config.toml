@@ -7,5 +7,5 @@ theme = "dfkaye"
   blog = "/:filename/"
 	
 [params]
-	homeText = "...conversion to Hugo in progress..."
+	siteStatus = "...conversion to Hugo in progress..."
 	

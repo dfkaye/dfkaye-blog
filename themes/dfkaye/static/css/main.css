@@ -8,6 +8,10 @@
 	--icon-height: 32px;
 	--font-size: 1em;
 	--line-height: 1.6;
+	--icon-margin: .5em 0.25em -.5em;
+	--hugo-color: #ff0095;
+	--github-color: #6cc644;
+	--twitter-color: #1da1f2;
 }
 
 html {
@@ -15,7 +19,28 @@ html {
 	color: var(--text-color);
 	font-size: var(--font-size);
 	line-height: var(--line-height);
-	text-align: center;
+}
+
+header {
+	height: 20.5em;
+	margin-bottom: 1.45rem;	
+  position: relative;
+}
+
+[site-title] {
+	margin: 0 1em;
+}
+
+[header-banner] {
+  background-image: url(/img/hexo-banner.jpg);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: inherit;
+  z-index: -1;
+  /* background-position: top -36em left 0; */
+	background-position: top -42em left 0; 	
 }
 
 [home-text] {
@@ -32,31 +57,52 @@ a:hover, a:focus, a:active {
 	text-decoration: underline;
 }
 
-/* footer nav and icons */
+/* nav items */
 
-[aria-label^="follow"] {
-	text-decoration: none;
+nav ul {
+	list-style-type: none;	
+	display: flex;
+	flex-flow: row wrap;
+	align-items: baseline;
+	justify-content: center;
+	margin: 0;
+	padding: 0;
 }
 
-[aria-label^="follow"]:hover {
-	border-bottom: 1px solid #fff;
+nav li {
+	display: inline-block;
+	margin: 1em;
+	padding: 0;	
 }
+
+/* nav icons */
 
 svg {
 	fill: var(--fill-color);
 	height: var(--icon-height);
-	
-	margin: .5em 0.25em -.5em;
+	margin: var(--icon-margin);
 }
 
-[aria-label*="Hugo"]:hover svg {
-	fill: #ff0095;
+[hugo]:hover {
+	color: var(--hugo-color);
 }
 
-[aria-label^="follow on Github"]:hover svg {
-	fill: #6cc644;
+[hugo]:hover svg {
+	fill: var(--hugo-color);
 }
 
-[aria-label^="follow on Twitter"]:hover svg {
-	fill: #1da1f2;
+[github]:hover svg {
+	fill: var(--github-color);
 }
+
+[twitter]:hover svg {
+	fill: var(--twitter-color);
+}
+
+/* list pages */
+
+[pages] {
+	display: flex;
+	flex-direction: column;
+}
+
