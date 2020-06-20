@@ -5,7 +5,12 @@
 	
 	<ul pages>
 	{{ range .Pages }}
-		<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
+		<li>
+			{{ if .PublishDate }}
+			<time datetime="{{.PublishDate}}">{{.PublishDate.Format "January 2, 2006"}}</time>
+			{{ end }}
+			<a href="{{ .RelPermalink }}">{{ .Title }}</a>
+		</li>
 	{{ end }}
 	</ul>
 {{ end }}
