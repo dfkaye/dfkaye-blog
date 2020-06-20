@@ -22,22 +22,23 @@ html {
 }
 
 header {
-	height: 20.5em;
+	// height: 20.5em;
 	margin-bottom: 1.45rem;	
-  position: relative;
+  // position: relative;
 }
 
 [site-title] {
 	margin: 0 1em;
 }
 
-[header-banner] {
+[role="banner"] {
   background-image: url(/img/hexo-banner.jpg);
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: inherit;
+	height: 20.5em;
   z-index: -1;
   /* background-position: top -36em left 0; */
 	background-position: top -42em left 0; 	
