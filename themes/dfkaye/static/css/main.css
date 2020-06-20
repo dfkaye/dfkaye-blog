@@ -1,12 +1,13 @@
 /* dfkaye blog styles */
 
 :root {
-	--hover-color: goldenrod;
+	--hover-color: darkturquoise;
+	--link-color: goldenrod;
 	--text-color: #fff;
 	--bg-color:	#000;
 	--fill-color: #bababa;
 	--icon-height: 32px;
-	--font-size: 1em;
+	--font-size: 100%;
 	--line-height: 1.6;
 	--icon-margin: .5em 0.25em -.5em;
 	--hugo-color: #ff0095;
@@ -23,12 +24,16 @@ html {
 
 header {
 	// height: 20.5em;
+	height: 10em;
 	margin-bottom: 1.45rem;	
-  // position: relative;
+  position: relative;
+	
+	display: flex;
+	flex-flow: row wrap;
 }
 
 [site-title] {
-	margin: 0 1em;
+	margin: 0 .5em;
 }
 
 [role="banner"] {
@@ -37,20 +42,20 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  height: inherit;
+  // height: inherit;
 	height: 20.5em;
   z-index: -1;
-  /* background-position: top -36em left 0; */
-	background-position: top -42em left 0; 	
+  background-position: top -36em left 0;
+	// background-position: top -42em left 0; 	
 }
 
 [home-text] {
-	// font-size: 3em;
+	font-size: 2em;
 	// font-weight: bold;
 }
 
 a {
-	color: inherit;
+	color: var(--link-color);;
 }
 
 a:hover, a:focus, a:active {
@@ -74,6 +79,11 @@ nav li {
 	display: inline-block;
 	margin: 1em;
 	padding: 0;	
+}
+
+nav a {
+	font-weight: 600;
+	color: goldenrod;
 }
 
 /* nav icons */
