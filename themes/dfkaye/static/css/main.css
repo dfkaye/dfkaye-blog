@@ -1,8 +1,8 @@
 /* dfkaye blog styles */
 
 :root {
-	--hover-color: darkturquoise;
-	--link-color: goldenrod;
+	--hover-color: #008800;
+	--link-color: #6f5ff6;
 	--text-color: #fff;
 	--bg-color:	#000;
 	--fill-color: #bababa;
@@ -20,20 +20,13 @@ html {
 	color: var(--text-color);
 	font-size: var(--font-size);
 	line-height: var(--line-height);
-}
-
-header {
-	// height: 20.5em;
-	height: 10em;
-	margin-bottom: 1.45rem;	
-  position: relative;
 	
-	display: flex;
-	flex-flow: row wrap;
+	font-family: Verdana, Consolas ;
 }
 
-[site-title] {
-	margin: 0 .5em;
+body {
+	margin: 1em;
+	min-width: 320px;
 }
 
 [role="banner"] {
@@ -42,25 +35,50 @@ header {
   top: 0;
   left: 0;
   width: 100%;
-  // height: inherit;
 	height: 20.5em;
   z-index: -1;
   background-position: top -36em left 0;
-	// background-position: top -42em left 0; 	
 }
 
-[home-text] {
+header {
+	height: 10em;
+	margin-bottom: 1.45rem;
+	position: relative;
+	
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;	
+}
+
+main {
+	margin: 0 auto;
+	padding: 0 auto;
+}
+
+footer {
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: center;	
+}
+
+[site-title] {
+	margin: 0 .5em;
+}
+
+[site-status] {
 	font-size: 2em;
-	// font-weight: bold;
 }
 
 a {
-	color: var(--link-color);;
+	color: var(--link-color);
 }
 
-a:hover, a:focus, a:active {
+a:not([svg]):hover,
+a:not([svg]):focus,
+a:not([svg]):active {
 	color: var(--hover-color);
 	text-decoration: underline;
+	background-color: #efefef;
 }
 
 /* nav items */
@@ -71,19 +89,23 @@ nav ul {
 	flex-flow: row wrap;
 	align-items: baseline;
 	justify-content: center;
+	
 	margin: 0;
 	padding: 0;
 }
 
 nav li {
 	display: inline-block;
+	
 	margin: 1em;
 	padding: 0;	
 }
 
 nav a {
+	color: var(--link-color);
+	
 	font-weight: 600;
-	color: goldenrod;
+	padding: .5em;
 }
 
 /* nav icons */
@@ -94,19 +116,27 @@ svg {
 	margin: var(--icon-margin);
 }
 
-[hugo]:hover {
+[svg="hugo"]:hover,
+[svg="hugo"]:focus,
+[svg="hugo"]:active {
 	color: var(--hugo-color);
 }
 
-[hugo]:hover svg {
+[svg="hugo"]:hover svg,
+[svg="hugo"]:focus svg,
+[svg="hugo"]:active svg {
 	fill: var(--hugo-color);
 }
 
-[github]:hover svg {
+[svg="github"]:hover svg,
+[svg="github"]:focus svg,
+[svg="github"]:active svg {
 	fill: var(--github-color);
 }
 
-[twitter]:hover svg {
+[svg="twitter"]:hover svg,
+[svg="twitter"]:focus svg,
+[svg="twitter"]:active svg {
 	fill: var(--twitter-color);
 }
 

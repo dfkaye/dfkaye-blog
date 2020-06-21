@@ -5,4 +5,6 @@ tags: []
 draft: false
 ---
 
-This is the home page at `content/_index.md`, using `layouts/index.html`.
+This is the home page.
+
+At `content/_index.md`, using `layouts/index.html`.
