@@ -1,7 +1,7 @@
 {{ define "main" }}
 	<div demos-page>
 		<div demos-list>
-			<h2>Demos</h2>
+			<h2>Demos...</h2>
 			<ul demos>
 			{{ range (where .Site.RegularPages "Type" "in" "demos" )}}
 				<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>

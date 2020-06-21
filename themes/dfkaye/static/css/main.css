@@ -40,19 +40,16 @@ body {
   background-position: top -36em left 0;
 }
 
+[role="banner"] + * {
+	margin-top: 1.45rem;
+}
+
 header {
-	height: 10em;
-	margin-bottom: 1.45rem;
 	position: relative;
 	
 	display: flex;
 	flex-flow: row wrap;
 	justify-content: center;	
-}
-
-main {
-	margin: 0 auto;
-	padding: 0 auto;
 }
 
 footer {
@@ -145,5 +142,21 @@ svg {
 [pages] {
 	display: flex;
 	flex-direction: column;
+}
+
+/* demos page */
+
+[demos-page] {
+	display: flex;
+    flex-flow: row wrap;
+}
+
+[demos-list] {
+	width: 20%;
+}
+
+[demos] {
+    padding: 0 0 0 1em;
+    margin: 0;
 }
 
