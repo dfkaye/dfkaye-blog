@@ -3,7 +3,7 @@ title: "Test Demo"
 draft: false
 ---
 
-![alt](//via.placeholder.com/640x150)
+![alt](//via.placeholder.com/480x150)
 
 Description...
 
