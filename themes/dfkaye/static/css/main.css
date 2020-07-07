@@ -100,7 +100,7 @@ footer {
 }
 
 /* This pads the content - p tags, li, etc. */
-h3 ~ * {
+[page-intro] ~ * {
 	margin: 1em 0;
 }
 
@@ -141,6 +141,11 @@ nav a {
 	
 	font-weight: 600;
 	padding: .5em;
+}
+
+header a {
+	background-color: rgba(22, 22, 22, .25);
+	color: white;
 }
 
 /* nav icons */
@@ -185,11 +190,6 @@ svg {
 }
 
 /* demos page */
-
-[demos-page] {
-	display: flex;
-  flex-flow: row wrap;
-}
 
 [demos-list] {
 	width: 20%;

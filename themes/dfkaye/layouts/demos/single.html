@@ -1,16 +1,4 @@
 {{ define "main" }}
-	<div demos-page>
-		<div demos-list>
-			<h2>Demos...</h2>
-			<ul demos>
-			{{ range (where .Site.RegularPages "Type" "in" "demos" )}}
-				<li><a href="{{ .RelPermalink }}">{{ .Title }}</a></li>
-			{{ end }}
-			</ul>
-		</div>
-		<div demo>
-			<h2>{{ .Title }}</h2>
-			{{ .Content }}
-		</div>
-	</div>
+	<h2 page-intro>{{ .Title }}</h2>
+	{{ .Content }}
 {{ end }}
