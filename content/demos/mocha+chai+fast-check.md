@@ -1,5 +1,6 @@
 ---
 title: "mocha+chai+fast-check"
+date: 2020-07-07T12:10:43-07:00
 draft: false
 ---
 
