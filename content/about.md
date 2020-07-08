@@ -41,10 +41,18 @@ After some 20 years as a (mainly) front-end engineer, I have arrived at some sur
 
 - HTML: use custom tag names and attribute names
 
-	`<clock ticking>` over `<div class="clock ticking">`
+	Prefer
+	
+		<clock ticking>
+		
+	over
+	
+		<div class="clock ticking">
 		
 - CSS: use attribute selectors (and combinators)
 
+	Prefer
+	
 		clock {}
 		
 		clock[ticking] {} 
@@ -52,6 +60,7 @@ After some 20 years as a (mainly) front-end engineer, I have arrived at some sur
 	over 
 	
 		.clock {}
+		
 		.ticking {}
 
 - JS: use data and functions
