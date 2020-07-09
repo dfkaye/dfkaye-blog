@@ -28,9 +28,9 @@ Using `layouts/_default/single.html`
 </a>
 {{< /rawhtml >}}
 
-The selling point of Hugo is its speed, and support for markdwon, plus the go language itself.
+The selling point of Hugo is its speed, and support for Markdown, plus the Go programming language itself.
 
-However, once you're in the markdown and need raw HTML, you have to learn shortcodes, or replace markdown files with html files.
+However, once you're in the Markdown and need raw HTML, you have to learn shortcodes, or replace Markdown files with HTML files.
 
 ### Web development philosophy
 
@@ -65,6 +65,7 @@ After some 20 years as a (mainly) front-end engineer, I have arrived at some sur
     .ticking {}
 
 - JS: use data and functions
+
 
     var data = {};
 
