@@ -44,37 +44,36 @@ After some 20 years as a (mainly) front-end engineer, I have arrived at some sur
 
   Prefer
 
-    <clock ticking>
-
+	`<clock ticking>`
+	
   over
 
-    <div class="clock ticking">
+	`<div class="clock ticking">`
 
 - CSS: use attribute selectors (and combinators)
 
   Prefer
 
-    clock {}
+		clock {}
 
-    clock[ticking] {}
+		clock[ticking] {}
 
   over
 
-    .clock {}
+		.clock {}
 
-    .ticking {}
+		.ticking {}
 
 - JS: use data and functions
 
+		var data = {};
 
-    var data = {};
-
-    function process(in) {
-      var out = {};
-      return Object.assign(out, Object(in), {
-        modified: "with love"
-      });
-    }
+		function process(in) {
+			var out = {};
+			return Object.assign(out, Object(in), {
+				modified: "with love"
+			});
+		}
 
 - DOM: separate keyboard traversal handlers from so-called "logic".
 
