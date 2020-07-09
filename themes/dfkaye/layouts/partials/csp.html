@@ -1,9 +1,10 @@
 {{ $baseUrl := (.Site.BaseURL | string) }}
+{{ $hostUrls := "https://unpkg.com/ https//*.cloudfront.ent" }}
 <meta http-equiv="Content-Security-Policy"
 	content="upgrade-insecure-requests; block-all-mixed-content;
 		default-src 'self' {{ $baseUrl }};
 		child-src 'self' {{ $baseUrl }};
-		img-src 'self' {{ $baseUrl }} https://unpkg.com/;
-		object-src 'none;
-		style-src 'self' 'unsafe-inline' {{ $baseUrl }} https://unpkg.com/;
-		script-src-elem 'self' 'unsafe-inline' {{ $baseUrl }} https://unpkg.com/;">
+		img-src 'self' {{ $baseUrl }} {{ $hostUrls }};
+		object-src 'none';
+		style-src 'self' 'unsafe-inline' {{ $baseUrl }} {{ $hostUrls }};
+		script-src-elem 'self' 'unsafe-inline' {{ $baseUrl }} {{ $hostUrls }};">
