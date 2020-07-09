@@ -1,3 +1,9 @@
-<!-- content security policy partial -->
-<!-- must test locally using localhost, not the ip address -->
-{{ printf `<meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests; block-all-mixed-content; default-src 'self'; child-src %s; object-src %s; style-src %s; script-src %s;">` (delimit .Site.Params.csp.childsrc " ") (delimit .Site.Params.csp.objectsrc " ") (delimit .Site.Params.csp.stylesrc " ") (delimit .Site.Params.csp.scriptsrc " ") | safeHTML }}
+{{ $baseUrl := (.Site.BaseURL | string) }}
+<meta http-equiv="Content-Security-Policy"
+	content="upgrade-insecure-requests; block-all-mixed-content;
+		default-src 'self' {{ $baseUrl }};
+		child-src 'self' {{ $baseUrl }};
+		img-src 'self' {{ $baseUrl }} https://unpkg.com/;
+		object-src 'none;
+		style-src 'self' 'unsafe-inline' {{ $baseUrl }} https://unpkg.com/;
+		script-src-elem 'self' 'unsafe-inline' {{ $baseUrl }} https://unpkg.com/;">
