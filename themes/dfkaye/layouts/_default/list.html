@@ -1,16 +1,16 @@
 {{ define "main" }}
-	<h2 page-intro>{{ .Title }}</h2>
-	
-	{{ .Content }}
-	
-	<ul pages>
-	{{ range .Pages }}
-		<li>
-			{{ if .PublishDate }}
-			<time datetime="{{.PublishDate}}">{{.PublishDate.Format "January 2, 2006"}}</time>
-			{{ end }}
-			<a href="{{ .RelPermalink }}">{{ .Title }}</a>
-		</li>
-	{{ end }}
-	</ul>
+  <h2 page-intro>{{ .Title }}</h2>
+
+  {{ .Content }}
+
+  <ul pages>
+  {{ range .Pages }}
+    <li>
+      {{ if .PublishDate }}
+      <time datetime="{{.PublishDate}}">{{.PublishDate.Format "January 2, 2006"}}</time>
+      {{ end }}
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </li>
+  {{ end }}
+  </ul>
 {{ end }}

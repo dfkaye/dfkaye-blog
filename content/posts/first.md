@@ -1,8 +1,9 @@
 ---
 title: "First"
 date: 2019-11-11T12:44:58-08:00
+description: "first blog post in Hugo"
 draft: false
-summary: 'first page'
+
 # script: 'first.js'
 ---
 

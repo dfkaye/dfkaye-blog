@@ -1,11 +1,12 @@
 baseURL = "https://dfkaye.com"
 languageCode = "en-us"
-title = "David Kaye"
+title = "DFKaye"
 theme = "dfkaye"
 
 [permalinks]
-  blog = "/:filename/"
-	
+  posts = "posts/:year/:month/:day/:slug/"
+
 [params]
-	siteStatus = "(conversion to Hugo in progress...)"
-	
+  author = "David F. Kaye"
+  description = "David Kaye's web site"
+  siteStatus = "(conversion to Hugo in progress...)"

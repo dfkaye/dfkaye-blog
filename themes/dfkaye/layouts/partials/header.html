@@ -1,15 +1,14 @@
-<header>	
-	<h1 site-title><small>{{ .Site.Title }}</small></h1>
-	<nav>
-		<ul>
-			<li><a href="/">Home</a></li>
-			<li><a href="/about/">About</a></li>
-			<li><a href="/posts/">Posts</a></li>
-			<li><a href="/demos/">Demos</a></li>			
-		</ul>
-	</nav>
-	
-	<h2 page-title>{{ .Page.Title }}</h2>
-	<strong site-status>{{ .Site.Params.siteStatus }}</strong>
-	
+<header>
+  <h1 site-title>{{ .Site.Title }}</h1>
+  <nav>
+    <ul>
+      <li><a href="/" aria-label="DFK Home page">Home</a></li>
+      <li><a href="/about/" aria-label="About Me">About</a></li>
+      <li><a href="/posts/" aria-label="My blog posts">Posts</a></li>
+      <li><a href="/demos/" aria-label="My programming examples">Demos</a></li>
+    </ul>
+  </nav>
+
+  <h2 page-title>{{ .Page.Title }}</h2>
+  <strong site-status>{{ .Site.Params.siteStatus }}</strong>
 </header>

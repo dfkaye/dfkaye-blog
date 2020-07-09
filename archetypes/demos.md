@@ -1,5 +1,6 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
+description: {{ .Description }}
 draft: false
 ---
 
