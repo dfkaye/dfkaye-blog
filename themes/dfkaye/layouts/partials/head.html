@@ -6,6 +6,9 @@
   <meta name="author" content="{{ .Site.Params.Author }}">
   <meta name="description" content="{{ .Page.Description }}">
 
+	<!-- CSP -->
+	{{ partialCached "csp.html" . }}
+
   <!-- SEO -->
   <meta property="og:title" content="{{ .Page.Title }}">
   <meta property="og:description" content="{{ .Page.Description }}">

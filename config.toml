@@ -10,3 +10,16 @@ theme = "dfkaye"
   author = "David F. Kaye"
   description = "David Kaye's web site"
   siteStatus = "(conversion to Hugo in progress...)"
+
+[params.csp]
+	childsrc = ["'self'"]
+  objectsrc = ["'none'"]
+  stylesrc = ["'self'",
+    "'unsafe-inline'",
+    "https://unpkg.com"
+  ]
+  scriptsrc = [
+    "'self'",
+    "'unsafe-inline'",
+    "https://unpkg.com"
+  ]
