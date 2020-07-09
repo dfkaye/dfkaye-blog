@@ -6,9 +6,10 @@
   <meta name="author" content="{{ .Site.Params.Author }}">
   <meta name="description" content="{{ .Page.Description }}">
 
-	<!-- CSP -->
+	<!-- CSP 
 	{{ partialCached "csp.html" . }}
-
+	-->
+	
   <!-- SEO -->
   <meta property="og:title" content="{{ .Page.Title }}">
   <meta property="og:description" content="{{ .Page.Description }}">
@@ -27,5 +28,6 @@
   <meta name="theme-color" content="#ffffff">
 
   {{ $css := "css/main.css" | relURL }}
-  <link rel="stylesheet" href="{{ $css }}">
+	{{ $nonce := (.Site.Params.CSP.Nonce | string) }}
+  <link rel="stylesheet" href="{{ $css }}" nonce="{{ $nonce }}">
 </head>

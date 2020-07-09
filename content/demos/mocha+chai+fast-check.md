@@ -1,5 +1,5 @@
 ---
-title: "mocha+chai+fast-check"
+title: "A page running mocha, chai, and fast-check"
 date: 2020-07-07T12:10:43-07:00
 description: "Running example of a JavaScript test suite in the browser, using mocha, chai, and fast-check testing libraries"
 draft: false
@@ -14,7 +14,12 @@ There are some customizations and overrides in the CSS to make it fit properly o
 You can see roughly the same setup [at this codepen](https://codepen.io/dfkaye/pen/XWXgQxZ).
 
 {{< rawhtml >}}
+
+<!-- ALL CSS AND SCRIPT URLS SHOULD BE SPECIFIED IN THE FRONT MATTER. -->
+
 <link rel="stylesheet" href="https://unpkg.com/mocha/mocha.css">
+
+<!-- INLINE CSS AND SCRIPT FRAGMENTS SHOULD BE MOVED TO OWN INCLUDES. -->
 
 <style mocha-css-override>
 #mocha {

@@ -10,3 +10,6 @@ theme = "dfkaye"
   author = "David F. Kaye"
   description = "David Kaye's web site"
   siteStatus = "(conversion to Hugo in progress...)"
+
+[params.csp]
+	nonce = "4AEemGb0xJptoIGFP3Nd"
