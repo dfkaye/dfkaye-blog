@@ -12,7 +12,7 @@ scripts: [
 "https://unpkg.com/chai/chai.js",
 "https://unpkg.com/fast-check@*/lib/bundle.js",
 "/js/demos/mocha-setup.js",
-"/js/demos/mocha+chai+fast-check-suite.js",
+"/js/demos/mocha-chai-fast-check-suite.js",
 "/js/demos/mocha-run.js"
 ]
 ---
