@@ -68,6 +68,7 @@ code {
   background-color: #ccc;
   font-size: 1.1em;
   padding: .2em;
+	white-space: break-spaces;
 }
 
 
