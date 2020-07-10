@@ -1,10 +1,11 @@
 {{ $baseUrl := (.Site.BaseURL | string) }}
-{{ $hostUrls := "https://unpkg.com/" }}
+{{ $hostUrls := "https://unpkg.com/  https://*.cloudfront.net/" }}
 {{ $nonce := (.Site.Params.CSP.Nonce | string) }}
 <meta http-equiv="Content-Security-Policy"
 	content="upgrade-insecure-requests; block-all-mixed-content;
 		default-src 'self' {{ $baseUrl }};
 		child-src 'self' {{ $baseUrl }};
+		img-src 'self' {{ $baseUrl }} {{ $hostUrls }};
 		object-src 'none';
 		style-src-elem 'self' 'nonce-{{ $nonce }}' {{ $baseUrl }} {{ $hostUrls }};
 		script-src-elem 'self' 'strict-dynamic' 'nonce-{{ $nonce }}';">
