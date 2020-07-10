@@ -6,7 +6,7 @@
   <meta name="author" content="{{ .Site.Params.Author }}">
   <meta name="description" content="{{ .Page.Description }}">
 
-	<!-- CSP 
+	<!-- CSP -- this really needs fixing --
 	{{ partialCached "csp.html" . }}
 	-->
 	
@@ -27,7 +27,5 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
 
-  {{ $css := "css/main.css" | relURL }}
-	{{ $nonce := (.Site.Params.CSP.Nonce | string) }}
-  <link rel="stylesheet" href="{{ $css }}" nonce="{{ $nonce }}">
+	{{- partial "css.html" . -}}
 </head>

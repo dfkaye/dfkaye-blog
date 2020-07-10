@@ -1,0 +1,14 @@
+/* mocha-css-override */
+
+#mocha {
+	border-top: 1px solid deepskyblue;
+	margin: unset;
+}
+
+#mocha-stats {
+	position: relative;
+	top: unset;
+	right: unset;
+	text-align: right;
+	border-bottom: 1px dotted green;
+}

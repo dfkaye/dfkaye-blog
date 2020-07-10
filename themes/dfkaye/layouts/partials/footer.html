@@ -35,10 +35,5 @@
     </ul>
   </nav>
 
-  {{ $js := "js/hello.js" | relURL }}
-	{{ $nonce := (.Site.Params.CSP.Nonce | string) }}
-  <script src="{{ $js }}" nonce="{{ $nonce }}"></script>
-
-	<!-- should pass list of JS URLs from page params -->
-
+	{{- partial "js.html" . -}}
 </footer>
