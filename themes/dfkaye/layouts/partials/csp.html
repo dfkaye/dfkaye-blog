@@ -5,7 +5,6 @@
 	content="upgrade-insecure-requests; block-all-mixed-content;
 		default-src 'self' {{ $baseUrl }};
 		child-src 'self' {{ $baseUrl }};
-		img-src 'self' {{ $baseUrl }} {{ $hostUrls }};
 		object-src 'none';
-		style-src-elem 'self' 'unsafe-inline' 'nonce-{{ $nonce }}' {{ $baseUrl }} {{ $hostUrls }};
+		style-src-elem 'self' 'nonce-{{ $nonce }}' {{ $baseUrl }} {{ $hostUrls }};
 		script-src-elem 'self' 'strict-dynamic' 'nonce-{{ $nonce }}';">
