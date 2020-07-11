@@ -3,9 +3,7 @@
 {{ $nonce := (.Site.Params.CSP.Nonce | string) }}
 <meta http-equiv="Content-Security-Policy"
 	content="
-		default-src 'self';
-		child-src 'self';
-		img-src 'self' {{ $baseUrl }} {{ $hostUrls }};
+
 		object-src 'none';
 		style-src 'self' 'unsafe-inline' 'nonce-{{ $nonce }}' {{ $baseUrl }} {{ $hostUrls }};
 		style-src-elem 'self' 'unsafe-inline' 'nonce-{{ $nonce }}' {{ $baseUrl }} {{ $hostUrls }};

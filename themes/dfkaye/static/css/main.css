@@ -41,6 +41,10 @@ body {
   min-width: 320px;
 }
 
+[hidden] {
+	display: none;
+}
+
 [role="banner"] {
   background-image: url(/img/hexo-banner-min.jpg);
   position: absolute;
