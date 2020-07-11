@@ -6,10 +6,24 @@ tags: []
 draft: false
 ---
 
-You have found David Kaye's blog , which focuses almost entirely on front-end web development topics.
+<!--
+This is my Home page.
 
-+ should show latest 5 blog posts
+At content/_index.md, using layouts/index.html.
+-->
 
-+ should show latest 5 demo projects
+You have found David Kaye's blog, focused almost entirely on front-end web development topics.
+
+Site is currently (as of July 10, 2020) a work in progress.
+
+### My TODO list
+
++ show latest 5 blog posts
+
++ show latest 5 demo projects
+
++ rename demos to suites
+
++ move content from About to posts
 
 + [more about me](/about/)
