@@ -12,6 +12,14 @@ This is my About page.
 Using `layouts/_default/single.html`
 -->
 
+I have been working on the web since 1997, initially as a tester, then as a front-end developer since 2000.
+
+These days I am dfkaye on [twitter](https://twitter.com/dfkaye) and [github](http://github.com/dfkaye), but <span aria-label="david f kaye">davidfkaye</span> on [linked-In](https://www.linkedin.com/in/davidfkaye/).
+
+I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on [github](http://dfkaye.github.io/) using [hexo](https://github.com/hexojs/hexo).
+
+
+
 
 ### Built with Hugo
 

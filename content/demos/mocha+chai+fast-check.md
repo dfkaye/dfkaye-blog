@@ -1,5 +1,5 @@
 ---
-title: "A page running mocha, chai, and fast-check"
+title: "A mocha, chai, and fast-check test suite"
 date: 2020-07-07T12:10:43-07:00
 description: "Running example of a JavaScript test suite in the browser, using mocha, chai, and fast-check testing libraries"
 draft: false
@@ -17,11 +17,11 @@ scripts: [
 ]
 ---
 
-This page runs [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), and [fast-check.js](https://github.com/dubzzz/fast-check/) in the browser.
+This page is running a test suite including [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), and [fast-check.js](https://github.com/dubzzz/fast-check/) downloaded from [https://unpkg.com](unpkg.com).
 
 There are some customizations and overrides in the CSS to make it fit properly on this blog.
 
-You can see roughly the same setup [at this codepen](https://codepen.io/dfkaye/pen/XWXgQxZ).
+You can see roughly the same setup [at this code-pen](https://codepen.io/dfkaye/pen/XWXgQxZ).
 
 {{< rawhtml >}}
 <div id="fixture"></div>

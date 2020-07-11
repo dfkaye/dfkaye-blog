@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ .Site.Params.languageCode }}">
   {{- partial "head.html" . -}}
-  <body>
-    {{- partial "banner.html" . -}}
+  <body dfk-body>
+    <!--{{- partial "banner.html" . -}}-->
     {{- partial "header.html" . -}}
     <main role="main"><article>
       {{- block "main" . }}{{- end }}
