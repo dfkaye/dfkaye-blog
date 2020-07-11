@@ -2,9 +2,11 @@
 {{ $hostUrls := "https://unpkg.com/  https://*.cloudfront.net/" }}
 {{ $nonce := (.Site.Params.CSP.Nonce | string) }}
 <meta http-equiv="Content-Security-Policy"
-	content="upgrade-insecure-requests;
+	content="
 		default-src 'self';
 		child-src 'self';
 		object-src 'none';
+		style-src 'self' 'unsafe-inline' 'nonce-{{ $nonce }}' {{ $baseUrl }} {{ $hostUrls }};
 		style-src-elem 'self' 'unsafe-inline' 'nonce-{{ $nonce }}' {{ $baseUrl }} {{ $hostUrls }};
+		script-src 'self' 'unsafe-inline' 'strict-dynamic' 'nonce-{{ $nonce }}';
 		script-src-elem 'self' 'unsafe-inline' 'strict-dynamic' 'nonce-{{ $nonce }}';">

@@ -42,7 +42,7 @@ body {
 }
 
 [role="banner"] {
-  background-image: url(/img/hexo-banner.jpg);
+  background-image: url(/img/hexo-banner-min.jpg);
   position: absolute;
   top: 0;
   left: 0;
@@ -53,7 +53,7 @@ body {
 }
 
 [role="banner"] ~ * {
-  margin: .75rem 0 1.5em;
+  margin: 1.5em 0;
   padding: 0 5%;
 }
 

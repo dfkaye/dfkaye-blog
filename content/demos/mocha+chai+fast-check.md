@@ -17,9 +17,7 @@ scripts: [
 ]
 ---
 
-<!-- ![alt](//via.placeholder.com/480x150) -->
-
-This page runs [mocha](https://mochajs.org/), [chai](https://www.chaijs.com/), and [fast-check](https://github.com/dubzzz/fast-check/) in the browser.
+This page runs [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), and [fast-check.js](https://github.com/dubzzz/fast-check/) in the browser.
 
 There are some customizations and overrides in the CSS to make it fit properly on this blog.
 
