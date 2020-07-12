@@ -21,16 +21,16 @@ This page is running a test suite including [mocha.js](https://mochajs.org/), [c
 
 There are some customizations and overrides in the CSS to make it fit properly on this blog.
 
-You can see roughly the same setup [at this code-pen](https://codepen.io/dfkaye/pen/XWXgQxZ).
+You can find roughly the same setup [at this code-pen](https://codepen.io/dfkaye/pen/XWXgQxZ).
 
 {{< rawhtml >}}
 <div id="fixture"></div>
 <div id="mocha"></div>
 {{< /rawhtml >}}
 
-You can open the console to see some of the generated arguments for the failing tests.
+You can open the console to read some of the generated arguments for the failing tests.
 
-Examples:
+Some examples:
 
 		>jq5 /!!
 		"v&"%"t# &*
@@ -44,4 +44,3 @@ Examples:
 	* [mocha.js](https://unpkg.com/mocha/mocha.js)
 	* [chai.js](https://unpkg.com/chai/chai.js)
 	* [fast-check library bundle](https://unpkg.com/fast-check@*/lib/bundle.js)
-

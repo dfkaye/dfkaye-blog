@@ -2,13 +2,15 @@
 
 #mocha {
 	border-top: 1px solid deepskyblue;
+	border-bottom: 1px solid deepskyblue;
 	margin: unset;
+	padding: .5em .25em .75em;
 }
 
 #mocha-stats {
 	position: relative;
 	top: unset;
 	right: unset;
+	padding-bottom: .5em;
 	text-align: right;
-	border-bottom: 1px dotted green;
 }

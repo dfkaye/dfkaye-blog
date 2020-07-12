@@ -22,7 +22,23 @@ Site is currently (as of July 10, 2020) a work in progress.
 
 + show latest 5 demo projects
 
-+ rename demos to suites
++ previous | next links in each posts
+
++ previous | next links in each demo
+
++ add date to each posts
+
++ add "5 min read" to each posts
+	- example, `&middot; {{ .ReadingTime }} min read`
+
++ add date and latest update to each demo
+
++ rename "demos" to "suites"
+
++ use hugo templating (--instead-of-css-vars) in the CSS
+	- see https://zwbetz.com/use-hugo-templating-in-your-external-css/
+
++ chroma for code snippets
 
 + move content from About to posts
 

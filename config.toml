@@ -12,4 +12,5 @@ theme = "dfkaye"
   siteStatus = "(conversion to Hugo in progress...)"
 
 [params.csp]
-	nonce = "4AEemGb0xJptoIGFP3Nd"
+	# nonce = "4AEemGb0xJptoIGFP3Nd"
+	nonce = "MTU5NDUzMzY2MTY3NQ=="
