@@ -1,5 +1,6 @@
 {{ define "main" }}
   <h2 id="page-intro" page-intro>{{ .Title }}</h2>
+	<span reading-time>{{ .ReadingTime }} minute read</span>
   <p>{{ .Description }}</p>
   {{ .Content }}
 {{ end }}

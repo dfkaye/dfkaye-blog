@@ -64,23 +64,6 @@ code {
 /* end until chroma */
 
 
-/* could use more polish here */
-
-blockquote {
-	font-style: italic;
-	padding: .5em;
-}
-
-blockquote p {
-	padding: 0;
-}
-
-blockquote:before,
-blockquote:after {
- content: "\"";
- font-size: 1.5em;
-}
-
 /* flow */
 
 header ~ * {
@@ -141,6 +124,15 @@ footer {
   margin: 1em 0 1em 1em;
 }
 
+/* could use more polish here */
+[role="main"] * ~ blockquote {
+	background-color: rgba(22, 22, 254, .15);
+	border-left: 3px solid rgba(22, 22, 254, .5);	
+	font-family: monospace;
+	font-size: 1.5em;
+	margin: 2em 0;
+	padding: .5em 1em;
+}
 
 /* links */
 
@@ -219,12 +211,24 @@ svg {
 
 /* list pages */
 
-[pages] {
+[page-list] {
   display: flex;
   flex-direction: column;
-
   margin: 1em;
 }
+
+[page-list] [page-item] {
+	margin: .25em 0;
+}
+
+[datetime] {
+	color: #757575;
+}
+
+[reading-time] {
+	color: #757575;
+}
+
 
 /* demos page */
 

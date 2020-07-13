@@ -3,13 +3,14 @@
 
   {{ .Content }}
 
-  <ul pages>
+  <ul page-list>
   {{ range .Pages }}
-    <li>
-      {{ if .PublishDate }}
-      <time datetime="{{.PublishDate}}">{{.PublishDate.Format "January 2, 2006"}}</time>
-      {{ end }}
-      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <li page-item>
+      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">
+			{{ .Date.Format "Jan 2, 2006" }}
+			</time>
+      &middot; <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+			&middot; <span reading-time>{{ .ReadingTime }} minute read</span>
     </li>
   {{ end }}
   </ul>

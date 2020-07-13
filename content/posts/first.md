@@ -60,7 +60,7 @@ It means that Gatsby.JS is does not generate static sites, but single page web a
 
 This problem could be fixed with - yes, you guessed it - "dangerously setting inner HTML" somewhere or using `Function()` but that seems suboptimal in the age of Content Security Policy.
 
-> Note to the React community: You are not making progress when you are BREAKING THE MOST BASIC WEB FUNCTIONS.
+> *We are not making progress when we break the most basic functions of the web.*
 
 ### I Just Wanted to Create a Blog with CSS and JavaScript Demos
 
