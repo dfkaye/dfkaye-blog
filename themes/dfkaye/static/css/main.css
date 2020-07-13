@@ -75,7 +75,7 @@ header {
   color: #fff;
   display: flex;
   flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-between;
 	/* use 12.25em if site status is hidden */
 	min-height: 15.25em;
 }
@@ -92,13 +92,15 @@ header {
 }
 
 footer {
+	border-top: 1px solid #ccc;
   display: flex;
-  flex-flow: row wrap;
-  justify-content: center;
+  justify-content: space-between;
 }
 
-[site-title] {
-  margin: 0 .5em;
+[nav] [site-title] {
+	height: 3em;
+	margin: .25em 0;
+	padding: .75em;
 }
 
 [page-title] {
@@ -151,7 +153,13 @@ a:not([svg]):active {
 
 /* nav */
 
-nav ul {
+[nav] {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;	
+}
+
+[nav] ul {
   list-style-type: none;
   display: flex;
   flex-flow: row wrap;
@@ -159,18 +167,18 @@ nav ul {
   justify-content: center;
 }
 
-nav li {
+[nav] li {
   display: inline-block;
   margin: 1em;
 }
 
-nav a {
+[nav] a {
   color: var(--link-color);
   font-weight: 600;
   padding: .5em;
 }
 
-header a {
+[nav="header"] a {
   background-color: rgba(10,110, 200, .25);
   color: white;
 }
