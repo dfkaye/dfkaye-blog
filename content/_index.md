@@ -40,6 +40,8 @@ Some of that content will be posted here eventually, along with updated takes.
 
 + rename "demos" to "suites"
 
++ rename `<a svg="">` to `<a icon="">` and change css accordingly.
+
 + use hugo templating (--instead-of-css-vars) in the CSS
 	- see https://zwbetz.com/use-hugo-templating-in-your-external-css/
 

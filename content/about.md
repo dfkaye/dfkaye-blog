@@ -19,8 +19,6 @@ These days I am dfkaye on [twitter](https://twitter.com/dfkaye) and [github](htt
 I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on [github](http://dfkaye.github.io/) using [hexo](https://github.com/hexojs/hexo).
 
 
-
-
 ### Built with Hugo
 
 *This should be part of the Switching to Hugo post.*
