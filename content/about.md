@@ -91,6 +91,9 @@ I do not mean "100% code coverage" but rather a suite of tests exercising the so
 
 A browser suite consisting of unit and integration tests, exercising startup, utilities, rendering, error handling, *and* making network calls to your services, will unearth booby traps, incorrect assumptions, and undocumented changes faster than an end-to-end suite or even the unit tests for the service.
 
+Snapshot testing does not count. Article by Artem Sapegin, [What’s wrong with snapshot tests
+](https://blog.sapegin.me/all/snapshot-tests/).
+
 3. **Always test with a screen reader.**
 
 You will learn a ton about the keyboard and `aria` attributes and states in a hurry.

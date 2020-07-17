@@ -9,6 +9,8 @@
   --icon-height: 32px;
   --icon-margin: .5em 0.25em -.5em;
   --hugo-color: #ff0095;
+	--netlify-color: #009387;
+	--netlify-gradient: url(#logo-gradient-netlify);
   --github-color: #6cc644;
   --twitter-color: #1da1f2;
 }
@@ -129,7 +131,9 @@ footer {
 /* could use more polish here */
 [role="main"] * ~ blockquote {
 	background-color: rgba(22, 22, 254, .15);
-	border-left: 3px solid rgba(22, 22, 254, .5);	
+	// rgba(24, 143, 255, 0.32);
+	border-left: 3px solid rgba(22, 22, 254, .5);
+	// 2px solid #188fff;
 	font-family: monospace;
 	font-size: 1.5em;
 	margin: 2em 0;
@@ -202,6 +206,18 @@ svg {
 [svg="hugo"]:focus svg,
 [svg="hugo"]:active svg {
   fill: var(--hugo-color);
+}
+
+[svg="netlify"]:hover,
+[svg="netlify"]:focus,
+[svg="netlify"]:active {
+  color: var(--netlify-color);
+}
+
+[svg="netlify"]:hover svg,
+[svg="netlify"]:focus svg,
+[svg="netlify"]:active svg {
+  fill: var(--netlify-gradient);
 }
 
 [svg="github"]:hover svg,
