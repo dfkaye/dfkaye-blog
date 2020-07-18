@@ -9,8 +9,8 @@
   --icon-height: 32px;
   --icon-margin: .5em 0.25em -.5em;
   --hugo-color: #ff0095;
-	--netlify-color: #009387;
-	--netlify-gradient: url(#logo-gradient-netlify);
+  --netlify-color: #009387;
+  --netlify-gradient: url(#icon-gradient-netlify);
   --github-color: #6cc644;
   --twitter-color: #1da1f2;
 }
@@ -78,8 +78,8 @@ header {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
-	/* use 12.25em if site status is hidden */
-	min-height: 15.25em;
+  /* use 12.25em if site status is hidden */
+  min-height: 15.25em;
 }
 
 [role="banner"] {
@@ -94,15 +94,15 @@ header {
 }
 
 footer {
-	border-top: 1px solid #ccc;
+  border-top: 1px solid #ccc;
   display: flex;
   justify-content: space-between;
 }
 
 [nav] [site-title] {
-	height: 3em;
-	margin: .2em 0;
-	padding: .75em;
+  height: 3em;
+  margin: .2em 0;
+  padding: .75em;
 }
 
 [page-title] {
@@ -130,14 +130,14 @@ footer {
 
 /* could use more polish here */
 [role="main"] * ~ blockquote {
-	background-color: rgba(22, 22, 254, .15);
-	// rgba(24, 143, 255, 0.32);
-	border-left: 3px solid rgba(22, 22, 254, .5);
-	// 2px solid #188fff;
-	font-family: monospace;
-	font-size: 1.5em;
-	margin: 2em 0;
-	padding: .5em 1em;
+  background-color: rgba(22, 22, 254, .15);
+  // rgba(24, 143, 255, 0.32);
+  border-left: 3px solid rgba(22, 22, 254, .5);
+  // 2px solid #188fff;
+  font-family: monospace;
+  font-size: 1.5em;
+  margin: 2em 0;
+  padding: .5em 1em;
 }
 
 /* links */
@@ -146,21 +146,21 @@ a {
   color: var(--link-color);
 }
 
-a:not([svg]):hover,
-a:not([svg]):focus,
-a:not([svg]):active {
+a:not([icon]):hover,
+a:not([icon]):focus,
+a:not([icon]):active {
+  background-color: #efefef;
   color: var(--hover-color);
   text-decoration: underline;
-  background-color: #efefef;
 }
 
 
 /* nav */
 
 [nav] {
-	display: flex;
-	justify-content: space-between;
-	width: 100%;	
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
 }
 
 [nav] ul {
@@ -190,64 +190,64 @@ a:not([svg]):active {
 
 /* nav icons */
 
-svg {
+[icon] svg {
   fill: var(--fill-color);
   height: var(--icon-height);
   margin: var(--icon-margin);
 }
 
-[logo-defs] {
+[icon-defs] {
   position: absolute;
-	bottom: 0;
-	z-index: -1;
+  bottom: 0;
+  z-index: -1;
 }
 
-[svg="hugo"]:hover,
-[svg="hugo"]:focus,
-[svg="hugo"]:active {
+[icon="hugo"]:hover,
+[icon="hugo"]:focus,
+[icon="hugo"]:active {
   color: var(--hugo-color);
 }
 
-[svg="hugo"]:hover svg,
-[svg="hugo"]:focus svg,
-[svg="hugo"]:active svg {
+[icon="hugo"]:hover svg,
+[icon="hugo"]:focus svg,
+[icon="hugo"]:active svg {
   fill: var(--hugo-color);
 }
 
-[svg="netlify"]:hover,
-[svg="netlify"]:focus,
-[svg="netlify"]:active {
+[icon="netlify"]:hover,
+[icon="netlify"]:focus,
+[icon="netlify"]:active {
   color: var(--netlify-color);
 }
 
-[svg="netlify"]:hover svg,
-[svg="netlify"]:focus svg,
-[svg="netlify"]:active svg {
-	/* This was fun to figure out. */
+[icon="netlify"]:hover svg,
+[icon="netlify"]:focus svg,
+[icon="netlify"]:active svg {
+  /* This was fun to figure out. */
   fill: var(--netlify-gradient);
 }
 
-[svg="github"]:hover,
-[svg="github"]:focus,
-[svg="github"]:active {
+[icon="github"]:hover,
+[icon="github"]:focus,
+[icon="github"]:active {
   color: var(--github-color);
 }
 
-[svg="github"]:hover svg,
-[svg="github"]:focus svg,
-[svg="github"]:active svg {
+[icon="github"]:hover svg,
+[icon="github"]:focus svg,
+[icon="github"]:active svg {
   fill: var(--github-color);
 }
 
-[svg="twitter"]:hover,
-[svg="twitter"]:focus,
-[svg="twitter"]:active {
+[icon="twitter"]:hover,
+[icon="twitter"]:focus,
+[icon="twitter"]:active {
   color: var(--twitter-color);
 }
 
-[svg="twitter"]:hover svg,
-[svg="twitter"]:focus svg,
-[svg="twitter"]:active svg {
+[icon="twitter"]:hover svg,
+[icon="twitter"]:focus svg,
+[icon="twitter"]:active svg {
   fill: var(--twitter-color);
 }
 
@@ -261,15 +261,15 @@ svg {
 }
 
 [page-list] [page-item] {
-	margin: .25em 0;
+  margin: .25em 0;
 }
 
 [datetime] {
-	color: #757575;
+  color: #757575;
 }
 
 [reading-time] {
-	color: #757575;
+  color: #757575;
 }
 
 
