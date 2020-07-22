@@ -30,11 +30,11 @@ Some of that content will be posted here eventually, along with updated takes.
 
 ## My TODO list
 
-+ show latest 5 blog posts
++ pagination in posts
 
-+ show latest 5 demo projects
++ pagination in demos
 
-+ previous | next links in each posts
++ previous | next links in each post
 
 + previous | next links in each demo
 

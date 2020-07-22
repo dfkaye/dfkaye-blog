@@ -3,6 +3,9 @@ languageCode = "en-us"
 title = "DFKaye"
 theme = "dfkaye"
 
+# Use absolute URLs
+canonifyURLs = true
+
 [permalinks]
   posts = "posts/:year/:month/:day/:slug/"
 

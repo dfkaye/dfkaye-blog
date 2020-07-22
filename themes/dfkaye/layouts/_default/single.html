@@ -1,6 +1,14 @@
 {{ define "main" }}
 	<h1 id="page-intro" page-intro>{{ .Title }}</h1>
 	<span reading-time>{{ .ReadingTime }} minute read</span>
+
+	<ul publish-date>
+		<li>Publish Date: <time datetime="{{ .PublishDate }}" pubdate>{{ dateFormat "January 2, 2006" .Date }}</time></li>
+		<li>Last Update: <time datetime="{{ .Lastmod }}" lastmod>{{ dateFormat "January 2, 2006" .Date }}</time></li>
+		<li reading-time>Reading Time: <time>{{ .ReadingTime }} minute</time></li>
+	</ul>
+	
   <p>{{ .Description }}</p>
+	
   {{ .Content }}
 {{ end }}

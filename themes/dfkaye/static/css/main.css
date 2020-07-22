@@ -5,6 +5,7 @@
   --link-color: #6f5ff6;
   --text-color: #000;
   --bg-color: #fff;
+	--date-time-color: #757575;
   --fill-color: #ababab;
   --icon-height: 32px;
   --icon-margin: .5em 0.25em -.5em;
@@ -187,6 +188,12 @@ a:not([icon]):active {
   color: white;
 }
 
+/* current page or location */
+
+[aria-current] [href] {
+    outline: 1px dotted #fff;
+    background: mediumorchid;
+}
 
 /* nav icons */
 
@@ -265,12 +272,29 @@ a:not([icon]):active {
 }
 
 [datetime] {
-  color: #757575;
+  color: var(--date-time-color);
 }
 
 [reading-time] {
-  color: #757575;
+  color: var(--date-time-color);
 }
+
+[publish-date] {
+	color: var(--date-time-color);
+	display: flex;
+	font-size: .75em;	
+}
+
+[publish-date] li {
+	display: flex;
+	margin: .25em 1.35rem .25em 0;
+	flex-flow: row wrap;
+}
+
+[publish-date] time {
+	// margin: 0 0 0 .5em;
+}
+
 
 
 /* demos page */
