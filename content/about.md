@@ -16,7 +16,10 @@ I have been working on the web since 1997, initially as a tester, then as a fron
 
 These days I am dfkaye on [twitter](https://twitter.com/dfkaye) and [github](http://github.com/dfkaye), but <span aria-label="david f kaye">davidfkaye</span> on [linked-In](https://www.linkedin.com/in/davidfkaye/).
 
-I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on [github](http://dfkaye.github.io/) using [hexo](https://github.com/hexojs/hexo).
+Much as I like github, I prefer writing [gists](https://gist.github.com/dfkaye) when dwelling on smaller code experiments.
+
+
+More recently I've started creating "pens" on [code pen](https://codepen.io/dfkaye/pens/).
 
 
 ### Built with Hugo
@@ -24,12 +27,19 @@ I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on
 *This should be part of the Switching to Hugo post.*
 
 {{< rawhtml >}}
-<a svg="hugo" href="https://gohugo.io/" target="_blank" title="Hugo link"
-  rel="noopener" aria-label="follow Hugo——Opens in a new window">
+<svg icon-defs aria-hidden="true">
+  <!-- define icon logo paths -->
+  <defs>
+    <!-- paths borrowed from https://github.com/simple-icons/simple-icons -->
+    <path id="icon-hugo" d="M11.754 0a3.998 3.998 0 00-2.049.596L3.33 4.532a4.252 4.252 0 00-2.017 3.615v8.03c0 1.473.79 2.838 2.067 3.574l6.486 3.733a3.88 3.88 0 003.835.018l7.043-3.966a3.817 3.817 0 001.943-3.323V7.752a3.57 3.57 0 00-1.774-3.084L13.817.541a3.998 3.998 0 00-2.063-.54zm.022 1.674c.413-.006.828.1 1.2.315l7.095 4.127c.584.34.941.96.94 1.635v8.462c0 .774-.414 1.484-1.089 1.864l-7.042 3.966a2.199 2.199 0 01-2.179-.01l-6.485-3.734a2.447 2.447 0 01-1.228-2.123v-8.03c0-.893.461-1.72 1.221-2.19l6.376-3.935a2.323 2.323 0 011.19-.347zm-4.7 3.844V18.37h2.69v-5.62h4.46v5.62h2.696V5.518h-2.696v4.681h-4.46V5.518Z"/>
+  </defs>
+</svg>
+<a icon="hugo" href="https://gohugo.io/" target="_blank" title="Hugo link"
+  rel="noopener" aria-label="Visit Hugo —— Opens in a new window">
   Built with Hugo
   <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
     <title>Hugo icon</title>
-    <path d="M11.754 0a3.998 3.998 0 00-2.049.596L3.33 4.532a4.252 4.252 0 00-2.017 3.615v8.03c0 1.473.79 2.838 2.067 3.574l6.486 3.733a3.88 3.88 0 003.835.018l7.043-3.966a3.817 3.817 0 001.943-3.323V7.752a3.57 3.57 0 00-1.774-3.084L13.817.541a3.998 3.998 0 00-2.063-.54zm.022 1.674c.413-.006.828.1 1.2.315l7.095 4.127c.584.34.941.96.94 1.635v8.462c0 .774-.414 1.484-1.089 1.864l-7.042 3.966a2.199 2.199 0 01-2.179-.01l-6.485-3.734a2.447 2.447 0 01-1.228-2.123v-8.03c0-.893.461-1.72 1.221-2.19l6.376-3.935a2.323 2.323 0 011.19-.347zm-4.7 3.844V18.37h2.69v-5.62h4.46v5.62h2.696V5.518h-2.696v4.681h-4.46V5.518Z"/>
+    <use xlink:href="#icon-hugo"></use>
   </svg>
 </a>
 {{< /rawhtml >}}

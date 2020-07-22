@@ -43,13 +43,11 @@ Some of that content will be posted here eventually, along with updated takes.
 + use hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
 
-+ chroma for code snippets
++ better code snippet styles (not one element per line but well framed, readable)
 
 + mermaid diagrams
 
 + set up RSS feed
-
-+ robots.txt
 
 + sitemap.xml
 

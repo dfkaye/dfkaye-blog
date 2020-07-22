@@ -5,7 +5,7 @@
   --link-color: #6f5ff6;
   --text-color: #000;
   --bg-color: #fff;
-	--date-time-color: #757575;
+  --date-time-color: #757575;
   --fill-color: #ababab;
   --icon-height: 32px;
   --icon-margin: .5em 0.25em -.5em;
@@ -48,23 +48,16 @@ html {
   display: none;
 }
 
-
-/* temporary, until we add chroma */
-
-pre {
-  background-color: #ccc;
-  margin: .5em 0;
-  padding: 1em;
+[nav-a11y] {
+  /* visually hidden skip link */
+  clip: rect(0 0 0 0); /* seriously? */
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
-
-code {
-  background-color: #ccc;
-  font-size: 1.1em;
-  padding: .2em;
-  white-space: break-spaces;
-}
-
-/* end until chroma */
 
 
 /* flow */
@@ -120,26 +113,52 @@ footer {
   width: 100%;
 }
 
+[role="main"] li {
+  margin: 1em 0 1em 1em;
+}
+
 /* This pads the content - p tags, li, etc. */
 [page-intro] ~ * {
   margin: 1em 0;
 }
 
-[role="main"] li {
-  margin: 1em 0 1em 1em;
-}
-
 /* could use more polish here */
-[role="main"] * ~ blockquote {
+[page-intro] ~ blockquote {
   background-color: rgba(22, 22, 254, .15);
-  // rgba(24, 143, 255, 0.32);
-  border-left: 3px solid rgba(22, 22, 254, .5);
-  // 2px solid #188fff;
+  /* rgba(24, 143, 255, 0.32); */
+  border-left: 5px solid rgba(22, 22, 254, .5);
+  /* 2px solid #188fff; */
   font-family: monospace;
   font-size: 1.5em;
+  font-style: italic;
   margin: 2em 0;
   padding: .5em 1em;
 }
+
+/* temporary, until we add chroma */
+
+[page-intro] ~ pre {
+  background-color: #eee;
+  border-left: 5px solid rgba(22, 22, 254, .5);
+  margin: 2em 0;
+  padding: 1em;
+}
+
+code {
+  background-color: #eee;
+  font-family: consolas, monaco, "Andale Mono", monospace;
+  padding: .2em;
+  white-space: break-spaces;
+}
+
+kbd {
+  border: 1px solid #666;
+  border-radius: .25em;
+  box-shadow: 1px 1px #ccc;
+  padding: 0.25em 0.5em;
+}
+
+/* end until chroma */
 
 /* links */
 
@@ -192,7 +211,7 @@ a:not([icon]):active {
 
 [aria-current] [href] {
     outline: 1px dotted #fff;
-    background: mediumorchid;
+    background: rgba(22, 22, 254, .5);
 }
 
 /* nav icons */
@@ -280,21 +299,16 @@ a:not([icon]):active {
 }
 
 [publish-date] {
-	color: var(--date-time-color);
-	display: flex;
-	font-size: .75em;	
+  color: var(--date-time-color);
+  display: flex;
+  font-size: .75em;
 }
 
 [publish-date] li {
-	display: flex;
-	margin: .25em 1.35rem .25em 0;
-	flex-flow: row wrap;
+  display: flex;
+  margin: .25em 1.35rem .25em 0;
+  flex-flow: row wrap;
 }
-
-[publish-date] time {
-	// margin: 0 0 0 .5em;
-}
-
 
 
 /* demos page */
