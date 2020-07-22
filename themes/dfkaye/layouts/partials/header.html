@@ -13,7 +13,7 @@
 			<li{{ if eq .URL "/about/" }} aria-current="page" {{ end }}>
 				<a href="{{ "/about/" | absURL }}" aria-label="About Me">About</a>
 			</li>
-			<li{{ if eq .URL "/posts/" (eq .Type "posts") }} aria-current="location" {{ end }}>
+			<li{{ if or (eq .URL "/posts/") (eq .Type "posts") }} aria-current="location" {{ end }}>
 				<a href="{{ "/posts/" | absURL }}" aria-label="My blog posts">Posts</a>
 			</li>
 			<li{{ if or (eq .URL "/demos/") (eq .Type "demos") }} aria-current="location" {{ end }}>
