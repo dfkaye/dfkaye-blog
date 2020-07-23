@@ -4,10 +4,8 @@
   <title>{{ .Page.Title }} | {{ .Site.Title }}</title>
   <meta name="author" content="{{ .Site.Params.Author }}">
   <meta name="description" content="{{ .Scratch.Get "pageDescription" }}">
-
-  <!-- CSP -- this really needs fixing -->
-  {{- partial "csp.html" . -}}
-  <!-- -->
+  
+	{{- partial "content-security-policy.html" . -}}
 
   <!-- real favicon generator: https://realfavicongenerator.net/ -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
