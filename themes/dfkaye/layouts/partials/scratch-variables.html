@@ -1,0 +1,9 @@
+{{ .Scratch.Set "pageDescription" .Page.Description }}
+{{ if not .IsPage }}
+	{{ if (eq .Type "posts")}}
+	{{ .Scratch.Set "pageDescription" "List of my blog posts" }}
+	{{ else if (eq .Type "demos")}}
+	{{ .Scratch.Set "pageDescription" "List of my code demos" }}
+	{{ end }}
+{{ end }}
+{{ .Scratch.Set "nonce" (printf "%s%s" .Title now | base64Encode)}}

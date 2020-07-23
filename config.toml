@@ -13,6 +13,3 @@ canonifyURLs = true
   author = "David F. Kaye"
   description = "David Kaye's web site"
   siteStatus = "(conversion to Hugo in progress...)"
-
-[params.csp]
-	nonce = "b25lLXR3by10aHJlZS1mb3Vy"

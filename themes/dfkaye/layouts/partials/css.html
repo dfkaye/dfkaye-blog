@@ -1,6 +1,6 @@
 <!-- set main.css with nonce -->	
 {{ $css := "css/main.css" | relURL }}
-{{ $nonce := (.Site.Params.CSP.Nonce | string) }}
+{{ $nonce := .Scratch.Get "nonce" }}
 <link rel="stylesheet" href="{{ $css }}" nonce="{{ $nonce }}">
 <!-- processs list of CSS URLs from page params -->	
 {{ range .Page.Params.Styles }}	

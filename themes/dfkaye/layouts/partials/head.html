@@ -2,12 +2,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{{ .Page.Title }} | {{ .Site.Title }}</title>
-
   <meta name="author" content="{{ .Site.Params.Author }}">
-  <meta name="description" content="{{ .Page.Description }}">
+  <meta name="description" content="{{ .Scratch.Get "pageDescription" }}">
 
   <!-- CSP -- this really needs fixing -->
-  {{ partialCached "csp.html" . }}
+  {{- partial "csp.html" . -}}
   <!-- -->
 
   <!-- real favicon generator: https://realfavicongenerator.net/ -->
@@ -20,7 +19,7 @@
 
   <!-- SEO -->
   <meta property="og:title" content="{{ .Page.Title }}">
-  <meta property="og:description" content="{{ .Page.Description }}">
+  <meta property="og:description" content="{{ .Scratch.Get "pageDescription" }}">
   <meta property="og:image" content="/favicon-32x32.png">
   <meta property="og:url" content="{{ .Page.Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">

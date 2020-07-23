@@ -1,11 +1,11 @@
 {{ $baseUrl := (.Site.BaseURL | string) }}
 {{ $hostUrls := "https://unpkg.com/" }}
-{{ $nonce := (.Site.Params.CSP.Nonce | string) }}
-<meta http-equiv="Content-Security-Policy"
-  content="base-uri 'none';
-    object-src 'none';
-    style-src 'self' 'unsafe-inline' {{ $baseUrl }} {{ $hostUrls }};
-    style-src-elem 'self' 'unsafe-inline' {{ $baseUrl }} {{ $hostUrls }};
-    script-src 'self' 'unsafe-inline' 'strict-dynamic' 'nonce-{{ $nonce }}';
-    script-src-elem 'self' 'unsafe-inline' 'strict-dynamic' 'nonce-{{ $nonce }}';">
-<!-- nonce removed from style-src, conflicted with unsafe-inline -->
+{{ $nonce := .Scratch.Get "nonce" }}
+  <meta http-equiv="Content-Security-Policy"
+    content="base-uri 'none';
+      object-src 'none';
+      style-src 'self' 'unsafe-inline' {{ $baseUrl }} {{ $hostUrls }};
+      style-src-elem 'self' 'unsafe-inline' {{ $baseUrl }} {{ $hostUrls }};
+      script-src 'self' 'unsafe-inline' 'strict-dynamic' 'nonce-{{ $nonce }}';
+      script-src-elem 'self' 'unsafe-inline' 'strict-dynamic' 'nonce-{{ $nonce }}';">
+  <!-- nonce removed from style-src, conflicted with unsafe-inline -->

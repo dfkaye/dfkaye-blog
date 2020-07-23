@@ -1,5 +1,5 @@
 {{ $js := "js/hello.js" | relURL }}
-{{ $nonce := (.Site.Params.CSP.Nonce | string) }}
+{{ $nonce := .Scratch.Get "nonce" }}
 <script src="{{ $js }}" nonce="{{ $nonce }}"></script>
 <!-- process list of JS URLs from page params -->	
 {{ range .Page.Params.Scripts }}

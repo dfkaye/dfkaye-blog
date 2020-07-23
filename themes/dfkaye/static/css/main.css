@@ -147,7 +147,7 @@ footer {
 code {
   background-color: #eee;
   font-family: consolas, monaco, "Andale Mono", monospace;
-  padding: .2em;
+  padding: .25em 0;
   white-space: break-spaces;
 }
 
