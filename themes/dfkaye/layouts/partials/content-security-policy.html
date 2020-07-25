@@ -4,7 +4,7 @@
   <meta http-equiv="Content-Security-Policy"
     content="base-uri 'none';
       object-src 'none';
-      style-src-elem 'self' 'nonce-{{ $nonce }}' '{{ $hostUrls }}';
+      style-src-elem 'self' 'nonce-{{ $nonce }}' {{ $hostUrls }};
       script-src-elem 'self' 'strict-dynamic' 'nonce-{{ $nonce }}';
 			block-all-mixed-content;">
   <!-- nonce removed from style-src, conflicted with unsafe-inline -->
