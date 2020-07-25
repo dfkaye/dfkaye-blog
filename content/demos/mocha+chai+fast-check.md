@@ -3,18 +3,21 @@ title: "A mocha, chai, and fast-check test suite"
 date: 2020-07-07T12:10:43-07:00
 description: "Running example of a JavaScript test suite in the browser, using mocha, chai, and fast-check testing libraries"
 draft: false
-styles: [
-"https://unpkg.com/mocha/mocha.css",
- "/css/demos/mocha-css-override.css"
-]
-scripts: [
-"https://unpkg.com/mocha/mocha.js",
-"https://unpkg.com/chai/chai.js",
-"https://unpkg.com/fast-check@*/lib/bundle.js",
-"/js/demos/mocha-setup.js",
-"/js/demos/mocha-chai-fast-check-suite.js",
-"/js/demos/mocha-run.js"
-]
+
+# load styles and scripts in strict order
+
+styles: 
+- https://unpkg.com/mocha/mocha.css
+- /css/demos/mocha-css-override.css
+
+scripts: 
+- https://unpkg.com/mocha/mocha.js
+- https://unpkg.com/chai/chai.js
+- https://unpkg.com/fast-check@1.26.0/lib/bundle.js
+- /js/demos/mocha-setup.js
+- /js/demos/mocha-chai-fast-check-suite.js
+- /js/demos/mocha-run.js
+
 
 ---
 

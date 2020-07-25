@@ -6,6 +6,7 @@
 [[headers]]
   for = "/*"
   [headers.values]
+		# https://dev.to/olegchursin/browser-security-headers-with-gatsby-and-netlify-4f5m
     Feature-Policy = "microphone 'none'; geolocation 'none'"
     Referrer-Policy = "no-referrer"
     Strict-Transport-Security = "max-age=63072000; includeSubDomains; preload"

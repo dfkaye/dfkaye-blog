@@ -57,6 +57,8 @@ Now, refresh that page. Unless they have fixed the issue as you are reading this
 
 It means that Gatsby.JS is does not generate static sites, but single page web applications running on static sites.
 
+> *We are not making progress when we break the most basic functions of the web.*
+
 ## Is there a fix?
 
 This problem could be fixed with - yes, you guessed it - `dangerouslySetInnerHTML` somewhere or even using `Function()`.
@@ -64,8 +66,6 @@ This problem could be fixed with - yes, you guessed it - `dangerouslySetInnerHTM
 Each of those is suboptimal in the age of [Content Security Policy](https://content-security-policy.com/).
 
 ## I Just Wanted to Create a Blog with CSS and JavaScript Demos
-
-> *We are not making progress when we break the most basic functions of the web.*
 
 So, I turned to Hugo, made a test site, then started on this site.
 
