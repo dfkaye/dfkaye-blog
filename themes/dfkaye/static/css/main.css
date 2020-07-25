@@ -48,15 +48,18 @@ html {
   display: none;
 }
 
-[nav-a11y] {
+[visually-hidden] {
   /* visually hidden skip link */
+	/* https://gomakethings.com/revisting-aria-label-versus-a-visually-hidden-class/ */
+	border: 0;
   clip: rect(0 0 0 0); /* seriously? */
-  clip-path: inset(50%);
-  height: 1px;
-  overflow: hidden;
-  position: absolute;
-  white-space: nowrap;
-  width: 1px;
+  // clip-path: inset(50%);
+	height: 1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	white-space: nowrap;
+	width: 1px;	
 }
 
 
