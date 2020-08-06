@@ -30,6 +30,10 @@ Some of that content will be posted here eventually, along with updated takes.
 
 ## My TODO list
 
++ list of engineering books I've read and/or recommend
+
++ list of engineering sites I might recommend
+
 + pagination in posts
 
 + pagination in demos
@@ -43,7 +47,7 @@ Some of that content will be posted here eventually, along with updated takes.
 + use hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
 
-+ better code snippet styles (not one element per line but well framed, readable)
++ better code snippet styles (not one element per line but well-framed and readable)
 
 + mermaid diagrams
 
@@ -53,6 +57,12 @@ Some of that content will be posted here eventually, along with updated takes.
 
 + categories and tags
 
++ add R&eacute;sum&eacute; page with @page and @print stylesheets
+
++ a **Tools I Use**"** page (see https://benjamincongdon.me/tools example)
+
 + move content from About to posts
+
++ copy content from the wordpress site
 
 + [more about me](/about/)
