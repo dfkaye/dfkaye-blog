@@ -6,7 +6,7 @@ draft: false
 
 ---
 
-*Response to Umaar's question on twitter at https://twitter.com/umaar/status/1290262055144980480.*
+*Response to [Umaar's question on twitter](https://twitter.com/umaar/status/1290262055144980480).*
 
 
 In this preliminary example, each function takes a parameter, and tests it for some equivalence.
