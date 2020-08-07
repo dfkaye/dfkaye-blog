@@ -162,6 +162,10 @@ code {
   white-space: break-spaces;
 }
 
+pre code {
+  padding: .25em 0;
+}
+
 kbd {
   border: 1px solid #666;
   border-radius: .25em;

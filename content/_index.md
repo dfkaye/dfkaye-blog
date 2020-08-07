@@ -14,15 +14,13 @@ At content/_index.md, using layouts/index.html.
 
 You have found David Kaye's blog, focused almost entirely on front-end web development topics.
 
-I have been working on the web since 1997, initially as a tester, then as a front-end developer since 2000.
-
-These days I am "dfkaye" on [twitter](https://twitter.com/dfkaye) and [github](http://github.com/dfkaye).
-
-You can also find me as "david f kaye" on [linked-In](https://www.linkedin.com/in/davidfkaye/).
++ [more about me](/about/)
++ [blog posts](/posts/)
++ [demos](/demos/)
 
 ## Work in progress
 
-What you see is a Hugo blog under construction.
+What you see is a [Hugo](https://gohugo.io) blog under construction.
 
 I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on [github](http://dfkaye.github.io/) using [hexo](https://github.com/hexojs/hexo).
 
@@ -30,19 +28,15 @@ Some of that content will be posted here eventually, along with updated takes.
 
 ## My TODO list
 
-+ list of engineering books I've read and/or recommend
++ pagination in /posts/
 
-+ list of engineering sites I might recommend
-
-+ pagination in posts
-
-+ pagination in demos
++ pagination in /demos/
 
 + previous | next links in each post
 
 + previous | next links in each demo
 
-+ rename "demos" to "suites"
++ rename "demos" to "suites" (maybe)
 
 + use hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
@@ -61,8 +55,18 @@ Some of that content will be posted here eventually, along with updated takes.
 
 + a **Tools I Use**"** page (see https://benjamincongdon.me/tools example)
 
-+ move content from About to posts
++ move content from /about/ to /posts/
 
 + copy content from the wordpress site
 
-+ [more about me](/about/)
++ list of engineering books I've read and/or recommend
+
++ list of engineering sites I might recommend
+
++ monthly list of dev-links - see https://github.com/dfkaye/dev-links/.
+
++ future awesome post about Function() (safe-eval) with strict CSP and web workers.
+
++ future awesome post about the SAM pattern
+  - see the HEX article at https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c
+  - see JJ's original article "No More MVC Frameworks" at https://www.infoq.com/articles/no-more-mvc-frameworks/

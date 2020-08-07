@@ -1,17 +1,38 @@
 ---
-title: "First"
+title: "First post: Why Hugo?"
 date: 2019-11-11T12:44:58-08:00
-description: "My first blog post in Hugo"
+description: "My first blog post on Hugo, and why I chose Hugo"
 draft: false
-
-# script: 'first.js'
 ---
 
 ## Why Hugo?
 
-I wanted to do more than write or rant about something. I wanted to push working code demos and test suites.
+The selling point of Hugo is its speed, and support for Markdown, plus the [Go programming language](https://golang.io) itself.  I have found it very easy to work with and customize.
 
-However, my then-latest blog hosted on Wordpress (on the free plan) does not allow including JavaScript.
+{{< rawhtml >}}
+<svg icon-defs aria-hidden="true">
+  <!-- define icon logo paths -->
+  <defs>
+    <!-- paths borrowed from https://github.com/simple-icons/simple-icons -->
+    <path id="icon-hugo" d="M11.754 0a3.998 3.998 0 00-2.049.596L3.33 4.532a4.252 4.252 0 00-2.017 3.615v8.03c0 1.473.79 2.838 2.067 3.574l6.486 3.733a3.88 3.88 0 003.835.018l7.043-3.966a3.817 3.817 0 001.943-3.323V7.752a3.57 3.57 0 00-1.774-3.084L13.817.541a3.998 3.998 0 00-2.063-.54zm.022 1.674c.413-.006.828.1 1.2.315l7.095 4.127c.584.34.941.96.94 1.635v8.462c0 .774-.414 1.484-1.089 1.864l-7.042 3.966a2.199 2.199 0 01-2.179-.01l-6.485-3.734a2.447 2.447 0 01-1.228-2.123v-8.03c0-.893.461-1.72 1.221-2.19l6.376-3.935a2.323 2.323 0 011.19-.347zm-4.7 3.844V18.37h2.69v-5.62h4.46v5.62h2.696V5.518h-2.696v4.681h-4.46V5.518Z"/>
+  </defs>
+</svg>
+<a icon="hugo" href="https://gohugo.io/" title="Hugo link">
+  Learn more about Hugo.
+  <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+    <title>Hugo icon</title>
+    <use xlink:href="#icon-hugo"></use>
+  </svg>
+</a>
+{{< /rawhtml >}}
+
+Hugo was not my first choice. Here's the back story that led me to it.
+
+## I wanted to do more than write or rant about something
+
+I really wanted to create a blog with working CSS and JavaScript demos and test suites.
+
+However, my then-latest blog hosted on Wordpress at https://dfkaye.wordpress.com does not allow including JavaScript on the free plan.
 
 I tried [Gatsby.JS](https://www.gatsbyjs.org/) in October of 2019, figuring that it would help me keep my [React.JS](https://reactjs.org/) skills somewhat fresh.
 
@@ -19,9 +40,11 @@ I tried [Gatsby.JS](https://www.gatsbyjs.org/) in October of 2019, figuring that
 
 ## What happened?
 
+It turns out that...
+
 > Getting a static script to load into gatsby markdown files is hard.
 
-# This shouldn't be hard
+## This shouldn't be hard
 
 OK, but because "everything goes through React, it's a bit hard" - see https://github.com/gatsbyjs/gatsby/issues/833.
 
@@ -69,4 +92,4 @@ Each of those is suboptimal in the age of [Content Security Policy](https://cont
 
 So, I turned to Hugo, made a test site, then started on this site.
 
-More about Hugo specific things to come in future posts.
+More about Hugo-specific things to come in future posts.

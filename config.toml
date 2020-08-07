@@ -11,5 +11,5 @@ canonifyURLs = true
 
 [params]
   author = "David F. Kaye"
-  description = "David Kaye's web site"
+  description = "Thoughts on building &amp; Testing JavaScript, CSS, HTML, et al…"
   siteStatus = "(conversion to Hugo in progress...)"
