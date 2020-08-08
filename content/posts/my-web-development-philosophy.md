@@ -1,18 +1,26 @@
 ---
 title: "My Web Development Philosophy (subject to revision without notice)"
 date: 2020-06-12T14:10:43-07:00
-description: "A few hard lines in the sand concerning software."
+description: "A few red lines in the sand concerning software."
 tags: []
 draft: false
 ---
 
 After some 20 years as a (mainly) front-end engineer, I have arrived at some surprising conclusions.
 
+## Prefer minimalism
+
+{{< rawhtml >}}
+Read this post by Tero Piirainen from <time>2019</time> on <a href="https://volument.com/blog/minimalism-the-most-undervalued-development-skill">Minimalism: The most undervalued development skill</a>.
+{{< /rawhtml >}}
+
+Everything else on this page flows from this concept.
+
 ## Almost never use classes.
 
 ### HTML: use custom tag names and attribute names
 
-  Prefer
+Browsers can parse the following not-so-valid HTML into a real element of "unknown" type with the custom attribute.
 
 ```
 <clock ticking>
@@ -23,17 +31,18 @@ After some 20 years as a (mainly) front-end engineer, I have arrived at some sur
 ```
 <div class="clock ticking">
 ```
+You'll then need CSS to display the clock element the way you want.
 
 ### CSS: use attribute selectors (and combinators)
 
-  Prefer
+Prefer
 
 ```
-clock { ... }
+clock { display: block | flex | whatever }
 clock[ticking] { ... }
 ```
 
-  over
+over
 
 ```
 .clock { ... }
@@ -53,17 +62,21 @@ function process(in) {
 }
 ```
 
-### DOM: separate keyboard traversal handlers from model updating logic.
+The above is simpler and less coupled to anything than the usual object-oriented mistake of implmentation inheritance.
+
+It's also easier to test, thanks to ES6 modules.
+
+## DOM: separate keyboard traversal handlers from model updating logic.
 
 Learn JavaScript well enough to manipulate the DOM directly.
 
-## Test everything.
+## Test *everything*.
 
 Lean on a suite of tests exercising the source in its target runtime (browser, server, cloud).
 
 A browser suite consisting of unit and integration tests, exercising startup, utilities, rendering, error handling, *and* making network calls to your services, will unearth booby traps, incorrect assumptions, and undocumented changes faster than an end-to-end suite or even the unit tests for the service.
 
-You need not strive for "100% code coverage" or adhere strictly to the test-driven "red-green-refactor" cycle. You should almost always strive to sketch out your solution first. Article by Peter Siebel, [Unit testing in *Coders at Work*](https://gigamonkeys.wordpress.com/2009/10/05/coders-unit-testing/).
+You need not strive for "100% code coverage" or adhere strictly to the test-driven "red-green-refactor" cycle. You should almost always sketch out your solution first, lest you go in circles. Article by Peter Siebel, [Unit testing in *Coders at Work*](https://gigamonkeys.wordpress.com/2009/10/05/coders-unit-testing/).
 
 Snapshot testing does not count. Article by Artem Sapegin, [What’s wrong with snapshot tests
 ](https://blog.sapegin.me/all/snapshot-tests/).
@@ -96,3 +109,4 @@ Read this post from <time>2018</time> on developing <a href="https://medium.com/
 
 ## Prefer *user safety* over *type* safety.
 
+\[ more to come... \]

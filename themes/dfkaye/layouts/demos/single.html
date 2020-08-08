@@ -3,7 +3,7 @@
 
   <ul publish-date>
     <li>Publish Date: <time datetime="{{ .PublishDate }}" pubdate>{{ dateFormat "January 2, 2006" .Date }}</time></li>
-    <li>Last Update: <time datetime="{{ .Lastmod }}" lastmod>{{ dateFormat "January 2, 2006" .Date }}</time></li>
+    <li>Last Update: <time datetime="{{ .GitInfo.AuthorDate }}" lastmod>{{ dateFormat "January 2, 2006" .Date }}</time></li>
   </ul>
 
   {{ .Content }}
