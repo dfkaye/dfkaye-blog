@@ -4,7 +4,7 @@
 
   <ul publish-date>
     <li>Publish Date: <time datetime="{{ .PublishDate }}" pubdate>{{ dateFormat "January 2, 2006" .Date }}</time></li>
-    <li>Last Update: <time datetime="{{ .Lastmod }}" lastmod>{{ dateFormat "January 2, 2006" .Date }}</time></li>
+    <li>Last Update: <time datetime="{{ .Lastmod }}" lastmod>{{ dateFormat "January 2, 2006" .Lastmod  }}</time></li>
   </ul>
 
 	<!-- https://gomakethings.com/how-to-create-accessible-subtitles/ -->
