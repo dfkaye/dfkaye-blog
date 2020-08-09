@@ -28,12 +28,19 @@ Some of that content will be posted here eventually, along with updated takes.
 
 ## My TODO list
 
++ linkedIn profile link in footer
 + set up RSS feed
 + sitemap.xml
 + categories and tags
 + pagination in /demos/
 + post about post prev next and CSS content ISO values
+  - https://stackoverflow.com/questions/44186778/link-to-next-post
+  - https://brajeshwar.github.io/entities/
 + post about content security policy setup
+  - scratch-variables partial
+  - csp partial
+  - css partial
+  - js partial
 + post about dot file all the things png
 + rename "demos" to "suites" (maybe)
 + use hugo templating (--instead-of-css-vars) in the CSS
