@@ -331,13 +331,26 @@ a:not([icon]):active {
   flex-flow: row wrap;
 }
 
+/* prev & next post */
 
-/* demos page */
-
-[demos-list] {
-  width: 20%;
+[post-prev-next] {
+  display: flex;
+  font-size: 1.25em;
+  justify-content: center;
 }
 
-[demos] {
-  padding: 0 0 0 1em;
+[post] {
+  padding: 0 1em;
+}
+
+[post="next"] {
+  justify-self: flex-end;
+}
+
+[post="prev"]:before {
+  content: "\2190";
+}
+
+[post="next"]:after {
+  content: "\2192";
 }
