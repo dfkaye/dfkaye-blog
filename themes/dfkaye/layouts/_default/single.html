@@ -12,5 +12,9 @@
 
   {{ .Content }}
 
-  <strong><i>Thanks for reading.</i></strong>
+  <h2><i>Thanks for reading.</i></h2>
+
+  {{ if eq .Type "posts" }}
+    {{- partial "post-prev-next.html" . -}}
+  {{ end }}  
 {{ end }}

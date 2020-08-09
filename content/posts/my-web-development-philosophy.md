@@ -1,7 +1,7 @@
 ---
-title: "My Web Development Philosophy (subject to revision without notice)"
+title: "My Web Development Philosophy"
 date: 2020-06-12T14:10:43-07:00
-description: "A few red lines in the sand concerning software."
+description: "A few red lines in the sand (subject to revision without notice)."
 tags: []
 draft: false
 ---
@@ -20,35 +20,40 @@ Everything else on this page flows from this concept.
 
 ### HTML: use custom tag names and attribute names
 
-Browsers can parse the following not-so-valid HTML into a real element of "unknown" type with the custom attribute.
+
+Instead of plain divs with class attributes like so,
+
+```
+<div class="clock ticking">
+```
+
+You can write the following not-so-valid HTML which browsers can parse into a real element of "unknown" type with the custom attribute.
 
 ```
 <clock ticking>
 ```
 
-  over
-
-```
-<div class="clock ticking">
-```
 You'll then need CSS to display the clock element the way you want.
 
 ### CSS: use attribute selectors (and combinators)
 
-Prefer
-
-```
-clock { display: block | flex | whatever }
-clock[ticking] { ... }
-```
-
-over
+Instead of writing multiple mix-and-match classes, like so,
 
 ```
 .clock { ... }
 .ticking { ... }
 ```
 
+consider styling only from the custom attribute value.
+
+```
+clock { display: block | flex | whatever }
+[ticking] { ... }
+[ticking="loudly"] { ... }
+```
+
+That gives you style control bsed on the element's state.
+ 
 ### JavaScript: use data and functions
 
 ```

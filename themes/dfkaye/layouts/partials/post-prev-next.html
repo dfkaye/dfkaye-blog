@@ -1,0 +1,8 @@
+<nav post-prev-next>
+  {{ with .PrevInSection  }}
+  <article aria-label="Previous post">Previous: <a post="previous" href="{{ .Permalink }}">{{ .Title | truncate 50 "..." }}</a></article>
+  {{ end }}
+  {{ with .NextInSection }}
+  <article aria-label="Next post">Next: <a post="next" href="{{ .Permalink }}">{{ .Title | truncate 50 "..." }}</a></article>
+  {{ end }}
+</nav>

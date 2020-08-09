@@ -32,10 +32,6 @@ Some of that content will be posted here eventually, along with updated takes.
 
 + pagination in /demos/
 
-+ previous | next links in each post
-
-+ previous | next links in each demo
-
 + rename "demos" to "suites" (maybe)
 
 + use hugo templating (--instead-of-css-vars) in the CSS
@@ -53,7 +49,7 @@ Some of that content will be posted here eventually, along with updated takes.
 
 + add R&eacute;sum&eacute; page with @page and @print stylesheets
 
-+ a **Tools I Use**"** page (see https://benjamincongdon.me/tools example)
++ a **Tools I Use** page (see https://benjamincongdon.me/tools example)
 
 + move content from /about/ to /posts/
 

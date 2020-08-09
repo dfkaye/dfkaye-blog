@@ -9,6 +9,9 @@ canonifyURLs = true
 # set lastmod dates
 enableGitInfo = true
 
+# prev | next
+# pagination = 1
+
 [permalinks]
   posts = "posts/:year/:month/:day/:slug/"
 

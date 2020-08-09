@@ -116,6 +116,11 @@ footer {
   width: 100%;
 }
 
+[role="doc-subtitle"] {
+  font-style: italic;
+  /* color: rgba(110, 110, 248, 0.877); */
+}
+
 [role="main"] li {
   margin: 1em 0 1em 1em;
 }
