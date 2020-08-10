@@ -10,6 +10,7 @@
   --icon-height: 32px;
   --icon-margin: .5em 0.25em -.5em;
   --hugo-color: #ff0095;
+  --linkedin-color: #0077b5;
   --netlify-color: #009387;
   --netlify-gradient: url(#icon-gradient-netlify);
   --github-color: #6cc644;
@@ -283,6 +284,18 @@ a:not([icon]):active {
 [icon="github"]:focus svg,
 [icon="github"]:active svg {
   fill: var(--github-color);
+}
+
+[icon="linkedin"]:hover,
+[icon="linkedin"]:focus,
+[icon="linkedin"]:active {
+  color: var(--linkedin-color);
+}
+
+[icon="linkedin"]:hover svg,
+[icon="linkedin"]:focus svg,
+[icon="linkedin"]:active svg {
+  fill: var(--linkedin-color);
 }
 
 [icon="twitter"]:hover,

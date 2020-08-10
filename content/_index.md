@@ -28,7 +28,6 @@ Some of that content will be posted here eventually, along with updated takes.
 
 ## My TODO list
 
-+ linkedIn profile link in footer
 + set up RSS feed
 + sitemap.xml
 + categories and tags
@@ -49,7 +48,6 @@ Some of that content will be posted here eventually, along with updated takes.
 + mermaid diagrams
 + add R&eacute;sum&eacute; page with @page and @print stylesheets
 + a **Tools I Use** page (see https://benjamincongdon.me/tools example)
-+ move content from /about/ to /posts/
 + copy content from the wordpress site
 + list of engineering books I've read and/or recommend
 + list of engineering sites I might recommend

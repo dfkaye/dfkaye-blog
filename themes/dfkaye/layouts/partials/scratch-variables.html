@@ -1,5 +1,8 @@
 {{ .Scratch.Set "pageDescription" .Page.Description }}
+{{ .Scratch.Set "copyright" (.Page.PublishDate.Format "2006") }}
+
 {{ if not .IsPage }}
+	{{ .Scratch.Set "copyright" (now.Format "2006") }}
 	{{ if (eq .Type "posts")}}
 	{{ .Scratch.Set "pageDescription" "List of my blog posts" }}
 	{{ else if (eq .Type "demos")}}

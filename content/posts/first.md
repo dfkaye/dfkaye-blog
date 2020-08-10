@@ -46,7 +46,7 @@ It turns out that...
 
 ## This shouldn't be hard
 
-OK, but because "everything goes through React, it's a bit hard" - see https://github.com/gatsbyjs/gatsby/issues/833.
+OK, but because "everything goes through React, it's a bit hard" - see [issue 883 on github](https://github.com/gatsbyjs/gatsby/issues/833).
 
 1. Create a `static` folder at the top of your Gatsby project (i.e., parallel to `src`, `package.json`, *et al*.)
 2. Create a `static/scripts/hello` folder, and add a `hello.js` file that contains the following:
