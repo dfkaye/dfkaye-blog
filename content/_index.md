@@ -32,6 +32,7 @@ Some of that content will be posted here eventually, along with updated takes.
 + sitemap.xml
 + categories and tags
 + pagination in /demos/
++ pagination in list pages
 + post about post prev next and CSS content ISO values
   - https://stackoverflow.com/questions/44186778/link-to-next-post
   - https://brajeshwar.github.io/entities/
@@ -40,6 +41,7 @@ Some of that content will be posted here eventually, along with updated takes.
   - csp partial
   - css partial
   - js partial
++ post about the footer company icons
 + post about dot file all the things png
 + rename "demos" to "suites" (maybe)
 + use hugo templating (--instead-of-css-vars) in the CSS

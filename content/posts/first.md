@@ -48,7 +48,9 @@ It turns out that...
 
 OK, but because "everything goes through React, it's a bit hard" - see [issue 883 on github](https://github.com/gatsbyjs/gatsby/issues/833).
 
-1. Create a `static` folder at the top of your Gatsby project (i.e., parallel to `src`, `package.json`, *et al*.)
+## Trying to make this work
+
+1. Create a `static` folder at the top of your Gatsby project (i.e., parallel to `src`, `package.json`, *et al*.).
 2. Create a `static/scripts/hello` folder, and add a `hello.js` file that contains the following:
 ```
 console.log('Does it work?');
@@ -57,7 +59,7 @@ console.log('Does it work?');
 ```
 <script src="/scripts/hello/hello.js"></script>
 ```
-4. Now run `gatsby build`, then `gatsby serve`, and visit `localhost:9000/hello` - you should the message in the console.
+4. Run `gatsby build`, then `gatsby serve`, and visit `localhost:9000/hello` - you should the message in the console.
 5. NOTE: Do not use `gatsby develop` to verify static content is imported &mdash; it won't be.
 
 ## Does it work?
@@ -78,9 +80,7 @@ Now, refresh that page. Unless they have fixed the issue as you are reading this
 
 ## What does this all mean?
 
-It means that Gatsby.JS is does not generate static sites, but single page web applications running on static sites.
-
-> *We are not making progress when we break the most basic functions of the web.*
+It means that Gatsby.JS does not generate static sites, but single page web applications running on static sites.
 
 ## Is there a fix?
 
@@ -88,7 +88,9 @@ This problem could be fixed with - yes, you guessed it - `dangerouslySetInnerHTM
 
 Each of those is suboptimal in the age of [Content Security Policy](https://content-security-policy.com/).
 
-## I Just Wanted to Create a Blog with CSS and JavaScript Demos
+## What about...  Did you try...?
+
+> *I Just Wanted to Create a Blog with CSS and JavaScript Demos*
 
 So, I turned to Hugo, made a test site, then started on this site.
 
