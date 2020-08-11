@@ -41,8 +41,7 @@ html {
 }
 
 [dfk-body] {
-  margin: 1em;
-  min-width: 320px;
+  width: 100%;
 }
 
 [hidden] {
@@ -65,11 +64,6 @@ html {
 
 /* flow */
 
-header ~ * {
-  margin: 1.5em 0;
-  padding: 0 5%;
-}
-
 header {
   color: #fff;
   display: flex;
@@ -77,6 +71,12 @@ header {
   justify-content: space-between;
   /* use 12.25em if site status is hidden */
   min-height: 15.25em;
+  width: 100%; /* galaxy fold, iPhone 5 */
+}
+
+header ~ * {
+  margin: 1.5em 0;
+  padding: 0 5%;
 }
 
 [role="banner"] {
