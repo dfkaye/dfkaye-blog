@@ -66,13 +66,10 @@ Comme on n’en fait plus aujourd’hui!
 </q>
 {{< /rawhtml >}}
 
-
 {{< rawhtml >}}
-<i lang="fr-FR">La diff&eacute;rence?</i>
-{{< /rawhtml >}}
+<p><i lang="fr-FR">La diff&eacute;rence?</i></p>
 
-{{< rawhtml >}}
-Where Laforgue writes "<i lang="fr-FR">on n’en fait</i>", Eliot writes "<i lang="fr-FR">on <strong>ne</strong> fait</i>".
+<p>Where Laforgue writes "<i lang="fr-FR">on n’en fait</i>", Eliot writes "<i lang="fr-FR">on <strong>ne</strong> fait</i>".</p>
 
 <h2><i lang="fr-FR"><strong>Voil&agrave;</strong></i></h2>
 {{< /rawhtml >}}
