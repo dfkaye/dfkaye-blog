@@ -113,13 +113,13 @@ You will learn a ton about the keyboard and `aria` attributes and states in a hu
 
 ## Frameworks are training wheels.
 
-The frameworks used to be object-oriented polyfills for cross-browser development, but have now become custom template DSLs that require build processing and bundling.
+Translation: *Learn JavaScript well enough to manipulate the DOM directly.*
 
-Learn what you can, but get off them as soon as possible.
-
-Learn JavaScript well enough to manipulate the DOM directly.
+The front-end frameworks used to be object-oriented polyfills for cross-browser development, but have now become custom template DSLs that require build processing and bundling.
 
 They are gravity fields that favor *their* innovation over the innovation you bring to your project that makes it unique.
+
+Learn what you can, but get off them as soon as possible.
 
 Having built one (twice), I know this surprising limitation first-hand.
 
