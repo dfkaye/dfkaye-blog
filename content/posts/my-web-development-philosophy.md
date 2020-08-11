@@ -6,6 +6,8 @@ tags: []
 draft: false
 ---
 
+<!--more-->
+
 After some 20 years as a (mainly) front-end engineer, I have arrived at some surprising conclusions.
 
 ## Prefer minimalism

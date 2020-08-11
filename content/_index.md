@@ -53,7 +53,7 @@ Some of that content will be posted here eventually, along with updated takes.
 + copy content from the wordpress site
 + list of engineering books I've read and/or recommend
 + list of engineering sites I might recommend
-+ monthly list of dev-links - see https://github.com/dfkaye/dev-links/.
++ monthly list of dev-links - see https://github.com/dfkaye/dev-links/+ followup to https://twitter.com/dfkaye/status/1288155766092738561
 + future awesome post about Function() (safe-eval) with strict CSP and web workers.
 + future awesome post about the SAM pattern
   - see the HEX article at https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c

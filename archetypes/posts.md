@@ -3,6 +3,7 @@ title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
 description: {{ .Description }}
 draft: false
+tags: []
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.

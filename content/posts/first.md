@@ -5,6 +5,8 @@ description: "My first blog post on Hugo, and why I chose Hugo"
 draft: false
 ---
 
+<!--more-->
+
 ## Why Hugo?
 
 The selling point of Hugo is its speed, and support for Markdown, plus the [Go programming language](https://golang.io) itself.  I have found it very easy to work with and customize.

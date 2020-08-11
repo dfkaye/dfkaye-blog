@@ -152,6 +152,34 @@ h2, h3 {
   padding: .5em 1em;
 }
 
+q {
+  display: block;
+  font-style: italic;
+}
+
+q::before,
+q::after {
+  color:  rgba(22, 22, 254, .5);
+  font-style: italic;
+}
+
+q::before {
+  align-self: flex-start;
+}
+q::after {
+  align-self: flex-end;
+}
+
+[prose] {
+  margin: 2em 5% 3em;
+  text-indent: 2.5em;
+}
+
+[verse] {
+  display:flex;
+  place-content: center;
+}
+
 /* temporary, until we add chroma */
 
 [page-intro] ~ pre {
