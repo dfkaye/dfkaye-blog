@@ -8,9 +8,15 @@ draft: false
 
 <!--more-->
 
-After some 20 years as a (mainly) front-end engineer, I have arrived at some surprising conclusions.
+After some 20 years as a (mainly) front-end engineer, I have arrived at some conclusions that may surprise you.
 
-## Third-party software is the root of all evil.
+## Writing what you need is not reinventing the wheel.
+
+### Using someone else's package is no safer than writing from scratch.
+
+Read this post by @rachelbythebay on [Tripping over the potholes in too many libraries](https://rachelbythebay.com/w/2020/08/09/lib/).
+
+### Prefer minimalism.
 
 {{< rawhtml >}}
 Read this post by Tero Piirainen from <time>2019</time> on <a href="https://volument.com/blog/minimalism-the-most-undervalued-development-skill">Minimalism: The most undervalued development skill</a>.
@@ -20,7 +26,7 @@ Everything else on this page flows from this concept.
 
 ## Stop writing classes.
 
-I was inspired by Jack Diederich's talk at PyCon 2012, [Stop Writing Classes](https://www.youtube.com/watch?v=o9pEzgHorH0).
+Inspired by Jack Diederich's talk at PyCon 2012, [Stop Writing Classes](https://www.youtube.com/watch?v=o9pEzgHorH0).
 
 People disagree with this because they've trained themselves to live with classes.
 
@@ -86,9 +92,11 @@ The above is simpler and less coupled to anything, avoiding the usual object-ori
 
 It's also easier to test, thanks to ES6 modules.
 
-## DOM: Separate keyboard traversal handlers from model updating logic.
+## MVC is an anti-pattern.
 
-In other words, learn JavaScript well enough to manipulate the DOM directly.
+The model-view-controller pattern has run its course and should be abandoned.
+
+There are new and better patterns.  
 
 ## Test *everything*.
 
@@ -108,6 +116,10 @@ You will learn a ton about the keyboard and `aria` attributes and states in a hu
 ## Frameworks are training wheels.
 
 Learn what you can, but get off them as soon as possible.
+
+Learn JavaScript well enough to manipulate the DOM directly.
+
+The frameworks used to be object-oriented hacks, but thanks to Angular and React/JSX they now focus on custom template DSLs that run poorly everywhere.
 
 They are gravity fields that favor *their* innovation over the innovation you bring to your project that makes it unique.
 
