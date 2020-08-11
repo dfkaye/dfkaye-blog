@@ -8,6 +8,8 @@ draft: false
 
 <!--more-->
 
+Back in the days before the internet, I was a literature student at San Francisco State University, interested in poetry and criticism, when I stumbled across this bit of obscurity that appealed to me immensely.
+
 ## What is it?
 
 It is the last sentence in T.S. Eliot's essay, [Andrew Marvell](http://world.std.com/~raparker/exploring/books/andrew_marvell.html):
