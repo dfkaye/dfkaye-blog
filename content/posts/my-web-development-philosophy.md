@@ -12,11 +12,9 @@ After some 20 years as a (mainly) front-end engineer, I have arrived at some con
 
 ## Writing what you need is not reinventing the wheel.
 
-### Using someone else's package is no safer than writing from scratch.
+Using someone else's package is no safer than writing from scratch. Read this post by @rachelbythebay on [Tripping over the potholes in too many libraries](https://rachelbythebay.com/w/2020/08/09/lib/).
 
-Read this post by @rachelbythebay on [Tripping over the potholes in too many libraries](https://rachelbythebay.com/w/2020/08/09/lib/).
-
-### Prefer minimalism.
+### Minimalism is a skill.
 
 {{< rawhtml >}}
 Read this post by Tero Piirainen from <time>2019</time> on <a href="https://volument.com/blog/minimalism-the-most-undervalued-development-skill">Minimalism: The most undervalued development skill</a>.
@@ -28,7 +26,7 @@ Everything else on this page flows from this concept.
 
 Inspired by Jack Diederich's talk at PyCon 2012, [Stop Writing Classes](https://www.youtube.com/watch?v=o9pEzgHorH0).
 
-People disagree with this because they've trained themselves to live with classes.
+People disagree with this because they've trained themselves to live with classes per industry demand.
 
 ### HTML: Use custom tag names and attribute names.
 
@@ -38,7 +36,7 @@ Instead of a plain `<div>` with `class` attributes,
 <div class="clock ticking">
 ```
 
-you can write the following not-so-valid HTML which browsers can parse into a real element of "unknown" type with the custom attribute:
+you can write the following not-so-valid HTML which browsers will parse into a real element of `HTMLUnknownElement` type with the custom attribute:
 
 ```
 <clock ticking>
@@ -88,15 +86,15 @@ process(data);
 // { modified: "with love" }
 ```
 
-The above is simpler and less coupled to anything, avoiding the usual object-oriented mistake of implementation inheritance.
+The above is simpler and less coupled to anything, avoiding the usual object-oriented coupling via implementation inheritance.
 
-It's also easier to test, thanks to ES6 modules.
+And it's easier to test, thanks to ES6 modules.
 
 ## MVC is an anti-pattern.
 
 The model-view-controller pattern has run its course and should be abandoned.
 
-There are new and better patterns.  
+There are new and better patterns. Consider the [SAM pattern](https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c) by Jean Jacques Dubray.
 
 ## Test *everything*.
 
@@ -115,11 +113,11 @@ You will learn a ton about the keyboard and `aria` attributes and states in a hu
 
 ## Frameworks are training wheels.
 
+The frameworks used to be object-oriented polyfills for cross-browser development, but have now become custom template DSLs that require build processing and bundling.
+
 Learn what you can, but get off them as soon as possible.
 
 Learn JavaScript well enough to manipulate the DOM directly.
-
-The frameworks used to be object-oriented hacks, but thanks to Angular and React/JSX they now focus on custom template DSLs that run poorly everywhere.
 
 They are gravity fields that favor *their* innovation over the innovation you bring to your project that makes it unique.
 
