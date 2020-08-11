@@ -10,7 +10,7 @@ draft: false
 
 After some 20 years as a (mainly) front-end engineer, I have arrived at some surprising conclusions.
 
-## Prefer minimalism
+## Third-party software is the root of all evil.
 
 {{< rawhtml >}}
 Read this post by Tero Piirainen from <time>2019</time> on <a href="https://volument.com/blog/minimalism-the-most-undervalued-development-skill">Minimalism: The most undervalued development skill</a>.
@@ -18,64 +18,77 @@ Read this post by Tero Piirainen from <time>2019</time> on <a href="https://volu
 
 Everything else on this page flows from this concept.
 
-## Almost never use classes.
+## Stop writing classes.
 
-### HTML: use custom tag names and attribute names
+I was inspired by Jack Diederich's talk at PyCon 2012, [Stop Writing Classes](https://www.youtube.com/watch?v=o9pEzgHorH0).
 
+People disagree with this because they've trained themselves to live with classes.
 
-Instead of plain divs with class attributes like so,
+### HTML: Use custom tag names and attribute names.
+
+Instead of a plain `<div>` with `class` attributes,
 
 ```
 <div class="clock ticking">
 ```
 
-You can write the following not-so-valid HTML which browsers can parse into a real element of "unknown" type with the custom attribute.
+you can write the following not-so-valid HTML which browsers can parse into a real element of "unknown" type with the custom attribute:
 
 ```
 <clock ticking>
 ```
 
-You'll then need CSS to display the clock element the way you want.
-
-### CSS: use attribute selectors (and combinators)
-
-Instead of writing multiple mix-and-match classes, like so,
-
-```
-.clock { ... }
-.ticking { ... }
-```
-
-consider styling only from the custom attribute value.
+You'll then need CSS to display the `clock` element the way you want.
 
 ```
 clock { display: block | flex | whatever }
+```
+
+### CSS: Use attribute selectors (and combinators).
+
+Instead of writing multiple mix-and-match state classes in <abbr title="Block-Element-Modifier">BEM</abbr>-like fashion, like so,
+
+```
+.clock { ... }
+.clock__ticking { ... }
+.clock__ticking--loudly { ... }
+```
+
+consider styling only from the custom attribute value:
+
+```
 [ticking] { ... }
 [ticking="loudly"] { ... }
 ```
 
-That gives you style control bsed on the element's state.
+That gives you style control based on the element's state.
  
-### JavaScript: use data and functions
+### JavaScript: Use data and functions.
+
+Use pure functions. Pass data in, update parts, return either only the parts or return the data, or a modified copy of the data.
 
 ```
 var data = {};
 
 function process(in) {
     var out = {};
+
     return Object.assign(out, Object(in), {
         modified: "with love"
     });
 }
+
+process(data);
+// { modified: "with love" }
 ```
 
-The above is simpler and less coupled to anything than the usual object-oriented mistake of implmentation inheritance.
+The above is simpler and less coupled to anything, avoiding the usual object-oriented mistake of implementation inheritance.
 
 It's also easier to test, thanks to ES6 modules.
 
-## DOM: separate keyboard traversal handlers from model updating logic.
+## DOM: Separate keyboard traversal handlers from model updating logic.
 
-Learn JavaScript well enough to manipulate the DOM directly.
+In other words, learn JavaScript well enough to manipulate the DOM directly.
 
 ## Test *everything*.
 
@@ -116,4 +129,4 @@ Read this post from <time>2018</time> on developing <a href="https://medium.com/
 
 ## Prefer *user safety* over *type* safety.
 
-\[ more to come... \]
+Requirements don't change. It is your understanding of requirements that will change. Your type definitions do not matter if you can't help your user out of an unsafe state in the application.
