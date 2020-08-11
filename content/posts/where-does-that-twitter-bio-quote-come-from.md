@@ -69,7 +69,21 @@ Comme on n’en fait plus aujourd’hui!
 {{< rawhtml >}}
 <p><i lang="fr-FR">La diff&eacute;rence?</i></p>
 
-<p>Where Laforgue writes "<i lang="fr-FR">on n’en fait</i>", Eliot writes "<i lang="fr-FR">on <strong>ne</strong> fait</i>".</p>
+<p>
+Laforgue writes "<i lang="fr-FR">on n’en fait</i>" (where <i lang="fr-FR">en</i> is the direct object of <i lang="fr-FR">fait</i>), whereas Eliot omits it ("<i lang="fr-FR">on <strong>ne</strong> fait</i>").
+</p>
+
+<p>A friend of mine clarified the distinction via twitter messages:</p>
+ 
+<q prose>
+`<i lang="fr-FR">comme on ne fait plus à Londres</i>` is kind of correct, but not common. because the question is what is it we don't do anymore in London? the answer is obvious, so it's understandable.
+</q>
+
+<q prose>
+I would qualify it as "stylistic grammar", wanting to pinch the brain of the reader who is going to pay attention to the "what"
+</q>
+
+<p>There you have it.</p>
 
 <h2><i lang="fr-FR"><strong>Voil&agrave;</strong></i></h2>
 {{< /rawhtml >}}
