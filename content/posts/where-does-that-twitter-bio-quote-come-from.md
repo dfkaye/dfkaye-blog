@@ -18,6 +18,8 @@ C'etait une belle âme, comme on ne fait plus à Londres.
 </q>
 {{< /rawhtml >}}
 
+You can see it here: https://twitter.com/dfkaye.
+
 ## Where does it come from?
 
 Scholars didn't recognize the quotation for decades, but couldn't rule out that it was a bogus quotation.
