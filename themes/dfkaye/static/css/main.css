@@ -99,9 +99,9 @@ footer {
 
 [nav] [site-title] {
   height: 3em;
-  min-width: 5em; /* overrides a { overflow-wrap } */
   margin: .2em 0;
   padding: .75em;
+  white-space: nowrap; /* overrides a { overflow-wrap } */
 }
 
 [page-title] {
