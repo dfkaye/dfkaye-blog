@@ -214,7 +214,7 @@ kbd {
 a {
   color: var(--link-color);
   /* for very narrow screens showing long URLs */
-  overflow-wrap: break-word;
+  overflow-wrap: anywhere;
 }
 
 a:not([icon]):hover,
