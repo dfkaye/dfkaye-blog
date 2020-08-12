@@ -44,3 +44,12 @@ git push -u origin master
 
 [![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/dfkaye/dfkaye-blog)
 
+## Run locally, test with multiple devices
+
+Find your local ip address and bind to it as the base URL.
+
+```
+hugo server --bind 0.0.0.0 --baseURL 192.168.0.102 --cleanDestinationDir
+```
+
+Now you can test your build with any device on your network.
