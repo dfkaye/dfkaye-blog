@@ -41,7 +41,8 @@ html {
 }
 
 [dfk-body] {
-  width: 100%;
+  /* set width to 100% on all mobile (galaxy fold, iPhone 5, etc.) */
+  position: relative;
 }
 
 [hidden] {
@@ -70,8 +71,7 @@ header {
   flex-flow: row wrap;
   justify-content: space-between;
   /* use 12.25em if site status is hidden */
-  min-height: 15.25em;
-  width: 100%; /* galaxy fold, iPhone 5 */
+  min-height: 15.25em;  
 }
 
 header ~ * {
@@ -214,7 +214,7 @@ kbd {
 
 a {
   color: var(--link-color);
-  /* for very narrow screens showing long URLs */
+  /* for very narrow screens showing long URLs, esp galaxy fold and iphone 5 */
   overflow-wrap: anywhere;
 }
 
@@ -262,8 +262,8 @@ a:not([icon]):active {
 /* current page or location */
 
 [aria-current] [href] {
-    outline: 1px dotted #fff;
-    background: rgba(22, 22, 254, .5);
+  outline: 1px dotted #fff;
+  background: rgba(22, 22, 254, .5);
 }
 
 /* nav icons */
