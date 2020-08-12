@@ -51,16 +51,16 @@ html {
 
 [visually-hidden] {
   /* visually hidden skip link */
-	/* https://gomakethings.com/revisting-aria-label-versus-a-visually-hidden-class/ */
-	border: 0;
-  clip: rect(0 0 0 0); /* seriously? */
+  /* https://gomakethings.com/revisting-aria-label-versus-a-visually-hidden-class/ */
+  border: 0;
+  clip: rect(0 0 0 0);
   /* clip-path: inset(50%); */
-	height: 1px;
-	overflow: hidden;
-	padding: 0;
-	position: absolute;
-	white-space: nowrap;
-	width: 1px;	
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
 }
 
 /* flow */
@@ -71,7 +71,7 @@ header {
   flex-flow: row wrap;
   justify-content: space-between;
   /* use 12.25em if site status is hidden */
-  min-height: 15.25em;  
+  min-height: 15.25em;
 }
 
 header ~ * {
@@ -214,7 +214,12 @@ kbd {
 
 a {
   color: var(--link-color);
-  /* for very narrow screens showing long URLs, esp galaxy fold and iphone 5 */
+  /*
+    for very narrow screens showing long URLs,
+    esp. galaxy fold and iphone 5
+   */
+  word-break: break-word;
+  /* overflow-wrap not supported on safari iOS */
   overflow-wrap: anywhere;
 }
 
