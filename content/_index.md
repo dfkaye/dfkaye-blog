@@ -14,9 +14,9 @@ At content/_index.md, using layouts/index.html.
 
 You have found David Kaye's blog, focused almost entirely on front-end web development topics.
 
-+ [more about me](/about/)
-+ [blog posts](/posts/)
-+ [demos](/demos/)
++ [More about me](/about/)
++ [Blog posts](/posts/)
++ [Demos](/demos/)
 
 ## Work in progress
 
@@ -33,6 +33,8 @@ Some of that content will be posted here eventually, along with updated takes.
 + categories and tags
 + pagination in /demos/
 + pagination in list pages
++ post about "Making the Switch to Hugo"
++ post about Hugo resources
 + post about post prev next and CSS content ISO values
   - https://stackoverflow.com/questions/44186778/link-to-next-post
   - https://brajeshwar.github.io/entities/
@@ -42,6 +44,8 @@ Some of that content will be posted here eventually, along with updated takes.
   - css partial
   - js partial
 + post about the footer company icons
++ post about overflow-wrap vs. word-break for long link text, especially on mobile.
++ post about body {position:relative } to set the body width to 100% across mobile devices (galaxy fold, iPhone 5, etc.).
 + post about dot file all the things png
 + rename "demos" to "suites" (maybe)
 + use hugo templating (--instead-of-css-vars) in the CSS
@@ -58,3 +62,6 @@ Some of that content will be posted here eventually, along with updated takes.
 + future awesome post about the SAM pattern
   - see the HEX article at https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c
   - see JJ's original article "No More MVC Frameworks" at https://www.infoq.com/articles/no-more-mvc-frameworks/
++ calculator demo
++ date-input demo
++ spreadsheet with workers demo

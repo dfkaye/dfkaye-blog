@@ -41,7 +41,7 @@ html {
 }
 
 [dfk-body] {
-  /* set width to 100% on all mobile (galaxy fold, iPhone 5, etc.) */
+  /* sets width to 100% on all mobile (galaxy fold, iPhone 5, etc.) */
   position: relative;
 }
 
@@ -116,6 +116,10 @@ footer {
   font-size: 1em;
   justify-content: center;
   width: 100%;
+}
+
+[author-status] {
+  color: chocolate;
 }
 
 [role="doc-subtitle"] {
