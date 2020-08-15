@@ -92,7 +92,7 @@ Each of those is suboptimal in the age of [Content Security Policy](https://cont
 
 ## What about...  Did you try...?
 
-> *I Just Wanted to Create a Blog with CSS and JavaScript Demos*
+> *I Just Wanted to Create a Blog with CSS and JavaScript Demos.*
 
 So, I turned to Hugo, made a test site, then started on this site.
 

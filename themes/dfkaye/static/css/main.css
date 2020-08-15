@@ -1,6 +1,7 @@
 /* dfkaye blog styles */
 
 :root {
+  --font-family: georgia, sans-serif;
   --hover-color: #008800;
   --link-color: #6f5ff6;
   --text-color: #000;
@@ -35,8 +36,9 @@
 html {
   background: var(--bg-color);
   color: var(--text-color);
-  font-family: consolas, monaco, "Andale Mono", monospace;
-  font-size: 100%;
+  font-family: var(--font-family);
+  /* make font responsive to the viewport width */
+  font-size: calc(100% + .25vw);
   scroll-behavior: smooth;
 }
 
@@ -65,6 +67,11 @@ html {
 
 /* flow */
 
+[dfk-body] > :not(a) {
+  /* fix padding for small viewports, allow expansion on larger ones. */
+  padding: 0 max(2em, 12.5%);
+}
+
 header {
   color: #fff;
   display: flex;
@@ -76,17 +83,18 @@ header {
 
 header ~ * {
   margin: 1.5em 0;
-  padding: 0 5%;
 }
 
 [role="banner"] {
   background-image: url(/img/hexo-banner-min.jpg);
   background-position: top -39em left 0;
-  position: absolute;
-  top: 0;
+  /* override the responsive font size from html */
+  font-size: calc(100% - .25vw);
   left: 0;
-  width: 100%;
   min-height: inherit;
+  position: absolute;
+  top: 0;  
+  width: 100%;
   z-index: -1;
 }
 
@@ -132,6 +140,7 @@ footer {
 }
 
 [page-intro] {/* h1 */
+  font-size: calc(200%);
   text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -150,7 +159,7 @@ h2, h3 {
   /* rgba(24, 143, 255, 0.32); */
   border-left: 5px solid rgba(22, 22, 254, .5);
   /* 2px solid #188fff; */
-  font-family: monospace;
+  font-family: consolas, monospace;
   font-size: 1.5em;
   font-style: italic;
   margin: 2em 0;
