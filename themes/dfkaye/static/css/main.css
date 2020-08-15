@@ -172,7 +172,7 @@ q {
 }
 
 [prose] {
-  margin: 1em min(1em, 1vw) 1.5em;
+  margin: 1em 2vw 1.5em;
   text-indent: 1.5em;
 }
 
