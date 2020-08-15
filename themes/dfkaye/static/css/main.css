@@ -69,7 +69,7 @@ html {
 
 [dfk-body] > :not(a) {
   /* fix padding for small viewports, allow expansion on larger ones. */
-  padding: 0 max(2em, 12.5%);
+  padding: 0 max(2em, 10%);
 }
 
 header {
@@ -140,7 +140,7 @@ footer {
 }
 
 [page-intro] {/* h1 */
-  font-size: calc(200%);
+  font-size: 1.75rem;
   text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
 }
 
@@ -171,22 +171,29 @@ q {
   font-style: italic;
 }
 
-q::before,
-q::after {
-  color:  rgba(22, 22, 254, .5);
-  font-style: italic;
-}
-
-q::before {
-  align-self: flex-start;
-}
-q::after {
-  align-self: flex-end;
-}
-
 [prose] {
-  margin: 2em 5% 3em;
-  text-indent: 2.5em;
+  margin: 1em min(1em, 1vw) 1.5em;
+  text-indent: 1.5em;
+}
+
+[prose]::before,
+[prose]::after {
+  /* color:  rgba(22, 22, 254, .5); */
+  color: chocolate;
+  font-style: italic;
+  font-size: 3em;
+  margin-top: -.5em;
+  position: absolute;
+}
+
+[prose]::before {
+  content: "\201C";
+  margin-left: -1em;
+}
+
+[prose]::after {
+  content: "\201D";
+  margin-left: -.5em;
 }
 
 [verse] {
@@ -194,17 +201,22 @@ q::after {
   place-content: center;
 }
 
+[verse]::before,
+[verse]::after {
+  content: "";
+}
+
 /* temporary, until we add chroma */
 
 [page-intro] ~ pre {
-  background-color: #eee;
+  background-color: rgba(242, 242, 242, 1);
   border-left: 5px solid rgba(22, 22, 254, .5);
   margin: 3em 0;
   padding: 1em;
 }
 
 code {
-  background-color: #eee;
+  background-color: rgba(242, 242, 242, 1);
   font-family: consolas, monaco, "Andale Mono", monospace;
   padding: .25em .15em;
   white-space: break-spaces;

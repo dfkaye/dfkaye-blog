@@ -40,7 +40,7 @@ At the time, Eliot was writing for the *Times Literary Supplement*
 
 {{< rawhtml >}}
 <q prose>
- which was then wholly anonymous and chillingly learned. The article needed a closing chord, and the scholars would never admit that they had failed to spot a quotation; cleary they deserved to have their legs pulled.
+ &hellip;which was then wholly anonymous and chillingly learned. The article needed a closing chord, and the scholars would never admit that they had failed to spot a quotation; cleary they deserved to have their legs pulled.
 </q>
 {{< /rawhtml >}}
 
