@@ -90,7 +90,7 @@ This problem could be fixed with - yes, you guessed it - `dangerouslySetInnerHTM
 
 Each of those is suboptimal in the age of [Content Security Policy](https://content-security-policy.com/).
 
-## What about...  Did you try...?
+## What about...?  Did you try...?
 
 > *I Just Wanted to Create a Blog with CSS and JavaScript Demos.*
 

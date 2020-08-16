@@ -109,7 +109,6 @@ footer {
   height: 3em;
   margin: .2em 0;
   padding: .75em;
-  white-space: nowrap; /* overrides a { overflow-wrap } */
 }
 
 [page-title] {
@@ -245,7 +244,7 @@ a {
    */
   word-break: break-word;
   /* overflow-wrap not supported on safari iOS */
-  overflow-wrap: anywhere;
+  /* overflow-wrap: anywhere; */
 }
 
 a:not([icon]):hover,
@@ -282,6 +281,8 @@ a:not([icon]):active {
   color: var(--link-color);
   font-weight: 600;
   padding: .5em;
+  /* override a { word-break: break-word; } if user increases text size. */
+  white-space: nowrap;
 }
 
 [nav="header"] a {
