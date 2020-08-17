@@ -45,7 +45,7 @@ Originally I created this in 2017 as a gist at https://gist.github.com/dfkaye/c2
 
 ## Module 
 
-The main idea is to apply an operation to a series of values. Below, `apply()` and `sum` are functions, with sum being the operation:
+The main idea is to apply an operation to a series of values. Below, `apply()` and `sum()` are functions, with sum being the operation:
 
     import { apply, sum, product } from "/js/lib/safe-math.js";
 
@@ -53,7 +53,7 @@ The main idea is to apply an operation to a series of values. Below, `apply()` a
 
     assert(test === 6);
 
-Here are the `apply()` and `sum` functions:
+Here are the `apply()` and `sum()` functions:
 
     export function apply(fn, ...values) {
       if (Array.isArray(values[0])) {
@@ -69,10 +69,10 @@ Here are the `apply()` and `sum` functions:
       return (left + right) / by;
     }
 
-The brains behind the whole operation is `expand()` function (note call in the `sum()` function). `expand` is a helper that returns a coerced left & right number pair, plus an expansion factor.
+The brains behind the whole operation is `expand()` function (note call in the `sum()` function). `expand()` is a helper that returns a coerced left & right number pair, plus an expansion factor.
 
 {{< rawhtml >}}
-You can view the source of the safe-math module at <a href="/js/lib/safe-math.js">/js/lib/safe-math.js</a>.
+Source is a bit long. You can view the source of the safe-math module at <a href="/js/lib/safe-math.js">/js/lib/safe-math.js</a>.
 {{< /rawhtml >}}
 
 ## Tests
