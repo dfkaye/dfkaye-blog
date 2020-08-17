@@ -14,3 +14,7 @@
 	padding-bottom: .5em;
 	text-align: right;
 }
+
+#mocha .test pre {
+	background-color: rgba(242, 242, 242, 1);
+}
