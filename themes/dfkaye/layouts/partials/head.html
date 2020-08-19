@@ -4,8 +4,8 @@
   <title>{{ .Page.Title }} | {{ .Site.Title }}</title>
   <meta name="author" content="{{ .Site.Params.Author }}">
   <meta name="description" content="{{ .Scratch.Get "pageDescription" }}">
-  
-	{{- partial "content-security-policy.html" . -}}
+
+  {{- partial "content-security-policy.html" . -}}
 
   <!-- real favicon generator: https://realfavicongenerator.net/ -->
   <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
@@ -23,6 +23,8 @@
   <meta property="og:site_name" content="{{ .Site.Title }}">
   <meta name="twitter:card" content="/favicon-32x32.png">
   <meta name="twitter:image:alt" content="dfkaye's avatar">
+  <meta name=”twitter:title” content="{{ .Page.Title }}">
+  <meta name=”twitter:description” content="{{ .Scratch.Get "pageDescription" }}">
 
   {{- partial "css.html" . -}}
 </head>
