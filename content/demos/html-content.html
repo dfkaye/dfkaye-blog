@@ -1,5 +1,5 @@
 ---
-title: "hugo using html content demo"
+title: "Hugo content as HTML"
 date: 2020-07-08T13:40:43-07:00
 description: "Example of Hugo content as HTML rather than Markdown file."
 draft: false
@@ -10,14 +10,15 @@ draft: false
 </p>
 
 <p>
- Early on I found that creating demos with application code requires inserting
- raw HTML into the markdown content,
- <a href="https://anaulin.org/blog/hugo-raw-html-shortcode/">
- using this shortcode by Ana Ulin</a>.
+  Early on I found that creating demos with application code requires inserting
+  raw HTML into the markdown content,
+  <a href="https://anaulin.org/blog/hugo-raw-html-shortcode/">
+    using this shortcode by Ana Ulin</a>.
 </p>
 
 <p>
-That also allows you to include localization attributes in HTML tags, <i lang="fr-FR">en français</i>, for example.
+  That approach allows you to include localization attributes in HTML tags, <i lang="fr-FR">en français</i>, for
+  example.
 </p>
 
 <pre>
@@ -25,13 +26,14 @@ That also allows you to include localization attributes in HTML tags, <i lang="f
 </pre>
 
 <p>
-  Alternatively, you can name the content with the ".html" extension instead, and include the usual front matter at the top of
-  the content file, like so:
+  Alternatively, you can name the content file with the ".html" extension instead, and include the usual front matter at
+  the
+  top of the content file, like so:
 </p>
 
 <pre><code>
 ---
-title: "hugo using html content demo"
+title: "Hugo content as HTML"
 date: 2020-07-08T13:40:43-07:00
 draft: false
 ---

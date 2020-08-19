@@ -21,7 +21,27 @@ scripts:
 
 This demo contains a test suite using mocha, chai, module-type scripts, and ES2016 import/export syntax all within [Hugo](https://gohugo.io) to develop a working module.
 
-Originally I created this in 2017 as a gist at https://gist.github.com/dfkaye/c2210ceb0f813dda498d22776f98d48a.
+*<time>18 August 2020</time>: This demo has been refactored. For details, scroll to the [Update](#Update) section.*
+
+## Contents
+
++ [Suite](#suite)
++ [Approach](#approach)
++ [Goals](#goals)
++ [Out of scope](#out-of-scope-for-now)
++ [Module](#module)
++ [Update](#update) <time>18 August 2020</time>
++ [The `expand()` helper function](#the-expand-helper-function)
++ [Tests](#tests)
+
+## Suite
+
+Click on test names in the report below to display each assertion.
+
+{{< rawhtml >}}
+<div id="fixture"></div>
+<div id="mocha"></div>
+{{< /rawhtml >}}
 
 ## Approach
 
@@ -45,7 +65,7 @@ Originally I created this in 2017 as a gist at https://gist.github.com/dfkaye/c2
 
 ## Module 
 
-The main idea is to apply an operation to a series of values. Below, `apply()` and `sum()` are functions, with sum being the operation:
+The main idea {{< rawhtml >}}<del>is</del><ins>was</ins>{{< /rawhtml >}} to apply an operation to a series of values. Below, `apply()` and `sum()` are functions, with sum being the operation:
 
     import { apply, sum, product } from "/js/lib/safe-math.js";
 
@@ -53,7 +73,15 @@ The main idea is to apply an operation to a series of values. Below, `apply()` a
 
     assert(test === 6);
 
-Here are the `apply()` and `sum()` functions:
+## Update
+
+*<time>18 August 2020</time>: This section created with detail taken and modified from the previous section.*
+
+In trying to add an `avg()` function to the module, I found the "apply" strategy to be indirect and called in the wrong order. I also found a couple of bugs, one in `expand()`, one in `avg()`, and was able to fix them quickly while running the suite in the browser.
+
+The `apply()` function has been renamed `getValues()` and instead of `apply()` calling `sum()` as the reducing function on the given values, `sum()` calls `getValues()` and reduces that to the result.
+
+Here they are before refactoring:
 
     export function apply(fn, ...values) {
       if (Array.isArray(values[0])) {
@@ -65,36 +93,113 @@ Here are the `apply()` and `sum()` functions:
 
     export function sum(a, b) {
       var { left, right, by } = expand(a, b);
-
       return (left + right) / by;
     }
 
-The brains behind the whole operation is `expand()` function (note call in the `sum()` function). `expand()` is a helper that returns a coerced left & right number pair, plus an expansion factor.
+And after:
+
+    function getValues(...values) {
+      if (Array.isArray(values[0])) {
+        values = values[0];
+      }
+
+      return values.filter(isNumeric);
+    }
+
+    export function sum(...values) {
+      return getValues(...values)
+        .reduce(function (current, next) {
+          var { left, right, by } = expand(current, next);
+          return (left + right) / by;
+        }, 0);
+    }
+
+Note that `getValues()` filters by `isNumeric()`. Here's what that looks like:
+
+    function isNumeric(a) {
+      // If it's a string, remove commas and trim it.
+      // Otherwise wrap it in its type with Object() and get the value.
+      var v = /^string/.test(typeof a)
+        ? a.replace(/[,]/g, '').trim()
+        : Object(a).valueOf();
+
+      // Not NaN, null, undefined, or the empty string.
+      var reNan = /^(NaN|null|undefined|)$/;
+      return !reNan.test(v);
+    }
+
+## The `expand()` helper function
+
+*Originally I created this in 2017 as a gist at https://gist.github.com/dfkaye/c2210ceb0f813dda498d22776f98d48a.*
+
+The brains behind the whole operation is the `expand()` function (note call in the `sum()` function). `expand()` is a helper that returns a coerced left & right number pair, plus an expansion factor.
+
+Here's the `expand()` function:
+
+    function expand(left, right) {
+      // valueOf() trick for "functionally numeric" objects.
+      left = Object(left).valueOf();
+      right = Object(right).valueOf();
+
+      // coerce to strings to numbers (and remove formatting commas)
+      var reMatch = /string/
+      var reCommas = /[\,]/g
+
+      if (reMatch.test(typeof left)) {
+        left = +left.toString()
+          .replace(reCommas, '');
+      }
+
+      if (reMatch.test(typeof right)) {
+        right = +right.toString()
+          .replace(reCommas, '');
+      }
+
+      // expand to integer values based on largest mantissa length
+      var reDecimal = /[\.]/
+      var ml = reDecimal.test(left) && left.toString().split('.')[1].length
+      var mr = reDecimal.test(right) && right.toString().split('.')[1].length
+      var pow = ml > mr ? ml : mr
+      var by = Math.pow(10, pow)
+
+      // left & right number pair, plus the expansion factor.
+      // The multiplication operator, *, coerces non-numerics to their equivalent,
+      // e.g., {} => NaN, true => 1, [4] => '4' => 4      
+      return { left: left * by, right: right * by, by }
+    }
 
 {{< rawhtml >}}
-Source is a bit long. You can view the source of the safe-math module at <a href="/js/lib/safe-math.js">/js/lib/safe-math.js</a>.
+You can view the source of the safe-math module at <a href="/js/lib/safe-math.js">/js/lib/safe-math.js</a>.
 {{< /rawhtml >}}
 
 ## Tests
 
-The suite starts like this:
+The test suite is laid out like this:
 
-    import { apply, sum, product } from "/js/lib/safe-math.js";
+    import { sum, product, avg } from "/js/lib/safe-math.js";
 
-    describe("Math.apply", function () {
-
+    describe("safe-math", function () {
       var assert = chai.assert;
 
-      it('adds 0.1 + 0.2 to get 0.3', () => {
-        var actual = apply(sum, [0.1, 0.2]);
-
-        assert(actual === 0.3);
+      describe("sum", function () {
+        it('adds 0.1 + 0.2 to get 0.3', () => {
+          var actual = sum([0.1, 0.2]);
+          assert(actual === 0.3);
+        });
       });
 
-      it("multiplies 0.1 * 0.1 to get 0.01", () => {
-        var actual = apply(product, [0.1, 0.1]);
-
-        assert(actual === 0.01);
+      describe("product", function () {
+        it("multiplies 0.1 * 0.1 to get 0.01", () => {
+          var actual = product([0.1, 0.1]);
+          assert(actual === 0.01);
+        });
+      });
+      
+      describe("avg", function () {
+        it("returns average value of a series", () => {
+          var actual = avg([1, 2, 3, 4]);
+          assert(actual === 2.5);
+        });
       });
 
       /* and so on */
@@ -102,13 +207,4 @@ The suite starts like this:
 
 {{< rawhtml >}}
 You can view the source of the test suite at<a href="/js/demos/safe-math/suite.js">/js/demos/safe-math/suite.js</a>.
-{{< /rawhtml >}}
-
-## Suite
-
-Click on test names in the report below to display each assertion.
-
-{{< rawhtml >}}
-<div id="fixture"></div>
-<div id="mocha"></div>
 {{< /rawhtml >}}
