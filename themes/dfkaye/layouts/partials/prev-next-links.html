@@ -1,0 +1,22 @@
+<nav prev-next>
+  {{ with .PrevInSection  }}
+  {{ if eq .Type "posts" }}
+  {{ .Scratch.Set "pageType" "post" }}
+  {{ else if eq .Type "demos"}}
+  {{ .Scratch.Set "pageType" "demo" }}
+  {{ end }}
+  <article prev="{{ .Scratch.Get "pageType" }}">
+    <a rel="prev" href="{{ .Permalink }}" aria-label="Previous {{ .Scratch.Get "pageType" }}">Previous</a>
+  </article>
+  {{ end }}
+  {{ with .NextInSection }}
+  {{ if eq .Type "posts" }}
+  {{ .Scratch.Set "pageType" "post" }}
+  {{ else if eq .Type "demos"}}
+  {{ .Scratch.Set "pageType" "demo" }}
+  {{ end }}
+  <article next="{{ .Scratch.Get "pageType" }}">
+    <a rel="next" href="{{ .Permalink }}" aria-label="Next {{ .Scratch.Get "pageType" }}">Next</a>
+  </article>
+  {{ end }}
+</nav>

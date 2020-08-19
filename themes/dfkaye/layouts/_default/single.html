@@ -1,20 +1,21 @@
 {{ define "main" }}
-  <h1 id="main" page-intro>{{ .Title }}</h1>
-  <span reading-time>{{ .ReadingTime }} minute read</span>
+<h1 id="main" page-intro>{{ .Title }}</h1>
+<span reading-time>{{ .ReadingTime }} minute read</span>
 
-  <ul publish-date>
-    <li>Publish Date: <time datetime="{{ .PublishDate }}" pubdate>{{ dateFormat "January 2, 2006" .Date }}</time></li>
-    <li>Last Update: <time datetime="{{ .Lastmod }}" lastmod>{{ dateFormat "January 2, 2006" .Lastmod  }}</time></li>
-  </ul>
+<ul publish-date>
+  <li>Publish Date: <time datetime="{{ .PublishDate }}" pubdate>{{ dateFormat "January 2, 2006" .Date }}</time></li>
+  <li>Last Update: <time datetime="{{ .Lastmod }}" lastmod>{{ dateFormat "January 2, 2006" .Lastmod  }}</time></li>
+</ul>
 
-	<!-- https://gomakethings.com/how-to-create-accessible-subtitles/ -->
-  <p role="doc-subtitle">{{ .Description }}</p>
+<!-- https://gomakethings.com/how-to-create-accessible-subtitles/ -->
+<p role="doc-subtitle">{{ .Description }}</p>
 
-  {{ .Content }}
+{{ .Content }}
 
-  <h2><i>Thanks for reading.</i></h2>
+<h2><i>Thanks for reading.</i></h2>
 
-  {{ if eq .Type "posts" }}
-    {{- partial "post-prev-next.html" . -}}
-  {{ end }}  
+{{ if eq .Type "posts" }}
+{{- partial "prev-next-links.html" . -}}
+{{ end }}
+
 {{ end }}

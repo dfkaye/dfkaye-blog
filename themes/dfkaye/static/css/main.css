@@ -1,7 +1,7 @@
 /* dfkaye blog styles */
 
 :root {
-  --font-family: georgia, sans-serif;
+  --font-family: sans-serif;
   --hover-color: #008800;
   --link-color: #6f5ff6;
   --text-color: #000;
@@ -206,18 +206,28 @@ q {
   content: "";
 }
 
+/* inline images */
+
+[screenshot] {
+  width: 100%;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 1em;
+}
+
 /* temporary, until we add chroma */
 
-[page-intro] ~ pre {
+[page-intro] ~ pre,
+li > pre {
   background-color: rgba(242, 242, 242, 1);
   border-left: 5px solid rgba(22, 22, 254, .5);
-  margin: 3em 0;
+  margin: 1.5em 0;
   padding: 1em;
 }
 
 code {
   background-color: rgba(242, 242, 242, 1);
   font-family: consolas, monaco, "Andale Mono", monospace;
+  font-size: 1em; /* don't resize with vw units */
   padding: .25em .15em;
   white-space: break-spaces;
 }
@@ -409,24 +419,28 @@ a:not([icon]):active {
 
 /* prev & next post */
 
-[post-prev-next] {
+[prev-next] {
   display: flex;
   font-size: 1.25em;
   justify-content: center;
 }
 
-[post] {
+[prev], [next] {
   padding: 0 1em;
 }
 
-[post="next"] {
+[rel="next"] {
   justify-self: flex-end;
 }
 
-[post="prev"]:before {
+[rel="prev"]:before {
   content: "\2190";
+  position: absolute;
+  margin-left: -1.5em;
 }
 
-[post="next"]:after {
+[rel="next"]:after {
   content: "\2192";
+  position: absolute;
+  margin-left: .5em;  
 }
