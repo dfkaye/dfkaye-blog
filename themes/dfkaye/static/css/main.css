@@ -86,6 +86,7 @@ header ~ * {
 }
 
 [role="banner"] {
+  background-color: darkslategrey; /* accessibility: is banner image doesn't load. */  
   background-image: url(/img/hexo-banner-min.jpg);
   background-position: top -39em left 0;
   /* override the responsive font size from html */
