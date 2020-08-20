@@ -216,8 +216,7 @@ q {
 
 /* temporary, until we add chroma */
 
-[page-intro] ~ pre,
-li > pre {
+* pre {
   background-color: rgba(242, 242, 242, 1);
   border-left: 5px solid rgba(22, 22, 254, .5);
   margin: 1.5em 0;
@@ -233,6 +232,7 @@ code {
 }
 
 pre code {
+  color: rgba(22, 22, 254);
   padding: .25em 0;
 }
 
