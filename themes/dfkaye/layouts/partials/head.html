@@ -23,9 +23,13 @@
   <meta property="og:image" content="/favicon-32x32.png">
   <meta property="og:url" content="{{ .Page.Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
-  <meta name="twitter:card" content="/favicon-32x32.png">
+
+  <!-- Social -->
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:image" content="/favicon-32x32.png">
   <meta name="twitter:image:alt" content="dfkaye's avatar">
   <meta name=”twitter:title” content="{{ .Page.Title }}">
+  <meta name="twitter:url" content="{{ .Page.Permalink }}">
   <meta name=”twitter:description” content="{{ .Scratch.Get "pageDescription" }}">
 
   {{- partial "css.html" . -}}
