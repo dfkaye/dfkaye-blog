@@ -136,7 +136,7 @@ footer {
 }
 
 [role="main"] li {
-  margin: 1em 0 1em 1em;
+  margin: 0 0 0 1em;
 }
 
 [page-intro] {/* h1 */
@@ -223,7 +223,7 @@ q {
   border-left: 5px solid rgba(22, 22, 254, .5);
   border-left: 5px solid rgba(133, 3, 133);
   margin: 1.5em 0;
-  padding: 1em 0.5em 1em 1.5em;
+  padding: 1em 0.25em 1em 1em;
 }
 
 code {

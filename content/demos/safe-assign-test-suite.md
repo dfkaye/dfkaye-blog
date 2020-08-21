@@ -1,5 +1,5 @@
 ---
-title: "Test suite: Safer operations using Object.assign()."
+title: "Test suite: Safe assign wrapper for Object.assign()."
 date: 2020-08-21T11:56:43-07:00
 description: "Test suite for safe-assign.js module."
 draft: false
@@ -20,6 +20,10 @@ scripts:
 ---
 
 This demo contains a test suite using mocha, chai, module-type scripts, and ES2016 import/export syntax all within [Hugo](https://gohugo.io) to develop a working module.
+
+{{< rawhtml >}}
+You can view the source of the test suite at <a href="/js/demos/safe-assign/suite.js">/js/demos/safe-assign/suite.js</a>.
+{{< /rawhtml >}}
 
 ## Suite
 

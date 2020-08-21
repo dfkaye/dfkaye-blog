@@ -1,5 +1,5 @@
 ---
-title: "safe-assign() - a sensible wrapper for Object.assign()."
+title: "Safer Object.assign() operations using a sensible wrapper."
 date: 2020-08-21T12:04:43-07:00
 description: "Use safe-assign to merge each object or array onto another (p) only if p is an object or array, and return a copy of p; otherwise, return p."
 tags: 
@@ -12,9 +12,15 @@ draft: false
 
 *Original gist on github at https://gist.github.com/dfkaye/e5e2ce68acd70b1358c62b9ac641df81.*
 
-## Tests
+## Test
 
 You can visit the [test suite for safe-assign.js](/demos/safe-assign-test-suite/).
+
+## Source
+
+{{< rawhtml >}}
+You can view the source of the safe-assign module at <a href="/js/lib/safe-assign.js">/js/lib/safe-assign.js</a>.
+{{< /rawhtml >}}
 
 ## Rationale
 
@@ -38,21 +44,26 @@ The point of `safe-assign` is to allow users to pass anything,
     // Object { 0: 1, 1: 2, 2: 3, name: "dog" }
 
     // merging an object into an array
-    var a = Object.assign([], {name: 'dog'}, [1,2,3]);
+    var a = Object.assign([], {name: 'dog'});
 
     console.log(a.name);
     // "dog" - name entry is inserted
 
 That feels unwise, and, while it is occasionally useful, even the
-`JSON` module disagrees with object keys on an array. You can remove non-index keys from an array with JSON.parse(JSON.stringify(array)):
+`JSON` module disagrees with object keys on an array. You can remove non-index keys from an array with `JSON.parse( JSON.stringify(array) )`:
 
-    console.log(JSON.parse(JSON.stringify(a, null, 2)).name);
-    // undefined - name entry is removed
+    var a = Object.assign( [], {name: 'dog'} );
+    var json = JSON.stringify(a, null, 2);
+
+    console.log( JSON.parse(json).name );
+    // undefined - `name` entry is removed
 
 That applies to nested arrays.
 
-    console.log(JSON.parse(JSON.stringify({ array: a }, null, 2)).array.name);
-    // undefined - name entry is removed
+    var json = JSON.stringify( { array: a }, null, 2 );
+
+    console.log( JSON.parse( json ).array.name );
+    // undefined - `name` entry is removed from the `array` property.
 
 Assigning to objects, `Object.assign()` works in fairly predictable manner (for JS), assigning and/or creating keys from the source onto the target.
 
