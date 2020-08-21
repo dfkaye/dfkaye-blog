@@ -18,3 +18,12 @@
 #mocha .test pre {
 	background-color: rgba(242, 242, 242, 1);
 }
+
+#mocha .test code {
+	background-color: inherit;
+	font-size: 1em;
+}
+
+#mocha code .comment {
+	color: #666;
+}

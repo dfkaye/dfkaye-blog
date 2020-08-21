@@ -154,13 +154,15 @@ h2, h3 {
 }
 
 /* could use more polish here */
-[page-intro] ~ blockquote {
+* ~ blockquote {
   background-color: rgba(22, 22, 254, .15);
   /* rgba(24, 143, 255, 0.32); */
   border-left: 5px solid rgba(22, 22, 254, .5);
   /* 2px solid #188fff; */
+  /*
   font-family: consolas, monospace;
   font-size: 1.5em;
+  */
   font-style: italic;
   margin: 2em 0;
   padding: .5em 1em;
@@ -216,23 +218,27 @@ q {
 
 /* temporary, until we add chroma */
 
-* pre {
+* ~ pre {
   background-color: rgba(242, 242, 242, 1);
   border-left: 5px solid rgba(22, 22, 254, .5);
+  border-left: 5px solid rgba(133, 3, 133);
   margin: 1.5em 0;
-  padding: 1em;
+  padding: 1em 0.5em 1em 1.5em;
 }
 
 code {
   background-color: rgba(242, 242, 242, 1);
   font-family: consolas, monaco, "Andale Mono", monospace;
   font-size: 1em; /* don't resize with vw units */
-  padding: .25em .15em;
+  padding: .05em .15em;
   white-space: break-spaces;
 }
 
 pre code {
+  background-color: inherit;
   color: rgba(22, 22, 254);
+  color: rgba(133, 3, 133);
+  font-size: .85em; /* more readable in big code blocks */
   padding: .25em 0;
 }
 
