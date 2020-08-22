@@ -31,20 +31,22 @@ Some of that content will be posted here eventually, along with updated takes.
 + set up RSS feed
 + sitemap.xml
 + categories and tags
-+ pagination in /demos/
-+ pagination in list pages
++ pagination in list pages (by year, by count (100), or...?)
 + post about "Making the Switch to Hugo"
 + post about Hugo resources
 + post about post prev next and CSS content ISO values
   - https://stackoverflow.com/questions/44186778/link-to-next-post
   - https://brajeshwar.github.io/entities/
-+ post about content security policy setup
++ post about Content Security Policy setup
   - scratch-variables partial
   - csp partial
   - css partial
   - js partial
 + post about the footer company icons
-+ post about overflow-wrap vs. word-break for long link text, especially on mobile.
+  - especially https://github.com/simple-icons/simple-icons
++ post about mobile white space breaks
+  - word-break for long link text
+  - white-space: break-spaces (and using spaces) inside of code elements
 + post about body {position:relative } to set the body width to 100% across mobile devices (galaxy fold, iPhone 5, etc.).
 + post about dot file all the things png
 + post about minimalism
@@ -59,7 +61,7 @@ Some of that content will be posted here eventually, along with updated takes.
 + rename "demos" to "suites" (maybe)
 + copy content from the wordpress site
   - add "archives" for the wordpress and hexo posts
-+ use hugo templating (--instead-of-css-vars) in the CSS
++ use Hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
 + better code snippet styles (not one element per line but well-framed and readable)
 + mermaid diagrams
