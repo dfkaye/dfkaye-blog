@@ -288,6 +288,7 @@ a:not([icon]):active {
   gap: .5em .5em;
   justify-content: center;
   list-style-type: none;
+  /* touch */
   margin: 1em 0;
 }
 
