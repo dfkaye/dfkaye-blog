@@ -47,14 +47,24 @@ Some of that content will be posted here eventually, along with updated takes.
 + post about overflow-wrap vs. word-break for long link text, especially on mobile.
 + post about body {position:relative } to set the body width to 100% across mobile devices (galaxy fold, iPhone 5, etc.).
 + post about dot file all the things png
++ post about minimalism
+  - sans serif font is the only font, and all others are "art" or belong in `@print` styles
+  - use built-in components
+    - avoid shared components, web components, framework components
+  - avoid color, date, and other sketchy HTML5 inputs
+    - accessibility issues
+  - avoid extending anything
+  - avoid npm (left-pad, is-promise, core-js)
+  - package-lock makes everything worse
 + rename "demos" to "suites" (maybe)
++ copy content from the wordpress site
+  - add "archives" for the wordpress and hexo posts
 + use hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
 + better code snippet styles (not one element per line but well-framed and readable)
 + mermaid diagrams
 + add R&eacute;sum&eacute; page with @page and @print stylesheets
 + a **Tools I Use** page (see https://benjamincongdon.me/tools example)
-+ copy content from the wordpress site
 + list of engineering books I've read and/or recommend
 + list of engineering sites I might recommend
 + monthly list of dev-links - see https://github.com/dfkaye/dev-links/+ followup to https://twitter.com/dfkaye/status/1288155766092738561
@@ -62,6 +72,7 @@ Some of that content will be posted here eventually, along with updated takes.
 + future awesome post about the SAM pattern
   - see the HEX article at https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c
   - see JJ's original article "No More MVC Frameworks" at https://www.infoq.com/articles/no-more-mvc-frameworks/
-+ calculator demo
++ calculator demo with TDD
 + date-input demo
-+ spreadsheet with workers demo
++ spreadsheet with workers demo and TDD
++ sudoku demo with TDD
