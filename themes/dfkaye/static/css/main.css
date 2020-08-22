@@ -282,16 +282,18 @@ a:not([icon]):active {
 }
 
 [nav] ul {
-  list-style-type: none;
   display: flex;
   flex-flow: row wrap;
   align-items: baseline;
+  gap: .5em .5em;
   justify-content: center;
+  list-style-type: none;
+  margin: 1em 0;
 }
 
 [nav] li {
   display: inline-block;
-  margin: 1em;
+  margin: 0 1em;
 }
 
 [nav] a {
