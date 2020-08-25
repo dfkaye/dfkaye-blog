@@ -187,12 +187,14 @@ There are some issues remaining with the current tab solution in screen readers:
 
 1. Lack of coverage. I have only tried this with *Windows 10 Narrator* and only in Chrome, Firefox, and Edge. If you use another screen reader like VoiceOver, or browser like Safari, your experiences may differ. 
 2. When the screen reader is on, we lose the restricted arrow key navigation on the tab (radio) elements. Pressing {{< rawhtml >}}<kbd>ArrowDown</kbd>{{< /rawhtml >}} on the last radio will move focus to the next accessible element. If tab 1 is open, for example, the {{< rawhtml >}}<kbd>ArrowDown</kbd>{{< /rawhtml >}} key press on tab 3 will move focus to tab panel 1. That *may* be unexpected behavior for experienced screen reader users.
-3. When navigating with arrow keys, the screen reader will announce whether the radio tab is selected or non-selected. To select the radio, you have to press {{< rawhtml >}}Space{{< /rawhtml >}} or {{< rawhtml >}}Enter{{< /rawhtml >}}. (That was news to me, because when the screen reader is off, the arrow key traversal selects the radio when it receives focus.)
+3. When navigating with arrow keys, the screen reader will announce whether the radio tab is selected or non-selected. To select the radio, you have to press {{< rawhtml >}}<kbd>Space</kbd>{{< /rawhtml >}} or {{< rawhtml >}}<kbd>Enter</kbd>{{< /rawhtml >}}. (That was news to me, because when the screen reader is off, the arrow key traversal selects the radio when it receives focus.)
 4. *Firefox only*: To focus on content of a **newly selected** tab, I found I needed to *double press* the {{< rawhtml >}}<kbd>Tab</kbd>{{< /rawhtml >}} key. (The Chrome and Edge browsers behaved as expected, requiring a single key press.)
 
 ## Surprise
 
-Using `aria-hidden="true"` on the label elements which have `role="tab"` did not degrade the screen reader *experience* &mdash; I have no idea how that affects the Accessibility Object Model underneath.
+Using the `aria-hidden="true"` attribute on the label elements which have the `role="tab"` attribute did not degrade the screen reader *experience* &mdash; I have no idea how that affects the Accessibility Object Model underneath.
+
+Another thing, I omitted the `role="tablist"` attribute on the parent demo element. Adding it had no effect in Windows 10 Narrator, which I assume is due to the element not being a list (`<ul>` or `<ol>`).
 
 ## Caution
 
