@@ -12,11 +12,11 @@ This is my About page.
 Using `layouts/_default/single.html`
 -->
 
-I have been working on the web since 1997, initially as a tester, then as a front-end developer/engineer since 2000. My roles have broadened considerably during that time, from individual contributor to project lead and mentoring other developers.
-
 {{< rawhtml >}}
 <h2 author-status>I am currently available for hire.</h2>
 {{< /rawhtml >}}
+
+I have been working on the web since 1997, initially as a tester, then as a front-end developer/engineer since 2000. My roles have broadened considerably during that time, from individual contributor to project lead and mentoring other developers.
 
 My web development philosophy centers on user safety, accessibility, and test-driven development. I prefer to keep things clean and documented for the next person.
 

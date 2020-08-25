@@ -122,6 +122,7 @@ footer {
   background-color: rgba(10, 110, 200, .1);
   display: flex;
   font-size: 1em;
+  height: 1em;
   justify-content: center;
   width: 100%;
 }
@@ -132,7 +133,10 @@ footer {
 
 [role="doc-subtitle"] {
   font-style: italic;
-  /* color: rgba(110, 110, 248, 0.877); */
+  background-color: whitesmoke;
+  border-left: 5px solid darkslategray;
+  color: darkslategray;
+  padding: 1em;
 }
 
 [role="main"] li {
@@ -218,6 +222,7 @@ q {
 
 /* temporary, until we add chroma */
 
+[page-intro] ~ pre,
 * ~ pre {
   background-color: rgba(242, 242, 242, 1);
   border-left: 5px solid rgba(22, 22, 254, .5);
@@ -245,8 +250,9 @@ pre code {
 kbd {
   border: 1px solid #666;
   border-radius: .25em;
-  box-shadow: 1px 1px #ccc;
+  margin: 0 .25em;
   padding: 0.25em 0.5em;
+  box-shadow: 0.1em 0.1em rgba(64, 64, 64, .2);
 }
 
 /* end until chroma */
@@ -426,16 +432,19 @@ a:not([icon]):active {
   flex-flow: row wrap;
 }
 
-/* prev & next post */
+/* previous & next links */
 
 [prev-next] {
   display: flex;
-  font-size: 1.25em;
-  justify-content: center;
+  justify-content: space-between;
 }
 
 [prev], [next] {
   padding: 0 1em;
+}
+
+[next] {
+  text-align: right;
 }
 
 [rel="next"] {

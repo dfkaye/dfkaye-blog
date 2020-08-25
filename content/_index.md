@@ -32,6 +32,7 @@ Some of that content will be posted here eventually, along with updated takes.
 + sitemap.xml
 + categories and tags
 + pagination in list pages (by year, by count (100), or...?)
++ CSS tabs demo and post
 + post about "Making the Switch to Hugo"
 + post about Hugo resources
 + post about post prev next and CSS content ISO values
@@ -76,5 +77,5 @@ Some of that content will be posted here eventually, along with updated takes.
   - see JJ's original article "No More MVC Frameworks" at https://www.infoq.com/articles/no-more-mvc-frameworks/
 + calculator demo with TDD
 + date-input demo
-+ spreadsheet with workers demo and TDD
++ S|p|r|e|a|d|S|h|e|e|t with workers demo and TDD
 + sudoku demo with TDD
