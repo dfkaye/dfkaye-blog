@@ -1,6 +1,6 @@
 {{ .Scratch.Set "pageDescription" .Page.Description }}
 {{ .Scratch.Set "copyright" (.Page.PublishDate.Format "2006") }}
-{{ .Scratch.Set "siteBanner" (printf "%s/%s" .Site.BaseURL "img/site-banner.jpg") }}
+{{ .Scratch.Set "siteBanner" (printf "%s/%s" .Site.BaseURL "img/site-banner.png") }}
 {{ if not .IsPage }}
 {{ .Scratch.Set "copyright" (now.Format "2006") }}
 {{ if (eq .Type "posts")}}
