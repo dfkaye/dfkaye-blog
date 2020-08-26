@@ -1,12 +1,12 @@
 {{ .Scratch.Set "pageDescription" .Page.Description }}
 {{ .Scratch.Set "copyright" (.Page.PublishDate.Format "2006") }}
-
+{{ .Scratch.Set "bannerImage" (printf "%s%s" .Site.BaseURL "img/hexo-banner-min.jpg") }}
 {{ if not .IsPage }}
-	{{ .Scratch.Set "copyright" (now.Format "2006") }}
-	{{ if (eq .Type "posts")}}
-	{{ .Scratch.Set "pageDescription" "List of my blog posts" }}
-	{{ else if (eq .Type "demos")}}
-	{{ .Scratch.Set "pageDescription" "List of my code demos" }}
-	{{ end }}
+{{ .Scratch.Set "copyright" (now.Format "2006") }}
+{{ if (eq .Type "posts")}}
+{{ .Scratch.Set "pageDescription" "List of my blog posts" }}
+{{ else if (eq .Type "demos")}}
+{{ .Scratch.Set "pageDescription" "List of my code demos" }}
+{{ end }}
 {{ end }}
 {{ .Scratch.Set "nonce" (printf "%s%s" .Title now | base64Encode)}}

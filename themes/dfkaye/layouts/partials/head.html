@@ -5,7 +5,7 @@
   <meta name="author" content="{{ .Site.Params.Author }}">
   <meta name="description" content="{{ .Scratch.Get "pageDescription" }}">
 
-  <link rel="prefetch" href="/img/hexo-banner-min.jpg" hidden>
+  <link rel="prefetch" href="{{ .Scratch.Get "bannerImage" }}g" hidden>
 
   {{- partial "content-security-policy.html" . -}}
 
@@ -18,16 +18,17 @@
   <meta name="theme-color" content="#ffffff">
 
   <!-- SEO -->
+  <meta property="og:type" content="article">
   <meta property="og:title" content="{{ .Page.Title }}">
   <meta property="og:description" content="{{ .Scratch.Get "pageDescription" }}">
-  <meta property="og:image" content="/favicon-32x32.png">
+  <meta property="og:image" content="{{ .Scratch.Get "bannerImage" }}">
   <meta property="og:url" content="{{ .Page.Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
 
   <!-- Social -->
   <meta name="twitter:card" content="summary">
-  <meta name="twitter:image" content="/favicon-32x32.png">
-  <meta name="twitter:image:alt" content="dfkaye's avatar">
+  <meta name="twitter:creator" content="David F. Kaye">
+  <meta name="twitter:image" content="{{ .Scratch.Get "bannerImage" }}">
   <meta name=”twitter:title” content="{{ .Page.Title }}">
   <meta name="twitter:url" content="{{ .Page.Permalink }}">
   <meta name=”twitter:description” content="{{ .Scratch.Get "pageDescription" }}">
