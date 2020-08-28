@@ -1,8 +1,12 @@
 ---
-title: "A mocha, chai, and fast-check test suite"
+title: "A mocha, chai, and fast-check test suite setup"
 date: 2020-07-07T12:10:43-07:00
 description: "Running example of a JavaScript test suite in the browser, using mocha, chai, and fast-check testing libraries"
-draft: false
+tags:
+- "demo"
+- "suites"
+- "TDD"
+- "JavaScript"
 
 # load styles and scripts in strict order
 

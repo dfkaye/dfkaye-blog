@@ -3,9 +3,10 @@ title: "Object() vs. Object.create()"
 date: 2020-08-20T12:18:43-07:00
 description: "Some differences between JavaScript's Object() and Object.create() functions."
 tags: 
-  - "JavaScript"
-  - "Object"
-draft: false
+- "JavaScript"
+- "Object"
+- "Prototype"
+
 ---
 
 ## About this post

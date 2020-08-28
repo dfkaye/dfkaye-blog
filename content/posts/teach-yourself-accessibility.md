@@ -1,19 +1,18 @@
 ---
 title: "Teach Yourself Accessibility"
 date: 2020-08-27T11:12:43-07:00
-description: "Make web interfaces that are accessible to keyboard navigation and screen readers."
-tags: 
-  - "CSS"
-  - "Accessibility"
-  - "ARIA"
-  - "Responsive UI"
-  - "Semantic HTML"
+description: "Make web interfaces that are accessible to keyboard navigation and screen readers through progressive enhancement."
+tags:
+- "CSS"
+- "Accessibility"
+- "Progressive enhancement"
+- "Semantic HTML"
 
 styles:
-- /css/lib/teach-yourself-accessibility.css
+- /css/posts/teach-yourself-accessibility.css
 
 scripts:
-- /js/lib/teach-yourself-accessibility.js
+- /js/posts/teach-yourself-accessibility.js
 
 ---
 

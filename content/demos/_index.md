@@ -1,6 +1,11 @@
 ---
 title: "Demos"
-draft: false
+description: "List of my programming examples including demos, projects, and live test suites."
+tags:
+- "demos"
+- "projects"
+- "suites"
+
 ---
 
-This is a list of my demos. You can select each demo to learn more about each one.
+List of my programming examples including demos, projects, and live test suites.

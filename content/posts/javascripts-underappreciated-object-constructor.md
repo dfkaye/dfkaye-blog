@@ -2,7 +2,10 @@
 title: "JavaScript's under-appreciated Object() constructor"
 date: 2020-08-05T11:40:58-30:00
 description: "Instead of guard clauses or type annotations, you can use JavaScript's Object() constructor for safe type and value access."
-draft: false
+tags: 
+- "JavaScript"
+- "Object"
+- "Safety"
 
 ---
 

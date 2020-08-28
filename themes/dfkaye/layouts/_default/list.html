@@ -1,17 +1,21 @@
 {{ define "main" }}
-	<h1 id="main" page-intro>{{ .Title }}</h1>
+<h1 id="main" page-intro>{{ .Title }}</h1>
 
-  {{ .Content }}
+{{ .Content }}
 
-  <ul page-list>
+<ul page-list>
   {{ range .Pages }}
-    <li page-item>
-      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">
-			{{ .Date.Format "Jan 2, 2006" }}
-			</time>
-      &middot; <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-			&middot; <span reading-time>{{ .ReadingTime }} minute read</span>
-    </li>
+  <li page-item>
+
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    &middot;
+    <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">
+      {{ .Date.Format "Jan 2, 2006" }}
+    </time>
+    &middot;
+    <span reading-time>{{ .ReadingTime }} minute read</span>
+    <article role="doc-subtitle"><i>{{ .Description }}</i></article>
+  </li>
   {{ end }}
-  </ul>
+</ul>
 {{ end }}

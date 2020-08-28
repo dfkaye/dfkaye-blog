@@ -1,11 +1,14 @@
 ---
 title: "Using CSS files in React/JSX apps"
 date: 2020-08-19T13:07:43-07:00
-description: "Two approaches when you need CSS features that CSS-in-JS can't provide such as @media rules or CSS custom properties."
-tags: 
-  - "CSS"
-  - "JSX"
-draft: false
+description: "Two approaches for when you need CSS features in React/JSX that CSS-in-JS can't provide, such as @media rules or CSS custom properties."
+tags:
+- "CSS"
+- "CSS-in-JS"
+- "JavaScript"
+- "JSX"
+- "React"
+
 ---
 
 I tweeted about this in August 2019 at https://twitter.com/dfkaye/status/1159886173331812352.

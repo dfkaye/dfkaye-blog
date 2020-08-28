@@ -2,8 +2,11 @@
 title: "Where does that quote in your twitter bio come from?"
 date: 2020-08-10T15:49:13-07:00
 description: "Glad you asked!"
-tags: []
-draft: false
+tags:
+- "history"
+- "literature"
+- "scholarship"
+
 ---
 
 <!--more-->

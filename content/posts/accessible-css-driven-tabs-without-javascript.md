@@ -3,10 +3,10 @@ title: "Accessible CSS-driven Tabs (without JavaScript)"
 date: 2020-08-23T16:55:43-07:00
 description: "Making CSS-only tabs accessible to keyboard navigation and screen readers."
 tags: 
-  - "CSS"
-  - "Accessibility"
-  - "Responsive UI"
-draft: false
+- "CSS"
+- "Accessibility"
+- "Responsive UI"
+
 ---
 
 *This post and the accompanying [demo](/demos/accessible-css-driven-tabs-demo/) is the motivating exercise that drove me to find a blogging platform that supported custom styles and scripts for working demos. For more on that, see [Why Hugo?](/posts/2019/11/11/first-post-why-hugo/).*

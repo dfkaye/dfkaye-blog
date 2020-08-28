@@ -3,11 +3,11 @@ title: "Safer Object.assign() operations using a sensible wrapper."
 date: 2020-08-21T12:04:43-07:00
 description: "Use safe-assign to merge each object or array onto another (p) only if p is an object or array, and return a copy of p; otherwise, return p."
 tags: 
-  - "JavaScript"
-  - "Object"
-  - "Assign"
-  - "Safety"
-draft: false
+- "JavaScript"
+- "Object"
+- "Assignment"
+- "Safety"
+
 ---
 
 *Original gist on github at https://gist.github.com/dfkaye/e5e2ce68acd70b1358c62b9ac641df81.*

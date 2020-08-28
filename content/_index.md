@@ -2,8 +2,10 @@
 title: "Home"
 date: 2020-06-12T14:10:43-07:00
 description: "dfkaye blog home"
-tags: []
-draft: false
+tags:
+- "blog"
+- "topics"
+
 ---
 
 <!--
@@ -26,13 +28,22 @@ I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on
 
 Some of that content will be posted here eventually, along with updated takes.
 
-## My TODO list
+## To-do set-up
 
++ better code snippet styles (not one element per line but well-framed and readable)
+  - *Surprise!* To support this on Netlify, see https://wilks.co/articles/custom-hugo-version-with-netlify/
 + set up RSS feed
 + sitemap.xml
-+ categories and tags
++ categories and tags layout and keywords
++ resize datetime and reading-time
++ improve the doc-subtitle style on list pages
 + pagination in list pages (by year, by count (100), or...?)
-+ CSS tabs demo and post
++ use Hugo templating (--instead-of-css-vars) in the CSS
+  - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
++ mermaid diagrams
+
+## To-do posts
+
 + post about "Making the Switch to Hugo"
 + post about Hugo resources
 + post about post prev next and CSS content ISO values
@@ -59,23 +70,29 @@ Some of that content will be posted here eventually, along with updated takes.
   - avoid extending anything
   - avoid npm (left-pad, is-promise, core-js)
   - package-lock makes everything worse
-+ rename "demos" to "suites" (maybe)
++ post about **error-first design**
+  - the tweet, https://twitter.com/dfkaye/status/999332316492120064
 + copy content from the wordpress site
   - add "archives" for the wordpress and hexo posts
-+ use Hugo templating (--instead-of-css-vars) in the CSS
-  - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
-+ better code snippet styles (not one element per line but well-framed and readable)
-+ mermaid diagrams
-+ add R&eacute;sum&eacute; page with @page and @print stylesheets
-+ a **Tools I Use** page (see https://benjamincongdon.me/tools example)
-+ list of engineering books I've read and/or recommend
-+ list of engineering sites I might recommend
-+ monthly list of dev-links - see https://github.com/dfkaye/dev-links/+ followup to https://twitter.com/dfkaye/status/1288155766092738561
 + future awesome post about Function() (safe-eval) with strict CSP and web workers.
 + future awesome post about the SAM pattern
   - see the HEX article at https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c
   - see JJ's original article "No More MVC Frameworks" at https://www.infoq.com/articles/no-more-mvc-frameworks/
+
+## To-do pages
+
++ add **R&eacute;sum&eacute;** page with @page and @print stylesheets
++ a **Tools I Use** page (see https://benjamincongdon.me/tools example)
++ list of engineering books I've read and/or recommend
++ list of engineering sites I might recommend
++ monthly list of dev-links - see https://github.com/dfkaye/dev-links/, with followup to https://twitter.com/dfkaye/status/1288155766092738561
+
+## To-do demos
+
++ CSS tabs demo and post - done
 + calculator demo with TDD
 + date-input demo
 + S|p|r|e|a|d|S|h|e|e|t with workers demo and TDD
 + sudoku demo with TDD
++ *interactive* tests using web workers for the server part
+  - example: souders site CSS test page (class vs. attribute selector speeds)

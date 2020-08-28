@@ -3,22 +3,28 @@
   <nav nav="header">
     <a site-title href="/" aria-label="DFK Home page">{{ .Site.Title }}</a>
     <ul>
-    <!--
+      <!--
       https://tink.uk/using-the-aria-current-attribute/
       https://github.com/cferdinandi/hugo-starter/blob/master/themes/my-theme/layouts/partials/nav-items.html
     -->
-      <li{{ if eq .RelPermalink "/" }} aria-current="page" {{ end }}>
+      <li {{ if eq .RelPermalink "/" }} aria-current="page" {{ end }}>
         <a href="/" aria-label="DFK Home page">Home</a>
       </li>
-      <li{{ if eq .RelPermalink "/about/" }} aria-current="page" {{ end }}>
+      <li {{ if eq .RelPermalink "/about/" }} aria-current="page" {{ end }}>
         <a href="{{ "/about/" | absURL }}" aria-label="About Me">About</a>
       </li>
-      <li{{ if or (eq .RelPermalink "/posts/") (eq .Type "posts") }} aria-current="location" {{ end }}>
+      <li {{ if or (eq .RelPermalink "/posts/") (eq .Type "posts") }} aria-current="location" {{ end }}>
         <a href="{{ "/posts/" | absURL }}" aria-label="My blog posts">Posts</a>
       </li>
-      <li{{ if or (eq .RelPermalink "/demos/") (eq .Type "demos") }} aria-current="location" {{ end }}>
+      <li {{ if or (eq .RelPermalink "/demos/") (eq .Type "demos") }} aria-current="location" {{ end }}>
         <a href="{{ "/demos/" | absURL }}" aria-label="My programming examples">Demos</a>
       </li>
+
+      <!-- tags list page needs own layout -->
+      <!--<li {{ if or (eq .RelPermalink "/tags/") }} aria-current="location" {{ end }}>
+        <a href="{{ "/tags/" | absURL }}" aria-label="Categories and topics">Tags</a>
+      </li>-->
+
     </ul>
   </nav>
   <!--

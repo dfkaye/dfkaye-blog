@@ -2,7 +2,13 @@
 title: "First post: Why Hugo?"
 date: 2019-11-11T12:44:58-08:00
 description: "My first blog post on Hugo, and why I chose Hugo"
-draft: false
+tags: 
+- "Hugo"
+- "React"
+- "Gatsby"
+- "Static site generator"
+- "SPA"
+
 ---
 
 <!--more-->

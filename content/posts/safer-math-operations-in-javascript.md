@@ -3,11 +3,11 @@ title: "Safer math operations in JavaScript (using TDD)."
 date: 2020-08-17T11:01:43-07:00
 description: "Use safe-math.js to work around the binary-decimal mismatch, so that 0.1 + 0.2 adds up to 0.3."
 tags: 
-  - "JavaScript"
-  - "Math"
-  - "Safety"
-  - "TDD"
-draft: false
+- "JavaScript"
+- "Math"
+- "Safety"
+- "TDD"
+
 ---
 
 ## Contents
