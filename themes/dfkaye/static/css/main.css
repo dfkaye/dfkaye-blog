@@ -21,7 +21,7 @@
 
 * {
   box-sizing: border-box;
-  line-height: 1.8;
+  line-height: 1.6;
   margin: 0;
   padding: 0;
 }
@@ -243,9 +243,19 @@ pre code {
   background-color: inherit;
   color: rgba(22, 22, 254);
   color: rgba(133, 3, 133);
-  font-size: .85em; /* more readable in big code blocks */
+  font-size: calc(1em - .5vw); /* more readable in big code blocks */
   padding: .25em 0;
 }
+
+/* chroma almost ready (conf.toml markup rules) */
+.highlight {
+    border-left: 5px solid rgba(133, 3, 133);
+}
+
+.highlight pre {
+    padding-left: 1em;
+}
+
 
 kbd {
   border: 1px solid #666;

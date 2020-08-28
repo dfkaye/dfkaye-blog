@@ -5,8 +5,6 @@
   <meta name="author" content="{{ .Site.Params.Author }}">
   <meta name="description" content="{{ .Scratch.Get "pageDescription" }}">
 
-  <link rel="prefetch" href="{{ .Scratch.Get "siteBanner" }}g" hidden>
-
   {{- partial "content-security-policy.html" . -}}
 
   <!-- real favicon generator: https://realfavicongenerator.net/ -->
@@ -21,14 +19,14 @@
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{ .Page.Title }}">
   <meta property="og:description" content="{{ .Scratch.Get "pageDescription" }}">
-  <meta property="og:image" content="{{ .Scratch.Get "siteBanner" }}">
+  <meta property="og:image" content="{{ .Scratch.Get "seoImage" }}">
   <meta property="og:url" content="{{ .Page.Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
 
   <!-- Social -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:creator" content="David F. Kaye">
-  <meta name="twitter:image" content="{{ .Scratch.Get "siteBanner" }}">
+  <meta name="twitter:image" content="{{ .Scratch.Get "seoImage" }}">
   <meta name=”twitter:title” content="{{ .Page.Title }}">
   <meta name="twitter:url" content="{{ .Page.Permalink }}">
   <meta name=”twitter:description” content="{{ .Scratch.Get "pageDescription" }}">

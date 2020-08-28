@@ -1,0 +1,32 @@
+[custom-button]:not(button) {
+  align-items: flex-start;
+  appearance: button;
+  background-color: rgb(239, 239, 239, .67);
+  border: .5px solid gray;
+  border-radius: 1px;
+  cursor: default;
+  display: inline-block;
+  font: 400 13.3333px Arial;
+  padding: 4px 1px;
+  text-align: center;
+  text-indent: 0;
+  text-shadow: none;
+}
+
+[custom-hover]:not(button):hover {
+  background-color: rgb(239, 239, 239, 1);
+}
+
+[custom-focus]:not(button):focus {
+  outline: Highlight auto 3px;
+  outline: -webkit-focus-ring-color auto 3px;
+}
+
+[custom-active]:not(button):active {
+  background-color: rgb(239, 239, 239, .33);
+  border-style: outset;
+}
+
+[aria-pressed="true"] {
+  color: red;
+}
