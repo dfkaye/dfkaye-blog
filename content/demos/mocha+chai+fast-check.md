@@ -39,9 +39,10 @@ You can open the console to read some of the generated arguments for the failing
 
 Some examples:
 
-		>jq5 /!!
-		"v&"%"t# &*
-
+```js
+>jq5 /!!
+"v&"%"t# &*
+```
 
 ### Tech used
 

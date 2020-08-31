@@ -24,33 +24,34 @@ If you work with CSS-in-JS solutions and you need CSS features that CSS-in-JS ca
 ## Inline `<style>` elements
 
 1. Create a `css.js` file containing CSS defined and exported as a template literal:
+```js
+/* example: css/form.js */
 
-        /* example: css/form.js */
-
-        export const css = `
-        [data-ys=form] {
-          background-color: aqua;
-        }
-        `;
-
+export const css = `
+[data-ys=form] {
+  background-color: aqua;
+}
+`;
+```
       
 2. Import it:
-
-        import { css } from '../../../css/form.js';
-
+```js
+import { css } from '../../../css/form.js';
+```
 
 3. Use it in the `render()` method:
+```js
+return (
+  <Fragment>
 
-        return (
-          <Fragment>
+    <!-- Our style element. -->
+    <style>{css}</style>
 
-            <!-- Our style element. -->
-            <style>{css}</style>
-
-            <form onSubmit={this.handleSubmit} data-ys='form'>
-            ...
-          </Fragment>            
-        );
+    <form onSubmit={this.handleSubmit} data-ys='form'>
+    ...
+  </Fragment>            
+);
+```
 
 Running your app, you should now see your form displayed with the background color "aqua".
 
@@ -62,11 +63,13 @@ Here's a screenshot from my app (August 2020):
 
 You could compose a single app css.js file from other css.js files, and export the css literal that way, too.
 
-    import { layout } from '../../../css/layout.js';
-    import { form } from '../../../css/form.js';
-    import { button } from '../../../css/button.js';
+```js
+import { layout } from '../../../css/layout.js';
+import { form } from '../../../css/form.js';
+import { button } from '../../../css/button.js';
 
-    export const css = [layout, form, button].join('\n');
+export const css = [layout, form, button].join('\n');
+```
 
 ## Drawback
 
@@ -79,16 +82,17 @@ Instead of that, you can create a single CSS file to start with, move your rules
 1. Create the CSS file and save it as a CSS file, somthing like "path/to/app.css".
 
 2. Add a stylesheet `<link>` element pointing to the CSS file in the application's "index.js" file, assuming you normally mount an `<App>` component with ReactDOM:
+```js
+ReactDOM.render(
+  <div>
+    <!-- Our external CSS link. -->
+    <link href="path/to/app.css" rel="stylesheet">
 
-        ReactDOM.render(
-          <div>
-            <!-- Our external CSS link. -->
-            <link href="path/to/app.css" rel="stylesheet">
-
-            <App />
-          </div>,
-          document.getElementById('root')
-        )
+    <App />
+  </div>,
+  document.getElementById('root')
+)
+```
 
 ## Conclusion
 

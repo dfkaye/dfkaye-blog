@@ -1,5 +1,7 @@
 {{ define "main" }}
-<h1 id="main" page-intro>{{ .Title }}</h1>
+<h1 id="main" page-title>{{ .Title }}</h1>
+
+<p id="page-description" page-description>{{ .Description }}</p>
 
 {{ .Content }}
 
@@ -14,7 +16,7 @@
     </time>
     &middot;
     <span reading-time>{{ .ReadingTime }} minute read</span>
-    <article role="doc-subtitle"><i>{{ .Description }}</i></article>
+    <article page-description><i>{{ .Description }}</i></article>
   </li>
   {{ end }}
 </ul>

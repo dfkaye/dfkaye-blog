@@ -7,5 +7,3 @@ tags:
 - "suites"
 
 ---
-
-List of my programming examples including demos, projects, and live test suites.

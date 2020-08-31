@@ -25,27 +25,29 @@ I would like to thank [Bradley Taunt](https://twitter.com/bradtaunt) whose origi
 
 Things start with HTML. Here's Brad's.
 
-    <div class="tabs">
+```html
+<div class="tabs">
 
-        <div class="tab-item">
-            <input class="tab-input" type="radio" name="tabs" id="tab-1">
-            <label class="tab-label" for="tab-1">Tab 1</label>
-            <div class="tab-content">Content goes here</div>
-        </div>
-
-        <div class="tab-item">
-            <input class="tab-input" type="radio" name="tabs" id="tab-2">
-            <label class="tab-label" for="tab-2">Tab 2</label>
-            <div class="tab-content">Content goes here</div>
-        </div>
-
-        <div class="tab-item">
-            <input class="tab-input" type="radio" name="tabs" id="tab-3">
-            <label class="tab-label" for="tab-3">Tab 3</label>
-            <div class="tab-content">Content goes here</div>
-        </div>
-
+    <div class="tab-item">
+        <input class="tab-input" type="radio" name="tabs" id="tab-1">
+        <label class="tab-label" for="tab-1">Tab 1</label>
+        <div class="tab-content">Content goes here</div>
     </div>
+
+    <div class="tab-item">
+        <input class="tab-input" type="radio" name="tabs" id="tab-2">
+        <label class="tab-label" for="tab-2">Tab 2</label>
+        <div class="tab-content">Content goes here</div>
+    </div>
+
+    <div class="tab-item">
+        <input class="tab-input" type="radio" name="tabs" id="tab-3">
+        <label class="tab-label" for="tab-3">Tab 3</label>
+        <div class="tab-content">Content goes here</div>
+    </div>
+
+</div>
+```
 
 Note that the three tab content panels are paired with their corresponding tabs inside individual "tab-items". We'll come back to this.
 
@@ -103,18 +105,20 @@ The markup groups the tabs with their panels, requiring CSS to treat them as fra
 
 We'll pull the input, label, and content elements out their respective `tab-item` div elements. Then we'll place the input-label pairs at the top, and the tabpanel elements at the bottom, so they share the same parent element.
 
-      <input name="tabs" type="radio" id="tab-1" checked>
-      <label role="tab" for="tab-1" id="tab-label-1>Tab 1</label>
+```html
+<input name="tabs" type="radio" id="tab-1" checked>
+<label role="tab" for="tab-1" id="tab-label-1>Tab 1</label>
 
-      <input name="tabs" type="radio" id="tab-2">
-      <label role="tab" for="tab-2" id="tab-label-2">Tab 2</label>
+<input name="tabs" type="radio" id="tab-2">
+<label role="tab" for="tab-2" id="tab-label-2">Tab 2</label>
 
-      <input name="tabs" type="radio" id="tab-3">
-      <label role="tab" for="tab-3" id="tab-label-3">Tab 3</label>
+<input name="tabs" type="radio" id="tab-3">
+<label role="tab" for="tab-3" id="tab-label-3">Tab 3</label>
 
-      <div role="tabpanel">Content goes here</div>
-      <div role="tabpanel">Content goes here</div>
-      <div role="tabpanel">Content goes here</div>
+<div role="tabpanel">Content goes here</div>
+<div role="tabpanel">Content goes here</div>
+<div role="tabpanel">Content goes here</div>
+```
 
 That allows the *parent* element to adjust itself to the curently selected *panel's* content, rather than having to constrain the content to the parent.
 
@@ -122,20 +126,24 @@ That allows the *parent* element to adjust itself to the curently selected *pane
 
 So now we can simplify the CSS, by removing the position, overflow, and z-index rules and add `display: none` to hide all panels by default.
 
-    [role="tabpanel"] {
-      display: none;
+```css
+[role="tabpanel"] {
+    display: none;
 
-      /* Other rules omitted ... */
-    }
+    /* Other rules omitted ... */
+}
+```
 
 Now comes a verbose state-machine-like part. We'll show a tabpanel by matching the selected tab (radio) by its nth-of-type to its corresponding tab panel. Since the panels are subsequent siblings of the tabs, we use the `subsequent-siblings` combinator (`~`) to tie them together.
 
-    [name="tabs"]:nth-of-type(1):checked ~ [role="tabpanel"]:nth-of-type(1),
-    [name="tabs"]:nth-of-type(2):checked ~ [role="tabpanel"]:nth-of-type(2),
-    [name="tabs"]:nth-of-type(3):checked ~ [role="tabpanel"]:nth-of-type(3) {
-      /* ADDED: show selected tabpanel */
-      display: block;
-    }
+```css
+[name="tabs"]:nth-of-type(1):checked ~ [role="tabpanel"]:nth-of-type(1),
+[name="tabs"]:nth-of-type(2):checked ~ [role="tabpanel"]:nth-of-type(2),
+[name="tabs"]:nth-of-type(3):checked ~ [role="tabpanel"]:nth-of-type(3) {
+    /* ADDED: show selected tabpanel */
+    display: block;
+}
+```
 
 This is the only part of the CSS that is driven by the HTML &mdash; that is, we'll have to add or remove selectors should the number of tabs and panels changes in the future.
 
@@ -154,10 +162,12 @@ And that's how we'll access the tabpanel content.
 
 We need to make the panel content accessible from the selected tab by adding a new heading element and giving the `tabindex="0"` attribute, which makes it discoverable by the {{< rawhtml >}}<kbd>Tab</kbd>{{< /rawhtml >}} key, as in the following example.
 
-    <div role="tabpanel" aria-labelledby="tab-label-1">
-      <h3 tabindex="0">Tab panel 1</h3>
-      <p>Content goes here.</p>
-    </div>
+```html
+<div role="tabpanel" aria-labelledby="tab-label-1">
+    <h3 tabindex="0">Tab panel 1</h3>
+    <p>Content goes here.</p>
+</div>
+```
 
 Note the `aria-labelledby` attribute referring to the label element of the radio input that controls it. This lets the screen reader know *not* to read the text *inside* the panel when the radio receives focus.
 
@@ -174,8 +184,10 @@ The solution I arrived at is to *hide the label element from the keyboard naviga
 
 Thus,
 
-    <input name="tabs" type="radio" id="tab-1" aria-labelledby="tab-label-1" checked>
-    <label role="tab" for="tab-1" id="tab-label-1" aria-hidden="true">Tab 1</label>
+```html
+<input name="tabs" type="radio" id="tab-1" aria-labelledby="tab-label-1" checked>
+<label role="tab" for="tab-1" id="tab-label-1" aria-hidden="true">Tab 1</label>
+```
 
 And that removed the double arrow press problem.
 

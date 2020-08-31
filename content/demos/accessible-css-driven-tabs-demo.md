@@ -15,8 +15,9 @@ styles:
 
 ---
 
-<h2>Navigating the tabs and panels.</h2>
+## Navigating the tabs and panels
 
+{{< rawhtml >}}
 <ul aria-hidden="true">
   <li>Focus on a tab by clicking with the mouse or using the <kbd>Tab</kbd> key to navigate to the tab list.</li>
   <li>You can navigate among the tabs by pressing the <kbd>ArrowDown</kbd> and <kbd>ArrowUp</kbd> keys.</li>
@@ -85,124 +86,125 @@ styles:
     </blockquote>
   </div>
 </div>
+{{< /rawhtml >}}
 
-<h2>Explanation</h2>
+## Explanation
 
 You can read the accompanying blog post explaining the solution at <a
   href="/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/">/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/</a>.
 
-<h2>CSS</h2>
+## CSS
 
-<pre><code>
-  /* Main parent that holds all contents */
-  [demo="tabs"] {
-    /* not really needed but still included in markup. */
-  }
+```css
+/* Main parent that holds all contents */
+[demo="tabs"] {
+  /* not really needed but still included in markup. */
+}
 
-  [name="tabs"] {
-    /* Do not hide the radio elements, make them invisible. */
-    opacity: 0;
-    position: absolute;    
-  }
+[name="tabs"] {
+  /* Do not hide the radio elements, make them invisible. */
+  opacity: 0;
+  position: absolute;
+}
 
-  /* The main tab headings */
+/* The main tab headings */
+[role="tab"] {
+  background: white;
+
+  /* base border style here; set color in :checked, style in :focus */
+  border-color: transparent;
+  border-style: solid;
+  border-width: 1px 1px 0;
+
+  box-shadow: inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.02);
+  color: lightgrey;
+  cursor: pointer;
+  display: inline-block;
+  font-weight: 600;
+
+  /* hides the bottom border */
+  margin-bottom: -1px;
+
+  margin-right: 5px;
+  padding: 10px 20px;
+  text-align: center;
+  transition: all 0.2s ease;
+}
+
+/* Style the currently selected tab label */
+[name="tabs"]:checked + [role="tab"] {
+  /* ADDED */
+  border-color: #eee;
+
+  box-shadow: 0 -6px 8px rgba(0, 0, 0, 0.02);
+  color: #268bd2;
+}
+
+/*
+ADDED: give tab a focus style.
+This selector has the same specificity as the :checked selector, so it
+should appear later in the source order to insure it takes effect.
+*/
+[name="tabs"]:focus + [role="tab"],
+[name="tabs"]:hover + [role="tab"] {
+  text-decoration: underline;
+}
+
+[name="tabs"]:focus + [role="tab"] {
+  border-color: #268bd2;
+  border-style: dotted;
+}
+
+/* The inner tab content */
+[role="tabpanel"] {
+  background: white;
+
+  /* pulled up from the :checked state sibling ruleset below */
+  border: 1px solid #eee;
+
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.02);
+
+  /* ADDED: Hide panels by default */
+  display: none;
+
+  padding: 20px;
+  transition: all 0.2s ease;
+}
+
+/*
+Verbose state-machine-like part:
+- z-index, position, and overflow no longer needed,
+- allows document content to flow in source order.
+*/
+
+/* Show the currently selected tab content */
+[name="tabs"]:nth-of-type(1):checked ~ [role="tabpanel"]:nth-of-type(1),
+[name="tabs"]:nth-of-type(2):checked ~ [role="tabpanel"]:nth-of-type(2),
+[name="tabs"]:nth-of-type(3):checked ~ [role="tabpanel"]:nth-of-type(3) {
+  /* ADDED: show selected tabpanel */
+  display: block;
+}
+
+@media(max-width:38em) {
   [role="tab"] {
-    background: white;
-
-    /* base border style here; set color in :checked, style in :focus */
-    border-color: transparent;
-    border-style: solid;
-    border-width: 1px 1px 0;
-
-    box-shadow: inset 0 -0.5em 0.5em rgba(0, 0, 0, 0.02);
-    color: lightgrey;
-    cursor: pointer;
-    display: inline-block;
-    font-weight: 600;
-
-    /* hides the bottom border */
-    margin-bottom: -1px;
-
-    margin-right: 5px;
-    padding: 10px 20px;
-    text-align: center;
-    transition: all 0.2s ease;
-  }
-
-  /* Style the currently selected tab label */
-  [name="tabs"]:checked + [role="tab"] {
-    /* ADDED */
-    border-color: #eee;
-
-    box-shadow: 0 -6px 8px rgba(0, 0, 0, 0.02);
-    color: #268bd2;
-  }
-
-  /*
-    ADDED: give tab a focus style.
-    This selector has the same specificity as the :checked selector, so it
-    should appear later in the source order to insure it takes effect.
-   */
-  [name="tabs"]:focus + [role="tab"],
-  [name="tabs"]:hover + [role="tab"] {
-    text-decoration: underline;
-  }
-
-  [name="tabs"]:focus + [role="tab"] {
-    border-color: #268bd2;
-    border-style: dotted;
-  }
-
-  /* The inner tab content */
-  [role="tabpanel"] {
-    background: white;
-
-    /* pulled up from the :checked state sibling ruleset below */
-    border: 1px solid #eee;
-
-    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.02);
-
-    /* ADDED: Hide panels by default */
-    display: none;
-
-    padding: 20px;
-    transition: all 0.2s ease;
-  }
-
-  /*
-    Verbose state-machine-like part:
-    - z-index, position, and overflow no longer needed,
-    - allows document content to flow in source order.
-  */
-
-  /* Show the currently selected tab content */
-  [name="tabs"]:nth-of-type(1):checked ~ [role="tabpanel"]:nth-of-type(1),
-  [name="tabs"]:nth-of-type(2):checked ~ [role="tabpanel"]:nth-of-type(2),
-  [name="tabs"]:nth-of-type(3):checked ~ [role="tabpanel"]:nth-of-type(3) {
-    /* ADDED: show selected tabpanel */
     display: block;
+
+    /* ADDED - tabs no longer need right margin */
+    margin-right: 0;
+
+    /* ADDED - "unhide" the bottom margin */
+    margin-bottom: 0;
   }
 
-  @media(max-width:38em) {
-    [role="tab"] {
-      display: block;
-
-      /* ADDED - tabs no longer need right margin */
-      margin-right: 0;
-
-      /* ADDED - "unhide" the bottom margin */
-      margin-bottom: 0;
-    }
-
-    /* ADDED: for visual emphasis. */
-    [name="tabs"]:checked + [role="tab"] {
-      border-bottom: 1px solid #eee;
-    }
+  /* ADDED: for visual emphasis. */
+  [name="tabs"]:checked + [role="tab"] {
+    border-bottom: 1px solid #eee;
   }
+}
+```
 
-</code></pre>
-
-<h2>Details</h2>
+## Details
 
 You can read the accompanying blog post explaining the solution at <a
   href="/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/">/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/</a>.
+  

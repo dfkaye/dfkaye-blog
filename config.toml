@@ -30,5 +30,5 @@ enableGitInfo = true
     lineNos = false
     lineNumbersInTable = true
     noClasses = true
-    style = "manni"
+    style = "pygments"
     tabWidth = 2

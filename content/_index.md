@@ -36,7 +36,7 @@ Some of that content will be posted here eventually, along with updated takes.
 + sitemap.xml
 + categories and tags layout and keywords
 + resize datetime and reading-time
-+ improve the doc-subtitle style on list pages
++ improve the doc-summary style on list pages
 + pagination in list pages (by year, by count (100), or...?)
 + use Hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/

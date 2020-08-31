@@ -2,14 +2,16 @@
 <html lang="{{ .Site.LanguageCode }}">
 {{- partial "scratch-variables.html" . -}}
 {{- partial "head.html" . -}}
+
 <body dfk-body>
   {{- partial "nav-a11y.html" . -}}
   {{- partial "header.html" . -}}
-  <main role="main" aria-labelledby="main">
+  <main role="main" aria-labelledby="main" aria-describedby="page-description">
     <article>
-    {{- block "main" . }}{{- end }}
+      {{- block "main" . }}{{- end }}
     </article>
   </main>
   {{- partial "footer.html" . -}}
 </body>
+
 </html>

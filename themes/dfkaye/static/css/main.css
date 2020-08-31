@@ -112,12 +112,6 @@ footer {
   padding: .75em;
 }
 
-[page-title] {
-  /* background-color: rgba(22, 22, 254, .15); */
-  text-align: center;
-  width: 100%;
-}
-
 [site-status] {
   background-color: rgba(10, 110, 200, .1);
   display: flex;
@@ -131,19 +125,24 @@ footer {
   color: chocolate;
 }
 
-[role="doc-subtitle"] {
+[page-description] {
   font-style: italic;
-  background-color: whitesmoke;
-  border-left: 5px solid darkslategray;
   color: darkslategray;
   padding: 1em;
+}
+
+[page-title] ~ [page-description] {
+  background-color: whitesmoke;
+
+  border-left: 5px solid darkslategray;
+
 }
 
 [role="main"] li {
   margin: 0 0 0 1em;
 }
 
-[page-intro] {/* h1 */
+[page-title] {/* h1 */
   font-size: 1.75rem;
   text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
 }
@@ -153,7 +152,7 @@ h2, h3 {
 }
 
 /* This pads the content - p tags, li, etc. */
-[page-intro] ~ * {
+[page-title] ~ * {
   margin: 1em 0;
 }
 
@@ -222,7 +221,7 @@ q {
 
 /* temporary, until we add chroma */
 
-[page-intro] ~ pre,
+[page-title] ~ pre,
 * ~ pre {
   background-color: rgba(242, 242, 242, 1);
   border-left: 5px solid rgba(22, 22, 254, .5);

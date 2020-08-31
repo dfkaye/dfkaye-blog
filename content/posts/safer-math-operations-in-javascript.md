@@ -52,11 +52,13 @@ In this post we examine a `safe-math.js` module that enables safer math operatio
 
 The main idea {{< rawhtml >}}<del>is</del> <ins>was</ins>{{< /rawhtml >}} to apply an operation to a series of values. Below, `apply()` and `sum()` are functions, with sum being the operation:
 
-    import { apply, sum, product } from "/js/lib/safe-math.js";
+```js
+import { apply, sum, product } from "/js/lib/safe-math.js";
 
-    var test = apply(sum, [1,2,3]);
+var test = apply(sum, [1,2,3]);
 
-    assert(test === 6);
+assert(test === 6);
+```
 
 That turned out to be inflexible and needlessly indirect, as I discovered when attempting to add an `avg()` function to the API. While refactoring, I found a couple of bugs, one in `expand()`, one in `avg()`, that I was able to fix quickly while running the suite in the browser.
 
@@ -68,54 +70,60 @@ The `apply()` function has been renamed `getValues()` and instead of `apply()` c
 
 Here they are before refactoring:
 
-    export function apply(fn, ...values) {
-      if (Array.isArray(values[0])) {
-        values = values[0];
-      }
+```js
+export function apply(fn, ...values) {
+  if (Array.isArray(values[0])) {
+    values = values[0];
+  }
 
-      return values.reduce(fn);
-    };
+  return values.reduce(fn);
+};
 
-    export function sum(a, b) {
-      var { left, right, by } = expand(a, b);
+export function sum(a, b) {
+  var { left, right, by } = expand(a, b);
 
-      return (left + right) / by;
-    }
+  return (left + right) / by;
+}
+```
 
 And after:
 
-    function getValues(...values) {
-      if (Array.isArray(values[0])) {
-        values = values[0];
-      }
+```js
+function getValues(...values) {
+  if (Array.isArray(values[0])) {
+    values = values[0];
+  }
 
-      return values.filter(isNumeric);
-    }
+  return values.filter(isNumeric);
+}
 
-    export function sum(...values) {
-      return getValues(...values)
-        .reduce(function (current, next) {
-          var { left, right, by } = expand(current, next);
+export function sum(...values) {
+  return getValues(...values)
+    .reduce(function (current, next) {
+      var { left, right, by } = expand(current, next);
 
-          return (left + right) / by;
-        }, 0);
-    }
+      return (left + right) / by;
+    }, 0);
+}
+```
 
 ### Two things to note
 
 1. The `getValues()` function filters by `isNumeric()`, a helper that returns only coercible "functionally numeric" values. Here's what `isNumeric()` looks like:
 
-        function isNumeric(a) {
-          // If it's a string, remove commas and trim it.
-          // Otherwise wrap it in its type with Object() and get the value.
-          var v = /^string/.test(typeof a)
-            ? a.replace(/[,]/g, '').trim()
-            : Object(a).valueOf();
+```js
+function isNumeric(a) {
+  // If it's a string, remove commas and trim it.
+  // Otherwise wrap it in its type with Object() and get the value.
+  var v = /^string/.test(typeof a)
+    ? a.replace(/[,]/g, '').trim()
+    : Object(a).valueOf();
 
-          // Not NaN, null, undefined, or the empty string.
-          var reNan = /^(NaN|null|undefined|)$/;
-          return !reNan.test(v);
-        }
+  // Not NaN, null, undefined, or the empty string.
+  var reNan = /^(NaN|null|undefined|)$/;
+  return !reNan.test(v);
+}
+```
 
 2. The `sum()` function reduces each "current, next" value pair, first passing these to the `expand()` function
 
@@ -129,37 +137,39 @@ The function measure's each value's decimal length and uses the larger of the tw
 
 Here's the `expand()` function.
 
-    function expand(left, right) {
-      // valueOf() trick for "functionally numeric" objects.
-      left = Object(left).valueOf();
-      right = Object(right).valueOf();
+```js
+function expand(left, right) {
+  // valueOf() trick for "functionally numeric" objects.
+  left = Object(left).valueOf();
+  right = Object(right).valueOf();
 
-      // coerce to strings to numbers (and remove formatting commas)
-      var reMatch = /string/
-      var reCommas = /[\,]/g
+  // coerce to strings to numbers (and remove formatting commas)
+  var reMatch = /string/
+  var reCommas = /[\,]/g
 
-      if (reMatch.test(typeof left)) {
-        left = +left.toString()
-          .replace(reCommas, '');
-      }
+  if (reMatch.test(typeof left)) {
+    left = +left.toString()
+      .replace(reCommas, '');
+  }
 
-      if (reMatch.test(typeof right)) {
-        right = +right.toString()
-          .replace(reCommas, '');
-      }
+  if (reMatch.test(typeof right)) {
+    right = +right.toString()
+      .replace(reCommas, '');
+  }
 
-      // expand to integer values based on largest mantissa length.
-      var reDecimal = /[\.]/
-      var ml = reDecimal.test(left) && left.toString().split('.')[1].length
-      var mr = reDecimal.test(right) && right.toString().split('.')[1].length
-      var pow = ml > mr ? ml : mr
-      var by = Math.pow(10, pow)
+  // expand to integer values based on largest mantissa length.
+  var reDecimal = /[\.]/
+  var ml = reDecimal.test(left) && left.toString().split('.')[1].length
+  var mr = reDecimal.test(right) && right.toString().split('.')[1].length
+  var pow = ml > mr ? ml : mr
+  var by = Math.pow(10, pow)
 
-      // left & right number pair, plus the expansion factor.
-      // The multiplication operator, *, coerces non-numerics to their equivalent,
-      // e.g., {} => NaN, true => 1, [4] => '4' => 4      
-      return { left: left * by, right: right * by, by }
-    }
+  // left & right number pair, plus the expansion factor.
+  // The multiplication operator, *, coerces non-numerics to their equivalent,
+  // e.g., {} => NaN, true => 1, [4] => '4' => 4      
+  return { left: left * by, right: right * by, by }
+}
+```
 
 {{< rawhtml >}}
 There is more to cover, but I'll stop here. You can view the source of the safe-math module at <a href="/js/lib/safe-math.js">/js/lib/safe-math.js</a>.
@@ -169,34 +179,36 @@ There is more to cover, but I'll stop here. You can view the source of the safe-
 
 The test suite gives you an idea how to use the safe-math module. At the high level, the tests are laid out like this:
 
-    import { sum, product, avg } from "/js/lib/safe-math.js";
+```js
+import { sum, product, avg } from "/js/lib/safe-math.js";
 
-    describe("safe-math", function () {
-      var assert = chai.assert;
+describe("safe-math", function () {
+  var assert = chai.assert;
 
-      describe("sum", function () {
-        it('adds 0.1 + 0.2 to get 0.3', () => {
-          var actual = sum([0.1, 0.2]);
-          assert(actual === 0.3);
-        });
-      });
-
-      describe("product", function () {
-        it("multiplies 0.1 * 0.1 to get 0.01", () => {
-          var actual = product([0.1, 0.1]);
-          assert(actual === 0.01);
-        });
-      });
-      
-      describe("avg", function () {
-        it("returns average value of a series", () => {
-          var actual = avg([1, 2, 3, 4]);
-          assert(actual === 2.5);
-        });
-      });
-
-      /* and so on */
+  describe("sum", function () {
+    it('adds 0.1 + 0.2 to get 0.3', () => {
+      var actual = sum([0.1, 0.2]);
+      assert(actual === 0.3);
     });
+  });
+
+  describe("product", function () {
+    it("multiplies 0.1 * 0.1 to get 0.01", () => {
+      var actual = product([0.1, 0.1]);
+      assert(actual === 0.01);
+    });
+  });
+  
+  describe("avg", function () {
+    it("returns average value of a series", () => {
+      var actual = avg([1, 2, 3, 4]);
+      assert(actual === 2.5);
+    });
+  });
+
+  /* and so on */
+});
+```
 
 ## Suite
 

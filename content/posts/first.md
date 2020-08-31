@@ -60,11 +60,11 @@ OK, but because "everything goes through React, it's a bit hard" - see [issue 88
 
 1. Create a `static` folder at the top of your Gatsby project (i.e., parallel to `src`, `package.json`, *et al*.).
 2. Create a `static/scripts/hello` folder, and add a `hello.js` file that contains the following:
-```
+```js
 console.log('Does it work?');
 ```
 3. In one of your markdown posts (assume you've created one at `src/content/posts/hello/index.md` - and survived the tutorials for creating blog posts from markdown, etc.), include the following script tag:
-```
+```html
 <script src="/scripts/hello/hello.js"></script>
 ```
 4. Run `gatsby build`, then `gatsby serve`, and visit `localhost:9000/hello` - you should the message in the console.

@@ -38,19 +38,19 @@ People disagree with this because they've trained themselves to live with classe
 
 Instead of a plain `<div>` with `class` attributes,
 
-```
+```html
 <div class="clock ticking">
 ```
 
 you can write the following not-so-valid HTML which browsers will parse into a real element of `HTMLUnknownElement` type with the custom attribute:
 
-```
+```html
 <clock ticking>
 ```
 
 You'll then need CSS to display the `clock` element the way you want.
 
-```
+```css
 clock { display: block | flex | whatever }
 ```
 
@@ -58,7 +58,7 @@ clock { display: block | flex | whatever }
 
 Instead of writing multiple mix-and-match state classes in <abbr title="Block-Element-Modifier">BEM</abbr>-like fashion, like so,
 
-```
+```css
 .clock { ... }
 .clock__ticking { ... }
 .clock__ticking--loudly { ... }
@@ -66,7 +66,7 @@ Instead of writing multiple mix-and-match state classes in <abbr title="Block-El
 
 consider styling only from the custom attribute value:
 
-```
+```css
 [ticking] { ... }
 [ticking="loudly"] { ... }
 ```
@@ -77,7 +77,7 @@ That gives you style control based on the element's state.
 
 Use pure functions. Pass data in, update parts, return either only the parts or return the data, or a modified copy of the data.
 
-```
+```js
 var data = {};
 
 function process(in) {
