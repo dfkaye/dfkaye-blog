@@ -44,6 +44,10 @@ Some of that content will be posted here eventually, along with updated takes.
 
 ## To-do posts
 
++ "we threw out the rule book"
++ "custom attributes are fast, good, and cheap"
+  - traffic signal states
+  - factoring BEM out
 + post about "Making the Switch to Hugo"
 + post about Hugo resources
 + post about post prev next and CSS content ISO values
