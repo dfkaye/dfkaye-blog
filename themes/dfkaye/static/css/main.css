@@ -242,7 +242,7 @@ pre code {
   background-color: inherit;
   color: rgba(22, 22, 254);
   color: rgba(133, 3, 133);
-  font-size: calc(1em - .5vw); /* more readable in big code blocks */
+  font-size: calc(1em - .25vw); /* more readable in big code blocks */
   padding: .25em 0;
 }
 

@@ -3,8 +3,7 @@ title: "Home"
 date: 2020-06-12T14:10:43-07:00
 description: "dfkaye blog home"
 tags:
-- "blog"
-- "topics"
+- "dfkaye"
 
 ---
 

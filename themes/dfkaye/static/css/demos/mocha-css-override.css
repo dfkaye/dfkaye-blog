@@ -21,7 +21,7 @@
 
 #mocha .test code {
 	background-color: inherit;
-	font-size: 1em;
+	font-size: calc(1em + .25vw);
 }
 
 #mocha code .comment {
