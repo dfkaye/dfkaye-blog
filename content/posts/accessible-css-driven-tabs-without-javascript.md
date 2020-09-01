@@ -6,6 +6,9 @@ tags:
 - "CSS"
 - "Accessibility"
 
+scripts:
+- https://platform.twitter.com/widgets.js
+
 ---
 
 *This post and the accompanying [demo](/demos/accessible-css-driven-tabs-demo/) is the motivating exercise that drove me to find a blogging platform that supported custom styles and scripts for working demos. For more on that, see [Why Hugo?](/posts/2019/11/11/first-post-why-hugo/).*
@@ -212,7 +215,11 @@ Another thing, I omitted the `role="tablist"` attribute on the parent demo eleme
 Before we celebrate too much, keep in mind this advice from Sara Soueidan:
 
 {{< rawhtml >}}
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">CSS-only interactive widgets are, most of the times, inaccessible hacks. JavaScript is *required* to build certain components accessibly. Please don’t advocate CSS-only alternatives when JS is needed for accessible state/functionality. The Web has enough inaccessible UIs as is.</p>&mdash; Sara Soueidan (@SaraSoueidan) <a href="https://twitter.com/SaraSoueidan/status/1167079557402386435?ref_src=twsrc%5Etfw">August 29, 2019</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">CSS-only interactive widgets are, most of the times, inaccessible hacks. JavaScript is *required* to build certain components accessibly. Please don’t advocate CSS-only alternatives when JS is needed for accessible state/functionality. The Web has enough inaccessible UIs as is.</p>&mdash; Sara Soueidan (@SaraSoueidan) <a href="https://twitter.com/SaraSoueidan/status/1167079557402386435?ref_src=twsrc%5Etfw">August 29, 2019</a></blockquote>
+<!--
+Put script src in the scripts list to pass strict CSP:
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8" nonce="{"></script>
+-->
 {{< /rawhtml >}}
 
 ## Demo
