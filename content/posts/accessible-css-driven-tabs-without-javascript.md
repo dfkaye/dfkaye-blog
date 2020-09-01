@@ -210,6 +210,37 @@ Using the `aria-hidden="true"` attribute on the label elements which have the `r
 
 Another thing, I omitted the `role="tablist"` attribute on the parent demo element. Adding it had no effect in Windows 10 Narrator, which I assume is due to the element not being a list (`<ul>` or `<ol>`).
 
+## *Update September 1, 2020: Replacing the media query with flex-box*
+
+On CSS-tricks, Geoffrey Crofte has posted a solution for responsive card elements using flex-box instead of media queries, [How to Make a Media Query-less Card Component](https://css-tricks.com/how-to-make-a-media-query-less-card-component/). After reading that, I modified the CSS and markup in the Tabs demo to work the same way.
+
+In the new layout, the tabs grow or shrink in size relative to each other within the flex-box container width. Given a narrow window, there may be three tabs above three other tabs, all of equal width, whereas in a wider window, there may be five tabs above one tab which will stretch to the width of the container.
+
+### Changes to support flex-box
+
+#### Container
+1. Added CSS flexbox rules, `display: flex` and `flex-wrap: wrap`
+2. Added `role="tablist"`
+3. Added `aria-labelledby="tabs-demo-heading"`
+
+#### Heading
+1. Added `id="tabs-demo-heading"` for the `aria-labelledby`
+2. Added a styling attribute `tabs-demo-heading`
+3. Added CSS `flex-basis: 100%` so that heading fills 100% of the container width.
+
+#### Tab radios
+1. Add three more radio elements to test the responsive layout.
+
+#### Tab labels
+1. Added three more label elements to test the responsive layout.    
+2. Added CSS flex rules to control minimum width, growth, and shrinkage on widnow resizing: `flex-basis: 5em; flex-shrink: 1; flex-grow: 1;`
+3. Removed the `margin-right: 5px;` rule, letting flex algorithm apply gaps.
+4. In the radio:checked + label ruleset, moved the `margin-bottom: 0;` rule from the media query to the main ruleset.
+
+#### Tabpanels
+1. Added three more tabpanels to test the responsive layout.    
+2. Added CSS `flex-basis: 100%` so that panels fills 100% of the container width.
+
 ## Caution
 
 Before we celebrate too much, keep in mind this advice from Sara Soueidan:

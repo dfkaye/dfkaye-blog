@@ -39,8 +39,8 @@ styles:
   <li>To return focus from the content to the tab group, press <kbd>Shift</kbd> + <kbd>Tab</kbd>.</li>
 </ul>
 
-<div demo="tabs" data-comment="This element is now optional.">
-  <h2>Demo</h2>
+<div demo="tabs" role="tablist" aria-labelledby="tabs-demo-heading">
+  <h2 id="tabs-demo-heading" tabs-demo-heading>Demo</h2>
 
   <input name="tabs" type="radio" id="tab-1" aria-labelledby="tab-label-1" checked>
   <label role="tab" for="tab-1" id="tab-label-1" aria-hidden="true">Tab 1</label>
@@ -50,6 +50,15 @@ styles:
 
   <input name="tabs" type="radio" id="tab-3" aria-labelledby="tab-label-3">
   <label role="tab" for="tab-3" id="tab-label-3" aria-hidden="true">Tab 3</label>
+
+  <input name="tabs" type="radio" id="tab-4" aria-labelledby="tab-label-4">
+  <label role="tab" for="tab-4" id="tab-label-4" aria-hidden="true">Tab 4</label>
+
+  <input name="tabs" type="radio" id="tab-5" aria-labelledby="tab-label-5">
+  <label role="tab" for="tab-5" id="tab-label-5" aria-hidden="true">Tab 5</label>
+
+  <input name="tabs" type="radio" id="tab-6" aria-labelledby="tab-label-6">
+  <label role="tab" for="tab-6" id="tab-label-6" aria-hidden="true">Tab 6</label>
 
   <div role="tabpanel" aria-labelledby="tab-label-1">
     <h3 tabindex="0">Tab panel 1</h3>
@@ -84,6 +93,48 @@ styles:
       molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?
     </blockquote>
   </div>
+
+  <div role="tabpanel" aria-labelledby="tab-label-4">
+    <h3 tabindex="0">Tab panel 4</h3>
+    <label for="text-input">A text input</label>
+    <input id="text-input">
+  </div>
+
+  <div role="tabpanel" aria-labelledby="tab-label-5">
+    <h3 tabindex="0">Tab panel 5</h3>
+    <label for="text-area">A text area</label>
+    <br>
+    <textarea id="text-area"></textarea>
+  </div>
+
+  <div role="tabpanel" aria-labelledby="tab-label-6">
+    <h3 tabindex="0">Tab panel 6</h3>
+    <table>
+      <caption>An unstyled table, with a caption</caption>
+      <thead>
+        <th scope="col">Name</th>
+        <th scope="col">Rank</th>
+        <th scope="col">Serial number</th>
+      </thead>
+      <tfoot>
+        <tr>
+          <td>&copy; 2020</td>
+        </tr>
+      </tfoot>
+      <tbody>
+        <tr>
+          <td scope="row">Kim Jorgenson</td>
+          <td>Manager</td>
+          <td>[redacted]</td>
+        </tr>
+        <tr>
+          <td scope="row">david kaye</td>
+          <td>lowercase lieutenant</td>
+          <td>8925604623920945230</td>
+        </tr>        
+      </tbody>            
+    </table>
+  </div>      
 </div>
 {{< /rawhtml >}}
 
@@ -99,15 +150,22 @@ styles:
 ## CSS
 
 ```css
-/* Main parent that holds all contents */
-[demo="tabs"] {
-  /* not really needed but still included in markup. */
+/* Container holding all contents. */
+[role="tablist"] {
+  /* 1 Sept 2020: ADDED flex to remove media query */
+  display: flex;
+  flex-wrap: wrap;    
+}
+
+[tabs-demo-heading] {
+  /* 1 Sept 2020: Added due to flexbox solution; need 100% width. */
+  flex-basis: 100%;    
 }
 
 [name="tabs"] {
   /* Do not hide the radio elements, make them invisible. */
   opacity: 0;
-  position: absolute;
+  position: absolute;    
 }
 
 /* The main tab headings */
@@ -128,10 +186,17 @@ styles:
   /* hides the bottom border */
   margin-bottom: -1px;
 
-  margin-right: 5px;
+  /* 1 Sept 2020: removed to let flex apply gaps. */
+  /* margin-right: 5px; */
+
   padding: 10px 20px;
   text-align: center;
   transition: all 0.2s ease;
+
+  /* 1 Sept 2020: ADDED flex attributes to remove media query */
+  flex-basis: 5em;
+  flex-shrink: 1;
+  flex-grow: 1;
 }
 
 /* Style the currently selected tab label */
@@ -141,13 +206,16 @@ styles:
 
   box-shadow: 0 -6px 8px rgba(0, 0, 0, 0.02);
   color: #268bd2;
+
+  /* 1 Sept 2020: ADDED here with flexbox solution, removing the media query. */
+  margin-bottom: 0;
 }
 
 /*
-ADDED: give tab a focus style.
-This selector has the same specificity as the :checked selector, so it
-should appear later in the source order to insure it takes effect.
-*/
+  ADDED: give tab a focus style.
+  This selector has the same specificity as the :checked selector, so it
+  should appear later in the source order to insure it takes effect.
+  */
 [name="tabs"]:focus + [role="tab"],
 [name="tabs"]:hover + [role="tab"] {
   text-decoration: underline;
@@ -172,38 +240,48 @@ should appear later in the source order to insure it takes effect.
 
   padding: 20px;
   transition: all 0.2s ease;
+
+  /* 1 Sept 2020: ADDED flex attr to stretch panel 100% width. */
+  flex-basis: 100%;
 }
 
 /*
-Verbose state-machine-like part:
-- z-index, position, and overflow no longer needed,
-- allows document content to flow in source order.
+  Verbose state-machine-like part:
+  - z-index, position, and overflow no longer needed,
+  - allows document content to flow in source order.
 */
 
 /* Show the currently selected tab content */
 [name="tabs"]:nth-of-type(1):checked ~ [role="tabpanel"]:nth-of-type(1),
 [name="tabs"]:nth-of-type(2):checked ~ [role="tabpanel"]:nth-of-type(2),
-[name="tabs"]:nth-of-type(3):checked ~ [role="tabpanel"]:nth-of-type(3) {
+[name="tabs"]:nth-of-type(3):checked ~ [role="tabpanel"]:nth-of-type(3),
+[name="tabs"]:nth-of-type(4):checked ~ [role="tabpanel"]:nth-of-type(4),
+[name="tabs"]:nth-of-type(5):checked ~ [role="tabpanel"]:nth-of-type(5),
+[name="tabs"]:nth-of-type(6):checked ~ [role="tabpanel"]:nth-of-type(6) {
   /* ADDED: show selected tabpanel */
   display: block;
 }
 
+/* 1 Sept 2020: media query no longer used. */
 @media(max-width:38em) {
   [role="tab"] {
-    display: block;
+    /* display: block; */
 
     /* ADDED - tabs no longer need right margin */
-    margin-right: 0;
+    /* margin-right: 0; */
 
     /* ADDED - "unhide" the bottom margin */
-    margin-bottom: 0;
+    /* MOVED TO checked + tab rule *?
+    /* margin-bottom: 0; */
   }
 
   /* ADDED: for visual emphasis. */
   [name="tabs"]:checked + [role="tab"] {
-    border-bottom: 1px solid #eee;
+    /* 1 Sept 2020: REMOVED due to flexbox solution */
+    /* border-bottom: 1px solid #eee; */
   }
 }
+
 ```
 
 ## Details
