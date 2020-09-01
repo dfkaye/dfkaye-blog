@@ -4,10 +4,9 @@ date: 2020-06-12T14:10:43-07:00
 description: "A few red lines in the sand (subject to revision without notice)."
 tags: 
 - "Minimalism"
-- "Custom attributes"
-- "Attribute selectors"
+- "Attributes"
+- "TDD"
 - "Accessibility"
-- "Philosophy"
 - "Safety"
 
 ---

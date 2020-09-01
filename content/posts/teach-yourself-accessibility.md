@@ -6,7 +6,8 @@ tags:
 - "CSS"
 - "Accessibility"
 - "Progressive enhancement"
-- "Semantic HTML"
+- "HTML"
+- "Semantics"
 
 styles:
 - /css/posts/teach-yourself-accessibility.css

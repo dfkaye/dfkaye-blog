@@ -4,8 +4,6 @@ date: 2020-08-19T13:07:43-07:00
 description: "Two approaches for when you need CSS features in React/JSX that CSS-in-JS can't provide, such as @media rules or CSS custom properties."
 tags:
 - "CSS"
-- "CSS-in-JS"
-- "JavaScript"
 - "JSX"
 - "React"
 
@@ -73,7 +71,7 @@ export const css = [layout, form, button].join('\n');
 
 ## Drawback
 
-The drawback is that the inline style approach, especially the composed styles approach, is that it creates large string variables that have to be processed by the JavaScript thread,inside the application.
+The drawback is that the inline style approach, especially the composed styles approach, is that it creates large string variables that have to be processed by the main thread, inside the application.
 
 ## Using `<link>` elements to CSS files
 

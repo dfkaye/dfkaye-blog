@@ -5,7 +5,6 @@ description: "Making CSS-only tabs accessible to keyboard navigation and screen 
 tags: 
 - "CSS"
 - "Accessibility"
-- "Responsive UI"
 
 ---
 

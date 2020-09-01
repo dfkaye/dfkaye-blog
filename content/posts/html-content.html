@@ -1,22 +1,20 @@
 ---
-title: "Hugo content as HTML"
+title: "Hugo content as raw HTML"
 date: 2020-07-08T13:40:43-07:00
 description: "Example of Hugo content as HTML rather than Markdown file."
 tags:
 - "Hugo"
-- "Raw HTML"
+- "HTML"
 
 ---
 
 <p>
-  This paragraph is a <code>&lt;p&gt;</code> tag in a content.html file.
+  This paragraph is a <code>&lt;p&gt;</code> tag in a content file with the ".html" extension.
 </p>
 
 <p>
-  Early on I found that creating demos with application code requires inserting
-  raw HTML into the markdown content,
-  <a href="https://anaulin.org/blog/hugo-raw-html-shortcode/">
-    using this shortcode by Ana Ulin</a>.
+  Early on I found that creating demos with application code requires inserting raw HTML into the markdown content,
+  <a href="https://anaulin.org/blog/hugo-raw-html-shortcode/">using this shortcode by Ana Ulin</a>.
 </p>
 
 <p>
@@ -24,14 +22,13 @@ tags:
   example.
 </p>
 
-<pre>
-  &lt;i lang="fr-FR">en français&lt;/i>
-</pre>
+<pre><code>
+&lt;i lang="fr-FR">en français&lt;/i>
+</code></pre>
 
 <p>
   Alternatively, you can name the content file with the ".html" extension instead, and include the usual front matter at
-  the
-  top of the content file, like so:
+  the top of the content file, like so:
 </p>
 
 <pre><code>
@@ -47,3 +44,12 @@ draft: false
 
 ...
 </code></pre>
+
+<p>
+  <strong>However, </strong> by using the ".html" extension in Hugo, you lose the processing power of partials.
+  That's why the code blocks above are not styled with Hugo's code-fences as they are on msot other pages here.
+</p>
+
+<p>
+  Anyway, food for thought&hellip;
+</p>
