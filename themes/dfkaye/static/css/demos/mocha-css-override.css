@@ -4,24 +4,30 @@
 	border-top: 1px solid deepskyblue;
 	border-bottom: 1px solid deepskyblue;
 	margin: unset;
-	padding: .5em .25em .75em;
+	padding: .5em unset .75em;
 }
 
-#mocha-stats {
+#mocha #mocha-stats {
 	position: relative;
 	top: unset;
 	right: unset;
+	margin-top: 1em;
 	padding-bottom: .5em;
 	text-align: right;
 }
 
+#mocha .suite,
+#mocha .test {
+	margin-left: .25em;
+}
+
 #mocha .test pre {
 	background-color: rgba(242, 242, 242, 1);
+	width: 100%;
 }
 
 #mocha .test code {
 	background-color: inherit;
-	font-size: calc(1em + .25vw);
 }
 
 #mocha code .comment {

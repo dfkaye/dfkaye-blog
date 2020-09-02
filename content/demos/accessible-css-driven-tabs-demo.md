@@ -96,8 +96,22 @@ styles:
 
   <div role="tabpanel" aria-labelledby="tab-label-4">
     <h3 tabindex="0">Tab panel 4</h3>
-    <label for="text-input">A text input</label>
-    <input id="text-input">
+    <h4>A code sample</h4>
+    <pre><code>// 16 October 2019
+// Modified version from tweet by @etoxin
+// "I like to call this unloading a website."
+// https://twitter.com/etoxin/status/1179644600522162176
+
+Array.from(
+  document.querySelectorAll('*')
+)
+.reverse()
+.forEach(async (n, t) => {
+  await setTimeout(() => {
+    n.remove();
+  }, t * 10);
+});</code>
+  </pre>
   </div>
 
   <div role="tabpanel" aria-labelledby="tab-label-5">

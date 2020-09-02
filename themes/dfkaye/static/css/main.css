@@ -1,6 +1,10 @@
 /* dfkaye blog styles */
 
 :root {
+  --fence-left-width: 3px;
+  --font-size-base: 1.15em;
+  --font-size-normal: 1em;
+  --font-size-small: .85em;
   --font-family: sans-serif;
   --hover-color: #008800;
   --link-color: #6f5ff6;
@@ -37,8 +41,7 @@ html {
   background: var(--bg-color);
   color: var(--text-color);
   font-family: var(--font-family);
-  /* make font responsive to the viewport width */
-  font-size: calc(100% + .25vw);
+  font-size: var(--font-size-base);
   scroll-behavior: smooth;
   /*
     For very narrow screens showing long URLs and table data strings,
@@ -91,11 +94,11 @@ header ~ * {
 }
 
 [role="banner"] {
-  background-color: rgba(10,110, 200); /* accessibility: is banner image doesn't load. */  
+  /* accessibility: is banner image doesn't load. */
+  background-color: rgba(10, 110, 200);  
   background-image: url(/img/hexo-banner-min.jpg);
-  background-position: top -39em left 0;
-  /* override the responsive font size from html */
-  font-size: calc(100% - .25vw);
+  background-position: top -32em left 0;
+  font-size: var(--font-size-normal);
   left: 0;
   min-height: inherit;
   position: absolute;
@@ -107,7 +110,7 @@ header ~ * {
 footer {
   border-top: 1px solid #ccc;
   display: flex;
-  font-size: .85em;
+  font-size: var(--font-size-small);
   justify-content: space-between;
 }
 
@@ -120,7 +123,7 @@ footer {
 [site-status] {
   background-color: rgba(10, 110, 200, .1);
   display: flex;
-  font-size: 1em;
+  font-size: var(--font-size-small);
   height: 1em;
   justify-content: center;
   width: 100%;
@@ -138,9 +141,7 @@ footer {
 
 [page-title] ~ [page-description] {
   background-color: whitesmoke;
-
-  border-left: 5px solid darkslategray;
-
+  border-left: var(--fence-left-width) solid darkslategray;
 }
 
 [role="main"] li {
@@ -165,7 +166,7 @@ h2, h3 {
 * ~ blockquote {
   background-color: rgba(22, 22, 254, .15);
   /* rgba(24, 143, 255, 0.32); */
-  border-left: 5px solid rgba(22, 22, 254, .5);
+  border-left: var(--fence-left-width) solid rgba(22, 22, 254, .5);
   /* 2px solid #188fff; */
   /*
   font-family: consolas, monospace;
@@ -224,13 +225,13 @@ q {
   border-radius: 1em;
 }
 
-/* temporary, until we add chroma */
+/* Default code fences */
 
 [page-title] ~ pre,
 * ~ pre {
   background-color: rgba(242, 242, 242, 1);
-  border-left: 5px solid rgba(22, 22, 254, .5);
-  border-left: 5px solid rgba(133, 3, 133);
+  border-left: var(--fence-left-width) solid rgba(22, 22, 254, .5);
+  border-left: var(--fence-left-width) solid rgba(133, 3, 133);
   margin: 1.5em 0;
   padding: 1em 0.25em 1em 1em;
 }
@@ -238,7 +239,7 @@ q {
 code {
   background-color: rgba(242, 242, 242, 1);
   font-family: consolas, monaco, "Andale Mono", monospace;
-  font-size: 1em; /* don't resize with vw units */
+  font-size: var(--font-size-normal);
   padding: .05em .15em;
   white-space: break-spaces;
 }
@@ -247,30 +248,34 @@ pre code {
   background-color: inherit;
   color: rgba(22, 22, 254);
   color: rgba(133, 3, 133);
-  font-size: calc(1em - .25vw); /* more readable in big code blocks */
+  /* more readable in big code blocks */
+  font-size: var(--font-size-small);
   padding: .25em 0;
 }
 
-/* chroma almost ready (conf.toml markup rules) */
+/* Code fences with chroma */
+
 .highlight {
-    border-left: 5px solid rgba(133, 3, 133);
+  background-color: whitesmoke;
+  border-left: var(--fence-left-width) solid rgba(133, 3, 133);
 }
 
 .highlight pre {
-    padding-left: 1em;
+  padding: 1em 0 1em 1em;
 }
+
+/* End code fences. */
 
 
 kbd {
   border: 1px solid #666;
   border-radius: .25em;
-  font-size: .85em;
+  font-size: var(--font-size-small);
   margin: 0 .25em;
   padding: 0.1em 0.3em;
   box-shadow: 0.1em 0.2em 0.2em rgba(64, 64, 64, .2);
 }
 
-/* end until chroma */
 
 /* links */
 
