@@ -360,7 +360,7 @@ We were even able to create an *unknown* control, the `<custom>` element, which 
 
 The question is, **Have we really improved anything?**
 
-We had to add quite a bit of JavaScript to achieve parity with native button behavior. And that's JavaScript that you, or someone else, possible a future you, will have to maintain.
+We had to add quite a bit of JavaScript to achieve parity with native button behavior. And that's JavaScript that you, or someone else, possibly a future you, will have to maintain.
 
 Things get more complicated when you have to support {{< rawhtml >}}<kbd>Arrow</kbd>{{< /rawhtml >}} key traversal to navigate among grouped elements.
 

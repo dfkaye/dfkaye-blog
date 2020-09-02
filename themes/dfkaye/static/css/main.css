@@ -40,6 +40,11 @@ html {
   /* make font responsive to the viewport width */
   font-size: calc(100% + .25vw);
   scroll-behavior: smooth;
+  /*
+    For very narrow screens showing long URLs and table data strings,
+    esp. galaxy fold and iphone 5.
+   */
+  word-break: break-word;
 }
 
 [dfk-body] {
@@ -271,13 +276,6 @@ kbd {
 
 a {
   color: var(--link-color);
-  /*
-    for very narrow screens showing long URLs,
-    esp. galaxy fold and iphone 5
-   */
-  word-break: break-word;
-  /* overflow-wrap not supported on safari iOS */
-  /* overflow-wrap: anywhere; */
 }
 
 a:not([icon]):hover,
@@ -317,7 +315,8 @@ a:not([icon]):active {
   color: var(--link-color);
   font-weight: 600;
   padding: .5em;
-  /* override a { word-break: break-word; } if user increases text size. */
+  /* override { word-break: break-word; }
+     if user increases text size. */
   white-space: nowrap;
 }
 
