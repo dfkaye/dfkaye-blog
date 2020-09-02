@@ -28,6 +28,7 @@
 
 #mocha .test code {
 	background-color: inherit;
+	font-size: var(--font-size-normal);
 }
 
 #mocha code .comment {
