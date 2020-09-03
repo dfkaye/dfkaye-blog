@@ -200,6 +200,8 @@ isOwn('toString', NaN); // false
 The `isIn` result may be surprising, but remember that `NaN` is a primitive number and can be cast to a Number instance using the parentheses remedy:
 
 ```js
+(NaN).constructor
+// Number() { [native code] }
 (NaN).toString()
 // "NaN"
 ```
@@ -233,6 +235,8 @@ function emptySlots(arr) {
   var subject = Object(arr);
   
   for (var i = 0; i < subject.length; i++ ) {
+
+    // Alternative: `if (!(i in subject)) { ... }`
     if (!subject.hasOwnProperty(i)) {
       indexes.push(i);
     }
