@@ -22,6 +22,9 @@ enableGitInfo = true
 [params]
   description = "Thoughts on building &amp; Testing JavaScript, CSS, HTML, et al…"
   siteStatus = "(conversion to Hugo in progress...)"
+  [rssURL]
+    main = "/feed/index.xml"
+  rssLimit = 7
 
 # Syntax Highlighting
 [markup]

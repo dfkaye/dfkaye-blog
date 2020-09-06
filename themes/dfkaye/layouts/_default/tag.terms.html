@@ -1,8 +1,6 @@
 {{ define "main" }}
 <h1 id="main" page-title>{{ .Title }}</h1>
 
-{{ .Content }}
-
 {{ range .Data.Terms.Alphabetical }}
 <article tag-term>
   <a rel="tag" href="{{ .Page.Permalink }}">

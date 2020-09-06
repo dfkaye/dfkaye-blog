@@ -15,10 +15,6 @@ At content/_index.md, using layouts/index.html.
 
 You have found David Kaye's blog, focused almost entirely on front-end web development topics.
 
-+ [More about me](/about/)
-+ [Blog posts](/posts/)
-+ [Demos](/demos/)
-
 ## Work in progress
 
 What you see is a [Hugo](https://gohugo.io) blog under construction.
@@ -27,15 +23,29 @@ I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on
 
 Some of that content will be posted here eventually, along with updated takes.
 
++ [More about me](/about/)
++ [Blog posts](/posts/)
++ [Demos](/demos/)
+
+
+## RSS
+
+Site now has two content feeds, listing up to seven of the latest seven items:
+
+- posts at [/posts/index.xml](/posts/index.xml)
+- demos at [/demos/index.xml](/demos/index.xml).
+
+The default feed lists everything but only with descriptions, at [/index.xml](/index.xml).
+
 ## To-do set-up
 
 + better code snippet styles (not one element per line but well-framed and readable)
-  - *Surprise!* To support this on Netlify, see https://wilks.co/articles/custom-hugo-version-with-netlify/
-+ set up RSS feed
-+ sitemap.xml
-+ categories and tags layout and keywords
-+ resize datetime and reading-time
-+ improve the doc-summary style on list pages
+  - *Surprise!* To support this on Netlify, see https://wilks.co/articles/custom-hugo-version-with-netlify/ -- done
++ set up RSS feed -- done
++ sitemap.xml -- done
++ categories and tags layout and keywords -- done for tags and keywords
++ resize datetime and reading-time -- done
++ improve the doc-summary style on list pages -- done
 + pagination in list pages (by year, by count (100), or...?)
 + use Hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
@@ -57,6 +67,7 @@ Some of that content will be posted here eventually, along with updated takes.
   - csp partial
   - css partial
   - js partial
+  - rss partial
 + post about the footer company icons
   - especially https://github.com/simple-icons/simple-icons
 + post about mobile white space breaks
@@ -95,7 +106,7 @@ Some of that content will be posted here eventually, along with updated takes.
 + CSS tabs demo and post - done
 + calculator demo with TDD
 + date-input demo
-+ S|p|r|e|a|d|S|h|e|e|t with workers demo and TDD
++ S | p | r | e | a | d | S | h | e | e | t, with web workers demo and TDD
 + sudoku demo with TDD
 + *interactive* tests using web workers for the server part
   - example: souders site CSS test page (class vs. attribute selector speeds)

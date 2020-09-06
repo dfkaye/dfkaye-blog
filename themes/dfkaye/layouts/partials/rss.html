@@ -1,0 +1,11 @@
+{{ if eq .Type "demos" }}
+{{ .Scratch.Set " feedType" "demos/" }}
+{{ else }}
+{{ .Scratch.Set " feedType" "posts/" }}
+{{ end }}
+
+<!-- RSS feed -->
+<link rel="alternate" type="application/rss+xml" title="{{ .Site.Title }} RSS Feed"
+  href="{{ .Site.BaseURL }}{{ .Scratch.Get " feedType" }}index.xml">
+<link rel="feed" type="application/rss+xml" title="{{ .Site.Title }} RSS Feed"
+  href="{{ .Site.BaseURL }}{{ .Scratch.Get " feedType" }}index.xml">

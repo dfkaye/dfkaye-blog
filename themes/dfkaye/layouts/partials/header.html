@@ -19,12 +19,10 @@
       <li {{ if or (eq .RelPermalink "/demos/") (eq .Type "demos") }} aria-current="location" {{ end }}>
         <a href="{{ "/demos/" | absURL }}" aria-label="My programming examples">Demos</a>
       </li>
-
       <!-- tags list page needs own layout -->
-      <li {{ if or (eq .RelPermalink "/tags/") }} aria-current="location" {{ end }}>
+      <li {{ if or (eq .RelPermalink "/tags/") (eq .Type "tags") }} aria-current="location" {{ end }}>
         <a href="{{ "/tags/" | absURL }}" aria-label="Categories and topics">Tags</a>
       </li>
-
     </ul>
   </nav>
   <strong site-status>{{ .Site.Params.siteStatus }}</strong>

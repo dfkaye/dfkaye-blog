@@ -17,21 +17,21 @@
   <meta name="msapplication-TileColor" content="#da532c">
   <meta name="theme-color" content="#ffffff">
 
-  <!-- SEO -->
+  <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{ .Page.Title }}">
   <meta property="og:description" content="{{ .Scratch.Get "pageDescription" }}">
   <meta property="og:image" content="{{ .Scratch.Get "seoImage" }}">
   <meta property="og:url" content="{{ .Page.Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
-
-  <!-- Social -->
   <meta name="twitter:card" content="summary">
   <meta name="twitter:creator" content="David F. Kaye">
   <meta name="twitter:image" content="{{ .Scratch.Get "seoImage" }}">
   <meta name=”twitter:title” content="{{ .Page.Title }}">
   <meta name="twitter:url" content="{{ .Page.Permalink }}">
   <meta name=”twitter:description” content="{{ .Scratch.Get "pageDescription" }}">
+
+  {{- partial "rss.html" . -}}
 
   {{- partial "css.html" . -}}
 </head>

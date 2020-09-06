@@ -1,18 +1,23 @@
 ---
 title: "Attributes and Entities"
 date: 2020-09-05T21:40:28-07:00
-description: "Browsers support attributes in HTML without explicit values, and support alphanumeric entities. XML does not, making the RSS feed setup a nightmare of revision and testing."
+description: "Browsers support attributes in HTML without explicit values, and support alphanumeric entities. XML does not, making the RSS feed setup a continuous round of revision and testing."
 tags:
 - "Attributes"
 - "Entities"
 - "HTML"
+- "RSS"
 - "XML"
 
 ---
 
-I came across something unexpected (which is to say I had forgotten all about it) tonight while working on setting up the RSS feed for this site.
+I came across something unexpected (which is to say I had forgotten all about it) tonight while working on setting up RSS content feeds for this site (in addition to the default description feed that Hugo builds automatically).
 
 <!--more-->
+
+A content feed includes the entire content of each entry, not just the description, making *really simple syndication* easier to support.
+
+## Attribute support in the browser 
 
 I like using custom attributes for styling purposes in the browser, rather than classes. I'll explain why in another post, but here's an example.
 
@@ -29,7 +34,7 @@ Browsers will interpret the first as though it were the second, which means we c
 }
 ```
 
-## What went wrong
+## What went wrong: Attributes
 
 When trying to generate a feed for the *entire content* of a page, *rather than its summary*, I was reminded that the XML processor in browsers is still strict, and requires "well-formedness," which means:
 
@@ -38,9 +43,9 @@ When trying to generate a feed for the *entire content* of a page, *rather than 
 
 Any XML that did not validate according to those rules aborted processing at the first error.
 
-## Not only that
+## Not only that: Entities
 
-I also found that the blogging server I use, [Hugo](https://gohugio.io), translates certain characters in markdown into HTML entities that XML does not recognize.
+I also found that the blogging server I use, [Hugo](https://gohugio.io), translates certain characters in markdown into *alphanumeric* HTML entities that XML does not recognize.
 
 ```markdown
 ## Here's an example
@@ -56,7 +61,7 @@ Here's the result:
 &copy; not translated.
 ```
 
-But XML expects Unicode entities instead.
+But XML expects *Unicode* entities instead.
 
 ```HTML
 <h2>Here&#8217; an example</h2>
@@ -64,12 +69,16 @@ But XML expects Unicode entities instead.
 &#169; ...
 ```
 
-## Stay Tuned
+## Solution: CDATA directives
 
-We'll see if I can get a top-level RSS XML output going.
+Wrap the content of `<description>` and `<content:encoded>` tags with `<![CDATA[ ... ]]>` directives.
 
-If I have to re-think my cavalier approach to attributes, maybe devise a site-side namespace attribute that takes a value specifiying the element's type or behavior&hellip;
+```xml
+<description>{{ `<![CDATA[ ` | safeHTML }}{{ .Description | safeHTML }}]]></description>
+<content:encoded>{{ `<![CDATA[ ` | safeHTML }}{{ .Content | safeHTML }}]]></content:encoded>
+```
 
-Yes.
+And with that, this site now has two content feeds, listing up to seven of the latest seven items:
 
-As for the alhpanumeric vs. unicode entity problem, I may open an issue on the Hugo github repository&hellip; Some day.
+- posts at [/posts/index.xml](/posts/index.xml).
+- demos at [/demos/index.xml](/demos/index.xml).
