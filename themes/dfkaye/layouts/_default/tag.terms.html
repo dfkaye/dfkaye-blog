@@ -1,0 +1,15 @@
+{{ define "main" }}
+<h1 id="main" page-title>{{ .Title }}</h1>
+
+{{ .Content }}
+
+{{ range .Data.Terms.Alphabetical }}
+<article tag-term>
+  <a rel="tag" href="{{ .Page.Permalink }}">
+    <span aria-hidden="true">{{ .Page.Title }}</span>
+    <span tag-count
+      aria-label="{{ .Page.Title }}: {{ .Count }} {{ if eq 1 .Count }}article{{ else }}articles{{ end }}.">({{ .Count }})</span>
+  </a>
+</article>
+{{ end }}
+{{ end }}

@@ -3,6 +3,10 @@ languageCode = "en-US"
 title = "DFKaye"
 theme = "dfkaye"
 
+[author]
+  name = "David F. Kaye"
+  email = "dfkaye@yahoo.com"
+
 # Use absolute URLs
 canonifyURLs = true
 
@@ -16,7 +20,6 @@ enableGitInfo = true
   posts = "posts/:year/:month/:day/:slug/"
 
 [params]
-  author = "David F. Kaye"
   description = "Thoughts on building &amp; Testing JavaScript, CSS, HTML, et al…"
   siteStatus = "(conversion to Hugo in progress...)"
 

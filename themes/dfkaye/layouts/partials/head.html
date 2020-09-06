@@ -2,7 +2,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>{{ .Page.Title }} | {{ .Site.Title }}</title>
-  <meta name="author" content="{{ .Site.Params.Author }}">
+  <meta name="author" content="{{ .Site.Author.Name }}">
   <meta name="description" content="{{ .Scratch.Get "pageDescription" }}">
   <meta name="keywords" content="{{ if .Page.Params.Tags }}{{ delimit .Page.Params.Tags ", " }}{{ end}}">
   <meta name="robots" content="index, follow">

@@ -1,13 +1,17 @@
 {{ define "main" }}
 <h1 id="main" page-title>{{ .Title }}</h1>
 
-<!-- https://gomakethings.com/how-to-create-accessible-subtitles/ -->
-<p id="page-description" page-description>{{ .Description }}</p>
-
 <ul publish-date>
   <li>Publish Date: <time datetime="{{ .PublishDate }}" pubdate>{{ dateFormat "January 2, 2006" .Date }}</time></li>
   <li>Last Update: <time datetime="{{ .Lastmod }}" lastmod>{{ dateFormat "January 2, 2006" .Lastmod }}</time></li>
 </ul>
+
+{{ range .Params.tags }}
+<a rel="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
+{{ end }}
+
+<!-- https://gomakethings.com/how-to-create-accessible-subtitles/ -->
+<p id="page-description" page-description>{{ .Description }}</p>
 
 {{ .Content }}
 

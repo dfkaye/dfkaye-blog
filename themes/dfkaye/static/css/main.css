@@ -291,6 +291,22 @@ a:not([icon]):active {
   text-decoration: underline;
 }
 
+[rel="tag"] {
+  font-size: .75em;
+  background-color: #efefef;
+  padding: .5em 1em;
+  border-radius: 1em;
+}
+
+[tag-count] {
+  align-self: center;
+  padding-left: .5em;
+}
+
+[tag-term] {
+  display: flex;
+  flex-flow: row nowrap;
+}
 
 /* nav */
 

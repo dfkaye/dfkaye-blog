@@ -49,7 +49,7 @@ git push -u origin master
 Find your local ip address and bind to it as the base URL.
 
 ```
-hugo server --bind 0.0.0.0 --baseURL 192.168.0.108 --cleanDestinationDir
+hugo server --bind 0.0.0.0 --baseURL 192.168.0.108 --cleanDestinationDir --renderToDisk
 ```
 
 Now you can test your build with any device on your network.

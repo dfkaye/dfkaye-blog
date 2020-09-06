@@ -7,6 +7,10 @@
   <li>Last Update: <time datetime="{{ .Lastmod }}" lastmod>{{ dateFormat "January 2, 2006" .Lastmod  }}</time></li>
 </ul>
 
+{{ range .Params.tags }}
+<a rel="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
+{{ end }}
+
 <p id="page-description" page-description>{{ .Description }}</p>
 
 {{ .Content }}
