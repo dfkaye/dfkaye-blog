@@ -1,8 +1,8 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-description: {{ .Description }}
-tags: []
-draft: false
+description: {{ "describe this page..." }}
+tags:
+- "tag"
 ---
 

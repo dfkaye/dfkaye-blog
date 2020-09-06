@@ -8,7 +8,9 @@
   <a rel="tag" href="{{ .Page.Permalink }}">
     <span aria-hidden="true">{{ .Page.Title }}</span>
     <span tag-count
-      aria-label="{{ .Page.Title }}: {{ .Count }} {{ if eq 1 .Count }}article{{ else }}articles{{ end }}.">({{ .Count }})</span>
+      aria-label="{{ .Page.Title }}: {{ .Count }} {{ if eq 1 .Count }}article{{ else }}articles{{ end }}.">
+      ({{ .Count }})
+    </span>
   </a>
 </article>
 {{ end }}

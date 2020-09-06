@@ -1,8 +1,10 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
-description: {{ .Description }}
-draft: false
+description: {{ "describe this demo" }}
+tags:
+- "tag"
+
 ---
 
 ![alt](//via.placeholder.com/480x150)
