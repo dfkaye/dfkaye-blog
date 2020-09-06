@@ -1,7 +1,7 @@
 {{ if eq .Type "demos" }}
-{{ .Scratch.Set " feedType" "demos/" }}
+{{ .Scratch.Set " feedType" "/demos/" }}
 {{ else }}
-{{ .Scratch.Set " feedType" "posts/" }}
+{{ .Scratch.Set " feedType" "/posts/" }}
 {{ end }}
 
 <!-- RSS feed -->
