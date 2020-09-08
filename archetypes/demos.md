@@ -1,6 +1,7 @@
 ---
 title: "{{ replace .Name "-" " " | title }}"
 date: {{ .Date }}
+lastmod: {{ .Date }}
 description: {{ "describe this demo" }}
 tags:
 - "tag"

@@ -1,7 +1,7 @@
 ---
 title: "Home"
 date: 2020-06-12T14:10:43-07:00
-lastmod: 2020-09-07T00:00:43-07:00
+lastmod: 2020-09-08T16:17:43-07:00
 description: "dfkaye blog home"
 tags:
 - "dfkaye"
@@ -107,9 +107,10 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 ## To-do demos
 
 + CSS tabs demo and post - done
-+ calculator demo with TDD
-+ date-input demo
++ Calculator demo with TDD
++ Accessible date-input demo
 + S | p | r | e | a | d | S | h | e | e | t, with web workers demo and TDD
-+ sudoku demo with TDD
++ Sudoku demo with TDD
 + *interactive* tests using web workers for the server part
   - example: souders site CSS test page (class vs. attribute selector speeds)
++ Accessible Table Row Expansions
