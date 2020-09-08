@@ -1,6 +1,7 @@
 {{ $js := "js/hello.js" | relURL }}
 {{ $nonce := .Scratch.Get "nonce" }}
 <script src="{{ $js }}" nonce="{{ $nonce }}" type="module"></script>
+
 <!-- process list of JS URLs from page params -->
 {{ range .Page.Params.Scripts }}
 <script src="{{ . }}" nonce="{{ $nonce }}" type="module"></script>

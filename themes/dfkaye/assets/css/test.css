@@ -1,0 +1,493 @@
+/* dfkaye blog styles */
+
+{{ $bgcolor := "#fff" }}
+{{ $fenceBorderWidth := "3px" }}
+{{ $fontSizeBase := "1.15em" }}
+{{ $fontSizeLarge := "1.75em" }}
+{{ $fontSizeNormal := "1em" }}
+{{ $fontSizeReduced := ".85em" }}
+{{ $fontSizeSmall := ".75em" }}
+{{ $fontFamilyBase := "sans-serif" }}
+{{ $hoverColor := "#008800" }}
+{{ $linkColor := "#6f5ff6" }}
+{{ $textColor := "#000" }}
+{{ $dateTimeColor := "#757575" }}
+{{ $fillColor := "#ababab" }}
+{{ $iconHeight := "32px" }}
+{{ $iconMargin := ".5em 0.25em -.5em" }}
+{{ $iconWidth := "32px" }}
+{{ $hugoColor := "#ff0095" }}
+{{ $linkedinColor := "#0077b5" }}
+{{ $netlifyColor := "#009387" }}
+{{ $netlifyGradient := "url(#icon-gradient-netlify)" }}
+{{ $githubColor := "#6cc644" }}
+{{ $twitterColor := "#1da1f2" }}
+
+* {
+  box-sizing: border-box;
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+}
+
+::after,
+::before {
+  box-sizing: inherit;
+  -webkit-font-smoothing: antialiased;
+}
+
+html {
+  background-color: {{ $bgcolor }};
+  color: {{ $textColor }};
+  font-family: {{ $fontFamilyBase }};
+  font-size: {{ $fontSizeBase }};
+  scroll-behavior: smooth;
+  /*
+    For very narrow screens showing long URLs and table data strings,
+    esp. galaxy fold and iphone 5.
+   */
+  word-break: break-word;
+}
+
+[dfk-body] {
+  /* sets width to 100% on all mobile (galaxy fold, iPhone 5, etc.) */
+  position: relative;
+}
+
+[hidden] {
+  display: none;
+}
+
+[visually-hidden] {
+  /* visually hidden skip link */
+  /* https://gomakethings.com/revisting-aria-label-versus-a-visually-hidden-class/ */
+  border: 0;
+  clip: rect(0 0 0 0);
+  /* clip-path: inset(50%); */
+  height: 1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+/* flow */
+
+[dfk-body] > :not(a) {
+  /* fix padding for small viewports, allow expansion on larger ones. */
+  padding: 0 max(2em, 10%);
+}
+
+header {
+  color: #fff;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  /* use 12.25em if site status is hidden */
+  min-height: 15.25em;
+}
+
+header ~ * {
+  margin: 1.5em 0;
+}
+
+[role="banner"] {
+  /* accessibility: is banner image doesn't load. */
+  background-color: rgba(10, 110, 200);  
+  background-image: url(/img/hexo-banner-min.jpg);
+  background-position: top -32em left 0;
+  font-size: {{ $fontSizeNormal }};
+  left: 0;
+  min-height: inherit;
+  position: absolute;
+  top: 0;  
+  width: 100%;
+  z-index: -1;
+}
+
+footer {
+  border-top: 1px solid #ccc;
+  display: flex;
+  font-size: {{ $fontSizeReduced }};
+  justify-content: space-between;
+}
+
+[nav] [site-title] {
+  height: 3em;
+  margin: .2em 0;
+  padding: .75em;
+}
+
+[site-status] {
+  background-color: rgba(10, 110, 200, .1);
+  display: flex;
+  font-size: {{ $fontSizeReduced }};
+  height: 1em;
+  justify-content: center;
+  width: 100%;
+}
+
+[author-status] {
+  color: chocolate;
+}
+
+[page-description] {
+  font-style: italic;
+  color: darkslategray;
+  padding: 1em;
+}
+
+[page-title] ~ [page-description] {
+  background-color: whitesmoke;
+  border-left: {{ $fenceBorderWidth }} solid darkslategray;
+}
+
+[role="main"] li {
+  margin: 0 0 0 1em;
+}
+
+[page-title] {/* h1 */
+  font-size: {{ $fontSizeLarge }};
+  text-shadow: 3px 3px 12px rgba(0, 0, 0, 0.2);
+}
+
+h2, h3 {
+  text-shadow: 1px 1px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* This pads the content - p tags, li, etc. */
+[page-title] ~ * {
+  margin: 1em 0;
+}
+
+/* could use more polish here */
+* ~ blockquote {
+  background-color: rgba(22, 22, 254, .15);
+  /* rgba(24, 143, 255, 0.32); */
+  border-left: {{ $fenceBorderWidth }} solid rgba(22, 22, 254, .5);
+  /* 2px solid #188fff; */
+  /*
+  font-family: consolas, monospace;
+  font-size: 1.5em;
+  */
+  font-style: italic;
+  margin: 2em 0;
+  padding: .5em 1em;
+}
+
+q {
+  display: block;
+  font-style: italic;
+}
+
+[prose] {
+  margin: 1em 2vw 1.5em;
+  text-indent: 1.5em;
+}
+
+[prose]::before,
+[prose]::after {
+  /* color:  rgba(22, 22, 254, .5); */
+  color: chocolate;
+  font-style: italic;
+  font-size: 3em;
+  margin-top: -.5em;
+  position: absolute;
+}
+
+[prose]::before {
+  content: "\201C";
+  margin-left: -1em;
+}
+
+[prose]::after {
+  content: "\201D";
+  margin-left: -.5em;
+}
+
+[verse] {
+  display:flex;
+  place-content: center;
+}
+
+[verse]::before,
+[verse]::after {
+  content: "";
+}
+
+/* inline images */
+
+[screenshot] {
+  width: 100%;
+  border: 1px solid rgb(235, 235, 235);
+  border-radius: 1em;
+}
+
+/* Default code fences */
+
+* ~ pre {
+  background-color: rgba(242, 242, 242, 1);
+  border-left: {{ $fenceBorderWidth }} solid rgba(22, 22, 254, .5);
+  border-left: {{ $fenceBorderWidth }} solid rgba(133, 3, 133);
+  margin: 1.5em 0;
+  padding: 1em 0.25em 1em 1em;
+}
+
+code {
+  background-color: rgba(242, 242, 242, 1);
+  font-family: consolas, monaco, "Andale Mono", monospace;
+  font-size: {{ $fontSizeNormal }};
+  padding: .05em .15em;
+  white-space: break-spaces;
+}
+
+pre code {
+  background-color: inherit;
+  color: rgba(22, 22, 254);
+  color: rgba(133, 3, 133);
+  /* more readable in big code blocks */
+  font-size: {{ $fontSizeReduced }};
+  padding: .25em 0;
+}
+
+/* Code fences with chroma */
+
+.highlight {
+  background-color: whitesmoke;
+  border-left: {{ $fenceBorderWidth }} solid rgba(133, 3, 133);
+}
+
+.highlight pre {
+  padding: 1em 0 1em 1em;
+}
+
+/* End code fences. */
+
+
+kbd {
+  border: 1px solid #666;
+  border-radius: .25em;
+  font-size: {{ $fontSizeReduced }};
+  margin: 0 .25em;
+  padding: 0.1em 0.3em;
+  box-shadow: 0.1em 0.2em 0.2em rgba(64, 64, 64, .2);
+}
+
+
+/* links */
+
+a {
+  color: {{ $linkColor }};
+}
+
+a:not([icon]):hover,
+a:not([icon]):focus,
+a:not([icon]):active {
+  background-color: #efefef;
+  color: {{ $hoverColor }};
+  text-decoration: underline;
+}
+
+[rel="tag"] {
+  font-size: {{ $fontSizeSmall }};
+  background-color: #efefef;
+  padding: .5em 1em;
+  border-radius: 1em;
+}
+
+[tag-count] {
+  align-self: center;
+  padding-left: .5em;
+}
+
+[tag-term] {
+  display: flex;
+  flex-flow: row nowrap;
+}
+
+/* nav */
+
+[nav] {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+[nav] ul {
+  display: flex;
+  flex-flow: row wrap;
+  align-items: baseline;
+  gap: .5em .5em;
+  justify-content: center;
+  list-style-type: none;
+  /* touch */
+  margin: 1em 0;
+}
+
+[nav] li {
+  display: inline-block;
+  margin: 0 1em;
+}
+
+[nav] a {
+  color: {{ $linkColor }};
+  font-weight: 600;
+  /* override { word-break: break-word; }
+     if user increases text size. */
+  white-space: nowrap;
+}
+
+[nav="header"] a {
+  background-color: rgba(10,110, 200, .25);
+  color: white;
+  padding: .5em;
+}
+
+/* current page or location */
+
+[aria-current] [href] {
+  outline: 1px dotted #fff;
+  background: rgba(22, 22, 254, .5);
+}
+
+/* nav icons */
+
+[icon] svg {
+  fill: {{ $fillColor }};
+  height: {{ $iconHeight }};
+  margin: {{ $iconMargin }};
+  width: {{ $iconWidth }};
+}
+
+[icon-defs] {
+  position: absolute;
+  bottom: 0;
+  display: none;
+  z-index: -1;
+}
+
+[icon="hugo"]:hover,
+[icon="hugo"]:focus,
+[icon="hugo"]:active {
+  color: {{ $hugoColor }};
+}
+
+[icon="hugo"]:hover svg,
+[icon="hugo"]:focus svg,
+[icon="hugo"]:active svg {
+  fill: {{ $hugoColor  }};
+}
+
+[icon="netlify"]:hover,
+[icon="netlify"]:focus,
+[icon="netlify"]:active {
+  color: {{ $netlifyColor }};
+}
+
+[icon="netlify"]:hover svg,
+[icon="netlify"]:focus svg,
+[icon="netlify"]:active svg {
+  /* This was fun to figure out. */
+  fill: {{ $netlifyGradient }};
+}
+
+[icon="github"]:hover,
+[icon="github"]:focus,
+[icon="github"]:active {
+  color: {{ $githubColor }};
+}
+
+[icon="github"]:hover svg,
+[icon="github"]:focus svg,
+[icon="github"]:active svg {
+  fill: {{ $githubColor }};
+}
+
+[icon="linkedin"]:hover,
+[icon="linkedin"]:focus,
+[icon="linkedin"]:active {
+  color: {{ $linkedinColor }};
+}
+
+[icon="linkedin"]:hover svg,
+[icon="linkedin"]:focus svg,
+[icon="linkedin"]:active svg {
+  fill: {{ $linkedinColor }};
+}
+
+[icon="twitter"]:hover,
+[icon="twitter"]:focus,
+[icon="twitter"]:active {
+  color: {{ $twitterColor }};
+}
+
+[icon="twitter"]:hover svg,
+[icon="twitter"]:focus svg,
+[icon="twitter"]:active svg {
+  fill: {{ $twitterColor }};
+}
+
+/* list pages */
+
+[page-list] {
+  display: flex;
+  flex-direction: column;
+  margin: 1em;
+}
+
+[page-list] [page-item] {
+  margin: .25em 0;
+}
+
+[datetime] {
+  color: {{ $dateTimeColor }};
+  padding: 0 .5em;
+}
+
+[reading-time] {
+  color: {{ $dateTimeColor }};
+}
+
+[publish-date] {
+  color: {{ $dateTimeColor }};
+  display: flex;
+  font-size: {{ $fontSizeSmall }};
+}
+
+[publish-date] li {
+  display: flex;
+  margin: .25em 1.35rem .25em 0;
+  flex-flow: row wrap;
+}
+
+/* previous & next links */
+
+[prev-next] {
+  display: flex;
+  justify-content: space-between;
+}
+
+[prev], [next] {
+  padding: 0 1em;
+}
+
+[next] {
+  text-align: right;
+}
+
+[rel="next"] {
+  justify-self: flex-end;
+}
+
+[rel="prev"]:before {
+  content: "\2190";
+  position: absolute;
+  margin-left: -1.5em;
+}
+
+[rel="next"]:after {
+  content: "\2192";
+  position: absolute;
+  margin-left: .5em;  
+}

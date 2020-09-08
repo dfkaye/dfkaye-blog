@@ -49,6 +49,8 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + pagination in list pages (by year, by count (100), or...?)
 + use Hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
+  - *All lies. Every post on how to do this is wrong.*
+  - *Do not put your theme into config.toml, put it all in a css template in assets/css as hugo variables, and minify the result.*
 + mermaid diagrams
 
 ## To-do posts
