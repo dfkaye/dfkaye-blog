@@ -16,7 +16,6 @@ styles:
 scripts: 
 - https://unpkg.com/mocha/mocha.js
 - https://unpkg.com/chai/chai.js
-- https://unpkg.com/fast-check@1.26.0/lib/bundle.js
 - /js/demos/mocha-setup.js
 - /js/demos/safe-assign/suite.js
 - /js/demos/mocha-run.js

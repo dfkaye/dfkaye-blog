@@ -1,14 +1,13 @@
 {{ $baseUrl := (.Site.BaseURL | string) }}
 {{ $hostUrls := "https://unpkg.com/  https:" }}
 {{ $nonce := .Scratch.Get "nonce" }}
-  <meta http-equiv="Content-Security-Policy"
-    content="base-uri 'none';
+<meta http-equiv="Content-Security-Policy" content="base-uri 'none';
       object-src 'none';
       style-src-elem 'self' 'nonce-{{ $nonce }}' {{ $hostUrls }};
-      script-src-elem 'self' 'strict-dynamic' 'nonce-{{ $nonce }}';
+      script-src-elem 'self' 'strict-dynamic' 'nonce-{{ $nonce }}' {{ $hostUrls }};
 	  block-all-mixed-content;">
-	<!-- keep for later reference -->
-	<!--
+<!-- keep for later reference -->
+<!--
 	 Content-Security-Policy = "default-src data: 'unsafe-inline' 'unsafe-eval' https:; 
 	 script-src data: 'unsafe-inline' 'unsafe-eval' https: blob:;
 	 style-src data: 'unsafe-inline' https:;
