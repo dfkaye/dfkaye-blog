@@ -208,13 +208,23 @@ There are some issues remaining with the current tab solution in screen readers:
 
 Using the `aria-hidden="true"` attribute on the label elements which have the `role="tab"` attribute did not degrade the screen reader *experience* &mdash; I have no idea how that affects the Accessibility Object Model underneath.
 
-Another thing, I omitted the `role="tablist"` attribute on the parent demo element. Adding it had no effect in Windows 10 Narrator, which I assume is due to the element not being a list (`<ul>` or `<ol>`).
+Another thing, I *originally* omitted the `role="tablist"` attribute on the parent demo element. Adding it had no effect in Windows 10 Narrator, which I assume is due to the element not being a list (`<ul>` or `<ol>`).
 
 ## *Update September 1, 2020: Replacing the media query with flex-box*
 
 On CSS-tricks, Geoffrey Crofte has posted a solution for responsive card elements using flex-box instead of media queries, [How to Make a Media Query-less Card Component](https://css-tricks.com/how-to-make-a-media-query-less-card-component/). After reading that, I modified the CSS and markup in the Tabs demo to work the same way.
 
 In the new layout, the tabs grow or shrink in size relative to each other within the flex-box container width. Given a narrow window, there may be three tabs above three other tabs, all of equal width, whereas in a wider window, there may be five tabs above one tab which will stretch to the width of the container.
+
+## *Update September 8, 2020: Apply `aria-roledescription="tab"` to each radio element
+
+For a better screen reader experience, we can change the role announcement from "radio" to "tab" by adding `aria-roledescription="tab"` attributes to each radio element.
+
+```html
+<input name="tabs" type="radio" id="tab-1" aria-labelledby="tab-label-1" aria-roledescription="tab">
+```
+
+For more information about this attribute, read Leonie Watson's post from 2018 at `https://tink.uk/using-the-aria-roledescription-attribute/`.
 
 ### Changes to support flex-box
 

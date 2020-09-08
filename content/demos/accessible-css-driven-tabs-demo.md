@@ -42,22 +42,22 @@ styles:
 <div demo="tabs" role="tablist" aria-labelledby="tabs-demo-heading">
   <h2 id="tabs-demo-heading" tabs-demo-heading>Demo</h2>
 
-  <input name="tabs" type="radio" id="tab-1" aria-labelledby="tab-label-1" checked>
+  <input name="tabs" type="radio" id="tab-1" aria-labelledby="tab-label-1" aria-roledescription="tab" checked>
   <label role="tab" for="tab-1" id="tab-label-1" aria-hidden="true">Tab 1</label>
 
-  <input name="tabs" type="radio" id="tab-2" aria-labelledby="tab-label-2">
+  <input name="tabs" type="radio" id="tab-2" aria-labelledby="tab-label-2" aria-roledescription="tab">
   <label role="tab" for="tab-2" id="tab-label-2" aria-hidden="true">Tab 2</label>
 
-  <input name="tabs" type="radio" id="tab-3" aria-labelledby="tab-label-3">
+  <input name="tabs" type="radio" id="tab-3" aria-labelledby="tab-label-3" aria-roledescription="tab">
   <label role="tab" for="tab-3" id="tab-label-3" aria-hidden="true">Tab 3</label>
 
-  <input name="tabs" type="radio" id="tab-4" aria-labelledby="tab-label-4">
+  <input name="tabs" type="radio" id="tab-4" aria-labelledby="tab-label-4" aria-roledescription="tab">
   <label role="tab" for="tab-4" id="tab-label-4" aria-hidden="true">Tab 4</label>
 
-  <input name="tabs" type="radio" id="tab-5" aria-labelledby="tab-label-5">
+  <input name="tabs" type="radio" id="tab-5" aria-labelledby="tab-label-5" aria-roledescription="tab">
   <label role="tab" for="tab-5" id="tab-label-5" aria-hidden="true">Tab 5</label>
 
-  <input name="tabs" type="radio" id="tab-6" aria-labelledby="tab-label-6">
+  <input name="tabs" type="radio" id="tab-6" aria-labelledby="tab-label-6" aria-roledescription="tab">
   <label role="tab" for="tab-6" id="tab-label-6" aria-hidden="true">Tab 6</label>
 
   <div role="tabpanel" aria-labelledby="tab-label-1">
