@@ -43,7 +43,7 @@ But when I loaded that URL directly into the browser location bar, the page disp
 CDN object Not Found - Request ID: c69c9f74-474a-4ef6-ab40-7f3dbd3426fb-17861605
 ```
 
-But hen I loaded the normal lib URL (https://dfkaye.com/js/lib/safe-assign.js) in the browser location bar, the JavaScript source loaded successfully.
+But when I loaded the normal lib URL (https://dfkaye.com/js/lib/safe-assign.js) in the browser location bar, the JavaScript source loaded successfully.
 
 **Diagnosis**: The 'Access-Control-Allow-Origin' header error was a misnomer. The dependency itself was not part of the optimization process and so did not reside on the `cloudfront` domain.
 
