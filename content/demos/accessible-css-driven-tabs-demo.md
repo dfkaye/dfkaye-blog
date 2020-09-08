@@ -1,6 +1,7 @@
 ---
 title: "Demo: Accessible CSS-driven Tabs"
 date: 2020-08-23T15:30:43-07:00
+lastmod: 2020-09-08T10:52:41-07:00
 description: "Working demo of tabbed content using CSS, no JavaScript, responsive to screen widths, and accessible to
 keyboard navigation and screen
 readers."

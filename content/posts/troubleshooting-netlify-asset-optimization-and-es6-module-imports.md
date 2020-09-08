@@ -1,6 +1,7 @@
 ---
 title: "Troubleshooting: Netlify asset optimizations and ES2015 modules"
 date: 2020-09-07T20:16:41-07:00
+lastmod: 2020-09-07T20:16:41-07:00
 description: "How I fixed a CORS misnomer for JavaScript module imports by customizing how Netlify bundles CSS and JavaScript assets for Hugo."
 tags:
 - "Hugo"

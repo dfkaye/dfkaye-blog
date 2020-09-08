@@ -1,6 +1,7 @@
 ---
 title: "Home"
 date: 2020-06-12T14:10:43-07:00
+lastmod: 2020-09-07T00:00:43-07:00
 description: "dfkaye blog home"
 tags:
 - "dfkaye"

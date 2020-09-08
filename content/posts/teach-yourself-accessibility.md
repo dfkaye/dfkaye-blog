@@ -1,6 +1,7 @@
 ---
 title: "Teach Yourself Accessibility"
 date: 2020-08-27T11:12:43-07:00
+lastmod: 2020-09-02T09:43:41-07:00
 description: "Make web interfaces that are accessible to keyboard navigation and screen readers through progressive enhancement."
 tags:
 - "CSS"

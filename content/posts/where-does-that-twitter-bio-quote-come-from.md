@@ -1,6 +1,7 @@
 ---
 title: "Where does that quote in your twitter bio come from?"
 date: 2020-08-10T15:49:13-07:00
+lastmod: 2020-08-31T08:42:41-07:00
 description: "Glad you asked!"
 tags:
 - "Literary history"

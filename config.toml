@@ -10,9 +10,6 @@ theme = "dfkaye"
 # Use absolute URLs
 canonifyURLs = true
 
-# set lastmod dates
-enableGitInfo = true
-
 # prev | next
 # pagination = 1
 

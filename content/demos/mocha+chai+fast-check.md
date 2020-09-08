@@ -1,6 +1,7 @@
 ---
 title: "Demo: Test suite setup with mocha, chai, and fast-check"
 date: 2020-07-07T12:10:43-07:00
+lastmod: 2020-08-31T08:43:41-07:00
 description: "Running example of a JavaScript test suite in the browser, using mocha, chai, and fast-check testing libraries"
 tags:
 - "TDD"

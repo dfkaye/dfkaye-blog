@@ -1,6 +1,7 @@
 ---
 title: "Using CSS files in React/JSX apps"
 date: 2020-08-19T13:07:43-07:00
+lastmod: 2020-08-31T08:39:41-07:00
 description: "Two approaches for when you need CSS features in React/JSX that CSS-in-JS can't provide, such as @media rules or CSS custom properties."
 tags:
 - "CSS"

@@ -1,6 +1,7 @@
 ---
 title: "Test suite: Safe assign wrapper for Object.assign()."
 date: 2020-08-21T11:56:43-07:00
+lastmod: 2020-09-07T17:37:41-07:00
 description: "Test suite for safe-assign.js module."
 tags:
 - "TDD"

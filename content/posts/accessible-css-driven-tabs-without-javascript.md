@@ -1,6 +1,7 @@
 ---
 title: "Accessible CSS-driven Tabs (without JavaScript)"
 date: 2020-08-23T16:55:43-07:00
+lastmod: 2020-09-08T11:00:41-07:00
 description: "Making CSS-only tabs accessible to keyboard navigation and screen readers."
 tags: 
 - "CSS"
