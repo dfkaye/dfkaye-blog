@@ -56,7 +56,11 @@ Inspection in the Network panel of the browser tools revealed that `https://dfka
 
 ## Solution: Turn off Netlify optimizations for CSS and JS
 
-Netlify by default will bundle CSS and JavaScript assets and serve them from the `cloudfront` domain. Since that's getting in our way, we can turn that off in the netlify.toml file with these directives and import files from our custom domain:
+We want to ensure that modules and their dependencies with relative paths reside on the same domain.
+
+Netlify by default will bundle CSS and JavaScript assets and serve them from the `cloudfront` domain, but does not resolve all the module dependencies, leaving them unbundled.
+
+We can turn the bundling step off in the `netlify.toml` file with these directives and thereby import files from our custom domain:
 
 ```toml
 [build.processing.css]
