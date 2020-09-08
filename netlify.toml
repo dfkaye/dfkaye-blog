@@ -6,6 +6,8 @@
 [[headers]]
   for = "/*"
   [headers.values]
+    # https://community.netlify.com/t/access-control-allow-origin-policy/1813
+    Access-Control-Allow-Origin = "*"
 		# https://dev.to/olegchursin/browser-security-headers-with-gatsby-and-netlify-4f5m
     Feature-Policy = "microphone 'none'; geolocation 'none'"
     Referrer-Policy = "no-referrer"
