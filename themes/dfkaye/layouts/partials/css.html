@@ -1,12 +1,12 @@
 <!-- set main.css with nonce -->
 {{ $css := "css/main.css" | relURL }}
 {{ $nonce := .Scratch.Get "nonce" }}
-<!--link rel="stylesheet" href="{{ $css }}" nonce="{{ $nonce }}" -->
+<link rel="stylesheet" href="{{ $css }}" nonce="{{ $nonce }}">
 
 <!-- Migrate CSS vars to *the template css* and minify the output. -->
 {{ $templateStyle := resources.Get "css/test.css" | resources.Minify }}
 {{ $style := $templateStyle | resources.ExecuteAsTemplate "css/style.css" .  }}
-<link rel="stylesheet" href="{{ $style.Permalink }}" nonce="{{ $nonce }}">
+<!-- link rel="stylesheet" href="{{ $style.Permalink }}" nonce="{{ $nonce }}" -->
 
 <!-- processs list of CSS URLs from page params -->
 {{ range .Page.Params.Styles }}
