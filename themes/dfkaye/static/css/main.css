@@ -291,8 +291,8 @@ a:not([icon]):active {
 [rel="tag"] {
   font-size: var(--font-size-small);
   background-color: #efefef;
-  padding: .5em 1em;
   border-radius: 1em;
+  padding: .5em 1em;
 }
 
 [tag-count] {
@@ -317,7 +317,6 @@ a:not([icon]):active {
   display: flex;
   flex-flow: row wrap;
   align-items: baseline;
-  gap: .5em .5em;
   justify-content: center;
   list-style-type: none;
   /* touch */
@@ -339,7 +338,7 @@ a:not([icon]):active {
 
 [nav="header"] a {
   background-color: rgba(10,110, 200, .25);
-  color: white;
+  color: #fff;
   padding: .5em;
 }
 
