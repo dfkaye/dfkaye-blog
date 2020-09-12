@@ -153,7 +153,7 @@ Array.from(
 </div>
 {{< /rawhtml >}}
 
-## Explanation
+## Details
 
 {{< rawhtml >}}
 <p>
@@ -298,9 +298,3 @@ Array.from(
 }
 
 ```
-
-## Details
-
-You can read the accompanying blog post explaining the solution at <a
-  href="/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/">/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/</a>.
-  
