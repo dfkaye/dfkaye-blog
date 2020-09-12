@@ -1,7 +1,7 @@
-User-agent: Googlebot
+User-agent: DuckDuckBot
 Allow: /
 
-User-agent: DuckDuckbot
+User-agent: Googlebot
 Allow: /
 
 User-agent: Twitterbot
