@@ -80,11 +80,8 @@ html {
 
 header {
   color: #fff;
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
   /* use 12.25em if site status is hidden */
-  min-height: 15.25em;
+  min-height: 17em;
 }
 
 header ~ * {
@@ -124,9 +121,9 @@ footer {
 
 [site-status] {
   background-color: rgba(10, 110, 200, .1);
+  color: gold;
   display: flex;
   font-size: var(--font-size-reduced);
-  height: 1em;
   justify-content: center;
   width: 100%;
 }
