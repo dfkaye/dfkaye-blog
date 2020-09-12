@@ -320,7 +320,7 @@ a:not([icon]):active {
 
 [nav] li {
   display: inline-block;
-  margin: 0 1em;
+  margin: 0 1em 1em;
 }
 
 [nav] a {
