@@ -74,11 +74,6 @@ html {
 
 /* flow */
 
-[dfk-body] > :not(a) {
-  /* fix padding for small viewports, allow expansion on larger ones. */
-  padding: 0 max(2em, 10%);
-}
-
 header {
   color: #fff;
   display: flex;
@@ -106,6 +101,10 @@ header ~ * {
   z-index: -1;
 }
 
+[role="main"] > article {
+  padding: 0 2em;
+}
+
 footer {
   border-top: 1px solid #ccc;
   display: flex;
@@ -115,7 +114,7 @@ footer {
 
 [nav] [site-title] {
   height: 3em;
-  margin: .2em 0;
+  margin: .2em 1em;
   padding: .75em;
 }
 
@@ -138,15 +137,8 @@ footer {
   padding: 1em .25em;
 }
 
-[page-title] ~ [page-description] {
-  /*
-  background-color: whitesmoke;
-  border-left: {{ $fenceBorderWidth }} solid darkslategray;
-  */
-}
-
-[role="main"] li {
-  margin: 0 0 0 1em;
+[role="main"] li:not([page-item]) {
+  margin: 1em 0 0 1em;
 }
 
 [page-title] {/* h1 */
@@ -435,14 +427,13 @@ a:not([icon]):active {
 [page-list] {
   display: flex;
   flex-direction: column;
-  gap: 2em;
   list-style: none;
-  margin: 1em;
 }
 
 [page-item] {
   border-radius: .5em;
   box-shadow: rgba(0, 0, 0, 0.25) 0 0.125rem 0.25rem;
+  margin-bottom: 1.5em;
   padding: 1em 1em 0 1em;
 }
 
