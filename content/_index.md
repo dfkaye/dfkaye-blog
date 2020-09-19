@@ -107,6 +107,9 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 ## To-do demos
 
 + CSS tabs demo and post - done
++ resize attribute polyfill (textarea, div, overflow: hidden)
+  - https://developer.mozilla.org/en-US/docs/Web/CSS/resize
+  - textarea gist - https://gist.github.com/dfkaye/bdaa6bb621154a1366de85c139bf7b23
 + Calculator demo with TDD
 + Accessible date-input demo
 + S | p | r | e | a | d | S | h | e | e | t, with web workers demo and TDD

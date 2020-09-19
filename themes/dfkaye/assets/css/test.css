@@ -329,7 +329,7 @@ a:not([icon]):active {
 }
 
 [nav="header"] a {
-  background-color: rgba(10,110, 200, .25);
+  background-color: rgba(10, 110, 200, .25);
   color: #fff;
   padding: .5em;
 }
