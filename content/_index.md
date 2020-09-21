@@ -41,12 +41,12 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 ## To-do set-up
 
 + better code snippet styles (not one element per line but well-framed and readable)
-  - *Surprise!* To support this on Netlify, see https://wilks.co/articles/custom-hugo-version-with-netlify/ -- done
-+ set up RSS feed -- done
-+ sitemap.xml -- done
-+ categories and tags layout and keywords -- done for tags and keywords
-+ resize datetime and reading-time -- done
-+ improve the doc-summary style on list pages -- done
+  - *Surprise!* To support this on Netlify, see https://wilks.co/articles/custom-hugo-version-with-netlify/ -- *done*
++ set up RSS feed -- *done*
++ sitemap.xml -- *done*
++ categories and tags layout and keywords -- *done* for tags and keywords
++ resize datetime and reading-time -- *done*
++ improve the doc-summary style on list pages -- *done*
 + pagination in list pages (by year, by count (100), or...?)
 + use Hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
@@ -56,12 +56,12 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 
 ## To-do posts
 
-+ "we threw out the rule book"
++ "we threw out the rule book" -- *done*
 + "custom attributes are fast, good, and cheap"
   - traffic signal states
   - factoring BEM out
-+ post about "Making the Switch to Hugo"
-+ post about Hugo resources
++ post about "Making the Switch to Hugo" -- *done*
++ post about Hugo resources -- *done*
 + post about post prev next and CSS content ISO values
   - https://stackoverflow.com/questions/44186778/link-to-next-post
   - https://brajeshwar.github.io/entities/
@@ -106,7 +106,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 
 ## To-do demos
 
-+ CSS tabs demo and post - done
++ CSS tabs demo and post - *done*
 + resize attribute polyfill (textarea, div, overflow: hidden)
   - https://developer.mozilla.org/en-US/docs/Web/CSS/resize
   - textarea gist - https://gist.github.com/dfkaye/bdaa6bb621154a1366de85c139bf7b23
