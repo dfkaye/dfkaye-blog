@@ -30,7 +30,7 @@ I use Windows 10 on a Dell laptop, so I use `chocolatey`. On a macOS I would use
 
 Don't wait. Get this under git immediately.
 
-Create the repository on github.
+Create the repository on [github](https://github.com).
 
 Then navigate to your local blog directory and type `git init`.
 
@@ -48,8 +48,8 @@ Create an HTML file at `layouts/index.html`. See [Zach Betz's post for a nice ex
 
 ## Push a change to git master
 
-1. Add all the files to git: `git add .`
-1. Commit your changes: `git commit -m "first commit"
+1. Add all the files to git: `git add . `
+1. Commit your changes: `git commit -m "first commit"`
 1. Add your remote to your local repo: `git remote add origin https://github.com/dfkaye/dfkaye-blog.git`
 1. Push your changes up: `git push -u origin master`
 1. Verify the push made it to the repo on github.com. 
