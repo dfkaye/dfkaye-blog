@@ -470,7 +470,7 @@ a:not([icon]):active {
 
 [prev-next] {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
 }
 
 [prev], [next] {
