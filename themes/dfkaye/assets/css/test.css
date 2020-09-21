@@ -108,7 +108,7 @@ header ~ * {
   max-width: 75ch;
 }
 
-footer {
+[role="contentinfo"] {
   border-top: 1px solid #ccc;
   display: flex;
   font-size: {{ $fontSizeReduced }};
