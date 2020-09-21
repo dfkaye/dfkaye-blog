@@ -6,9 +6,12 @@
   {{ .Scratch.Set "pageType" "demo" }}
   {{ end }}
   <article prev="{{ .Scratch.Get "pageType" }}">
-    <a rel="prev" href="{{ .Permalink }}" aria-label="Previous {{ .Scratch.Get "pageType" }}">Previous</a>
+    <a rel="prev" href="{{ .Permalink }}" aria-label="Previous {{ .Scratch.Get "pageType" }}">
+      <i left aria-hidden="true">Previous</i>
+    </a>
   </article>
   {{ end }}
+
   {{ with .NextInSection }}
   {{ if eq .Type "posts" }}
   {{ .Scratch.Set "pageType" "post" }}
@@ -16,7 +19,9 @@
   {{ .Scratch.Set "pageType" "demo" }}
   {{ end }}
   <article next="{{ .Scratch.Get "pageType" }}">
-    <a rel="next" href="{{ .Permalink }}" aria-label="Next {{ .Scratch.Get "pageType" }}">Next</a>
+    <a rel="next" href="{{ .Permalink }}" aria-label="Next {{ .Scratch.Get "pageType" }}">
+      <i right aria-hidden="true">Next</i>
+    </a>
   </article>
   {{ end }}
 </nav>

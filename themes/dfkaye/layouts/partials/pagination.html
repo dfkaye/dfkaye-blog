@@ -1,0 +1,25 @@
+{{ $paginator := .Paginator }}
+{{ if gt $paginator.TotalPages 1 }}
+{{   if eq .Type "posts" }}
+{{     .Scratch.Set "pageType" "posts" }}
+{{   else if eq .Type "demos"}}
+{{     .Scratch.Set "pageType" "demos" }}
+{{   end }}
+<nav prev-next>
+  {{ if $paginator.HasPrev }}
+  <article prev="{{ .Scratch.Get "pageType" }}">
+    <a rel="prev" href="{{ $paginator.Prev.URL }}" aria-label="Newer {{ .Scratch.Get "pageType" }}">
+      <i left aria-hidden="true">Newer</i>
+    </a>
+  </article>
+  {{ end }}
+
+  {{ if $paginator.HasNext }}
+  <article next="{{ .Scratch.Get "pageType" }}">
+    <a rel="next" href="{{ $paginator.Next.URL }}" aria-label="Older {{ .Scratch.Get "pageType" }}">
+      <i right aria-hidden="true">Older</i>
+    </a>
+  </article>
+  {{ end }}
+</nav>
+{{ end }}

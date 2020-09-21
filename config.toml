@@ -11,7 +11,7 @@ theme = "dfkaye"
 canonifyURLs = true
 
 # prev | next
-# pagination = 1
+# paginate = 1
 
 [permalinks]
   posts = "posts/:year/:month/:day/:slug/"
@@ -32,3 +32,7 @@ canonifyURLs = true
     noClasses = true
     style = "pygments"
     tabWidth = 2
+
+[sitemap]
+  changeFreq = "monthly"
+  priority = "0.5"

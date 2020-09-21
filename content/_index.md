@@ -47,7 +47,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + categories and tags layout and keywords -- *done* for tags and keywords
 + resize datetime and reading-time -- *done*
 + improve the doc-summary style on list pages -- *done*
-+ pagination in list pages (by year, by count (100), or...?)
++ pagination in list pages (by year, by count (100), or...?) -- *done*
 + use Hugo templating (--instead-of-css-vars) in the CSS
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
   - *All lies. Every post on how to do this is wrong.*

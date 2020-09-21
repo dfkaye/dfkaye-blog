@@ -125,6 +125,13 @@ header ~ * {
   padding: .75em;
 }
 
+[http-status="404"] {
+  color: chocolate;
+  font-size: var(--font-size-large);
+  padding: 2em;
+  text-align: center;
+}
+
 [site-status] {
   background-color: rgba(10, 110, 200, .1);
   color: gold;
@@ -485,21 +492,13 @@ a:not([icon]):active {
   padding: 0 1em;
 }
 
-[next] {
-  text-align: right;
-}
-
-[rel="next"] {
-  justify-self: flex-end;
-}
-
-[rel="prev"]:before {
+[rel="prev"] [left]:before {
   content: "\2190";
   margin-left: -1.5em;
   position: absolute;
 }
 
-[rel="next"]:after {
+[rel="next"] [right]:after {
   content: "\2192";
   margin-left: .5em; 
   position: absolute;
