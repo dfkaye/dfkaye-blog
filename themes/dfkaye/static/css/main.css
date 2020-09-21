@@ -102,8 +102,14 @@ header ~ * {
   z-index: -1;
 }
 
+[role="main"] {
+  display: flex;
+  justify-content: center;
+}
+
 [role="main"] > article {
   padding: 0 2em;
+  max-width: 75ch;
 }
 
 footer {
