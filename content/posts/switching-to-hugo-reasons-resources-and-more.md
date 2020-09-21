@@ -1,5 +1,5 @@
 ---
-title: "Switching to the Hugo static site generator"
+title: "Switching to Hugo - reasons, resources, and more"
 date: 2020-05-22T11:55:43-07:00
 lastmod: 2020-09-21T11:55:41-07:00
 description: "Full story of why I switched from a Wordpress blog to a static site using Hugo, plus lists of resources I found helpful."
@@ -207,16 +207,5 @@ See Chris Ferdinandi's site for,
 
 + `simple-icons`, **Free SVG icons for popular brands** &#8594; https://simpleicons.org/
 
-### Some blog layouts worth considering
 
-+ Greg Schier's blog - https://schier.co/blog/
-+ Garrick Aden-Buie's blog - https://www.garrickadenbuie.com/
-+ Chris Ferdinandi's daily tips - https://gomakethings.com/articles/
-+ Zachary Wade Betz's blog - https://zwbetz.com/blog/
-+ Isaac Levin's blog - https://www.isaaclevin.com/
-+ Simon Hearne's blog - https://simonhearne.com/
-+ Gergely Orosz's blog (links page 2) - https://blog.pragmaticengineer.com/page/2/
-
-## Troubleshooting Hugo 
-
-+ Alison Hill (2019), **A Spoonful of Hugo: Troubleshooting Your Build** &#8594; https://alison.rbind.io/post/2019-03-04-hugo-troubleshooting/
+*More to come...*

@@ -2,7 +2,7 @@
 title: "First post: Why Hugo?"
 date: 2019-11-11T12:44:58-08:00
 lastmod: 2020-08-31T11:00:41-07:00
-description: "My first blog post on Hugo, and why I chose Hugo"
+description: "My first blog post on Hugo, and why I chose Hugo."
 tags: 
 - "Hugo"
 - "React"
