@@ -1,0 +1,15 @@
+<ul page-list>
+  {{ range (.Paginator 7).Pages }}
+  <li page-item>
+    <aside>
+      <time datetime="{{ .Date.Format "2006-01-02T15:04:05Z0700" }}">
+        {{ .Date.Format "January 2, 2006" }}
+      </time>
+    </aside>
+    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    <article page-description>
+      <i>{{ .Description }}</i>
+    </article>
+  </li>
+  {{ end }}
+</ul>

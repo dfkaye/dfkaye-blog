@@ -1,8 +1,8 @@
 {{ define "main" }}
 <h1 id="main" page-title>{{ .Title }}</h1>
 
-{{ range .Data.Terms.Alphabetical }}
-<article tag-term>
+<article tag-terms>
+  {{ range .Data.Terms.Alphabetical }}
   <a rel="tag" href="{{ .Page.Permalink }}">
     <span aria-hidden="true">{{ .Page.Title }}</span>
     <span tag-count
@@ -10,6 +10,6 @@
       ({{ .Count }})
     </span>
   </a>
+  {{ end }}
 </article>
-{{ end }}
 {{ end }}

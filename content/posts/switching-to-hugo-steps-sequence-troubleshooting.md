@@ -5,6 +5,7 @@ lastmod: 2020-09-21T12:20:41-07:00
 description: "Sequence of steps I followed to get my Hugo site working locally, and to publish content to github and Netlify."
 tags: 
 - "Hugo"
+- "Troubleshooting"
 ---
 
 <!--more-->

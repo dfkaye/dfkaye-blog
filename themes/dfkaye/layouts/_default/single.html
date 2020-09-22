@@ -8,9 +8,11 @@
   </li>
 </ul>
 
-{{ range .Params.tags }}
-<a rel="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
-{{ end }}
+<article tag-terms>
+  {{ range .Params.tags }}
+  <a rel="tag" href="/tags/{{ . | urlize }}">{{ . }}</a>
+  {{ end }}
+</article>
 
 <p id="page-description" page-description>{{ .Description }}</p>
 
