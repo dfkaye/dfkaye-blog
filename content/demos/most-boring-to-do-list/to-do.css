@@ -1,0 +1,71 @@
+/*
+  CSS for plain To-do list.
+  Created Feb 8, 2017.
+  Updated for blog demo 23 Sept 2020.
+  */
+
+todo {
+  display: block;
+  padding: 1em;
+  outline: 1px solid #eee;
+}
+
+[data-template] {
+  display: none;
+}
+
+[alert-message] {
+  display: none;
+}
+
+[alert-message][open] {
+  background-color: #ccc;
+  border: 1px solid #000;
+  border-radius: 0.25em;
+  display: block;
+  left: 0;
+  min-height: 90%;
+  min-width: 90%;
+  opacity: 0.95;
+  padding: 20% 2em;
+  position: absolute;
+  text-align: center;
+  top: 0;
+  z-index: 100;
+}
+
+[close] {
+  border: 1px solid #999;
+  border-radius: 0.25em;
+  margin-top: 2em;
+  padding: 0.5em;
+}
+
+[name] {
+  color: #00f;
+  margin: 1px;
+}
+
+[name]:focus {
+  outline: 1px dotted currentColor;
+}
+
+[readonly] {
+  background-color: transparent;
+  border: none;
+  // color: #999;
+  padding: 2px;
+}
+
+[done] {
+  text-decoration: line-through;
+}
+
+[todo-list] {
+  list-style-type: none;
+  padding: 0;
+}
+
+[item]:focus-within {
+  background-color: rgb(240, 240, 240);
+}

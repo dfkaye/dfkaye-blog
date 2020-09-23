@@ -20,7 +20,7 @@ After some 20 years as a (mainly) front-end engineer, I have arrived at some con
 
 Using someone else's package is no safer than writing from scratch. Read this post by @rachelbythebay on [Tripping over the potholes in too many libraries](https://rachelbythebay.com/w/2020/08/09/lib/).
 
-### Minimalism is a skill.
+## Minimalism is a skill.
 
 {{< rawhtml >}}
 Read this post by Tero Piirainen from <time>2019</time> on <a href="https://volument.com/blog/minimalism-the-most-undervalued-development-skill">Minimalism: The most undervalued development skill</a>.
@@ -34,7 +34,7 @@ Inspired by Jack Diederich's talk at PyCon 2012, [Stop Writing Classes](https://
 
 People disagree with this because they've trained themselves to live with classes per industry demand.
 
-### HTML: Use custom tag names and attribute names.
+## HTML: Use custom tag names and attribute names.
 
 Instead of a plain `<div>` with `class` attributes,
 
@@ -54,7 +54,9 @@ You'll then need CSS to display the `clock` element the way you want.
 clock { display: block | flex | whatever }
 ```
 
-### CSS: Use attribute selectors (and combinators).
+You can see an example of this approach in the [To-do List demo](/demos/most-boring-to-do-list/).
+
+## CSS: Use attribute selectors (and combinators).
 
 Instead of writing multiple mix-and-match state classes in <abbr title="Block-Element-Modifier">BEM</abbr>-like fashion, like so,
 
@@ -72,8 +74,10 @@ consider styling only from the custom attribute value:
 ```
 
 That gives you style control based on the element's state.
- 
-### JavaScript: Use data and functions.
+
+*Placeholder for the Traffic Light demo link*
+
+## JavaScript: Use data and functions.
 
 Use pure functions. Pass data in, update parts, return either only the parts or return the data, or a modified copy of the data.
 
@@ -100,7 +104,7 @@ And it's easier to test, thanks to ES6 modules.
 
 The model-view-controller pattern has run its course and should be abandoned.
 
-There are new and better patterns. Consider the [SAM pattern](https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c) by Jean Jacques Dubray.
+There are new and better patterns. Consider the [SAM pattern](https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c) by Jean-Jacques Dubray.
 
 ## Test *everything*.
 
