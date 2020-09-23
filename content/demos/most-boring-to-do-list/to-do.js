@@ -73,6 +73,7 @@ document.addEventListener('DOMContentLoaded', (function () {
 
     message.appendChild(fragment)
     message.setAttribute("open", "true")
+    message.scrollIntoView();
 
     saveLastActive(item);
 

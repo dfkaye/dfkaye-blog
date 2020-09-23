@@ -26,7 +26,7 @@ Orginally written in 2017, it has been modified to use a single custom tagname (
 
   <todo>
     <h2>Partly completed</h2>
-    <dialog role="alert" aria-live="assertive" alert-message="You have another item open. Please close it before editing another one." alert-close="Close message"></dialog>
+    <dialog role="alert" aria-live="assertive" alert-message="You have another item open. Please close it before editing another one." alert-close="Close"></dialog>
     <button handle="add">Add item</button>
     <ul todo-list>
       <li data-template>
@@ -52,7 +52,7 @@ Orginally written in 2017, it has been modified to use a single custom tagname (
 
   <todo>
     <h2>Empty</h2>
-    <dialog alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close message"></dialog>
+    <dialog alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close"></dialog>
     <button handle="add">Add item</button>
     <ul todo-list>
       <li data-template>
@@ -73,7 +73,7 @@ Here's the entire "Empty" list markup.
 ```html
   <todo>
     <h2>Empty</h2>
-    <dialog alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close message"></dialog>
+    <dialog alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close"></dialog>
     <button handle="add">Add item</button>
     <ul todo-list>
       <li data-template>
