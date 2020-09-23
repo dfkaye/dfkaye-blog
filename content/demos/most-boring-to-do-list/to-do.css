@@ -8,6 +8,7 @@ todo {
   display: block;
   padding: 1em;
   outline: 1px solid #eee;
+  position: relative;
 }
 
 [data-template] {
@@ -24,8 +25,8 @@ todo {
   border-radius: 0.25em;
   display: block;
   left: 0;
-  min-height: 90%;
-  min-width: 90%;
+  min-height: 100%;
+  min-width: 100%;
   opacity: 0.95;
   padding: 20% 2em;
   position: absolute;
