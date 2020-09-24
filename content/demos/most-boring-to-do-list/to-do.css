@@ -19,7 +19,7 @@ todo {
   display: none;
 }
 
-[alert-message][open] {
+[open] {
   background-color: #ccc;
   border: 1px solid #000;
   border-radius: 0.25em;
@@ -31,7 +31,7 @@ todo {
   padding: 20% 2em;
   position: absolute;
   text-align: center;
-  top: 0;
+  /* top: 0; */ /* leave top relative to the todo element */
   z-index: 100;
 }
 
@@ -54,7 +54,6 @@ todo {
 [readonly] {
   background-color: transparent;
   border: none;
-  // color: #999;
   padding: 2px;
 }
 

@@ -58,9 +58,10 @@ document.addEventListener('DOMContentLoaded', (function () {
       return;
     }
 
-    var msg = document.createElement('p')
-    msg.textContent = message.getAttribute("alert-message")
-    msg.setAttribute("tabindex", "0")
+    var text = document.createElement('p')
+    text.textContent = message.getAttribute("alert-message")
+    text.setAttribute("tabindex", "0")
+    text.setAttribute("text", "");
 
     var close = document.createElement('button')
     close.setAttribute('type', 'button')
@@ -68,40 +69,43 @@ document.addEventListener('DOMContentLoaded', (function () {
     close.textContent = message.getAttribute("alert-close")
 
     var fragment = document.createDocumentFragment()
-    fragment.appendChild(msg)
+    fragment.appendChild(text)
     fragment.appendChild(close)
 
     message.appendChild(fragment)
     message.setAttribute("open", "true")
-    message.scrollIntoView();
-
-    saveLastActive(item);
 
     close.focus()
+
+    requestAnimationFrame(function () {
+      message.scrollIntoView();
+    })
   })
 
   var handleMessageClick = (function (e) {
     var message = e.currentTarget
+
+    while (message.firstChild) {
+      /*
+       * Do this first before removing it from the DOM;
+       * else iOS Safari won't remove child elements.
+       */
+      message.removeChild(message.firstChild)
+    }
+
     message.removeAttribute("open")
 
     restoreLastActive(message);
-
-    while (message.firstChild) {
-      message.removeChild(message.firstChild)
-    }
   })
 
   var handleListClick = (function (e) {
     var list = e.currentTarget
     var target = e.target
     var handle = target.getAttribute('handle')
-    var nodeName = target.nodeName.toLowerCase()
     var item = target.parentNode
 
-    if (handle != 'save' && nodeName == 'button') {
-      if (list.querySelector('[handle="save"]')) {
-        return handleMessage(list.parentNode)
-      }
+    if (handle == 'edit' && list.querySelector("[name]:not([readonly]")) {
+      return handleMessage(list.parentNode)
     }
 
     handle == 'save' && (handleSave(item))
@@ -111,6 +115,10 @@ document.addEventListener('DOMContentLoaded', (function () {
   })
 
   var handleAdd = (function (list) {
+    if (list.querySelector("[name]:not([readonly]")) {
+      return handleMessage(list.parentNode)
+    }
+
     var template = list.querySelector('[data-template]')
     var item = template.cloneNode(true)
 
@@ -120,7 +128,10 @@ document.addEventListener('DOMContentLoaded', (function () {
     requestAnimationFrame(function () {
       list.appendChild(item)
 
-      // Make it editable so user can change the boilerplate name value.
+      /*
+       * Make it editable so user can change the boilerplate
+       * name value.
+       */
       handleEdit(item)
     })
   })
@@ -131,17 +142,10 @@ document.addEventListener('DOMContentLoaded', (function () {
     list && (handleAdd(list))
   })
 
-  // handle focus transitions between current input and the dialog
-  function saveLastActive(item) {
-    var active = document.activeElement;
-
-    active.setAttribute("active", true)
-  }
-
+  // handle focus transitions between dialog and first open item in the list.
   function restoreLastActive(message) {
-    var active = message.parentElement.querySelector("[active]")
+    var active = message.parentElement.querySelector("[name]:not([readonly]")
 
-    active.removeAttribute("active")
     active.focus()
   }
 
