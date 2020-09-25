@@ -42,6 +42,10 @@ In this post we examine a `safe-math.js` module that enables safer math operatio
 - Should take a single value argument.
 - Should take multiple value arguments (i.e., more than 2).
 - Should accept a values array argument (i.e., a series of values).
+- Should accept scientific or exponential notation (i.e., 1.23e6).
+- Should accept negative values.
+- Should accept comma-formatted numeric strings.
+- Should accept String objects.
 - Should accept booleans as 1 and 0.
 - Should accept *any* "functionally numeric" objects (for example: `{ valueOf() { return 0.1 } }`).
 
@@ -126,13 +130,13 @@ function isNumeric(a) {
 }
 ```
 
-2. The `sum()` function reduces each "current, next" value pair, first passing these to the `expand()` function
+2. The `sum()` function reduces each `<current, next>` value pair, first passing these to the `expand()` function
 
 ## The `expand()` helper function
 
 *Originally I created this in 2017 as a gist at https://gist.github.com/dfkaye/c2210ceb0f813dda498d22776f98d48a.*
 
-The brains behind the whole operation is the `expand()` function, a helper that returns a coerced left & right number pair, plus an expansion factor (named "by" for the moment).
+The brains behind the whole operation is the `expand()` function, a helper that returns a coerced `<left, right>` number pair, plus an expansion factor (named "by" for the moment).
 
 The function measure's each value's decimal length and uses the larger of the two to create the expansion factor. The function then returns an object containing each value multiplied by the expansion factor, meaning that both are integers instead of floating point numbers, along with the expansion factor itself for use by the client to restore the decimal (dividing the result by it in the case of `sum()` or by the square of it in the case of `product()`).
 
