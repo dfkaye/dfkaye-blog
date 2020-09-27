@@ -122,3 +122,5 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
   + using custom attributes (vevo interview) at https://codepen.io/dfkaye/pen/eYJzQbX
   + using :target pseudo class and conditionally displayed links inside button at https://codepen.io/dfkaye/pen/KKzEbdY
 + refactor [where.js](https://github.com/dfkaye/where.js) to handle ES6 imports and arrow functions
+  1. could refactor
+  2. could deprecate and start a new one as "wheredoc" (because heredoc...)
