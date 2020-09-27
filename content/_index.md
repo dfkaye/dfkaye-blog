@@ -122,5 +122,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
   + using custom attributes (vevo interview) at https://codepen.io/dfkaye/pen/eYJzQbX
   + using :target pseudo class and conditionally displayed links inside button at https://codepen.io/dfkaye/pen/KKzEbdY
 + refactor [where.js](https://github.com/dfkaye/where.js) to handle ES6 imports and arrow functions
-  1. could refactor
-  2. could deprecate and start a new one as "wheredoc" (because heredoc...)
+  + ~~should deprecate and start a new one as "wheredoc" (because heredoc...)~~ - *done*
+  + using chai-http: https://pjcalvo.github.io/testing,/mocha,/javascript/2019/12/09/webdriverio-and-ddt.html
+  + jest already has `it.each` and `describe.each`: https://dev.to/flyingdot/data-driven-unit-tests-with-jest-26bh
+  + original inspiration, spock expect+where tables: http://spockframework.org/spock/docs/1.0/data_driven_testing.html
