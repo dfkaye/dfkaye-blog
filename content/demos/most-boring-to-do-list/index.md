@@ -1,8 +1,8 @@
 ---
 title: "Demo: Most boring To-do list"
 description: "Very plain To-do list demo made from accessible HTML, modern-vanilla.js and minimally-tolerable.css."
-date: 2017-02-08T15:30:43-07:00
-lastmod: 2020-09-23T14:52:41-07:00
+date: 2020-09-23T14:52:41-07:00
+lastmod: 2020-09-27T21:34:41-07:00
 tags:
 - "CSS"
 - "JavaScript"
