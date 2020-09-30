@@ -95,6 +95,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + future awesome post about the SAM pattern
   - see the HEX article at https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c
   - see JJ's original article "No More MVC Frameworks" at https://www.infoq.com/articles/no-more-mvc-frameworks/
++ escaping hugo shortcodes, https://liatas.com/posts/escaping-hugo-shortcodes/
 
 ## To-do pages
 

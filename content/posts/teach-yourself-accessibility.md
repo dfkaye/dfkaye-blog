@@ -32,7 +32,9 @@ The first rule of {{< rawhtml >}}<abbr title="Accessible Rich Internet Applicati
 
 For more advice on ARIA, see https://www.w3.org/TR/using-aria/#rule1.
 
-## Here's what we'll do
+## Contents
+
+Here's what we'll do.
 
 - [Write the HTML first](#write-the-html-first)
 - [Add some CSS to manage basic layout](#add-some-css-to-manage-basic-layout)
@@ -45,7 +47,8 @@ For more advice on ARIA, see https://www.w3.org/TR/using-aria/#rule1.
 - [Add keydown handlers in JavaScript to detect `Space` and `Enter` key events](#add-keydown-handlers-in-javascript-to-detect-space-and-enter-key-events)
 - [Add JavaScript to set `aria` state attributes](#add-javascript-to-set-aria-state-attributes)
 
-## Write the HTML first
+
+{{< jump-heading >}}Write the HTML first{{< /jump-heading >}}
 
 The following HTML is said to be *semantic* as the tag name "button" describes the native element.
 
@@ -83,7 +86,7 @@ Which gives us this:
 
 Note that this last "custom" element is *not* the same as a web component created with  `window.customElements.define()` &mdash; that's a more complicated topic for another time. Browsers instead use this `<custom>` tag to create an `HTMLUnknownElement`, which "represents an invalid HTML element and derives from the `HTMLElement` interface, but without implementing any additional properties or methods" (thanks to [Mozilla Developer Network](https://developer.mozilla.org/en-US/docs/Web/API/HTMLUnknownElement)).
 
-## Add some CSS to manage basic layout
+{{< jump-heading >}}Add some CSS to manage basic layout{{< /jump-heading >}}
 
 For the purpose of demonstrating our accessibility enhancements, we will use the following CSS using a custom attribute, `custom-button`, to select only our custom buttons.
 
@@ -125,7 +128,8 @@ Here are our controls so far.
 <custom custom-button onclick="alert('custom says hello');">Click this custom tag styled like a button!</custom>
 {{< /rawhtml >}}
 
-## Use keyboard navigation to verify that elements receive focus
+
+{{< jump-heading >}}Use keyboard navigation to verify that elements receive focus{{< /jump-heading >}}
 
 Our native button will receive {{< rawhtml >}}<kbd>Tab</kbd>{{< /rawhtml >}} key focus.
 
@@ -151,7 +155,7 @@ Our div and custom buttons will not.
 </p>
 {{< /rawhtml >}}
 
-## Add `tabindex="0"` to elements that we want to be focusable
+{{< jump-heading >}}Add `tabindex="0"` to elements that we want to be focusable{{< /jump-heading >}}
 
 ```html
 <div tabindex="0" ...>
@@ -168,7 +172,7 @@ Now our div and custom elements will receive keyboard focus.
 <custom tabindex="0" custom-button onclick="alert('custom says hello');">Click this custom tag styled like a button!</custom>
 {{< /rawhtml >}}
 
-## Use a screen reader to verify that element types or roles are announced properly.
+{{< jump-heading >}}Use a screen reader to verify that element types or roles are announced properly{{< /jump-heading >}}
 
 I use Windows 10 Narrator. For the native button element, Narrator announces the element's text, then announces "button".
 
@@ -186,7 +190,7 @@ But for our div and custom elements, Narrator announces the type as "group" inst
 <custom tabindex="0" custom-button onclick="alert('custom says hello');">Click this custom tag styled like a button!</custom>
 {{< /rawhtml >}}
 
-## Add `role` attributes to let screen readers announce the desired role
+{{< jump-heading >}}Add `role` attributes to let screen readers announce the desired role{{< /jump-heading >}}
 
 Our div and custom elements need the "role" attribute set to "button".
 
@@ -205,7 +209,7 @@ Now Narrator announces the element's text, then announces "button" as expected.
 <custom role="button" tabindex="0" custom-button onclick="alert('custom says hello');">Click this custom tag styled like a button!</custom>
 {{< /rawhtml >}}
 
-## Test hover, focus, and pressed (active) states
+{{< jump-heading >}}Test hover, focus, and pressed (active) states{{< /jump-heading >}}
 
 Our native button should show some changes between hover, focus, and pressed (active) states.
 
@@ -246,7 +250,8 @@ Now hover, focus, and active states are styled.
 <custom custom-hover custom-focus custom-active role="button" tabindex="0" custom-button onclick="alert('custom says hello');">Click this custom tag styled like a button!</custom>
 {{< /rawhtml >}}
 
-## Trigger behavior with `Space` and `Enter` keys
+
+{{< jump-heading >}}Trigger behavior with `Space` and `Enter` keys{{< /jump-heading >}}
 
 Our button element will respond to these keys and display the alert.
 
@@ -255,7 +260,8 @@ Our `div` and `custom` elements will not respond to these events.
 - on {{< rawhtml >}}<kbd>Space</kbd>{{< /rawhtml >}} key presses, the screen will scroll down.
 - on {{< rawhtml >}}<kbd>Enter</kbd>{{< /rawhtml >}} key presses, no action will occur.
 
-## Add `keydown` handlers in JavaScript to detect `Space` and `Enter` key events
+
+{{< jump-heading >}}Add `keydown` handlers in JavaScript to detect `Space` and `Enter` key events{{< /jump-heading >}}
 
 *For this demo only, we will use another attribute, `js-button`, to select for our custom buttons in the DOM. Normally I would re-use the `custom-button` attribute in the selector.*
 
@@ -278,7 +284,7 @@ Update our HTML with that attribute.
 <custom js-button ...>
 ```
 
-## Add JavaScript to set `aria` state attributes
+{{< jump-heading >}}Add JavaScript to set `aria` state attributes{{< /jump-heading >}}
 
 For example, if we want to toggle the 'pressed' state, we can add `keydown` and `keyup` handlers in JavaScript to set the `aria-pressed` attribute to `true` and `false`, respectively.
 
