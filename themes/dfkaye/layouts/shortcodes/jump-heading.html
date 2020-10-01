@@ -3,7 +3,7 @@
 {{ $level := or (.Get "level") "2"}}
 {{ $text := trim .Inner " " }}
 {{ $slug := lower (replace $text " " "-") }}
-{{ $slug := replaceRE `['"=)(]` "" $slug }}
+{{ $slug := replaceRE `[~!@#$%^&*()-+={\[}\]|\\:;"'<,>.?\/]` "" $slug }}
 <!-- Can't figure out replaceRE for ` -->
 {{ $slug := replace $slug "`" "" }}
 <h{{ $level }} tabindex="-1" id="{{ $slug }}">{{ $text }}</h{{ $level }}>
