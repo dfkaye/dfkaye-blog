@@ -14,7 +14,7 @@ scripts:
 
 ## Acknowledgements
 
-Fisrt off, I'd like to thank [Jason Karns](https://twitter.com/jasonkarns), [Timothy Leverett](https://twitter.com/zzzzBov), and [Leonie Watson](https://twitter.com/LeonieWatson) for their suggestions in a conversation I started on [twitter](https://twitter.com/dfkaye/status/1311001235495858176).
+First off, I'd like to thank [Jason Karns](https://twitter.com/jasonkarns), [Timothy Leverett](https://twitter.com/zzzzBov), and [Leonie Watson](https://twitter.com/LeonieWatson) for their suggestions in a conversation I started on [twitter](https://twitter.com/dfkaye/status/1311001235495858176).
 
 <!--more-->
 
@@ -95,7 +95,7 @@ That shortcode mimics Hugo's built-in algorithm that creates an `id` attribute f
 That produces an `h2` level element by default with the following markup.
 
 ```html
-<h2 tabindex="-1" id="what-we'll-do-next">What we'll do next</h2>
+<h2 tabindex="-1" id="what-well-do-next">What we'll do next</h2>
 ```
 
 Levels are supported with the named `level` param.
@@ -112,6 +112,6 @@ That produces an `h3` element instead.
 
 ## Conclusion
 
-While the solution may not optimal, it did not take long to write it.
+While the solution may not be optimal, it did not take long to write.
 
-What took by far the most time was the investigating the different variations in the user experience between browsers, keyboard navigation, and screen reader navigation.
+What took by far the most time was investigating the different variations in the user experience between browsers, keyboard navigation, and screen reader navigation.
