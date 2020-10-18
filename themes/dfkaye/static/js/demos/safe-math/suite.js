@@ -1,33 +1,32 @@
-/* Math apply: operate over a sequence of values. */
-import { sum, product, avg } from "/js/lib/safe-math.js";
+import { sum, product, mean, median, mode, range } from "/js/lib/safe-math.js";
 
 describe("safe-math", function () {
 
-  var assert = chai.assert;
+  var expect = chai.expect;
 
   describe("sum", function () {
     it("takes a single value", () => {
       var actual = sum(1);
 
-      assert(actual === 1);
+      expect(actual).to.equal(1);
     });
 
     it('takes multiple values', () => {
       var actual = sum(1, 2, 3);
 
-      assert(actual === 6);
+      expect(actual).to.equal(6);
     });
 
     it('takes values array', () => {
       var actual = sum([1, 2, 3]);
 
-      assert(actual === 6);
+      expect(actual).to.equal(6);
     });
 
     it('takes comma-formatted string values', () => {
       var actual = sum("1,000", 1);
 
-      assert(actual === 1001);
+      expect(actual).to.equal(1001);
     });
 
     it('takes scientific notation', () => {
@@ -36,7 +35,9 @@ describe("safe-math", function () {
         "987.654E6" // string
       ]);
 
-      assert(actual === 2 * "987.654E6");
+      var expected = 2 * "987.654E6";
+
+      expect(actual).to.equal(expected);
     });
 
     it('takes negative values', () => {
@@ -45,7 +46,7 @@ describe("safe-math", function () {
         "987.654E6" // string
       ]);
 
-      assert(actual === 0);
+      expect(actual).to.equal(0);
     });
 
     it('takes boolean values', () => {
@@ -58,7 +59,7 @@ describe("safe-math", function () {
         new Boolean(false)
       ]);
 
-      assert(actual === 3);
+      expect(actual).to.equal(3);
     });
 
     it('takes String objects', () => {
@@ -67,7 +68,7 @@ describe("safe-math", function () {
         new String(0.2)
       ]);
 
-      assert(actual === 0.3);
+      expect(actual).to.equal(0.3);
     });
 
     it("takes 'functionally numeric' objects", () => {
@@ -80,13 +81,13 @@ describe("safe-math", function () {
         }
       ]);
 
-      assert(actual === 0.3);
+      expect(actual).to.equal(0.3);
     });
 
     it('adds 0.1 + 0.2 to get 0.3', () => {
       var actual = sum([0.1, 0.2]);
 
-      assert(actual === 0.3);
+      expect(actual).to.equal(0.3);
     });
   })
 
@@ -94,25 +95,25 @@ describe("safe-math", function () {
     it("takes a single value", () => {
       var actual = product(1);
 
-      assert(actual === 1);
+      expect(actual).to.equal(1);
     });
 
     it('takes multiple values', () => {
       var actual = product(1, 2, 3);
 
-      assert(actual === 6);
+      expect(actual).to.equal(6);
     });
 
     it('takes values array', () => {
       var actual = product([1, 2, 3]);
 
-      assert(actual === 6);
+      expect(actual).to.equal(6);
     });
 
     it('takes comma-formatted string values', () => {
       var actual = product("1,000", 1);
 
-      assert(actual === 1000);
+      expect(actual).to.equal(1000);
     });
 
     it('takes scientific notation', () => {
@@ -121,7 +122,9 @@ describe("safe-math", function () {
         "987.654E6" // string
       ]);
 
-      assert(actual === 987.654E6 * "987.654E6");
+      var expected = 987.654E6 * "987.654E6";
+
+      expect(actual).to.equal(expected);
     });
 
     it('takes negative values', () => {
@@ -130,7 +133,9 @@ describe("safe-math", function () {
         "987.654E6" // string
       ]);
 
-      assert(actual === 987.654E6 * "987.654E6" * -1);
+      var expected = 987.654E6 * "987.654E6" * -1;
+
+      expect(actual).to.equal(expected);
     });
 
     it('takes boolean values', () => {
@@ -143,7 +148,7 @@ describe("safe-math", function () {
         new Boolean(false)
       ]);
 
-      assert(actual === 0);
+      expect(actual).to.equal(0);
     });
 
     it('takes String objects', () => {
@@ -152,7 +157,7 @@ describe("safe-math", function () {
         new String(0.2)
       ]);
 
-      assert(actual === 0.02);
+      expect(actual).to.equal(0.02);
     });
 
     it("takes 'functionally numeric' objects", () => {
@@ -165,56 +170,214 @@ describe("safe-math", function () {
         }
       ]);
 
-      assert(actual === 0.02);
+      expect(actual).to.equal(0.02);
     });
 
     it("multiplies 0.1 * 0.1 to get 0.01", () => {
       var actual = product([0.1, 0.1]);
 
-      assert(actual === 0.01);
+      expect(actual).to.equal(0.01);
     });
   });
 
-  describe("avg", function () {
-    it("returns 0 if no values", () => {
-      // 18 Aug 2020, This found a bug, where avg() always divided the result by 0.
-      var actual = avg();
+  describe("mean", function () {
+    it("returns 0 if no values in series", () => {
+      // 18 Aug 2020, This found a bug, where mean() always divided the result by 0.
+      var actual = mean();
 
-      assert(actual === 0);
+      expect(actual).to.equal(0);
     });
 
-    it("returns average value of a series", () => {
-      var actual = avg([1, 2, 3, 4]);
+    it("returns value if only one value in series", () => {
+      var actual = mean(999);
 
-      assert(actual === 2.5);
+      expect(actual).to.equal(999);
+    })
+
+    it("returns average value of a series", () => {
+      var actual = mean([1, 2, 3, 4]);
+
+      expect(actual).to.equal(2.5);
     });
 
     it("ignores functionally non-numeric values", () => {
       // 18 Aug 2020, This found a bug, where '' is coerced to 0 by expand().
-      var actual = avg(NaN, 1, null, 2, undefined, 3, '', 4);
+      var actual = mean(NaN, 1, null, 2, undefined, 3, '', 4);
 
-      assert(actual === 2.5);
+      expect(actual).to.equal(2.5);
     });
 
     it("returns average value of a series of functionally numeric values", () => {
-      var actual = avg([
+      var actual = mean([
         {
-          valueOf() { return 3 }
+          valueOf() { return 11 }
         },
-        new String('2'),
+        new String('9'),
         true // 1
       ]);
 
-      assert(actual === (6 / 3));
+      // (21 / 3)
+      expect(actual).to.equal(7);
     });
 
     it("handles POSITIVE_INFINITY or NEGATIVE_INFINITY as values, but not both (returns NaN)", () => {
+      expect(mean(Infinity, Infinity)).to.equal(Infinity);
+      expect(mean(-Infinity, -Infinity)).to.equal(-Infinity);
+
       // 18 Aug 2020, Interesting finding.
-      assert(avg(Infinity, Infinity) === Infinity);
-      assert(avg(-Infinity, -Infinity) === -Infinity);
-      assert(avg(-Infinity, Infinity).toString() === "NaN");
+      expect(mean(-Infinity, Infinity)).to.be.NaN;
     });
   });
+
+  describe("median", () => {
+    it('returns 0 if no values in series', () => {
+      var actual = median();
+
+      expect(actual).to.equal(0);
+    })
+
+    it('returns value if only one value in series', () => {
+      var actual = median(13);
+
+      expect(actual).to.equal(13);
+    })
+
+    it('returns median value of an odd number in a series', () => {
+      var actual = median([9, 7, 1, 3, 4]);
+
+      expect(actual).to.equal(4);
+    })
+
+    it('returns median value of an even number in a series', () => {
+      var actual = median([9, 1, 6, 3, 7, 4]);
+
+      expect(actual).to.equal(6);
+    })
+
+    it("ignores functionally non-numeric values", () => {
+      var actual = median(NaN, 1, null, 2, undefined, 3, '', 4);
+
+      expect(actual).to.equal(3);
+    });
+
+    it("returns number where median value is a String object", () => {
+      var actual = median([
+        {
+          valueOf() { return 10 }
+        },
+        new String('9'),
+        true // 1
+      ]);
+
+      expect(actual).to.equal(9);
+    });
+
+    it("returns median value of a series of functionally numeric values", () => {
+      var actual = median([
+        {
+          valueOf() { return 10 }
+        },
+        new String('12'),
+        true // 1
+      ]);
+
+      expect(actual).to.equal(10);
+    });
+
+    it("handles POSITIVE_INFINITY and NEGATIVE_INFINITY as values", () => {
+      expect(median(Infinity, 1, Infinity)).to.equal(Infinity);
+      expect(median(-Infinity, -1, -Infinity)).to.equal(-Infinity);
+      expect(median(-Infinity, 0, Infinity)).to.equal(0);
+    });
+  })
+
+  describe("mode", () => {
+    it('returns empty array if no values in series', () => {
+      var actual = mode();
+
+      expect(actual).to.deep.equal([]);
+    })
+
+    it('returns array of 1 if only one value in series', () => {
+      var actual = mode(13);
+
+      expect(actual).to.deep.equal([13]);
+    })
+
+    it('returns mode value with most occurrences in a series', () => {
+      var actual = mode([1, 1, 1, 2, 2, 3]);
+
+      expect(actual).to.deep.equal([1]);
+    })
+
+    it('returns multiple values with most occurrences in a series', () => {
+      var actual = mode([1, 1, 1, 2, 2, 3, 4, 4, 4]);
+
+      expect(actual).to.deep.equal([1, 4]);
+    })
+
+    it("ignores functionally non-numeric values", () => {
+      var actual = mode(NaN, 1, null, 2, undefined, 3, '', 4, 5, 2, 5);
+
+      expect(actual).to.deep.equal([2, 5]);
+    });
+
+    it("returns mode of a series of functionally numeric values", () => {
+      var actual = mode([
+        {
+          valueOf() { return 10 }
+        },
+        new String('10'),
+        true // 1
+      ]);
+
+      expect(actual).to.deep.equal([10]);
+    });
+
+    it("handles POSITIVE_INFINITY and NEGATIVE_INFINITY as values", () => {
+      expect(mode(Infinity, 1, Infinity)).to.deep.equal([Infinity]);
+      expect(mode(-Infinity, -1, -Infinity)).to.deep.equal([-Infinity]);
+
+      /*
+       * 18 October 2020. This this turned out to be tricky. The mode map keys
+       * are sorted indexically, not alphanumerically.
+       */
+      var expected = [-Infinity, 0, Infinity].sort();
+      var actual = mode([-Infinity, 0, Infinity]).sort();
+
+      expect(actual).to.deep.equal(expected);
+    });
+  })
+
+  describe("range", () => {
+    it('returns 0 if no values in series', () => {
+      var actual = range();
+
+      expect(actual).to.equal(0);
+    })
+
+    it('returns 0 if only one value in series', () => {
+      var actual = range(13);
+
+      expect(actual).to.equal(0);
+    })
+
+    it('returns difference between highest and lowest values in series', () => {
+      var actual = range(1, 1, 2, 5, 100, 100);
+
+      expect(actual).to.equal(99);
+    })
+
+    it("ignores functionally non-numeric values", () => {
+      var actual = range(NaN, 1, null, 2, undefined, 3, '', 4, 5, 2, 5);
+
+      expect(actual).to.equal(4);
+    });
+
+    it("handles POSITIVE_INFINITY and NEGATIVE_INFINITY as values", () => {
+      expect(range(Infinity, 1, Infinity)).to.equal(Infinity);
+    });
+  })
 
   /* start with this but keep it at the bottom */
   describe("mocha + chai setup", function () {
