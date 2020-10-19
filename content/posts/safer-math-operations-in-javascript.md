@@ -26,14 +26,12 @@ tags:
 
 ## Problem
 
-Everybody and their aunt and uncle complains about floating-point arithmetic operations in JavaScript (among other programming languages) which occasionally return a surprising result, as in the following table.
+Everybody and their aunt and uncle complains about floating-point arithmetic operations in JavaScript (among other programming languages) which occasionally return a surprising result, as in the following examples.
 
-| operation | expected | actual |
-| --------- | -------- | ------- |
-| 0.1 + 0.2 |  0.3     |  0.30000000000000004 |
-| 0.1 * 0.1 |  0.01    |  0.010000000000000002 |
-| 0.1 - 0.3 | -0.2     | -0.19999999999999998 |
-| 0.15 / 0.1|  1.5     |  1.4999999999999998 |
++ `0.1 + 0.2` should return `0.3` but actually returns `0.30000000000000004`.
++ `0.1 * 0.1` should return `0.01` but actually returns `0.010000000000000002`.
++ `0.1 - 0.3` should return `-0.2` but actually returns `-0.19999999999999998`.
++ `0.15 / 0.1` should return `1.5` but actually returns `1.4999999999999998`.
 
 You can read more about the why's and wherefore's in [What Every Computer Scientist Should Know About Floating-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html).
 
