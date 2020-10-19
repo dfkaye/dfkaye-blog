@@ -237,9 +237,9 @@ function isNumeric(a) {
    * string,
    */
 
-  var reNan = /^(NaN|null|undefined|)$/;
+  var reVoid = /^(NaN|null|undefined|)$/;
 
-  return !reNan.test(v);
+  return !reVoid.test(v);
 }
 
 /**
