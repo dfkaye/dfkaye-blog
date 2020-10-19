@@ -216,7 +216,7 @@ In all, the safe-math.js module exports the following functions which accept any
 + `mode`, for safely calculating the highest occurring numbers in a series. Note that function always returns an array. If the incoming series is empty, an empty array is returned.
 + `range`, for safely calculating the difference between the largest and smallest values in a series. If there are less than two values in the series, then 0 is returned.
 
-You can view the source of the safe-math module at [{{< baseurl >}}js/lib/safe-math.js]({{< baseurl >}}js/lib/safe-math.js).
+You can view the source of the safe-math module at [{{< baseurl >}}/js/lib/safe-math.js]({{< baseurl >}}/js/lib/safe-math.js).
 
 ## Tests
 
