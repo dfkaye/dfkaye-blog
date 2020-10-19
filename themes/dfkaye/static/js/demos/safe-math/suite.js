@@ -5,31 +5,31 @@ describe("safe-math", function () {
   var expect = chai.expect;
 
   describe("sum", function () {
-    it("takes a single value", () => {
+    it("handles a single value", () => {
       var actual = sum(1);
 
       expect(actual).to.equal(1);
     });
 
-    it('takes multiple values', () => {
+    it('handles multiple values', () => {
       var actual = sum(1, 2, 3);
 
       expect(actual).to.equal(6);
     });
 
-    it('takes values array', () => {
+    it('handles values array', () => {
       var actual = sum([1, 2, 3]);
 
       expect(actual).to.equal(6);
     });
 
-    it('takes comma-formatted string values', () => {
+    it('handles comma-formatted string values', () => {
       var actual = sum("1,000", 1);
 
       expect(actual).to.equal(1001);
     });
 
-    it('takes scientific notation', () => {
+    it('handles scientific notation', () => {
       var actual = sum([
         987.654E6, // numeric
         "987.654E6" // string
@@ -40,7 +40,7 @@ describe("safe-math", function () {
       expect(actual).to.equal(expected);
     });
 
-    it('takes negative values', () => {
+    it('handles negative values', () => {
       var actual = sum([
         -987.654E6, // numeric
         "987.654E6" // string
@@ -49,7 +49,7 @@ describe("safe-math", function () {
       expect(actual).to.equal(0);
     });
 
-    it('takes boolean values', () => {
+    it('handles boolean values', () => {
       var actual = sum([
         true,
         false,
@@ -62,7 +62,7 @@ describe("safe-math", function () {
       expect(actual).to.equal(3);
     });
 
-    it('takes String objects', () => {
+    it('handles String objects', () => {
       var actual = sum([
         new String(0.1),
         new String(0.2)
@@ -71,7 +71,7 @@ describe("safe-math", function () {
       expect(actual).to.equal(0.3);
     });
 
-    it("takes 'functionally numeric' objects", () => {
+    it("handles 'functionally numeric' objects", () => {
       var actual = sum([
         {
           valueOf() { return 0.1 }
@@ -92,31 +92,31 @@ describe("safe-math", function () {
   })
 
   describe("product", function () {
-    it("takes a single value", () => {
+    it("handles a single value", () => {
       var actual = product(1);
 
       expect(actual).to.equal(1);
     });
 
-    it('takes multiple values', () => {
+    it('handles multiple values', () => {
       var actual = product(1, 2, 3);
 
       expect(actual).to.equal(6);
     });
 
-    it('takes values array', () => {
+    it('handles values array', () => {
       var actual = product([1, 2, 3]);
 
       expect(actual).to.equal(6);
     });
 
-    it('takes comma-formatted string values', () => {
+    it('handles comma-formatted string values', () => {
       var actual = product("1,000", 1);
 
       expect(actual).to.equal(1000);
     });
 
-    it('takes scientific notation', () => {
+    it('handles scientific notation', () => {
       var actual = product([
         987.654E6, // numeric
         "987.654E6" // string
@@ -127,7 +127,7 @@ describe("safe-math", function () {
       expect(actual).to.equal(expected);
     });
 
-    it('takes negative values', () => {
+    it('handles negative values', () => {
       var actual = product([
         -987.654E6, // numeric
         "987.654E6" // string
@@ -138,7 +138,7 @@ describe("safe-math", function () {
       expect(actual).to.equal(expected);
     });
 
-    it('takes boolean values', () => {
+    it('handles boolean values', () => {
       var actual = product([
         true,
         false,
@@ -151,7 +151,7 @@ describe("safe-math", function () {
       expect(actual).to.equal(0);
     });
 
-    it('takes String objects', () => {
+    it('handles String objects', () => {
       var actual = product([
         new String(0.1),
         new String(0.2)
@@ -160,7 +160,7 @@ describe("safe-math", function () {
       expect(actual).to.equal(0.02);
     });
 
-    it("takes 'functionally numeric' objects", () => {
+    it("handles 'functionally numeric' objects", () => {
       var actual = product([
         {
           valueOf() { return 0.1 }
@@ -227,6 +227,12 @@ describe("safe-math", function () {
       // 18 Aug 2020, Interesting finding.
       expect(mean(-Infinity, Infinity)).to.be.NaN;
     });
+
+    it('handles decimal comparisons', () => {
+      var actual = mean([0.1, 0.2, 0.3, 0.4]);
+
+      expect(actual).to.equal(0.25)
+    });
   });
 
   describe("median", () => {
@@ -234,7 +240,7 @@ describe("safe-math", function () {
       var actual = median();
 
       expect(actual).to.equal(0);
-    })
+    });
 
     it('returns value if only one value in series', () => {
       var actual = median(13);
@@ -288,6 +294,12 @@ describe("safe-math", function () {
       expect(median(Infinity, 1, Infinity)).to.equal(Infinity);
       expect(median(-Infinity, -1, -Infinity)).to.equal(-Infinity);
       expect(median(-Infinity, 0, Infinity)).to.equal(0);
+    });
+
+    it('handles decimal comparisons', () => {
+      var actual = median([0.1, 0.2, 0.25, 0.4]);
+
+      expect(actual).to.equal(0.25)
     });
   })
 
@@ -347,6 +359,12 @@ describe("safe-math", function () {
 
       expect(actual).to.deep.equal(expected);
     });
+
+    it('handles decimal comparisons', () => {
+      var actual = mode([0.1, 0.2, 0.25, 0.4]);
+
+      expect(actual).to.deep.equal([0.1, 0.2, 0.25, 0.4])
+    });
   })
 
   describe("range", () => {
@@ -376,6 +394,12 @@ describe("safe-math", function () {
 
     it("handles POSITIVE_INFINITY and NEGATIVE_INFINITY as values", () => {
       expect(range(Infinity, 1, Infinity)).to.equal(Infinity);
+    });
+
+    it('handles decimal comparisons', () => {
+      var actual = range([0.2, 0.3]);
+
+      expect(actual).to.equal(0.1)
     });
   })
 

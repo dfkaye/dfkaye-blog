@@ -175,7 +175,12 @@ function range(...values) {
 
   });
 
-  return high - low;
+  /*
+   * Use sum with positive and negative values to insure internal use of the
+   * expand function.
+   */
+
+  return sum(high, -low);
 }
 
 
@@ -194,13 +199,15 @@ function getValues(...values) {
   }
 
   return values.filter(isNumeric).sort((a, b) => {
-    return (
-      a < b
-        ? -1
-        : a > b
-          ? 1
-          : 0
-    );
+    if (a < b) {
+      return -1
+    }
+
+    if (a > b) {
+      return 1;
+    }
+
+    return 0;
   });
 }
 
@@ -218,12 +225,12 @@ function isNumeric(a) {
 
   /*
    * If it's a string, remove commas and trim it.
-   * Otherwise wrap it in its type with Object() and get the value.
+   * Otherwise take the value.
    */
 
   var v = /^string/.test(typeof a)
     ? a.replace(/[,]/g, '').trim()
-    : a // Object(a).valueOf();
+    : a;
 
   /*
    * Test and return whether value is not NaN, null, undefined, or an empty

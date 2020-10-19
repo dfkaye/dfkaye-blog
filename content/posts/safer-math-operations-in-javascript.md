@@ -1,7 +1,7 @@
 ---
 title: "Safer math operations in JavaScript (using TDD)"
 date: 2020-08-17T11:01:43-07:00
-lastmod: 2020-09-08T20:05:41-07:00
+lastmod: 2020-10-18T20:17:28-07:00
 description: "Use safe-math.js to work around the binary-decimal mismatch, so that 0.1 + 0.2 adds up to 0.3."
 tags: 
 - "JavaScript"
@@ -18,8 +18,11 @@ tags:
 + [Goals](#goals)
 + [Out of scope](#out-of-scope-for-now)
 + [First attempt](#first-attempt)
-+ [Second attempt](#second-attempt) <time>18 August 2020</time>
++ [Second attempt](#second-attempt) {{< rawhtml >}}
+<time>18 August 2020</time>{{< /rawhtml >}}
 + [The `expand()` helper function](#the-expand-helper-function)
++ [Library functions so far](#library-functions-so-far) {{< rawhtml >}}
+<time>18 October 2020</time>{{< /rawhtml >}}
 + [Tests](#tests)
 + [Suite](#suite)
 
@@ -99,7 +102,17 @@ function getValues(...values) {
     values = values[0];
   }
 
-  return values.filter(isNumeric);
+  return values.filter(isNumeric).sort((a, b) => {
+    if (a < b) {
+      return -1
+    }
+
+    if (a > b) {
+      return 1;
+    }
+
+    return 0;
+  });
 }
 
 export function sum(...values) {
@@ -118,14 +131,23 @@ export function sum(...values) {
 
 ```js
 function isNumeric(a) {
-  // If it's a string, remove commas and trim it.
-  // Otherwise wrap it in its type with Object() and get the value.
+
+  /*
+   * If it's a string, remove commas and trim it.
+   * Otherwise take the value.
+   */
+
   var v = /^string/.test(typeof a)
     ? a.replace(/[,]/g, '').trim()
-    : Object(a).valueOf();
+    : a;
 
-  // Not NaN, null, undefined, or the empty string.
+  /*
+   * Test and return whether value is not NaN, null, undefined, or an empty
+   * string,
+   */
+
   var reNan = /^(NaN|null|undefined|)$/;
+
   return !reNan.test(v);
 }
 ```
@@ -176,8 +198,19 @@ function expand(left, right) {
 }
 ```
 
+## Library functions so far
+
+In all, the safe-math.js module exports the following functions which accept any number of parameters as series data (arrays or comma-delimited).
+
++ `sum`, for safely adding numbers.
++ `product`, for safely multiplying numbers.
++ `mean`, for safely calculating the average of a series of numbers.
++ `median`, for safely calculating the middle value of a series of numbers.
++ `mode`, for safely calculating the highest occurring numbers in a series. Note that function always returns an array. If the incoming series is empty, an empty array is returned.
++ `range`, for safely calculating the difference between the largest and smallest values in a series. If there are less than two values in the series, then 0 is returned.
+
 {{< rawhtml >}}
-There is more to cover, but I'll stop here. You can view the source of the safe-math module at <a href="/js/lib/safe-math.js">/js/lib/safe-math.js</a>.
+You can view the source of the safe-math module at <a href="/js/lib/safe-math.js">/js/lib/safe-math.js</a>.
 {{< /rawhtml >}}
 
 ## Tests
