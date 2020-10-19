@@ -22,11 +22,11 @@ scripts:
 - /js/demos/mocha-run.js
 ---
 
-This demo contains the test suite I used to drive the safe-assign.js module described in my post on [Safer Object.assign() operations](posts/2020/08/21/safer-object.assign-operations-using-a-sensible-wrapper/).
+This demo contains the test suite I used to drive the safe-assign.js module described in my post on [Safer Object.assign() operations](/posts/2020/08/21/safer-object.assign-operations-using-a-sensible-wrapper/).
 
 The suite uses [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), module-type scripts, and ES2016 import/export syntax, and is served up by [Hugo](https://gohugo.io).
 
-You can view the source of the test suite at [{{< baseurl >}}js/demos/safe-assign/suite.js]({{< baseurl >}}js/demos/safe-assign/suite.js).
+You can view the source of the test suite at [{{< baseurl >}}/js/demos/safe-assign/suite.js]({{< baseurl >}}/js/demos/safe-assign/suite.js).
 
 ## Suite
 

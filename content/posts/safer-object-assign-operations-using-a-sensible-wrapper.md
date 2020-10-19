@@ -28,11 +28,11 @@ The point of `safe-assign` is to allow users to pass anything,
 
 ## Source
 
-You can view the source of the safe-assign module at [{{< baseurl >}}js/lib/safe-assign.js]({{< baseurl >}}js/lib/safe-assign.js).
+You can view the source of the safe-assign module at [{{< baseurl >}}/js/lib/safe-assign.js]({{< baseurl >}}/js/lib/safe-assign.js).
 
 ## Suite
 
-You can visit the safe-assign.js test suite running at [{{< baseurl >}}demos/safe-assing-test-suite/]({{< baseurl >}}demos/safe-assign-test-suite/).
+You can visit the safe-assign.js test suite running at [{{< baseurl >}}/demos/safe-assign-test-suite/]({{< baseurl >}}/demos/safe-assign-test-suite/).
 
 ## How `Object.assign()` works
 

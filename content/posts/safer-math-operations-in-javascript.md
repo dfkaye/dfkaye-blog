@@ -255,4 +255,4 @@ describe("safe-math", function () {
 
 ## Suite
 
-You can visit the safe-math.js test suite running at [{{< baseurl >}}demos/safe-math-test-suite/]({{< baseurl >}}demos/safe-math-test-suite/).
+You can visit the safe-math.js test suite running at [{{< baseurl >}}/demos/safe-math-test-suite/]({{< baseurl >}}/demos/safe-math-test-suite/).
