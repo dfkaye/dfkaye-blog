@@ -2,7 +2,7 @@
 title: "Safer Object.assign() operations using a sensible wrapper"
 date: 2020-08-21T12:04:43-07:00
 lastmod: 2020-08-31T14:22:41-07:00
-description: "Use safe-assign to merge each object or array onto another (p) only if p is an object or array, and return a copy of p; otherwise, return p."
+description: "In this post we examine my safe-assign.js module for safely merging an object or array (o) onto another (p) only if p is also an object or array, merging onto a copy of p, and returning the copy; otherwise, just returning the original target, p."
 tags: 
 - "JavaScript"
 - "Object"
@@ -13,19 +13,11 @@ tags:
 
 *Original gist on github at https://gist.github.com/dfkaye/e5e2ce68acd70b1358c62b9ac641df81.*
 
-## Test
+## Problem
 
-You can visit the [test suite for safe-assign.js](/demos/safe-assign-test-suite/).
+`Object.assign()` allows for accidental pollution of built-in objects, and creation of non-object types. We examine a few of these in developing the safe-assign.js module.
 
-## Source
-
-{{< rawhtml >}}
-You can view the source of the safe-assign module at <a href="/js/lib/safe-assign.js">/js/lib/safe-assign.js</a>.
-{{< /rawhtml >}}
-
-## Rationale
-
-`Object.assign()` allows for accidental pollution of built-in objects, and creation of non-object types.
+## Goals
 
 The point of `safe-assign` is to allow users to pass anything,
 
@@ -33,6 +25,14 @@ The point of `safe-assign` is to allow users to pass anything,
 2. retain the initial value if it is not an object or array,
 3. obtain a modified copy of the initial object or array to be updated,
 4. mixing only objects or arrays into the new model.
+
+## Source
+
+You can view the source of the safe-assign module at [{{< baseurl >}}js/lib/safe-assign.js]({{< baseurl >}}js/lib/safe-assign.js).
+
+## Suite
+
+You can visit the safe-assign.js test suite running at [{{< baseurl >}}demos/safe-assing-test-suite/]({{< baseurl >}}demos/safe-assign-test-suite/).
 
 ## How `Object.assign()` works
 

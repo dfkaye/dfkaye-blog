@@ -2,7 +2,7 @@
 title: "Safer math operations in JavaScript (using TDD)"
 date: 2020-08-17T11:01:43-07:00
 lastmod: 2020-10-18T20:17:28-07:00
-description: "Use safe-math.js to work around the binary-decimal mismatch, so that 0.1 + 0.2 adds up to 0.3."
+description: "In this post we examine my safe-math.js module that enables floating-point math operations that return results we expect, so that 0.1 + 0.2 adds up to 0.3, e.g."
 tags: 
 - "JavaScript"
 - "Math"
@@ -18,19 +18,24 @@ tags:
 + [Goals](#goals)
 + [Out of scope](#out-of-scope-for-now)
 + [First attempt](#first-attempt)
-+ [Second attempt](#second-attempt) {{< rawhtml >}}
-<time>18 August 2020</time>{{< /rawhtml >}}
++ [Second attempt](#second-attempt) {{< rawhtml >}}<time>18 August 2020</time>{{< /rawhtml >}}
 + [The `expand()` helper function](#the-expand-helper-function)
-+ [Library functions so far](#library-functions-so-far) {{< rawhtml >}}
-<time>18 October 2020</time>{{< /rawhtml >}}
++ [Library functions so far](#library-functions-so-far) {{< rawhtml >}}<time>18 October 2020</time>{{< /rawhtml >}}
 + [Tests](#tests)
 + [Suite](#suite)
 
 ## Problem
 
-Everybody and their aunt and uncle complains about certain math operations in certain computing languages. You are probably familiar with the addition operation, `0.1 + 0.2`, that returns a surprising result, `0.30000000000000004`. 
+Everybody and their aunt and uncle complains about floating-point arithmetic operations in JavaScript (among other programming languages) which occasionally return a surprising result, as in the following table.
 
-In this post we examine a `safe-math.js` module that enables safer math operations.
+| operation | expected | actual |
+| --------- | -------- | ------- |
+| 0.1 + 0.2 |  0.3     |  0.30000000000000004 |
+| 0.1 * 0.1 |  0.01    |  0.010000000000000002 |
+| 0.1 - 0.3 | -0.2     | -0.19999999999999998 |
+| 0.15 / 0.1|  1.5     |  1.4999999999999998 |
+
+You can read more about the why's and wherefore's in [What Every Computer Scientist Should Know About Floating-Point Arithmetic](https://docs.oracle.com/cd/E19957-01/806-3568/ncg_goldberg.html).
 
 ## Approach
 
@@ -42,6 +47,8 @@ In this post we examine a `safe-math.js` module that enables safer math operatio
 ## Goals
 - 0.1 + 0.2 should return 0.3 instead of 0.30000000000000004.
 - 0.1 * 0.1 should return 0.01 instead of 0.010000000000000002.
+- 0.1 - 0.3 should return -0.2 instead of -0.19999999999999998.
+- 0.15 / 0.1 should return 1.5 instead of 1.4999999999999998.
 - Should take a single value argument.
 - Should take multiple value arguments (i.e., more than 2).
 - Should accept a values array argument (i.e., a series of values).
@@ -209,9 +216,7 @@ In all, the safe-math.js module exports the following functions which accept any
 + `mode`, for safely calculating the highest occurring numbers in a series. Note that function always returns an array. If the incoming series is empty, an empty array is returned.
 + `range`, for safely calculating the difference between the largest and smallest values in a series. If there are less than two values in the series, then 0 is returned.
 
-{{< rawhtml >}}
-You can view the source of the safe-math module at <a href="/js/lib/safe-math.js">/js/lib/safe-math.js</a>.
-{{< /rawhtml >}}
+You can view the source of the safe-math module at [{{< baseurl >}}js/lib/safe-math.js]({{< baseurl >}}js/lib/safe-math.js).
 
 ## Tests
 
@@ -250,4 +255,4 @@ describe("safe-math", function () {
 
 ## Suite
 
-You can visit the demo [test suite for safe-math.js](/demos/safe-math-test-suite/).
+You can visit the safe-math.js test suite running at [{{< baseurl >}}demos/safe-math-test-suite/]({{< baseurl >}}demos/safe-math-test-suite/).

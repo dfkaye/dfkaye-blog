@@ -84,11 +84,18 @@ describe("safe-math", function () {
       expect(actual).to.equal(0.3);
     });
 
-    it('adds 0.1 + 0.2 to get 0.3', () => {
+    it('0.1 + 0.2 returns 0.3', () => {
       var actual = sum([0.1, 0.2]);
 
       expect(actual).to.equal(0.3);
     });
+
+    it('0.1 - 0.3 returns -0.2', () => {
+      var actual = sum([0.1, -0.3]);
+
+      expect(actual).to.equal(-0.2);
+    });
+    //- 0.15 / 0.1 should return 1.5 instead of 1.4999999999999998.
   })
 
   describe("product", function () {
@@ -173,10 +180,16 @@ describe("safe-math", function () {
       expect(actual).to.equal(0.02);
     });
 
-    it("multiplies 0.1 * 0.1 to get 0.01", () => {
+    it("0.1 * 0.1 returns 0.01", () => {
       var actual = product([0.1, 0.1]);
 
       expect(actual).to.equal(0.01);
+    });
+
+    it('0.15 / 0.1 returns 1.5', () => {
+      var actual = product([0.15, (1 / 0.1)]);
+
+      expect(actual).to.equal(1.5);
     });
   });
 
@@ -407,7 +420,6 @@ describe("safe-math", function () {
   describe("mocha + chai setup", function () {
     describe("chai", () => {
       it('works', () => {
-        chai.assert(1);
         chai.expect(1).to.equal(1);
       });
     });

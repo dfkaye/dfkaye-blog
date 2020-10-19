@@ -1,7 +1,7 @@
 ---
 title: "Test suite: Safer math operations in JavaScript"
 date: 2020-08-17T11:01:43-07:00
-lastmod: 2020-09-08T20:06:41-07:00
+lastmod: 2020-10-18T22:31:41-07:00
 description: "Test suite for safe-math.js module."
 tags:
 - "TDD"
@@ -22,11 +22,11 @@ scripts:
 - /js/demos/mocha-run.js
 ---
 
-This demo contains a test suite using mocha, chai, module-type scripts, and ES2016 import/export syntax all within [Hugo](https://gohugo.io) to develop a working module.
+This demo contains the test suite I used to drive the safe-math.js module described in my post on [Safer Math operations](posts/2020/08/17/safer-math-operations-in-javascript-using-tdd/).
 
-{{< rawhtml >}}
-You can view the source of the test suite at <a href="/js/demos/safe-math/suite.js">/js/demos/safe-math/suite.js</a>.
-{{< /rawhtml >}}
+The suite uses [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), module-type scripts, and ES2016 import/export syntax, and is served up by [Hugo](https://gohugo.io).
+
+You can view the source of the test suite at [{{< baseurl >}}js/demos/safe-math/suite.js]({{< baseurl >}}js/demos/safe-math/suite.js).
 
 ## Suite
 
