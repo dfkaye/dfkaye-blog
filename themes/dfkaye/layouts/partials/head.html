@@ -32,6 +32,8 @@
   <meta name="twitter:url" content="{{ .Page.Permalink }}">
   <meta name=”twitter:description” content="{{ .Scratch.Get "pageDescription" }}">
 
+  <link rel="canonical" href="{{ .Page.Permalink }}">
+
   {{- partial "rss.html" . -}}
 
   {{- partial "css.html" . -}}
