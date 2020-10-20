@@ -155,12 +155,7 @@ Array.from(
 
 ## Details
 
-{{< rawhtml >}}
-<p>
-  You can read the accompanying blog post explaining the solution at <a
-  href="/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/">/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/</a>.
-</p>
-{{< /rawhtml >}}
+You can read the accompanying blog post explaining the solution at [{{< baseurl >}}/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/]({{< baseurl >}}/posts/2020/08/23/accessible-css-driven-tabs-without-javascript/).
 
 ## CSS
 

@@ -225,7 +225,7 @@ For a better screen reader experience, we can change the role announcement from 
 <input name="tabs" type="radio" id="tab-1" aria-labelledby="tab-label-1" aria-roledescription="tab">
 ```
 
-For more information about this attribute, read Leonie Watson's post from 2018 at `https://tink.uk/using-the-aria-roledescription-attribute/`.
+For more information about this attribute, read Leonie Watson's post from 2018 at https://tink.uk/using-the-aria-roledescription-attribute/.
 
 ### Changes to support flex-box
 
