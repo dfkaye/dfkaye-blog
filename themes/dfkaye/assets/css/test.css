@@ -19,7 +19,6 @@
 {{ $hugoColor := "#ff0095" }}
 {{ $linkedinColor := "#0077b5" }}
 {{ $netlifyColor := "#009387" }}
-{{ $netlifyGradient := "url(#icon-gradient-netlify) #009387" }}
 {{ $githubColor := "#6cc644" }}
 {{ $twitterColor := "#1da1f2" }}
 
@@ -394,8 +393,7 @@ a:not([icon]):active {
 [icon="netlify"]:hover svg,
 [icon="netlify"]:focus svg,
 [icon="netlify"]:active svg {
-  /* This was fun to figure out. */
-  fill: {{ $netlifyGradient }};
+  fill: {{ $netlifyColor }};
 }
 
 [icon="github"]:hover,

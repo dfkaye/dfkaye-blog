@@ -20,7 +20,6 @@
   --hugo-color: #ff0095;
   --linkedin-color: #0077b5;
   --netlify-color: #009387;
-  --netlify-gradient: url(#icon-gradient-netlify) #009387;
   --github-color: #6cc644;
   --twitter-color: #1da1f2;
 }
@@ -399,8 +398,7 @@ a:not([icon]):active {
 [icon="netlify"]:hover svg,
 [icon="netlify"]:focus svg,
 [icon="netlify"]:active svg {
-  /* This was fun to figure out. */
-  fill: var(--netlify-gradient);
+  fill: var(--netlify-color);
 }
 
 [icon="github"]:hover,
