@@ -1,8 +1,8 @@
 ---
 title: "Test suite: Safe assign wrapper for Object.assign()"
 date: 2020-08-21T11:56:43-07:00
-lastmod: 2020-09-07T17:37:41-07:00
-description: "Test suite for safe-assign.js module."
+lastmod: 2020-11-18T21:37:41-07:00
+description: "Test suite for safe-0bject-assign.js module."
 tags:
 - "TDD"
 - "JavaScript"
@@ -18,7 +18,7 @@ scripts:
 - https://unpkg.com/mocha/mocha.js
 - https://unpkg.com/chai/chai.js
 - /js/demos/mocha-setup.js
-- /js/demos/safe-assign/suite.js
+- https://unpkg.com/safe-object-assign/test/browser.js
 - /js/demos/mocha-run.js
 ---
 
@@ -26,7 +26,7 @@ This demo contains the test suite I used to drive the safe-assign.js module desc
 
 The suite uses [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), module-type scripts, and ES2016 import/export syntax, and is served up by [Hugo](https://gohugo.io).
 
-You can view the source of the test suite at [{{< baseurl >}}/js/demos/safe-assign/suite.js]({{< baseurl >}}/js/demos/safe-assign/suite.js).
+You can view the source of the test suite at https://github.com/dfkaye/safe-object-assign/blob/main/test/browser-suite.js.
 
 ## Suite
 

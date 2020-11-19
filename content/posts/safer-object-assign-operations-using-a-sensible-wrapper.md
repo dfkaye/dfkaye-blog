@@ -1,8 +1,8 @@
 ---
 title: "Safer Object.assign() operations using a sensible wrapper"
 date: 2020-08-21T12:04:43-07:00
-lastmod: 2020-08-31T14:22:41-07:00
-description: "In this post we examine my safe-assign.js module for safely merging an object or array (o) onto another (p) only if p is also an object or array, merging onto a copy of p, and returning the copy; otherwise, just returning the original target, p."
+lastmod: 2020-11-18T21:50:41-07:00
+description: "In this post we examine my safe-object-assign.js module for safely merging an object or array (o) onto another (p) only if p is also an object or array, merging onto a copy of p, and returning the copy; otherwise, just returning the original target, p."
 tags: 
 - "JavaScript"
 - "Object"
@@ -15,11 +15,11 @@ tags:
 
 ## Problem
 
-`Object.assign()` allows for accidental pollution of built-in objects, and creation of non-object types. We examine a few of these in developing the safe-assign.js module.
+`Object.assign()` allows for accidental pollution of built-in objects, and creation of non-object types. We examine a few of these in developing the safe-object-assign.js module.
 
 ## Goals
 
-The point of `safe-assign` is to allow users to pass anything,
+The point of `safe-object-assign` is to allow users to pass anything,
 
 1. without blowing up,
 2. retain the initial value if it is not an object or array,
@@ -28,11 +28,11 @@ The point of `safe-assign` is to allow users to pass anything,
 
 ## Source
 
-You can view the source of the safe-assign module at [{{< baseurl >}}/js/lib/safe-assign.js]({{< baseurl >}}/js/lib/safe-assign.js).
+You can view the source of the safe-object-assign module at https://github.com/dfkaye/safe-object-assign.
 
 ## Suite
 
-You can visit the safe-assign.js test suite running at [{{< baseurl >}}/demos/safe-assign-test-suite/]({{< baseurl >}}/demos/safe-assign-test-suite/).
+You can visit the safe-object-assign.js test suite running at [{{< baseurl >}}/demos/safe-assign-test-suite/]({{< baseurl >}}/demos/safe-assign-test-suite/).
 
 ## How `Object.assign()` works
 
@@ -90,7 +90,7 @@ name: "hello"
 */
 ```
 
-## How safe-assign works
+## How safe-object-assign works
 
 The `safe assign()` function works the same way, merging arrays onto objects and objects onto arrays.
 
@@ -325,4 +325,4 @@ console.log( Object.assign({}, Math, {
 
 `Object.assign()` allows for accidental pollution of built-in objects, and creation of non-object types, whereas the `safe assign` function avoids exactly that.
 
-Stay sane. Stay safe. Use safe-assign.
+Stay sane. Stay safe. Use safe-object-assign.
