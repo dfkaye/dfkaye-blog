@@ -19,7 +19,7 @@
 {{ $hugoColor := "#ff0095" }}
 {{ $linkedinColor := "#0077b5" }}
 {{ $netlifyColor := "#009387" }}
-{{ $netlifyGradient := "url(#icon-gradient-netlify)" }}
+{{ $netlifyGradient := "url(#icon-gradient-netlify) #009387" }}
 {{ $githubColor := "#6cc644" }}
 {{ $twitterColor := "#1da1f2" }}
 
