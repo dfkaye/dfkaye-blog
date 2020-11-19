@@ -1,7 +1,7 @@
 ---
 title: "Switching to Hugo - steps, sequence, troubleshooting"
 date: 2020-05-23T12:44:58-08:00
-lastmod: 2020-09-21T12:20:41-07:00
+lastmod: 2020-11-18T16:55:41-07:00
 description: "Sequence of steps I followed to get my Hugo site working locally, and to publish content to github and Netlify."
 tags: 
 - "Hugo"
@@ -79,7 +79,7 @@ first blog post in hugo with javascript files eventually.
 
 ```
 
-Then `git add .`, `git commit -m "add content for netlify build to work", `git push -u origin master`.
+Then `git add .`, `git commit -m "add content for netlify build to work"`, `git push -u origin master`.
 
 Visit the host deployment panel to verify the build, which should resolve this time.
 
@@ -149,4 +149,4 @@ If you'd rather follow a book, I recommend Brian Hogan's, [Build Websites with H
 
 Visit Chris Ferdinandi's [hugo starter kit](https://gomakethings.com/the-hugo-starter-kit/) for other ideas.
 
-[Visit my github repo (if you want to)](https://github.com/dfkaye/dfkaye-blog/).
+You may even visit [my github repo](https://github.com/dfkaye/dfkaye-blog/).

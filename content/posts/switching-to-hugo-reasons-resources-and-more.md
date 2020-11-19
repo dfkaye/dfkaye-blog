@@ -1,7 +1,7 @@
 ---
 title: "Switching to Hugo - reasons, resources, and more"
 date: 2020-05-22T11:55:43-07:00
-lastmod: 2020-09-21T11:55:41-07:00
+lastmod: 2020-11-18T16:56:41-07:00
 description: "Full story of why I switched from a Wordpress blog to a static site using Hugo, plus lists of resources I found helpful."
 tags: 
 - "Hugo"
@@ -11,7 +11,7 @@ tags:
 
 ## Lists
 
-I maintain a github repository which is nothing more than a list of [interesting links for web developers](https://github.com/dfkaye/dev-links). That one has been growing for over 5 years and I felt it was time to cut over to a an active list in a static site I could run a link checker on... *et cetera.*
+I maintain a github repository which is nothing more than a list of [interesting links for web developers](https://github.com/dfkaye/dev-links). That one has been growing for over 5 years and I felt it was time to cut over to an active list in a static site I could run a link checker on... *et cetera.*
 
 ## Demos
 
