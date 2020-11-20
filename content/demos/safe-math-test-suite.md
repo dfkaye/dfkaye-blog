@@ -18,7 +18,7 @@ scripts:
 - https://unpkg.com/mocha/mocha.js
 - https://unpkg.com/chai/chai.js
 - /js/demos/mocha-setup.js
-- /js/demos/safe-math/suite.js
+- https://unpkg.com/@dfkaye/safe-math/test/browser-suite.js
 - /js/demos/mocha-run.js
 ---
 
@@ -26,7 +26,7 @@ This demo contains the test suite I used to drive the safe-math.js module descri
 
 The suite uses [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), module-type scripts, and ES2016 import/export syntax, and is served up by [Hugo](https://gohugo.io).
 
-You can view the source of the test suite at [{{< baseurl >}}/js/demos/safe-math/suite.js]({{< baseurl >}}/js/demos/safe-math/suite.js).
+You can view the source of the test suite at https://github.com/dfkaye/safe-math/blob/main/test/browser-suite.js.
 
 ## Suite
 

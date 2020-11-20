@@ -2,14 +2,19 @@
 title: "Safer math operations in JavaScript (using TDD)"
 date: 2020-08-17T11:01:43-07:00
 lastmod: 2020-10-18T20:17:28-07:00
-description: "In this post we examine my safe-math.js module that enables floating-point math operations that return results we expect, so that 0.1 + 0.2 adds up to 0.3, e.g."
-tags: 
+description: "20 November 2020: This post will be rewritten and simplified. In this post we examine my safe-math.js module that enables floating-point math operations that return results we expect, so that 0.1 + 0.2 adds up to 0.3, e.g."
+tags:
+- "floating-point"
 - "JavaScript"
 - "Math"
 - "Safety"
 - "TDD"
 
 ---
+
+## Notice
+
+*20 November 2020: This post will be rewritten and simplified.*
 
 ## Contents
 
@@ -37,6 +42,8 @@ You can read more about the why's and wherefore's in [What Every Computer Scient
 
 ## Approach
 
+*20 November 2020: Will move this into another post about testing UI within Hugo.*
+
 - Use TDD while running `hugo server` locally to develop the tests and modules.
   - This turned out to be a pleasant experience. [Hugo](https://gohugo.io) rebuilds and reloads the demo page very quickly. It is very much like running a test page with [live-server](https://github.com/tapio/live-server), e.g.
 - Use mocha, chai, module-type scripts, and ES2016 import/export syntax.
@@ -61,12 +68,18 @@ You can read more about the why's and wherefore's in [What Every Computer Scient
 
 - Handling localized currency values, percentages, etc. (i.e., "unformatting").
 
+
+## Notice
+
+**20 November 2020: What follows will be completely re-written once the safe-math library is corrected on github and npm.**
+
+
 ## First attempt 
 
 The main idea {{< rawhtml >}}<del>is</del> <ins>was</ins>{{< /rawhtml >}} to apply an operation to a series of values. Below, `apply()` and `sum()` are functions, with sum being the operation:
 
 ```js
-import { apply, sum, product } from "/js/lib/safe-math.js";
+import { apply, sum, product } from "path/to/safe-math.js";
 
 var test = apply(sum, [1,2,3]);
 
@@ -214,14 +227,14 @@ In all, the safe-math.js module exports the following functions which accept any
 + `mode`, for safely calculating the highest occurring numbers in a series. Note that function always returns an array. If the incoming series is empty, an empty array is returned.
 + `range`, for safely calculating the difference between the largest and smallest values in a series. If there are less than two values in the series, then 0 is returned.
 
-You can view the source of the safe-math module at [{{< baseurl >}}/js/lib/safe-math.js]({{< baseurl >}}/js/lib/safe-math.js).
+You can view the source of the safe-math module at https://github.com/dfkaye/safe-math/blob/main/safe-math.js.
 
 ## Tests
 
 The test suite gives you an idea how to use the safe-math module. At the high level, the tests are laid out like this:
 
 ```js
-import { sum, product, avg } from "/js/lib/safe-math.js";
+import { sum, product, avg } from "path/to/safe-math.js";
 
 describe("safe-math", function () {
   var assert = chai.assert;
