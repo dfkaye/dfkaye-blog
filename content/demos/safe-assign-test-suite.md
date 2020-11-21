@@ -18,7 +18,7 @@ scripts:
 - https://unpkg.com/mocha/mocha.js
 - https://unpkg.com/chai/chai.js
 - /js/demos/mocha-setup.js
-- https://unpkg.com/safe-object-assign/test/browser-suite.js
+- https://unpkg.com/safe-object-assign@0.0.11/test/browser-suite.js
 - /js/demos/mocha-run.js
 ---
 
