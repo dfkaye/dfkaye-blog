@@ -4,6 +4,7 @@ date: 2020-08-17T11:01:43-07:00
 lastmod: 2020-11-22T14:04:43-07:00
 description: "In this post we examine my safe-math.js module that enables floating-point math operations that return results we expect, so that 0.1 + 0.2 adds up to 0.3, e.g."
 tags:
+- "functionally numeric"
 - "floating-point"
 - "JavaScript"
 - "Math"
