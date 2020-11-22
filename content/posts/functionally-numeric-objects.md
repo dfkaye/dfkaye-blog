@@ -43,3 +43,26 @@ console.log(time.now) // 1606081022267
 ## Why do that?
 
 It's fun to try things at the edges and strengthen testing skills.
+
+The `time.valueOf()` method will return a different value each time it is called, so we can't test that it equals a fixed value. Instead, we can test that it returns value greater than a previous value at a specific moment, namely, the start of the test.
+
+Here's a made-up example.
+
+```js
+test("time should advance", () => {
+  var now = Date.now();
+
+  // Run this to allow the click to advance.
+  expect(now).to.equal(now);
+
+  // Verify that time has advanced.
+  expect(time.now).to.be.above(now);
+})
+
+```
+
+## In reality...
+
+We found a CUID bug based on *consecutive `Date.now()` calls that returned identical timestamps* a couple years back. When we requested entities using those CUIDs, we received HTTP 403 errors indicating the entities could not be distinguished and so would fail to return access tokens. That led us to add tests around CUID creation as a separate function.
+
+Anyway.
