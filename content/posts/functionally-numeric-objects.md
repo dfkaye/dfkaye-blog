@@ -52,7 +52,7 @@ Here's a made-up example.
 test("time should advance", () => {
   var now = Date.now();
 
-  // Run this to allow the click to advance.
+  // Run this to allow the clock to advance.
   expect(now).to.equal(now);
 
   // Verify that time has advanced.

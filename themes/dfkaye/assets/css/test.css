@@ -432,6 +432,14 @@ a:not([icon]):active {
   fill: {{ $twitterColor }};
 }
 
+
+/* share links */
+
+[rel$=" share"] {
+  padding: 0.5em;
+}
+
+
 /* list pages */
 
 [page-list] {
