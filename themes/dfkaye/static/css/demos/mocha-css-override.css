@@ -24,7 +24,7 @@
 #mocha .test pre {
 	background-color: rgba(242, 242, 242, 1);
 	/* November 24, 2020: prevent pre text from expanding out of container. */
-	white-space: pre-wrap;
+	white-space: pre-line;
 	width: 100%;
 }
 

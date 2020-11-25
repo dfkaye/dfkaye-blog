@@ -76,7 +76,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + post about mobile white space breaks
   - word-break for long link text
   - white-space: break-spaces (and using spaces) inside of code elements
-  - mocha pre overrides: white-space: pre-wrap;
+  - mocha pre overrides: white-space: pre-line;
 + post about body {position:relative } to set the body width to 100% across mobile devices (galaxy fold, iPhone 5, etc.).
 + post about dot file all the things png
 + post about minimalism
