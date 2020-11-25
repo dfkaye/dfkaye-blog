@@ -1,40 +1,43 @@
 {{ $title := .Page.Title }}
 {{ $url := .Page.Permalink }}
-{{ $username := "dfkaye"}}
+{{ $mention := "dfkaye"}}
 
 <h3>Share this post</h3>
 
 <nav share-links>
+  <!-- Hat tip to Greg Schier, see https://schier.co/blog/pure-html-share-buttons -->
+
   <!-- Twitter (url, text, @mention) -->
-  <a target="_blank" rel="nofollow noopener share"
-    href="https://twitter.com/share?url={{ $url }}&text={{ $title }}&via={{ $username }}">
+  <a target="_blank" rel="nofollow noopener external"
+    href="https://twitter.com/share?url={{ $url }}&text={{ $title }}&via={{ $mention }}">
     Twitter
   </a>
 
   <!-- Facebook (url) -->
-  <a target="_blank" rel="nofollow noopener share" href="https://www.facebook.com/sharer/sharer.php?u={{ $url }}">
+  <a target="_blank" rel="nofollow noopener external" href="https://facebook.com/sharer/sharer.php?u={{ $url }}">
     Facebook
   </a>
 
   <!-- Reddit (url, title) -->
-  <a target="_blank" rel="nofollow noopener share" href="https://reddit.com/submit?url={{ $url }}&title={{ $title }}">
+  <a target="_blank" rel="nofollow noopener external"
+    href="https://reddit.com/submit?url={{ $url }}&title={{ $title }}">
     Reddit
   </a>
 
   <!-- Hacker News (url, title) -->
-  <a target="_blank" rel="nofollow noopener share"
+  <a target="_blank" rel="nofollow noopener external"
     href="https://news.ycombinator.com/submitlink?u={{ $url }}&t={{ $title }}">
     Hacker News
   </a>
 
   <!-- LinkedIn (url, title) -->
-  <a target="_blank" rel="nofollow noopener share"
-    href="https://www.linkedin.com/shareArticle?url={{ $url }}&title={{ $title }}">
+  <a target="_blank" rel="nofollow noopener external"
+    href="https://linkedin.com/shareArticle?url={{ $url }}&title={{ $title }}">
     LinkedIn
   </a>
 
   <!-- Email (subject, body) -->
-  <a target="_blank" rel="nofollow noopener share" href="mailto:?subject={{ $title }}&body={{ $url }}">
+  <a target="_blank" rel="nofollow noopener external" href="mailto:?subject={{ $title }}&body={{ $url }}">
     Email
   </a>
 </nav>

@@ -13,6 +13,10 @@
   --text-color: #000;
   --bg-color: #fff;
   --date-time-color: #757575;
+
+  --email-color: #444444;
+  --facebook-color: #3B5998;
+
   --fill-color: #ababab;
   --icon-height: 32px;
   --icon-margin: .5em 0.25em -.5em;
@@ -21,6 +25,10 @@
   --linkedin-color: #0077b5;
   --netlify-color: #009387;
   --github-color: #6cc644;
+
+  --hackernews-color: #ff6600;
+  --reddit-color: #ff5700;
+
   --twitter-color: #1da1f2;
 }
 
@@ -440,9 +448,59 @@ a:not([icon]):active {
 
 /* share links */
 
-[rel$=" share"] {
-  padding: 0.5em;
+/* share links */
+
+[share-links]:before {
+  content: "Links open in new window";
+  color: gray;
+  font-size: 80%;
+  font-style: italic;
+  margin-top: -1.5em;  
+  position: absolute;
 }
+
+[share-links] {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+[rel*="external"] {
+  margin: .5em .5em .5em 0;
+  outline: 1px solid rgba(22, 22, 254, .5);
+  padding: 0.5em;
+  white-space: nowrap;
+}
+
+[rel*="external"]:link,
+[rel*="external"]:hover,
+[rel*="external"]:active {
+  color: var(--bg-color);
+}
+
+[rel*="external"][href^="https://twitter"] {
+  background-color: var(--twitter-color);
+}
+
+[rel*="external"][href^="https://facebook"] {
+  background-color: var(--facebook-color);
+}
+
+[rel*="external"][href^="https://reddit"] {
+  background-color: var(--reddit-color);
+}
+
+[rel*="external"][href^="https://news.ycombinator"] {
+  background-color:var(--hackernews-color);
+}
+
+[rel*="external"][href^="https://linkedin"] {
+  background-color: var(--linkedin-color);
+}
+
+[rel*="external"][href^="mailto:"] {
+  background-color: var(--email-color);
+}
+
 
 
 /* list pages */
@@ -489,6 +547,7 @@ a:not([icon]):active {
 
 [prev-next] {
   display: flex;
+  font-weight: bold;
   justify-content: center;
 }
 

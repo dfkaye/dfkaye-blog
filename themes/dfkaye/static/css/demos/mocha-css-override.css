@@ -4,7 +4,7 @@
 	border-top: 1px solid deepskyblue;
 	border-bottom: 1px solid deepskyblue;
 	margin: unset;
-	padding: .5em unset .75em;
+	padding: .5em 0 .75em;
 }
 
 #mocha #mocha-stats {
@@ -23,6 +23,8 @@
 
 #mocha .test pre {
 	background-color: rgba(242, 242, 242, 1);
+	/* November 24, 2020: prevent pre text from expanding out of container. */
+	white-space: pre-wrap;
 	width: 100%;
 }
 
