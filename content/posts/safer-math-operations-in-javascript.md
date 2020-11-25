@@ -1,7 +1,7 @@
 ---
 title: "Safer math operations in JavaScript (using TDD)"
 date: 2020-08-17T11:01:43-07:00
-lastmod: 2020-11-22T14:04:43-07:00
+lastmod: 2020-11-25T14:07:43-07:00
 description: "In this post we examine my safe-math.js module that enables floating-point math operations that return results we expect, so that 0.1 + 0.2 adds up to 0.3, e.g."
 tags:
 - "functionally numeric"
@@ -114,6 +114,8 @@ Every function in the library accepts any number of parameters as series data (e
 - multiple value params - 2 or more values in a series
 - an array of values - 1 or more values in a series
 
+*Note, however, that the conversion functions (percent, reciprocal, square root,et al) process only the first parameter passed.*
+
 You can pass anything, but only coercibly numeric values are processed, any `NaN`s are ignored.
 
 - numbers and Number objects
@@ -125,11 +127,11 @@ You can pass anything, but only coercibly numeric values are processed, any `NaN
 - boolean values and objects (where `true` and `false` convert to `1` and `0`, respectively)
 - *functionally numeric* objects whose `valueOf()` method returns a number or numeric string, such as `{ valueOf() { return 0.1 } }`).
 
-## API so far
+## API
 
-Currently (November 21, 2020), the safe-math.js module exports the following functions.
+As of November 25, 2020, the safe-math.js module exports the following functions.
 
-### Operations
+### Operators
 
 + `add`, for safely adding numbers.
 + `minus`, for safely subtracting numbers.
@@ -143,4 +145,17 @@ Currently (November 21, 2020), the safe-math.js module exports the following fun
 + `mode`, for safely calculating the highest occurring numbers in a series. Note that function always returns an array. If the incoming series is empty, an empty array is returned.
 + `range`, for safely calculating the difference between the largest and smallest values in a series. If there are less than two values in the series, then `0` is returned.
 
-*[More to come...]*
+### Conversions
+
+Conversion functions process only the first parameter rather than a series.
+
++ `percent`, for safely calculating 1/100th of a value. If a percent cannot be calculated, the value is returned.
++ `repricoal`, for safely calculating `1 / value`. If a reciprocal cannot be calculated, the value is returned.
++ `square`, for safely multiplying a value by itself. If a square cannot be calculated, the value is returned.
++ `sqrt`, for safely calculating the square root of a value. If a square root cannot be calculated, an **`Error`** is returned (*but not thrown*).
+
+## Future plans
+
+I plan to build a calculator demo with this library. As requirements and ability improve, I may add more functions to it.
+
+There you have it.
