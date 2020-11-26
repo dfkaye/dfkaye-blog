@@ -1,7 +1,7 @@
 ---
 title: "Safer math operations in JavaScript (using TDD)"
 date: 2020-08-17T11:01:43-07:00
-lastmod: 2020-11-25T14:07:43-07:00
+lastmod: 2020-11-25T19:97:43-07:00
 description: "In this post we examine my safe-math.js module that enables floating-point math operations that return results we expect, so that 0.1 + 0.2 adds up to 0.3, e.g."
 tags:
 - "functionally numeric"
@@ -150,12 +150,17 @@ As of November 25, 2020, the safe-math.js module exports the following functions
 Conversion functions process only the first parameter rather than a series.
 
 + `percent`, for safely calculating 1/100th of a value. If a percent cannot be calculated, the value is returned.
++ `power`, for safely calculating a value raised to an exponent. If a power cannot be calculated, the value is returned. If the value is not provided, an **Error** will be *thrown*. If the exponent is not provided, it is assigned 1 by default, to mitigate these cases with Math.pow():
+    - `Math.pow(9, undefined) => NaN`
+    - `Math.pow(9, null) => 1`
+    - `Math.pow(9, "") => 1`
+    - `Math.pow(9, "  ") => 1`
 + `repricoal`, for safely calculating `1 / value`. If a reciprocal cannot be calculated, the value is returned.
 + `square`, for safely multiplying a value by itself. If a square cannot be calculated, the value is returned.
 + `sqrt`, for safely calculating the square root of a value. If a square root cannot be calculated, an **`Error`** is returned (*but not thrown*).
 
 ## Future plans
 
-I plan to build a calculator demo with this library. As requirements and ability improve, I may add more functions to it.
+I plan to build a demos for a Calculator and a Spreadsheet with this library. As requirements and ability improve, I may add more functions to it.
 
 There you have it.

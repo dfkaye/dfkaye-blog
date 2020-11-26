@@ -2,9 +2,10 @@
 title: "Using Hugo for TDD With Javascript"
 date: 2020-11-22T14:23:42-08:00
 lastmod: 2020-11-22T14:23:42-08:00
-description: "How I use the Hugo server for test-driving JavaScript development, with github, npm, and unpkg."
+description: "How I use Hugo server for test-driving JavaScript development, with hugo server, github, npm, and unpkg."
 tags:
 - "TDD"
+- "Hugo"
 - "Node.js"
 - "unpkg"
 - "github"
@@ -15,6 +16,18 @@ draft: true
 *[DRAFT: Nov 22, 2020]*
 
 As a fan of test-driven development (TDD), I was delighted to discover a way to do it directly in web pages served by [Hugo](https://gohugo.io/), while running `hugo server` locally.
+
+Initial demo [using mocha, chai, and fast-check](/demos/mocha+chai+fast-check/)
+
+Initial post on [why I switched to Hugo](/posts/2019/11/11/first-post-why-hugo/)
+
+- [Mocha](https://mochajs.org)
+- [Chai](https://www.chaijs.com)
+- [fast-check](https://www.npmjs.com/package/fast-check)
+- [Node.js](https://nodejs.org)
+- [github](https://github.com)
+- [npm](https://www.npmjs.com)
+- [unpkg](https://unpkg.com)
 
 <!--more-->
 
