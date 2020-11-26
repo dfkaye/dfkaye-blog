@@ -1,7 +1,7 @@
 ---
 title: "Safer math operations in JavaScript (using TDD)"
 date: 2020-08-17T11:01:43-07:00
-lastmod: 2020-11-25T19:97:43-07:00
+lastmod: 2020-11-25T20:17:43-07:00
 description: "In this post we examine my safe-math.js module that enables floating-point math operations that return results we expect, so that 0.1 + 0.2 adds up to 0.3, e.g."
 tags:
 - "functionally numeric"
@@ -142,21 +142,23 @@ As of November 25, 2020, the safe-math.js module exports the following functions
 
 + `mean`, for safely calculating the average of a series of numbers.
 + `median`, for safely calculating the middle value of a series of numbers.
-+ `mode`, for safely calculating the highest occurring numbers in a series. Note that function always returns an array. If the incoming series is empty, an empty array is returned.
++ `mode`, for safely calculating the highest occurring numbers in a series. Note that function *always* returns an **Array**. If the incoming series is empty, an empty array is returned.
 + `range`, for safely calculating the difference between the largest and smallest values in a series. If there are less than two values in the series, then `0` is returned.
 
 ### Conversions
 
-Conversion functions process only the first parameter rather than a series.
+
+Most of the conversion functions process only the first or `value` argument rather than a series, whereas the `power` function requires two named arguments, `{ value, exponent }`.
 
 + `percent`, for safely calculating 1/100th of a value. If a percent cannot be calculated, the value is returned.
-+ `power`, for safely calculating a value raised to an exponent. If a power cannot be calculated, the value is returned. If the value is not provided, an **Error** will be *thrown*. If the exponent is not provided, it is assigned 1 by default, to mitigate these cases with Math.pow():
++ `power`, for safely calculating a value raised to an exponent. If a power cannot be calculated, the value is returned. If the value is not provided, an **Error** will be *thrown*. If the exponent is not provided, it is assigned 1 by default, to mitigate these cases with `Math.pow()`:
     - `Math.pow(9, undefined) => NaN`
     - `Math.pow(9, null) => 1`
     - `Math.pow(9, "") => 1`
     - `Math.pow(9, "  ") => 1`
-+ `repricoal`, for safely calculating `1 / value`. If a reciprocal cannot be calculated, the value is returned.
-+ `square`, for safely multiplying a value by itself. If a square cannot be calculated, the value is returned.
+  Finally, `power` delegates the calculation to `multiply` and not to `Math.pow` to avoid `Math.pow(1.1, 2)` which returns 1.2100000000000002 instead of 1.21.
++ `repricoal`, for safely calculating `1 / value`. If a reciprocal cannot be calculated, the value is returned. Function `reciprocal` delegates to `power`.
++ `square`, for safely multiplying a value by itself. If a square cannot be calculated, the value is returned. Function `square` delegates to `power`.
 + `sqrt`, for safely calculating the square root of a value. If a square root cannot be calculated, an **`Error`** is returned (*but not thrown*).
 
 ## Future plans
