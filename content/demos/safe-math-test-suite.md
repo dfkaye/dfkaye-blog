@@ -1,7 +1,7 @@
 ---
 title: "Test suite: Safer math operations in JavaScript"
 date: 2020-08-17T11:01:43-07:00
-lastmod: 2020-10-18T22:31:41-07:00
+lastmod: 2020-11-25T22:21:41-07:00
 description: "Test suite for safe-math.js module."
 tags:
 - "TDD"
