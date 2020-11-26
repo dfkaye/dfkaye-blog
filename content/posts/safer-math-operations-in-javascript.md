@@ -1,7 +1,7 @@
 ---
 title: "Safer math operations in JavaScript (using TDD)"
 date: 2020-08-17T11:01:43-07:00
-lastmod: 2020-11-25T20:17:43-07:00
+lastmod: 2020-11-26T14:49:43-07:00
 description: "In this post we examine my safe-math.js module that enables floating-point math operations that return results we expect, so that 0.1 + 0.2 adds up to 0.3, e.g."
 tags:
 - "functionally numeric"
@@ -147,7 +147,6 @@ As of November 25, 2020, the safe-math.js module exports the following functions
 
 ### Conversions
 
-
 Most of the conversion functions process only the first or `value` argument rather than a series, whereas the `power` function requires two named arguments, `{ value, exponent }`.
 
 + `percent`, for safely calculating 1/100th of a value. If a percent cannot be calculated, the value is returned.
@@ -156,13 +155,14 @@ Most of the conversion functions process only the first or `value` argument rath
     - `Math.pow(9, null) => 1`
     - `Math.pow(9, "") => 1`
     - `Math.pow(9, "  ") => 1`
-  Finally, `power` delegates the calculation to `multiply` and not to `Math.pow` to avoid `Math.pow(1.1, 2)` which returns 1.2100000000000002 instead of 1.21.
+  If the exponent is positive, `power` delegates the calculation to `multiply` to avoid `Math.pow(1.1, 2)` which returns 1.2100000000000002 instead of 1.21.
+  Finally, if the exponent is fractional (e.g., `-2.5`), `power` passes `Math.pow(value, integer)` and `Math.pow(value, fraction)` to `multiply`.
 + `repricoal`, for safely calculating `1 / value`. If a reciprocal cannot be calculated, the value is returned. Function `reciprocal` delegates to `power`.
 + `square`, for safely multiplying a value by itself. If a square cannot be calculated, the value is returned. Function `square` delegates to `power`.
-+ `sqrt`, for safely calculating the square root of a value. If a square root cannot be calculated, an **`Error`** is returned (*but not thrown*).
++ `sqrt`, for safely calculating the square root of a value. If the value is negative, an **`Error`** is returned (*but not thrown*). If a square root cannot be calculated, the value is returned. Function `sqrt` delegates to `power`.
 
 ## Future plans
 
-I plan to build a demos for a Calculator and a Spreadsheet with this library. As requirements and ability improve, I may add more functions to it.
+I plan to build demos for a Calculator and a Spreadsheet with this library. As requirements and ability improve, I may add more functions to it.
 
 There you have it.
