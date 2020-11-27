@@ -473,7 +473,8 @@ a:not([icon]):active {
 
 [rel*="external"]:link,
 [rel*="external"]:hover,
-[rel*="external"]:active {
+[rel*="external"]:active,
+[rel*="external"]:visited {
   color: var(--bg-color);
 }
 
