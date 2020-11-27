@@ -448,6 +448,7 @@ a:not([icon]):active {
   color: gray;
   font-size: 80%;
   font-style: italic;
+  left: 0;
   margin-top: -1.5em;  
   position: absolute;
 }
@@ -455,6 +456,8 @@ a:not([icon]):active {
 [share-links] {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-evenly;
+  position: relative;
 }
 
 [rel*="external"] {
