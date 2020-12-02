@@ -22,18 +22,48 @@ Things work in the browser when using Mocha 7.0.1, but not Mocha 8.1.0. The brea
 
 ### 2 December 2020
 
-Things work in Mocha 8 when using a `<script>` element's `src` attribute to fetch mocha from unpkg.com.
+Things work **best** when fetching a single script that contains all the `import` statements.
 
 ```html
-<script type="module" nonce="..." src="https://unpkg.com/mocha/mocha.js"></script>
+<script type="module" nonce="..." src="/examples/mocha/setup.js"></script>
 ```
 
-***The CSP error occurs when using an ES module `import` statement to fetch mocha from unpkg.com.***
+```js
+/* setup.js */
+import "https://unpkg.com/mocha/mocha.js"
+import "https://unpkg.com/chai/chai.js"
+import { where } from '../../where.js';
+
+mocha.setup('bdd')
+
+// et cetera
+
+mocha.checkLeaks();
+mocha.run();
+
+console.log('Tests complete. <Guy Fieri/>');
+```
+
+***The CSP error occurs when using an ES module `import` statement in an inline script to fetch mocha from unpkg.com...***
 
 ```html
 <script type="module" nonce="...">
 import "https://unpkg.com/mocha/mocha.js"
 ...
+```
+
+***...or when running `mocha.setup()` outside the scope of the context that imports mocha.***
+
+Here we use a `<script>` element's `src` attribute to fetch mocha from unpkg.com, but then refer to mocha the global in another context.
+
+```html
+<script type="module" nonce="..." src="https://unpkg.com/mocha/mocha.js"></script>
+<script nonce="...">
+  // This will fail in strict CSP.
+  mocha.setup()
+
+  // et cetera
+</script>
 ```
 
 ## Details
