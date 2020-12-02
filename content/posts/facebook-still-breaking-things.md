@@ -1,7 +1,7 @@
 ---
 title: "Facebook Still Breaking Things"
 date: 2020-11-07T12:34:49-08:00
-lastmod: 2020-11-11T12:44:49-08:00
+lastmod: 2020-12-02T12:58:49-08:00
 description: "Mocha v8.1.0 breaking change due to new Facebook library dependency"
 tags:
 - "TDD"
@@ -14,7 +14,29 @@ I've been deprecating my old library, [where.js](https://github.com/dfkaye/where
 
 While working on browser tests for wheredoc using [Mocha](https://mochajs.org/) version 8.2.0, around November 6 and 7, I started seeing Content-Security-Policy "eval not allowed" errors.
 
-> **8 Nov 2020 Update**: Things still work in the browser when using Mocha 7.0.1, but not Mocha 8.1.0. The breaking change is in Mocha 8.x.x.
+## Updates
+
+### 8 November 2020
+
+Things work in the browser when using Mocha 7.0.1, but not Mocha 8.1.0. The breaking change is in Mocha 8.x.x.
+
+### 2 December 2020
+
+Things work in Mocha 8 when using a `<script>` element's `src` attribute to fetch mocha from unpkg.com.
+
+```html
+<script type="module" nonce="..." src="https://unpkg.com/mocha/mocha.js"></script>
+```
+
+***The CSP error occurs when using an ES module `import` statement to fetch mocha from unpkg.com.***
+
+```html
+<script type="module" nonce="...">
+import "https://unpkg.com/mocha/mocha.js"
+...
+```
+
+## Details
 
 I was pretty sure this used to work in Mocha v5.2.0, but I may not remember the setup correctly. We avoided `Function()` in our source code in other projects, but we did use a no-eval CSP and ES6 imports in our test page, circa 2018-2019.
 
