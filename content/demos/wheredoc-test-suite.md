@@ -27,7 +27,7 @@ This demo contains the test suite I used to drive the wheredoc.js module describ
 
 The suite uses [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), module-type scripts, and ES2016 import/export syntax, and is served up by [Hugo](https://gohugo.io).
 
-You can view the source of the test suite at https://github.com/dfkaye/wheredoc/blob/main/test/suite.js.
+You can view the source of the test suite at https://github.com/dfkaye/wheredoc/blob/master/test/suite.js.
 
 ## Suite
 
