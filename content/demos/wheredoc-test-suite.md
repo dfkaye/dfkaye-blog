@@ -17,7 +17,7 @@ scripts:
 - https://unpkg.com/mocha/mocha.js
 - https://unpkg.com/chai/chai.js
 - /js/demos/mocha-setup.js
-- https://unpkg.com/wheredoc@0.0.7/test/suite.js
+- https://unpkg.com/wheredoc@0.0.8/test/suite.js
 - /js/demos/mocha-run.js
 ---
 
