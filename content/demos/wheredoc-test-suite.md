@@ -1,5 +1,5 @@
 ---
-title: "Wheredoc Test Suite"
+title: "Test Suite: Data-driven testing with wheredoc"
 date: 2020-12-02T12:36:59-08:00
 lastmod: 2020-12-02T12:36:59-08:00
 description: "Test suite for wheredoc data table testing module."
@@ -21,9 +21,7 @@ scripts:
 - /js/demos/mocha-run.js
 ---
 
-This demo contains the test suite I used to drive the wheredoc.js module described in my *soon-to-be-published* post on [Data-driven testing]() - link reloads this page.
-
-<!--[Data-driven testing](/posts/2020/08/17/safer-math-operations-in-javascript-using-tdd/).-->
+This demo contains the test suite I used to develop the wheredoc module described in my post on [Data-driven testing](/posts/2020/12/02/data-driven-testing-with-wheredoc/).
 
 The suite uses [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), module-type scripts, and ES2016 import/export syntax, and is served up by [Hugo](https://gohugo.io).
 

@@ -6,14 +6,31 @@ description: {{ "describe this demo" }}
 tags:
 - "tag"
 
+# load styles and scripts in strict order
+
+styles: 
+- https://unpkg.com/mocha/mocha.css
+- /css/demos/mocha-css-override.css
+
+scripts: 
+- https://unpkg.com/mocha/mocha.js
+- https://unpkg.com/chai/chai.js
+- /js/demos/mocha-setup.js
+- unpkg.or.local.url.here
+- /js/demos/mocha-run.js
 ---
 
-![alt](//via.placeholder.com/480x150)
+Introductory paragraph.
 
-Description...
+The suite uses [mocha.js](https://mochajs.org/), [chai.js](https://www.chaijs.com/), module-type scripts, and ES2016 import/export syntax, and is served up by [Hugo](https://gohugo.io).
 
-### Tech used
+You can view the source of the test suite at github-or-local-url.
 
-* item
-* item
-* item
+## Suite
+
+Click on test names in the report below to display each assertion.
+
+{{< rawhtml >}}
+<div id="fixture"></div>
+<div id="mocha"></div>
+{{< /rawhtml >}}
