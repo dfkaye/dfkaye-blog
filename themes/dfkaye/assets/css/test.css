@@ -1,33 +1,31 @@
 /* dfkaye blog styles */
 
+{{ $backgroundColor := "#fff" }}
+{{ $dateTimeColor := "#757575" }}
+{{ $emailColor := "#444444" }}
+{{ $facebookColor := "#3B5998" }}
 {{ $fenceBorderWidth := "3px" }}
+{{ $fenceBorderColor := "#ccc" }}
+{{ $fillColor := "#ababab" }}
 {{ $fontSizeBase := "calc(1em + .15vw)" }}
 {{ $fontSizeLarge := "1.75em" }}
 {{ $fontSizeNormal := "1em" }}
 {{ $fontSizeReduced := ".85em" }}
 {{ $fontSizeSmall := ".75em" }}
 {{ $fontFamilyBase := "sans-serif" }}
+{{ $githubColor := "#6cc644" }}
+{{ $hackernewsColor := "#ff6600" }}
+{{ $highlightBackgroundColor := "#fcfcfc" }}
 {{ $hoverColor := "#008800" }}
-{{ $linkColor := "#6f5ff6" }}
-{{ $textColor := "#000" }}
-{{ $bgcolor := "#fff" }}
-{{ $dateTimeColor := "#757575" }}
-
-{{ $emailColor := "#444444" }}
-{{ $facebookColor := "#3B5998" }}
-
-{{ $fillColor := "#ababab" }}
+{{ $hugoColor := "#ff0095" }}
 {{ $iconHeight := "32px" }}
 {{ $iconMargin := ".5em 0.25em -.5em" }}
 {{ $iconWidth := "32px" }}
-{{ $hugoColor := "#ff0095" }}
+{{ $linkColor := "#6f5ff6" }}
 {{ $linkedinColor := "#0077b5" }}
 {{ $netlifyColor := "#009387" }}
-{{ $githubColor := "#6cc644" }}
-
-{{ $hackernewsColor := "#ff6600" }}
 {{ $redditColor := "#ff5700" }}
-
+{{ $textColor := "#000" }}
 {{ $twitterColor := "#1da1f2" }}
 
 * {
@@ -43,22 +41,19 @@
   -webkit-font-smoothing: antialiased;
 }
 
-html {
-  background-color: {{ $bgcolor }};
+[dfk-body] {
+  background-color: {{ $backgroundColor }};
   color: {{ $textColor }};
   font-family: {{ $fontFamilyBase }};
   font-size: {{ $fontSizeBase }};
+  /* sets width to 100% on all mobile (galaxy fold, iPhone 5, etc.) */
+  position: relative;
   scroll-behavior: smooth;
   /*
     For very narrow screens showing long URLs and table data strings,
     esp. galaxy fold and iphone 5.
    */
-  word-break: break-word;
-}
-
-[dfk-body] {
-  /* sets width to 100% on all mobile (galaxy fold, iPhone 5, etc.) */
-  position: relative;
+  word-break: break-word;  
 }
 
 [hidden] {
@@ -92,7 +87,7 @@ header ~ * {
 }
 
 [role="banner"] {
-  /* accessibility: is banner image doesn't load. */
+  /* accessibility: default background color when banner image doesn't load. */
   background-color: rgba(10, 110, 200);  
   background-image: url(/img/hexo-banner-min.jpg);
   background-position: top -32em left 0;
@@ -112,7 +107,7 @@ header ~ * {
 
 [role="main"] > article {
   padding: 0 2em;
-  max-width: 75ch;
+  max-width: 80ch;
 }
 
 [role="contentinfo"] {
@@ -131,7 +126,7 @@ header ~ * {
 [http-status="404"] {
   color: chocolate;
   font-size: {{ $fontSizeLarge }};
-  padding: 2em;
+  margin: 2em;
   text-align: center;
 }
 
@@ -174,7 +169,7 @@ h2, h3 {
 
 /* could use more polish here */
 * ~ blockquote {
-  background-color: rgba(22, 22, 254, .15);
+  background-color: rgba(24, 143, 255, 0.05); /* rgba(22, 22, 254, .15); */
   /* rgba(24, 143, 255, 0.32); */
   border-left: {{ $fenceBorderWidth }} solid rgba(22, 22, 254, .5);
   /* 2px solid #188fff; */
@@ -265,8 +260,8 @@ pre code {
 /* Code fences with chroma */
 
 .highlight {
-  background-color: whitesmoke;
-  border-left: {{ $fenceBorderWidth }} solid rgba(133, 3, 133);
+  background-color: {{ $highlightBackgroundColor }};
+  border-left: {{ $fenceBorderWidth }} solid {{ $fenceBorderColor }};
 }
 
 .highlight pre {
@@ -346,8 +341,7 @@ a:not([icon]):active {
 [nav] a {
   color: {{ $linkColor }};
   font-weight: 600;
-  /* override { word-break: break-word; }
-     if user increases text size. */
+  /* This overrides { word-break: break-word; } if user increases text size. */
   white-space: nowrap;
 }
 
@@ -471,7 +465,7 @@ a:not([icon]):active {
 [rel*="external"]:hover,
 [rel*="external"]:active,
 [rel*="external"]:visited {
-  color: {{ $bgcolor }};
+  color: {{ $backgroundColor }};
 }
 
 [rel*="external"][href^="https://twitter"] {
