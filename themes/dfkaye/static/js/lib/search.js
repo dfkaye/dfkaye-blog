@@ -129,7 +129,7 @@ function onSubmit(e) {
   search(input.value)
 }
 
-function unit() {
+!(function init() {
   // Normalize entry text.
   entries.forEach(entry => {
     var title = normalize(entry.title.trim())
@@ -140,7 +140,4 @@ function unit() {
   })
 
   form.addEventListener("submit", onSubmit)
-}
-
-init();
-
+})();
