@@ -3,7 +3,7 @@
 {{- partial "scratch-variables.html" . -}}
 {{- partial "head.html" . -}}
 
-<body dfk-body>
+<body page-body="{{ .Type }}">
   {{- partial "nav-a11y.html" . -}}
   {{- partial "header.html" . -}}
   <main role="main" aria-labelledby="main" aria-describedby="page-description">

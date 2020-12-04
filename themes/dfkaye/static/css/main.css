@@ -30,6 +30,7 @@
   --twitter-color: #1da1f2;
 }
 
+/* base */
 
 * {
   box-sizing: border-box;
@@ -42,21 +43,6 @@
 ::before {
   box-sizing: inherit;
   -webkit-font-smoothing: antialiased;
-}
-
-[dfk-body] {
-  background: var(--background-color);
-  color: var(--text-color);
-  font-family: var(--font-family-base);
-  font-size: var(--font-size-base);
-  /* sets width to 100% on all mobile (galaxy fold, iPhone 5, etc.) */
-  position: relative;
-  scroll-behavior: smooth;
-  /*
-    For very narrow screens showing long URLs and table data strings,
-    esp. galaxy fold and iphone 5.
-   */
-  word-break: break-word;
 }
 
 [hidden] {
@@ -78,6 +64,21 @@
 }
 
 /* flow */
+
+[page-body] {
+  background: var(--background-color);
+  color: var(--text-color);
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  /* sets width to 100% on all mobile (galaxy fold, iPhone 5, etc.) */
+  position: relative;
+  scroll-behavior: smooth;
+  /*
+    For very narrow screens showing long URLs and table data strings,
+    esp. galaxy fold and iphone 5.
+   */
+  word-break: break-word;
+}
 
 header {
   color: #fff;
@@ -111,6 +112,8 @@ header ~ * {
 [role="main"] > article {
   padding: 0 2em;
   max-width: 80ch;
+  /* Prevent jank on search between "list" and "no results" states. */
+  width: 100%;
 }
 
 [role="contentinfo"] {
@@ -169,6 +172,8 @@ h2, h3 {
 [page-title] ~ * {
   margin: 1em 0;
 }
+
+/* quoted text */
 
 /* could use more polish here */
 * ~ blockquote {
@@ -274,7 +279,6 @@ pre code {
 
 /* End code fences. */
 
-
 kbd {
   border: 1px solid #666;
   border-radius: .25em;
@@ -283,7 +287,6 @@ kbd {
   padding: 0.1em 0.3em;
   box-shadow: 0.1em 0.2em 0.2em rgba(64, 64, 64, .2);
 }
-
 
 /* links */
 
@@ -438,9 +441,6 @@ a:not([icon]):active {
   fill: var(--twitter-color);
 }
 
-
-/* share links */
-
 /* share links */
 
 [share-links]:before {
@@ -498,8 +498,6 @@ a:not([icon]):active {
   background-color: var(--email-color);
 }
 
-
-
 /* list pages */
 
 [page-list] {
@@ -522,6 +520,11 @@ a:not([icon]):active {
   background-color: whitesmoke;
 }
 
+[page-heading] {
+  font-size: 1.25em;
+  font-weight: normal;
+}
+
 [datetime] {
   color: var(--date-time-color);
   /* font-size: calc(.5em + .75vw); */
@@ -538,6 +541,45 @@ a:not([icon]):active {
   display: flex;
   flex-flow: row wrap;
   font-size: var(--font-size-small);
+}
+
+/* search form */
+
+[for="input-search"] {
+  display: block;
+}
+
+[search-text] {
+  border-width: 1px;
+  font-size: 1em;
+  min-width: 15em;
+  padding: .25em 1em;
+}
+
+[search-submit]:focus {
+  box-shadow: 0 0 1px 1px rgba(22, 22, 254, .5);
+  outline: 0;
+}
+
+[search-submit]:hover {
+  background-color: rgba(22,22,254, 1);
+  border-style: dotted;
+}
+
+[search-submit] {
+  background-color: rgba(22,22,254,.75);
+  border: 1px solid gray;
+  color: #fff;
+  padding: .5em;
+  position: relative;
+  top: -.125em;
+  width: 2.5em;
+}
+
+[result-count] {
+  font-weight: bold;
+  font-size: 1.25em;
+  margin: 1em 0;
 }
 
 /* previous & next links */

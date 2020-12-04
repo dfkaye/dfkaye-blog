@@ -6,10 +6,12 @@
         {{ .Date.Format "January 2, 2006" }}
       </time>
     </aside>
-    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
-    <article page-description>
+    <h2 page-heading>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h2>
+    <p page-description>
       <i>{{ .Description }}</i>
-    </article>
+    </p>
   </li>
   {{ end }}
 </ul>
