@@ -1,4 +1,4 @@
-/* search module */
+/* /js/lib/search.js */
 
 // Our handlers.
 function clearResults(list) {
@@ -62,13 +62,13 @@ function render({ results, list }) {
   list.appendChild(aside)
 }
 
-function normalize(value) {
+function normalize(text) {
   // Textarea for normalizing HTML
   // See https://blog.jeremylikness.com/blog/dynamic-search-in-a-static-hugo-website/#preparing-the-index
   // var normalizer = document.querySelector("[text-normalize]")
   var normalizer = document.createElement('textarea')
 
-  normalizer.innerHTML = value;
+  normalizer.innerHTML = text;
 
   return normalizer.value;
 }
@@ -147,15 +147,12 @@ function search({ text, entries }) {
   var input = document.querySelector('#input-search');
   var list = document.querySelector("[search-results]");
 
-  input.value = "";
-
   form.addEventListener("submit", function onSubmit(e) {
     e.preventDefault()
 
     var results = search({ text: input.value, entries })
 
     clearResults(list)
-
     render({ results, list })
   })
 })();
