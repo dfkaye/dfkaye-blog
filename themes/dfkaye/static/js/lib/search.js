@@ -1,34 +1,17 @@
 /* search module */
 
-// Our search elements.
-var form = document.querySelector("[search-form]");
-var input = document.querySelector('#input-search');
-var list = document.querySelector("[search-results]");
-
-// Textarea for normalizing HTML
-// See https://blog.jeremylikness.com/blog/dynamic-search-in-a-static-hugo-website/#preparing-the-index
-var normalizer = document.querySelector("[text-normalize]")
-
-// DOM builder
-var parser = new DOMParser()
-var mime = "text/html"
-
-// Our search index is not a JSON file but a template attribute string.
-// Variant on global variable approach described by Chris Ferdinandi.
-// See https://gomakethings.com/how-to-create-a-vanilla-js-search-page-for-a-static-website/#creating-a-search-index
-var template = document.querySelector("[search-index]")
-var json = template.getAttribute("search-index")
-var entries = JSON.parse(json)
-// console.warn(json.length)
-
 // Our handlers.
-function clearResults() {
-  [].slice.call(list.children).forEach(child => {
-    child.remove()
-  })
+function clearResults(list) {
+  while (list.firstElementChild) {
+    list.firstElementChild.remove()
+  }
 }
 
-function render(results) {
+function render({ results, list }) {
+  // DOM builder
+  var parser = new DOMParser()
+  var mime = "text/html"
+
   var count = results.length
   var plural = count != 1;
   var html = `
@@ -80,15 +63,21 @@ function render(results) {
 }
 
 function normalize(value) {
+  // Textarea for normalizing HTML
+  // See https://blog.jeremylikness.com/blog/dynamic-search-in-a-static-hugo-website/#preparing-the-index
+  // var normalizer = document.querySelector("[text-normalize]")
+  var normalizer = document.createElement('textarea')
+
   normalizer.innerHTML = value;
 
   return normalizer.value;
 }
 
-function search(text) {
+function search({ text, entries }) {
   var set = {};
   var titles = [];
   var contents = [];
+  var tags = [];
   var results = [];
 
   normalize(text).trim().split(" ").forEach(term => {
@@ -96,6 +85,9 @@ function search(text) {
       // Ignore empty or whitespace terms.
       return
     }
+
+    // Use this to verify at least one tag matches the term.
+    var matchTerm = tag => term.toLowerCase() == tag.toLowerCase()
 
     entries.forEach(entry => {
       if (set[entry.title]) {
@@ -114,30 +106,56 @@ function search(text) {
           set[entry.title] = contents.push(entry)
         )
       }
+
+      if (entry.tags.some(matchTerm)) {
+        return (
+          set[entry.title] = tags.push(entry)
+        )
+      }
     })
 
-    results = titles.concat(contents)
+    results = titles.concat(contents, tags)
   })
 
-  render(results)
+  return results
 }
 
-function onSubmit(e) {
-  e.preventDefault()
-
-  clearResults()
-  search(input.value)
-}
 
 !(function init() {
+  // Our search index is not a JSON file but a template attribute string.
+  // Variant on global variable approach described by Chris Ferdinandi.
+  // See https://gomakethings.com/how-to-create-a-vanilla-js-search-page-for-a-static-website/#creating-a-search-index
+  var template = document.querySelector("[search-index]")
+  var json = template.getAttribute("search-index")
+  var entries = JSON.parse(json)
+  // console.warn(json.length)
+  // console.dir(entries)  
+
   // Normalize entry text.
   entries.forEach(entry => {
     var title = normalize(entry.title.trim())
     var content = normalize(entry.content.trim())
+    var tags = entry.tags.map(tag => normalize(tag))
 
     entry.title = title
     entry.content = content
+    entry.tags = tags
   })
 
-  form.addEventListener("submit", onSubmit)
+  // Our search elements.
+  var form = document.querySelector("[search-form]");
+  var input = document.querySelector('#input-search');
+  var list = document.querySelector("[search-results]");
+
+  input.value = "";
+
+  form.addEventListener("submit", function onSubmit(e) {
+    e.preventDefault()
+
+    var results = search({ text: input.value, entries })
+
+    clearResults(list)
+
+    render({ results, list })
+  })
 })();
