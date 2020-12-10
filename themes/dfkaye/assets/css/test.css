@@ -168,7 +168,7 @@ h2, h3 {
 
 /* This pads the content - p tags, li, etc. */
 [page-title] ~ * {
-  margin: 1em 0;
+  margin: 1.5em 0;
 }
 
 /* quoted text */
@@ -242,7 +242,6 @@ q {
   background-color: rgba(242, 242, 242, 1);
   border-left: {{ $fenceBorderWidth }} solid rgba(22, 22, 254, .5);
   border-left: {{ $fenceBorderWidth }} solid rgba(133, 3, 133);
-  margin: 1.5em 0;
   padding: 1em 0.25em 1em 1em;
 }
 
