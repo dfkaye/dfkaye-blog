@@ -29,13 +29,17 @@ You can view the source of the test suite at [{{< baseurl >}}/js/demos/sam/suite
 
 ## Demo
 
-The countdown in progress is started by the test suite. TAB to the Re-start button, and click to restart the countdown at any time.
+The countdown in progress is started by the test suite. You can restart the countdown at any time using the form input below.
 
 {{< rawhtml >}}
 <div id="fixture">
-  <p role="alert" aria-live="polite" aria-atomic="false">T minus <b remaining role="alert" aria-live="assertive"></b> seconds.</p>
+  <p role="alert" aria-live="polite">T minus <b remaining role="alert" aria-live="assertive"></b> seconds.</p>
   <p><meter progress style="width: 100%;"></meter></p>
-  <p><button type="button" restart>Re-start</button>
+  <form>
+    <label for="t-minus">Enter a countdown in seconds (optional)</label>
+    <input id="t-minus" aria-label="Enter a countdown in seconds and press the Re-start button."/>
+    <button type="submit" restart>Re-start</button>
+  </form>
 </div>
 {{< /rawhtml >}}
 

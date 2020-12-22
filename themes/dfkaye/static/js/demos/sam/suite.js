@@ -140,14 +140,18 @@ describe("Sam pattern Countdown demo", function () {
         var meter = fixture.querySelector("[progress]")
 
         time.textContent = remaining
-        meter.max = from
-        meter.high = from - 1
+
+        if (meter.max != from) {
+          meter.max = from
+          meter.high = from - 1
+        }
+
         meter.value = progress
       },
       on: {
-        click(e) {
+        click({ value }) {
           // Demonstrate the dependency on action.
-          action.next({ action: "reset" })
+          action.next({ action: "reset", value })
         }
       }
     }
@@ -192,8 +196,16 @@ describe("Sam pattern Countdown demo", function () {
       sam.view.init(() => {
         sam.action.next({ action: "reset", value: "15" })
 
-        // Enable our auditors to click anywhere to re-start the countdown.
-        document.querySelector("[restart]").addEventListener("click", sam.view.on.click)
+        // Enable our auditors to submit a re-start event for the countdown,
+        // using the re-start button.
+        document.querySelector("[restart]").closest("form").addEventListener("submit", (e) => {
+          e.preventDefault()
+
+          var input = e.target.querySelector("#t-minus")
+          var value = input.value
+
+          sam.view.on.click({ value })
+        })
       })
     })
 
