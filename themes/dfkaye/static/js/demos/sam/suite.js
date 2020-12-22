@@ -193,7 +193,7 @@ describe("Sam pattern Countdown demo", function () {
         sam.action.next({ action: "reset", value: "15" })
 
         // Enable our auditors to click anywhere to re-start the countdown.
-        document.body.addEventListener("click", sam.view.on.click)
+        document.querySelector("[restart]").addEventListener("click", sam.view.on.click)
       })
     })
 
