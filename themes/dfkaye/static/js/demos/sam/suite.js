@@ -1,13 +1,13 @@
-import { Sam } from "/js/lib/sam.js";
+import { define } from "/js/lib/sam.js";
 
-describe("Sam pattern Countdown demo", function () {
+describe("SAM pattern Countdown demo", function () {
 
   var expect = chai.expect;
 
   /*
    * This suite demonstrates a minimal API required for a SAM application, and
    * support for user events. The Countdown consists of four factory functions:
-   * state, action, model, and view. The Sam function takes all four, creates
+   * state, action, model, and view. The define function takes all four, creates
    * an object, and calls them with slots in the object created for each
    * dependency.
    */
@@ -161,9 +161,59 @@ describe("Sam pattern Countdown demo", function () {
 
   /* tests start here */
 
-  describe("Sam function dependency injection", () => {
+  describe("define() function", () => {
+    // Two example factories, a and b, depend on each other (thus we have a cycle).
+    // They return the same kind of send and receive API containing closures over
+    // their function name. The send() methods have access to their dependencies'
+    // APIs.
+
+    function a(b) {
+      var name = a.name;
+      return {
+        send() { b.receive(`${name} says hi.`) },
+        receive(msg) { console.log(`${msg} received by ${name}.`) }
+      }
+    }
+
+    function b(a, c, d) {
+      var name = b.name;
+      return {
+        send() { a.receive(`${name} says hi.`) },
+        receive(msg) { console.log(`${msg} received by ${name}.`) },
+        test() { c.test(), d.test() }
+      }
+    }
+
+    it("binds dependencies from factory functions", () => {
+      var app = define({ a, b })
+
+      expect(app.a.send).to.be.a("function")
+      expect(app.b.send).to.be.a("function")
+    })
+
+    it("provides object slots for missing dependencies", () => {
+      var app = define({ a })
+
+      expect(app.b).to.be.an("object")
+    })
+
+    it("accepts objects in place of factories", () => {
+      var B = {
+        tested: false,
+        receive() { this.tested = "tested" }
+      }
+
+      var app = define({ a, b: B })
+
+      app.a.send()
+
+      expect(app.b.tested).to.equal("tested")
+    })
+  })
+
+  describe("SAM pattern dependency injection", () => {
     it("Creates instance from other factory functions", () => {
-      var sam = Sam({ action, model, state, view })
+      var sam = define({ action, model, state, view })
 
       // action
       expect(sam.action.next).to.be.a("function")
@@ -177,7 +227,7 @@ describe("Sam pattern Countdown demo", function () {
     })
 
     it("Replaces missing dependencies with empty objects", () => {
-      var sam = Sam({ action, model })
+      var sam = define({ action, model })
 
       expect(sam.state).to.be.an("object")
 
@@ -190,7 +240,7 @@ describe("Sam pattern Countdown demo", function () {
   })
 
   describe("Countdown app", () => {
-    var sam = Sam({ action, model, state, view })
+    var sam = define({ action, model, state, view })
 
     it("Starts with view.init(fn) call", () => {
       sam.view.init(() => {
