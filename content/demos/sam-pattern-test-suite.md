@@ -1,7 +1,7 @@
 ---
 title: "Test Suite: SAM pattern Countdown demo"
 date: 2020-12-21T20:06:29-08:00
-lastmod: 2021-01-01T15:33:54-08:00
+lastmod: 2021-01-01T17:37:54-08:00
 description: "Test suite and Countdown demo for a SAM pattern module that uses dependency injection and factory functions."
 tags:
 - "SAM pattern"

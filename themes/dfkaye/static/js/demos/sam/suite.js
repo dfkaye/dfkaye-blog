@@ -24,15 +24,15 @@ describe("SAM pattern Countdown demo", function () {
         }
 
         // Demonstrate the dependency on model.
-        model.propose({ action, value })
+        model.present({ action, value })
       }
     }
 
     return action
   }
 
-  // model.propose({ action: 'reset', value: 'any' })
-  // model.propose({ action: 'decrement', value: 'any' })
+  // model.present({ action: 'reset', value: 'any' })
+  // model.present({ action: 'decrement', value: 'any' })
   var model = function (state) {
     var data = { from: 0, remaining: 0, progress: 0 }
 
@@ -61,24 +61,28 @@ describe("SAM pattern Countdown demo", function () {
     }
 
     var model = {
-      propose({ action, value }) {
+      present({ action, value }) {
+        if (!(action in steps)) {
+          return
+        }
+
         var data = steps[action]({ value })
 
         // Demonstrate the dependency on state.
-        state.change({ data })
+        state.transition({ data })
       }
     }
 
     return model
   }
 
-  // state.change({ data })
+  // state.transition({ data })
   var state = function (view, action) {
     // Use this timeout to smooth out restart on click events.
     var timeout;
 
     var state = {
-      change({ data }) {
+      transition({ data }) {
         clearTimeout(timeout)
 
         var representation = Object.assign({}, data)
@@ -129,6 +133,10 @@ describe("SAM pattern Countdown demo", function () {
 
     var view = {
       init(handler) {
+        if (!handler) {
+          return
+        }
+
         // Enables multiple init() calls, even after document is ready.
         register(handler)
       },
@@ -161,7 +169,8 @@ describe("SAM pattern Countdown demo", function () {
 
   /* tests start here */
 
-  describe("define() function", () => {
+  describe("The define() function for dependency injection", () => {
+
     // Two example factories, a and b, depend on each other (thus we have a cycle).
     // They return the same kind of send and receive API containing closures over
     // their function name. The send() methods have access to their dependencies'
@@ -211,43 +220,153 @@ describe("SAM pattern Countdown demo", function () {
     })
   })
 
-  describe("SAM pattern dependency injection", () => {
-    it("Creates instance from other factory functions", () => {
-      var sam = define({ action, model, state, view })
+  describe("SAM pattern API", () => {
 
-      // action
-      expect(sam.action.next).to.be.a("function")
-      // model
-      expect(sam.model.propose).to.be.a("function")
-      // state
-      expect(sam.state.change).to.be.a("function")
-      // view
-      expect(sam.view.render).to.be.a("function")
-      expect(sam.view.render).to.be.a("function")
+    describe("action.next()", () => {
+      var sam = define({ action })
+
+      it("calls model.present()", () => {
+        sam.model.present = function (proposal) {
+          expect(proposal.action).to.equal("test")
+        }
+
+        sam.action.next({ action: "test" })
+      })
+
+      it("expects an action and a value", () => {
+        sam.model.present = function (proposal) {
+          var { action, value } = proposal;
+
+          expect(action).to.equal("test")
+          expect(value).to.equal("tested")
+        }
+
+        sam.action.next({ action: "test", value: "tested" })
+      })
     })
 
-    it("Replaces missing dependencies with empty objects", () => {
-      var sam = define({ action, model })
+    describe("model.present()", () => {
+      var sam = define({ model })
 
-      expect(sam.state).to.be.an("object")
+      it("calls state.transition()", () => {
+        sam.state.transition = function ({ data }) {
+          expect(data.remaining).to.equal(10)
+        }
 
-      // state is an empty object because the factory function is not provided.
-      expect(Object.keys(sam.state).length).to.equal(0)
+        sam.model.present({ action: "reset" })
+      })
 
-      // view is a dependency of state whose factory is not provided, so...
-      expect(sam.view).to.be.undefined
+      it("ignores unrecognized action", () => {
+        var called = false
+
+        sam.state.transition = function ({ data }) {
+          called = true
+        }
+
+        sam.model.present({ action: "bonk" })
+
+        expect(called).to.equal(false)
+      })
+    })
+
+    describe("state.transition()", () => {
+      it("calls view.render()", () => {
+        var sam = define({ state })
+
+        sam.view.render = function ({ data }) {
+          expect(data.remaining).to.equal(0)
+        }
+
+        sam.state.transition({ data: { remaining: 0 } })
+      })
+
+      it("calls action.next() if control state is not done (i.e., time remaining)", () => {
+        var sam = define({ state })
+
+        sam.view.render = function ({ data }) {
+          expect(data.remaining).to.equal(1)
+        }
+
+        sam.action.next = function ({ action, value }) {
+          expect(action).to.equal("decrement")
+        }
+
+        sam.state.transition({ data: { remaining: 1 } })
+      })
+
+      it("does not call action.next() if control state is done (i.e., no time remaining)", () => {
+        var sam = define({ state })
+
+        var called = "";
+
+        sam.view.render = function ({ data }) {
+          called = "render"
+        }
+
+        sam.action.next = function ({ action, value }) {
+          throw new Error("should not be called")
+        }
+
+        sam.state.transition({ data: { remaining: 0 } })
+
+        expect(called).to.equal("render")
+      })
+    })
+
+    describe("view.init()", function () {
+      it("expects a handler function...", (done) => {
+        var sam = define({ view })
+
+        var promise = Promise.resolve()
+
+        var ok = () => {
+          return 42
+        }
+
+        // does not throw
+        sam.view.init()
+
+        var handler = () => {
+          promise.then(ok).then(result => {
+            expect(result).to.equal(42)
+            done()
+          })
+        }
+
+        sam.view.init(handler)
+      })
+
+      it("...or a handler using the handleEvent interface", (done) => {
+        var sam = define({ view })
+
+        // does not throw
+        sam.view.init({ handleEvent: {} })
+
+        var handler = {
+          promise: Promise.resolve(),
+          ok: () => "OK",
+          handleEvent: () => {
+            handler.promise.then(handler.ok).then(result => {
+              expect(result).to.equal("OK")
+
+              done()
+            })
+          }
+        }
+
+        sam.view.init(handler)
+      })
     })
   })
 
   describe("Countdown app", () => {
     var sam = define({ action, model, state, view })
 
-    it("Starts with view.init(fn) call", () => {
+    it("starts with view.init handler that calls action.next()", () => {
       sam.view.init(() => {
         sam.action.next({ action: "reset", value: "15" })
 
-        // Enable our auditors to submit a re-start event for the countdown,
-        // using the re-start button.
+        // Enable users to re-start countdown from new T-minus time.
         document.querySelector("[restart]").closest("form").addEventListener("submit", (e) => {
           e.preventDefault()
 
@@ -259,17 +378,19 @@ describe("SAM pattern Countdown demo", function () {
       })
     })
 
-    it("OK to call view.init(fn) multiple times", function (done) {
+    it("can call view.init(fn) multiple times", function (done) {
       var count = 0;
 
       [1, 2, 3, 4, 5].forEach((next) => {
         sam.view.init(() => {
           count = count + 1
           expect(count).to.equal(next)
+
+          if (count == 5) {
+            done()
+          }
         })
       })
-
-      done()
     })
   })
 });
