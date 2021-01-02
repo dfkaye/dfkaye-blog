@@ -1,4 +1,5 @@
-import { define } from "/js/lib/sam.js";
+import { define } from "/js/lib/sam/define.js";
+import { register } from "/js/lib/sam/register.js"
 
 describe("SAM pattern Countdown demo", function () {
 
@@ -106,30 +107,7 @@ describe("SAM pattern Countdown demo", function () {
   }
 
   var view = function (action) {
-    function register(handler) {
-      if (typeof handler != 'function' && typeof handler.handleEvent != "function") {
-        return;
-      }
-
-      function onReadyStateChange() {
-        if (document.readyState == "complete") {
-          exec(handler);
-          return true
-        }
-      }
-
-      onReadyStateChange() || (
-        document.addEventListener('readystatechange', onReadyStateChange, { once: true })
-      )
-    }
-
-    function exec(handler) {
-      typeof handler.handleEvent == "function"
-        ? handler.handleEvent.call(handler)
-        : typeof handler == "function"
-          ? handler.call(document)
-          : 0;
-    }
+    // view.init() uses the register handler function.
 
     var view = {
       init(handler) {
