@@ -4,7 +4,72 @@ import { register } from "/js/lib/sam/register.js"
 export { view }
 
 function view(action) {
+
+  // TODO: pass calculator root or keypad root selector
+  // and [value] selector from view init(() => {
+  //    view.calculator ... 
+  //    view.keys
+  // })
+  var calculator = document.querySelector("#fixture [calculator]")
+  var keys = Array.from(calculator.querySelectorAll("[value]"))
+
+  /* arrow key traversal */
+
+  var traverse = {
+    rows: [
+      [0, 1, 2, 3],
+      [4, 5, 6, 7],
+      [19, 20, 21, 8],
+      [16, 17, 18, 9],
+      [13, 14, 15, 10],
+      [23, 12, 22, 11]
+    ],
+    find(index) {
+      var data = {}
+      var { rows } = traverse
+
+      rows.some((row, i) => {
+        var col = row.indexOf(index)
+
+        if (col > -1) {
+          data.row = i
+          data.col = col
+          data.index = index
+
+          return data
+        }
+      })
+
+      return data
+    },
+    Arrow(e) {
+      var { rows, find } = traverse
+
+      // Traverse next key in keypad, according to rows layout.
+
+      var { key, target } = e
+      var index = keys.indexOf(target)
+      var { row, col } = find(index)
+      var element = (
+        (/Up$/.test(key) && row)
+        && keys[rows[row - 1][col]]
+
+        || (/Down$/.test(key) && row < rows.length - 1)
+        && keys[rows[row + 1][col]]
+
+        || (/Right$/.test(key) && col < rows[0].length - 1)
+        && keys[rows[row][col + 1]]
+
+        || (/Left$/.test(key) && col)
+        && keys[rows[row][col - 1]]
+      )
+
+      element && (element.focus());
+    }
+  }
+
   /* keypad */
+
   var operators = {
     "+": "plus",
     "-": "minus",
@@ -114,7 +179,7 @@ function view(action) {
         var { key } = e;
 
         // traversal
-        /^Arrow(Up|Down|Right|Left)$/.test(key) && keypad.Arrow(e);
+        /^Arrow(Up|Down|Right|Left)$/.test(key) && traverse.Arrow(e);
 
         // next digit
         /^\d$/.test(key)

@@ -25,9 +25,16 @@ describe("view", () => {
   //   })
   // })
 
-  // describe("render", () => {
+  describe("render", () => {
+    // var equation
+    // var display
+    // var a11y
 
-  // })
+    it("format")
+    it("equation")
+    it("display")
+    it("a11y")
+  })
 
   describe("on", () => {
     describe("keydown", () => {
@@ -201,11 +208,136 @@ describe("view", () => {
         expect(calls).to.equal(operators.length)
       })
 
-      describe("TODO: traversal with Arrow keys", () => {
-        it("left")
-        it("up")
-        it("right")
-        it("down")
+      describe("arrow traversal", () => {
+        var calculator = document.querySelector("#fixture [calculator]")
+        var keys = Array.from(calculator.querySelectorAll("[value]"))
+          .reduce((map, key) => {
+            map[key.value] = key
+
+            return map
+          }, {})
+
+        it("count keys", () => {
+          expect(Object.keys(keys).length).to.equal(24)
+        })
+
+        describe("ArrowUp", () => {
+          var app = define({ view })
+
+          it("no effect in top row", () => {
+            var { view } = app;
+
+            ["percent", "clearentry", "clear", "backspace"].forEach(key => {
+              var target = keys[key]
+
+              target.focus()
+
+              view.on.keydown({ key: "ArrowUp", target })
+
+              expect(document.activeElement).to.equal(target)
+            })
+          })
+
+          it("moves focus up one row", () => {
+            var { view } = app;
+
+            var target = keys["negate"]
+
+            target.focus()
+
+            view.on.keydown({ key: "ArrowUp", target })
+
+            expect(document.activeElement).to.equal(keys["1"])
+          })
+        })
+
+        describe("ArrowRight", () => {
+          it("no effect in right column", () => {
+            var { view } = app;
+
+            ["backspace", "divide", "multiply", "plus", "minus", "equals"].forEach(key => {
+              var target = keys[key]
+
+              target.focus()
+
+              view.on.keydown({ key: "ArrowRight", target })
+
+              expect(document.activeElement).to.equal(target)
+            })
+          })
+
+          it("moves focus right one column", () => {
+            var { view } = app;
+
+            var target = keys["percent"]
+
+            target.focus()
+
+            view.on.keydown({ key: "ArrowRight", target })
+
+            expect(document.activeElement).to.equal(keys["clearentry"])
+          })
+        })
+
+        describe("ArrowDown", () => {
+          var app = define({ view })
+
+          it("no effect in bottom row", () => {
+            var { view } = app;
+
+            ["negate", "0", "decimal", "equals"].forEach(key => {
+              var target = keys[key]
+
+              target.focus()
+
+              view.on.keydown({ key: "ArrowDown", target })
+
+              expect(document.activeElement).to.equal(target)
+            })
+          })
+
+          it("moves focus down one row", () => {
+            var { view } = app;
+
+            var target = keys["squareroot"]
+
+            target.focus()
+
+            view.on.keydown({ key: "ArrowDown", target })
+
+            expect(document.activeElement).to.equal(keys["9"])
+          })
+        })
+
+        describe("ArrowLeft", () => {
+          var app = define({ view })
+
+          it("no effect in left column", () => {
+            var { view } = app;
+
+            ["percent", "reciprocal", "7", "4", "1", "negate"].forEach(key => {
+              var target = keys[key]
+
+              target.focus()
+
+              view.on.keydown({ key: "ArrowLeft", target })
+
+              expect(document.activeElement).to.equal(target)
+            })
+          })
+
+          it("moves focus left one column", () => {
+            var { view } = app;
+
+            var target = keys["3"]
+
+            target.focus()
+
+            view.on.keydown({ key: "ArrowLeft", target })
+
+            expect(document.activeElement).to.equal(keys["2"])
+          })
+        })
       })
     })
 
