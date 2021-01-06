@@ -15,10 +15,10 @@ describe("view", () => {
     })
   })
 
-  describe("init", (done) => {
+  describe("init", () => {
     var app = define({ view })
 
-    it("runs handler on document ready", () => {
+    it("runs handler on document ready", (done) => {
       var { view } = app;
       var calls = 0
 
