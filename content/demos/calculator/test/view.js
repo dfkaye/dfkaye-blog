@@ -15,7 +15,7 @@ describe("view", () => {
     })
   })
 
-  describe("init", () => {
+  describe("init", (done) => {
     var app = define({ view })
 
     it("runs handler on document ready", () => {
@@ -28,7 +28,12 @@ describe("view", () => {
 
       view.init(handler)
 
-      expect(calls).to.equal(1)
+      setTimeout(() => {
+        expect(calls).to.equal(1)
+
+        done()
+      }, 1000)
+
     })
   })
 
