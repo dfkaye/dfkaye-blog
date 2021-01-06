@@ -1,3 +1,4 @@
+import { format } from "/js/lib/sam/numbers.js"
 
 export { state }
 
@@ -8,6 +9,10 @@ function state(view, action) {
   var state = {
     change({ data }) {
       clearTimeout(timeout)
+
+      // TODO:
+      // format values for output and alert
+      // pass equation array
 
       var representation = Object.assign({}, data)
 

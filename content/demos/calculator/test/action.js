@@ -4,7 +4,11 @@ import { define } from "/js/lib/sam/define.js"
 describe("action", () => {
   var { expect } = chai
 
+  var app = define({ action })
+
   it("runs", () => {
-    expect(expect).to.be.a("function")
+    var { action, model } = app
+
+    expect(action.next).to.be.a("function")
   })
 })

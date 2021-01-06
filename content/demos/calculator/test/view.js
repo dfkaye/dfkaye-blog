@@ -4,36 +4,116 @@ import { define } from "/js/lib/sam/define.js"
 describe("view", () => {
   var { expect } = chai
 
-  // var app = define({
-  //   view, action: {
-  //     next() {
+  describe("define({ view })", () => {
+    var app = define({ view })
 
-  //     }
-  //   }
-  // })
+    it("returns app with view and action", () => {
+      var { view, action } = app;
 
-  // describe("init", () => {
-  //   app.view.init(() => {
-  //     var { view, action } = app;
+      expect(view).to.be.an("object")
+      expect(action).to.be.an("object")
+    })
+  })
 
-  //     var calculator = document.querySelector("#fixture [calculator]");
+  describe("init", () => {
+    var app = define({ view })
 
-  //     calculator.addEventListener("keydown", view.on.keydown);
-  //     calculator.addEventListener("click", view.on.click);
+    it("runs handler on document ready", () => {
+      var { view } = app;
+      var calls = 0
 
-  //     action.next({ action: "reset" })
-  //   })
-  // })
+      var handler = function () {
+        calls += 1
+      }
+
+      view.init(handler)
+
+      expect(calls).to.equal(1)
+    })
+  })
 
   describe("render", () => {
-    // var equation
-    // var display
-    // var a11y
+    var app = define({ view })
 
-    it("format")
-    it("equation")
-    it("display")
-    it("a11y")
+    var { selectors } = app.view
+
+    var calculator = document.querySelector(selectors.calculator)
+    var equation = calculator.querySelector(selectors.equation)
+    var output = calculator.querySelector(selectors.output)
+    var alert = calculator.querySelector(selectors.alert)
+
+    var representation = {
+      display: {},
+      equation: [],
+      alert: ""
+    }
+
+    it("output", () => {
+      var { view } = app;
+      var data = Object.assign({}, representation, {
+        display: {
+          value: "1234.567890",
+          formatted: "1,234.567890"
+        }
+      })
+
+      view.render({ data })
+
+      expect(output.textContent).to.equal("1,234.567890")
+    })
+
+    it("equation", () => {
+      var { view } = app;
+
+      var data = Object.assign({}, representation, {
+        display: {
+          value: "9",
+          formatted: "9"
+        },
+        equation: ["6", "+", "3", "+"]
+      })
+
+      view.render({ data })
+
+      expect(output.textContent).to.equal("9")
+      expect(equation.textContent).to.equal("6 + 3 +")
+    })
+
+    describe("alert", () => {
+      var { view } = app;
+
+      it("contains equation when equation contains 2 or less inputs", () => {
+
+        var data = Object.assign({}, representation, {
+          display: {
+            value: "6",
+            formatted: "6"
+          },
+          equation: ["6", "+"]
+        })
+
+        view.render({ data })
+
+        expect(alert.textContent).to.equal("Display is 6 +")
+        expect(equation.textContent).to.equal("6 +")
+      })
+
+      it("contains display value when equation has 3 or more inputs", () => {
+
+        var data = Object.assign({}, representation, {
+          display: {
+            value: "9",
+            formatted: "9"
+          },
+          equation: ["6", "+", "3", "+"]
+        })
+
+        view.render({ data })
+
+        expect(alert.textContent).to.equal("Display is 9")
+        expect(equation.textContent).to.equal("6 + 3 +")
+      })
+    })
   })
 
   describe("on", () => {
@@ -461,7 +541,7 @@ describe("view", () => {
         view.on.click({ target: { value } })
       })
 
-      it("handles Digit keys", () => {
+      it("handles Digits", () => {
         var { view, action } = app
         var digits = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         var calls = 0
@@ -482,7 +562,7 @@ describe("view", () => {
         expect(calls).to.equal(digits.length)
       })
 
-      it("handles Operator keys", () => {
+      it("handles Operators", () => {
         var { view, action } = app
 
         var operators = [
