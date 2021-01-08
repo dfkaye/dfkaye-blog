@@ -5,6 +5,74 @@ export { view }
 
 function view(action) {
 
+  // input action names and symbols
+  // For keyboard shortcuts, see
+  // https://www.webnots.com/keyboard-shortcuts-for-calculator-app-in-windows-10/
+  var actions = {
+    "Backspace": "backspace",
+    "backspace": "backspace",
+    "Escape": "clear",
+    "clear": "clear",
+    "Delete": "clearentry",
+    "clearentry": "clearentry",
+    ".": "decimal",
+    "decimal": "decimal",
+    "F9": "negate",
+    "negate": "negate",
+    "%": "percent",
+    "percent": "percent",
+    "r": "reciprocal",
+    "reciprocal": "reciprocal",
+    "q": "square",
+    "square": "square",
+    "@": "squareroot",
+    "squareroot": "squareroot"
+  }
+
+  // operator action names and symbols
+  var operators = {
+    "+": "plus",
+    "plus": "plus",
+    "-": "minus",
+    "minus": "minus",
+    "*": "multiply",
+    "multiply": "multiply",
+    "/": "divide",
+    "divide": "divide",
+    "=": "equals",
+    "equals": "equals"
+  }
+
+  // arrow key traversal
+  var keypad = {
+    rows: [
+      [0, 1, 2, 3],
+      [4, 5, 6, 7],
+      [19, 20, 21, 8],
+      [16, 17, 18, 9],
+      [13, 14, 15, 10],
+      [23, 12, 22, 11]
+    ],
+    find(index) {
+      var data = {}
+
+      keypad.rows.some((row, i) => {
+        var col = row.indexOf(index)
+
+        if (col > -1) {
+          // add props to data
+          data.row = i
+          data.col = col
+
+          // exit some()
+          return true
+        }
+      })
+
+      return data
+    }
+  }
+
   var view = {
     init(handler) {
       if (!handler) {
@@ -14,113 +82,64 @@ function view(action) {
       register(handler)
     },
 
-    keypad: {
-      operators: {
-        "+": "plus",
-        "-": "minus",
-        "*": "multiply",
-        "/": "divide",
-        "=": "equals"
+    handle: {
+      arrow(e) {
+        var { key, target } = e
+        var { rows, find } = keypad;
+        var { selectors } = view;
+
+        // Find our keypad buttons.
+        var calculator = document.querySelector(selectors.calculator)
+        var keys = Array.from(calculator.querySelectorAll(selectors.keys))
+
+        // Traverse next key in keypad according to rows index order.
+        var index = keys.indexOf(target)
+        var { row, col } = find(index)
+        var element = (
+          (/Up$/.test(key) && row)
+          && keys[rows[row - 1][col]]
+
+          || (/Down$/.test(key) && row < rows.length - 1)
+          && keys[rows[row + 1][col]]
+
+          || (/Right$/.test(key) && col < rows[0].length - 1)
+          && keys[rows[row][col + 1]]
+
+          || (/Left$/.test(key) && col)
+          && keys[rows[row][col - 1]]
+        )
+
+        element && (element.focus());
       },
+      input({ key }) {
+        if (key in actions) {
+          return action.next({ action: actions[key], value: key })
+        }
 
-      Action({ key }) {
-        // Keyboard shortcuts
-        // https://www.webnots.com/keyboard-shortcuts-for-calculator-app-in-windows-10/
+        if (key in operators) {
+          return action.next({ action: "nextOp", value: operators[key] })
+        }
 
-        var { keypad } = view;
-
-        // trim rightmost
-        /^Backspace$/.test(key) && keypad.Backspace(key);
-
-        // clear entry
-        /^Delete$/.test(key) && keypad.Delete(key);
-
-        // clear all
-        /^Escape$/.test(key) && keypad.Escape(key);
-
-        // decimal
-        /^\.$/.test(key) && keypad.Decimal(key);
-
-        // digit
-        /^\d$/.test(key) && keypad.Digit(key);
-
-        // negate (positive-negative)
-        /^F9$/.test(key) && keypad.Negate(key);
-
-        // next op key
-        /^(\+|\-|\*|\/|\=)$/.test(key) && keypad.Operator(key);
-
-        // next op button click
-        /^(plus|minus|multiply|divide|equals)$/.test(key) && keypad.Operator(key);
-
-        // percent
-        /^\%$/.test(key) && keypad.Percent(key);
-
-        // reciprocal
-        /^r$/.test(key) && keypad.Reciprocal(key);
-
-        // square
-        /^q$/.test(key) && keypad.Square(key);
-
-        // square root
-        /^@$/.test(key) && keypad.Squareroot(key);
-      },
-
-      Backspace(key) {
-        action.next({ action: "backspace", value: key })
-      },
-      Decimal(key) {
-        action.next({ action: "decimal", value: key })
-      },
-      Delete(key) {
-        action.next({ action: "clearentry", value: key })
-      },
-      Digit(key) {
-        action.next({ action: "digit", value: key })
-      },
-      Escape(key) {
-        action.next({ action: "clear", value: key })
-      },
-      Negate(key) {
-        action.next({ action: "negate", value: key })
-      },
-      Operator(key) {
-        var { keypad } = view;
-
-        action.next({
-          action: "nextOp",
-          value: keypad.operators[key]
-        })
-      },
-      Percent(key) {
-        action.next({ action: "percent", value: key })
-      },
-      Reciprocal(key) {
-        action.next({ action: "reciprocal", value: key })
-      },
-      Square(key) {
-        action.next({ action: "square", value: key })
-      },
-      Squareroot(key) {
-        action.next({ action: "squareroot", value: key })
+        if (/^\d$/.test(key)) {
+          return action.next({ action: "digit", value: key })
+        }
       }
     },
 
     on: {
       click(e) {
         var { value } = e.target;
-        var { keypad } = view;
+        var { handle } = view;
 
-        keypad.Action({ key: value })
+        handle.input({ key: value })
       },
       keydown(e) {
         var { key } = e;
-        var { traverse, keypad } = view;
+        var { handle } = view;
 
-        // traversal
         /^Arrow(Up|Down|Right|Left)$/.test(key)
-          ? traverse.Arrow(e)
-          : keypad.Action({ key });
+          ? handle.arrow(e)
+          : handle.input({ key });
       }
     },
 
@@ -151,67 +170,6 @@ function view(action) {
       equation: "[equation]",
       output: '[output]',
       alert: '[role="alert"]'
-    },
-
-    traverse: {
-      rows: [
-        [0, 1, 2, 3],
-        [4, 5, 6, 7],
-        [19, 20, 21, 8],
-        [16, 17, 18, 9],
-        [13, 14, 15, 10],
-        [23, 12, 22, 11]
-      ],
-      find(index) {
-        var data = {}
-        var { traverse } = view;
-
-        var { rows } = traverse
-
-        rows.some((row, i) => {
-          var col = row.indexOf(index)
-
-          if (col > -1) {
-            data.row = i
-            data.col = col
-            data.index = index
-
-            return data
-          }
-        })
-
-        return data
-      },
-      Arrow(e) {
-        var { selectors, traverse } = view;
-        var { rows, find } = traverse
-
-        // Traverse next key in keypad, according to rows layout.
-
-        var { key, target } = e
-
-        // Find our keypad buttons.
-        var calculator = document.querySelector(selectors.calculator)
-        var keys = Array.from(calculator.querySelectorAll(selectors.keys))
-
-        var index = keys.indexOf(target)
-        var { row, col } = find(index)
-        var element = (
-          (/Up$/.test(key) && row)
-          && keys[rows[row - 1][col]]
-
-          || (/Down$/.test(key) && row < rows.length - 1)
-          && keys[rows[row + 1][col]]
-
-          || (/Right$/.test(key) && col < rows[0].length - 1)
-          && keys[rows[row][col + 1]]
-
-          || (/Left$/.test(key) && col)
-          && keys[rows[row][col - 1]]
-        )
-
-        element && (element.focus());
-      }
     }
   }
 
