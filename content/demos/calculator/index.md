@@ -1,14 +1,16 @@
 ---
-title: "Demo: Calculator App built with the SAM pattern"
+title: "Test Suite: Calculator App built with the SAM pattern"
 date: 2020-12-19T15:31:27-08:00
-lastmod: 2020-12-19T15:31:27-08:00
-description: "Accessible calculator built with the SAM pattern."
+lastmod: 2021-01-08T13:26:27-08:00
+description: "Test suite for an Accessible calculator built with JavaScript using the SAM pattern and dependency injection."
 
 draft: false
 
 tags:
 - "SAM pattern"
 - "Accessibility"
+- "JavaScript"
+- "dependency injection"
 
 # load styles and scripts in strict order
 
@@ -28,7 +30,7 @@ scripts:
 - ./calculator.js
 ---
 
-***Dec 19, 2020: Work in progress, functionality not implemented.*** 
+***January 8, 2021: Work in progress. Functionality still being implemented.*** 
 
 ## Calculator
 
