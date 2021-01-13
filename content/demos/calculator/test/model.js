@@ -184,9 +184,124 @@ describe("model", () => {
       })
     })
 
+
+    describe("nextOp", () => {
+
+      describe("divide", () => {
+        it("pending")
+      })
+      describe("equals", () => {
+        it("pending")
+      })
+      describe("minus", () => {
+        it("pending")
+      })
+      describe("multiply", () => {
+        it("pending")
+      })
+      describe("plus", () => {
+        it("pending")
+      })
+    })
+
     describe("percent", () => {
       // https://devblogs.microsoft.com/oldnewthing/20080110-00/?p=23853
-      it("pending")
+      var { model, state } = app;
+
+      beforeEach(() => {
+        state.transition = function ({ data }) { }
+
+        model.propose({ action: "clear" })
+      })
+
+      it("needs to be refactored after nextOp is done")
+
+      it("resets to 0 if no operator has been entered", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "percent" })
+
+        var { output, input, expression } = result
+
+        expect(output).to.equal("0")
+        // expect(result.expression).to.equal("")
+      })
+
+      it("resets to 0 if next operator not entered", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "digit", value: "4" })
+        model.propose({ action: "percent" })
+
+        var { output, input, expression } = result
+
+        expect(output).to.equal("0")
+      })
+
+      it("uses current digital output if last step is an operator", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "digit", value: "9" })
+        model.propose({ action: "nextOp", value: "plus" })
+
+        model.propose({ action: "percent" })
+
+        var { output, input, expression } = result
+
+        expect(output).to.equal("0.81")
+      })
+
+      it("uses next digital input if present", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "digit", value: "9" })
+        model.propose({ action: "nextOp", value: "plus" })
+        model.propose({ action: "digit", value: "5" })
+
+        model.propose({ action: "percent" })
+
+        var { output, input, expression } = result
+
+        expect(output).to.equal("0.45")
+      })
+
+      it("processes end of input", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "digit", value: "1" })
+        model.propose({ action: "nextOp", value: "plus" })
+        model.propose({ action: "digit", value: "2" })
+        model.propose({ action: "nextOp", value: "plus" })
+        model.propose({ action: "digit", value: "3" })
+        model.propose({ action: "nextOp", value: "plus" })
+        model.propose({ action: "digit", value: "5" })
+
+        model.propose({ action: "percent" })
+
+        var { output, input, expression } = result
+
+        expect(output).to.equal("0.3")
+      })
     })
 
     describe("reciprocal", () => {
@@ -288,22 +403,6 @@ describe("model", () => {
         model.propose({ action: "squareroot" })
 
         expect(message).to.equal(`invalid input for square root, "-9"`)
-      })
-    })
-
-    describe("nextOp", () => {
-
-      describe("divide", () => {
-        it("pending")
-      })
-      describe("minus", () => {
-        it("pending")
-      })
-      describe("multiply", () => {
-        it("pending")
-      })
-      describe("plus", () => {
-        it("pending")
       })
     })
   })

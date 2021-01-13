@@ -1,12 +1,21 @@
 
 export { model }
 
-function model(state) {
-  var base = {
-    input: [],
-    output: "0"
-  }
+var ops = {
+  "divide": { symbol: "/", fn() { } },
+  "equals": { symbol: "=", fn() { } },
+  "minus": { symbol: "-", fn() { } },
+  "multiply": { symbol: "*", fn() { } },
+  "plus": { symbol: "+", fn() { } },
+}
 
+var base = {
+  expression: [],
+  input: [],
+  output: "0"
+}
+
+function model(state) {
   var data = {}
 
   function change({ data, changes }) {
@@ -62,7 +71,8 @@ function model(state) {
       }
 
       var { input } = data
-      var last = input[input.length - 1]
+      var { length } = input
+      var last = input[length - 1]
 
       // If last action was equals(), reinitialize to clean state.
       if (last == "equals") {
@@ -75,7 +85,7 @@ function model(state) {
 
       var { output } = data
 
-      output = output == 0
+      output = output == 0 || length > 1
         ? value
         : output + value
 
@@ -100,6 +110,26 @@ function model(state) {
       return change({ data, changes })
     },
 
+    nextOp({ value }) {
+      var op = ops[value]
+      var symbol = op.symbol
+
+      console.log("nextOp", value, symbol)
+
+      var { input, expression } = data
+
+      // just push symbol to expression for now
+      expression.push(symbol)
+      input.push(value)
+
+      var changes = {
+        expression,
+        input
+      }
+
+      return change({ data, changes })
+    },
+
     percent() {
       // https://devblogs.microsoft.com/oldnewthing/20080110-00/?p=23853
       // 100 + 5% = 105
@@ -108,7 +138,34 @@ function model(state) {
       // and replace the current entry with that answer.
       // So now we need to use the input array...
 
+      var { input, output } = data
+      var { length } = input
 
+      var value = 0
+
+      if (length > 1) {
+        var a = input[length - 2]
+
+        if (!/\d/.test(a)) {
+          a = input[length - 3]
+        }
+
+        var b = input[length - 1]
+
+        console.log(JSON.stringify({ a, b, length }))
+
+        if (!/\d/.test(b) && length < 3) {
+          b = a
+        }
+
+        value = a * b / 100
+      }
+
+      var changes = {
+        output: value.toString()
+      }
+
+      return change({ data, changes })
     },
 
     reciprocal() {
