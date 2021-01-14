@@ -27,6 +27,7 @@ describe("action", () => {
         "clearentry",
         "decimal",
         "delete",
+        "equals",
         "negate",
         "percent",
         "reciprocal",
@@ -56,8 +57,7 @@ describe("action", () => {
         { action: "nextOp", value: "plus" },
         { action: "nextOp", value: "minus" },
         { action: "nextOp", value: "multiply" },
-        { action: "nextOp", value: "divide" },
-        { action: "nextOp", value: "equals" }
+        { action: "nextOp", value: "divide" }
       ]
 
       var calls = 0;

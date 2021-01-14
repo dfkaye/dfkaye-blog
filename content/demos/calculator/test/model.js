@@ -148,6 +148,10 @@ describe("model", () => {
       })
     })
 
+    describe("equals", () => {
+      it("pending")
+    })
+
     describe("negate", () => {
       var { model, state } = app;
 
@@ -188,9 +192,6 @@ describe("model", () => {
     describe("nextOp", () => {
 
       describe("divide", () => {
-        it("pending")
-      })
-      describe("equals", () => {
         it("pending")
       })
       describe("minus", () => {

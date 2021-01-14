@@ -184,6 +184,19 @@ describe("view", () => {
         expect(calls).to.equal(digits.length)
       })
 
+      it("handles Equals keys", () => {
+        var { view, action } = app
+
+        var key = "Equals"
+
+        action.next = function ({ action, value }) {
+          expect(action).to.equal("equals")
+          expect(value).to.equal(key)
+        }
+
+        view.on.keydown({ key })
+      })
+
       it("handles Escape (Clear) keys", () => {
         var { view, action } = app
 
@@ -269,8 +282,7 @@ describe("view", () => {
           { key: "+", name: "plus" },
           { key: "-", name: "minus" },
           { key: "*", name: "multiply" },
-          { key: "/", name: "divide" },
-          { key: "=", name: "equals" }
+          { key: "/", name: "divide" }
         ]
 
         var calls = 0
@@ -430,79 +442,92 @@ describe("view", () => {
       it("handles Backspace", () => {
         var { view, action } = app
 
-        var value = "backspace"
+        var key = "backspace"
 
         action.next = function ({ action, value }) {
           expect(action).to.equal("backspace")
-          expect(value).to.equal(value)
+          expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value } })
+        view.on.click({ target: { value: key } })
       })
 
       it("handles CE (clear entry)", () => {
         var { view, action } = app
 
-        var value = "clearentry"
+        var key = "clearentry"
 
         action.next = function ({ action, value }) {
           expect(action).to.equal("clearentry")
-          expect(value).to.equal(value)
+          expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value } })
+        view.on.click({ target: { value: key } })
       })
 
       it("handles C (clear all)", () => {
         var { view, action } = app
 
-        var value = "clear"
+        var key = "clear"
 
         action.next = function ({ action, value }) {
           expect(action).to.equal("clear")
-          expect(value).to.equal(value)
+          expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value } })
+        view.on.click({ target: { value: key } })
+      })
+
+      it("handles '=' (Equals)", () => {
+        var { view, action } = app
+
+        var key = "equals"
+
+        action.next = function ({ action, value }) {
+          expect(action).to.equal("equals")
+          expect(value).to.equal(key)
+        }
+
+        view.on.click({ target: { value: key } })
       })
 
       it("handles Negate (positive-negative)", () => {
         var { view, action } = app
 
-        var value = "negate"
+        var key = "negate"
 
         action.next = function ({ action, value }) {
           expect(action).to.equal("negate")
-          expect(value).to.equal(value)
+          expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value } })
+        view.on.click({ target: { value: key } })
       })
 
       it("handles Percent", () => {
         var { view, action } = app
 
-        var value = "percent"
+        var key = "percent"
 
         action.next = function ({ action, value }) {
           expect(action).to.equal("percent")
-          expect(value).to.equal(value)
+          expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value } })
+        view.on.click({ target: { value: key } })
       })
 
       it("handles Reciprocal", () => {
         var { view, action } = app
 
-        var value = "reciprocal"
+        var key = "reciprocal"
 
         action.next = function ({ action, value }) {
           expect(action).to.equal("reciprocal")
-          expect(value).to.equal(value)
+          expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value } })
+        view.on.click({ target: { value: key } })
       })
 
       it("handles Square", () => {
@@ -521,27 +546,27 @@ describe("view", () => {
       it("handles Squareroot", () => {
         var { view, action } = app
 
-        var value = "squareroot"
+        var key = "squareroot"
 
         action.next = function ({ action, value }) {
           expect(action).to.equal("squareroot")
-          expect(value).to.equal(value)
+          expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value } })
+        view.on.click({ target: { value: key } })
       })
 
       it("handles Decimal separator", () => {
         var { view, action } = app
 
-        var value = "decimal"
+        var key = "decimal"
 
         action.next = function ({ action, value }) {
           expect(action).to.equal("decimal")
-          expect(value).to.equal(value)
+          expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value } })
+        view.on.click({ target: { value: key } })
       })
 
       it("handles Digits", () => {
@@ -550,16 +575,16 @@ describe("view", () => {
         var calls = 0
 
         digits.forEach((ignore, index) => {
-          var value = index.toString()
+          var key = index.toString()
 
           action.next = function ({ action, value }) {
             calls += 1
 
             expect(action).to.equal("digit")
-            expect(value).to.equal(value)
+            expect(value).to.equal(key)
           }
 
-          view.on.click({ target: { value } })
+          view.on.click({ target: { value: key } })
         })
 
         expect(calls).to.equal(digits.length)
@@ -572,23 +597,22 @@ describe("view", () => {
           { value: "plus" },
           { value: "minus" },
           { value: "multiply" },
-          { value: "divide" },
-          { value: "equals" }
+          { value: "divide" }
         ]
 
         var calls = 0
 
         operators.forEach((target, index) => {
-          var { value } = target
+          var key = target.value
 
           action.next = function ({ action, value }) {
             calls += 1
 
             expect(action).to.equal("nextOp")
-            expect(value).to.equal(value)
+            expect(value).to.equal(key)
           }
 
-          view.on.click({ target: { value } })
+          view.on.click({ target: { value: key } })
         })
 
         expect(calls).to.equal(operators.length)

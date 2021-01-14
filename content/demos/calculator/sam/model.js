@@ -3,16 +3,22 @@ export { model }
 
 var ops = {
   "divide": { symbol: "/", fn() { } },
-  "equals": { symbol: "=", fn() { } },
   "minus": { symbol: "-", fn() { } },
   "multiply": { symbol: "*", fn() { } },
   "plus": { symbol: "+", fn() { } },
 }
 
 var base = {
-  expression: [],
   input: [],
-  output: "0"
+  output: "0", // display value
+
+  // Use these
+  display: "0",
+  error: "",
+  expression: [],
+  last: "",
+  nextOp: "",
+  operands: []
 }
 
 function model(state) {
@@ -92,6 +98,10 @@ function model(state) {
       var changes = { input, output }
 
       return change({ data, changes })
+    },
+
+    equals() {
+
     },
 
     negate() {

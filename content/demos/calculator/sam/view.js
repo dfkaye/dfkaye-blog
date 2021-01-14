@@ -17,6 +17,8 @@ function view(action) {
     "clearentry": "clearentry",
     ".": "decimal",
     "decimal": "decimal",
+    "Equals": "equals",
+    "=": "equals",
     "F9": "negate",
     "negate": "negate",
     "%": "percent",
@@ -38,9 +40,7 @@ function view(action) {
     "*": "multiply",
     "multiply": "multiply",
     "/": "divide",
-    "divide": "divide",
-    "=": "equals",
-    "equals": "equals"
+    "divide": "divide"
   }
 
   // arrow key traversal
@@ -111,6 +111,7 @@ function view(action) {
 
         element && (element.focus());
       },
+
       input({ key }) {
         if (key in actions) {
           return action.next({ action: actions[key], value: key })

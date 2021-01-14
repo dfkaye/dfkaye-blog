@@ -14,7 +14,7 @@ function action(model) {
         return
       }
 
-      if (/^nextOp$/.test(action) && ! /^(plus|minus|multiply|divide|equals)/.test(value)) {
+      if (/^nextOp$/.test(action) && ! /^(plus|minus|multiply|divide)/.test(value)) {
         console.error(`Expected value for action "nextOp" to be an operator, but was "${value}"`)
         return
       }
