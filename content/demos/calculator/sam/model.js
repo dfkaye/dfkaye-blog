@@ -61,15 +61,17 @@ function model(state) {
         return
       }
 
-      var changes = {
-        output: output + "."
-      }
+      return steps.digit({ value: "." })
 
-      return change({ data, changes })
+      // var changes = {
+      //   output: output + "."
+      // }
+
+      // return change({ data, changes })
     },
 
     digit({ value }) {
-      if (/\D/.test(value)) {
+      if (/\D/.test(value) && value != ".") {
         // Notify state of errors
         return state.transition({
           error: `invalid digit value, "${value}"`
@@ -94,6 +96,10 @@ function model(state) {
       output = output == 0 || length > 1
         ? value
         : output + value
+
+      if (output == ".") {
+        output = "0."
+      }
 
       var changes = { input, output }
 
