@@ -33,12 +33,9 @@ describe("model", () => {
         var { model, state } = app;
 
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
-          expect(output).to.be.an("string")
           expect(output).to.equal("0")
-          expect(input).to.be.an("array")
-          expect(input.length).to.equal(0)
         }
 
         model.propose({ action: "clear" })
@@ -54,11 +51,10 @@ describe("model", () => {
         model.propose({ action: "clear" })
       })
 
-      it("pushes digit to the input and output", () => {
+      it("pushes digit to output", () => {
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
-          expect(input.length).to.equal(1)
           expect(output).to.equal("123")
         }
 
@@ -86,7 +82,7 @@ describe("model", () => {
 
       it("clears current entry ", () => {
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
           expect(output).to.equal("0")
         }
@@ -107,7 +103,7 @@ describe("model", () => {
 
       it("removes last character", () => {
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
           expect(output).to.equal("12")
         }
@@ -127,7 +123,7 @@ describe("model", () => {
 
       it("pushes decimal separator", () => {
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
           expect(output).to.equal("0.")
         }
@@ -137,7 +133,7 @@ describe("model", () => {
 
       it("ignores entry if decimal already present", () => {
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
           expect(output).to.equal("0.")
         }
@@ -149,7 +145,66 @@ describe("model", () => {
     })
 
     describe("equals", () => {
-      it("pending")
+      var { model, state } = app;
+
+      beforeEach(() => {
+        state.transition = function ({ data }) { }
+
+        model.propose({ action: "clear" })
+      })
+
+      it("with no entry, should only update equation to 0 =", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "equals" })
+
+        var { output, expression } = result
+
+        expect(output).to.equal("0")
+        expect(expression.join(" ")).to.equal("0 =")
+      })
+
+      it("should update equation with several operations", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "digit", value: "123" })
+        model.propose({ action: "nextOp", value: "plus" })
+        model.propose({ action: "digit", value: "123" })
+        model.propose({ action: "equals" })
+
+        var { output, expression } = result
+
+        expect(output).to.equal("246")
+        expect(expression.join(" ")).to.equal("123 + 123 =")
+      })
+
+      it("should reset equation on consecutive equals actions", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "digit", value: "123" })
+        model.propose({ action: "nextOp", value: "plus" })
+        model.propose({ action: "digit", value: "123" })
+        model.propose({ action: "equals" })
+
+        model.propose({ action: "equals" })
+
+        var { output, expression } = result
+
+        expect(output).to.equal(String(246 + 123))
+        expect(expression.join(" ")).to.equal("246 + 123 =")
+      })
     })
 
     describe("negate", () => {
@@ -164,7 +219,7 @@ describe("model", () => {
 
       it("negates current entry", () => {
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
           expect(output).to.equal("-123")
         }
@@ -176,7 +231,7 @@ describe("model", () => {
         var entry;
 
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
           entry = output
         }
@@ -188,20 +243,178 @@ describe("model", () => {
       })
     })
 
-
     describe("nextOp", () => {
-
       describe("divide", () => {
-        it("pending")
+        var { model, state } = app;
+
+        beforeEach(() => {
+          state.transition = function ({ data }) { }
+
+          model.propose({ action: "clear" })
+          model.propose({ action: "digit", value: "123" })
+        })
+
+        it("sets last action, updates expression", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "divide" })
+
+          var { expression, last } = result
+
+          expect(last).to.equal("divide")
+          expect(expression.join(" ")).to.equal("123 /")
+        })
+
+        it("calculates when nextOp is set", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "divide" })
+          model.propose({ action: "digit", value: "123" })
+          model.propose({ action: "nextOp", value: "divide" })
+
+          var { output, expression } = result
+
+          expect(output).to.equal("1")
+          expect(expression.join(" ")).to.equal("123 / 123 /")
+        })
       })
+
       describe("minus", () => {
-        it("pending")
+        var { model, state } = app;
+
+        beforeEach(() => {
+          state.transition = function ({ data }) { }
+
+          model.propose({ action: "clear" })
+          model.propose({ action: "digit", value: "123" })
+        })
+
+        it("sets last action, updates expression", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "minus" })
+
+          var { expression, last } = result
+
+
+          expect(last).to.equal("minus")
+          expect(expression.join(" ")).to.equal("123 -")
+        })
+
+        it("calculates when nextOp is set", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "minus" })
+          model.propose({ action: "digit", value: "120" })
+          model.propose({ action: "nextOp", value: "minus" })
+
+          var { output, expression } = result
+
+          expect(output).to.equal("3")
+          expect(expression.join(" ")).to.equal("123 - 120 -")
+        })
       })
+
       describe("multiply", () => {
-        it("pending")
+        var { model, state } = app;
+
+        beforeEach(() => {
+          state.transition = function ({ data }) { }
+
+          model.propose({ action: "clear" })
+          model.propose({ action: "digit", value: "10" })
+        })
+
+        it("sets last action, updates expression", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "multiply" })
+
+          var { expression, last } = result
+
+          expect(last).to.equal("multiply")
+          expect(expression.join(" ")).to.equal("10 *")
+        })
+
+        it("calculates when nextOp is set", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "multiply" })
+          model.propose({ action: "digit", value: "10" })
+          model.propose({ action: "nextOp", value: "multiply" })
+
+          var { output, expression } = result
+
+          expect(output).to.equal("100")
+          expect(expression.join(" ")).to.equal("10 * 10 *")
+        })
       })
+
       describe("plus", () => {
-        it("pending")
+        var { model, state } = app;
+
+        beforeEach(() => {
+          state.transition = function ({ data }) { }
+
+          model.propose({ action: "clear" })
+          model.propose({ action: "digit", value: "10" })
+        })
+
+        it("sets last action, updates expression", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "plus" })
+
+          var { expression, last } = result
+
+          expect(last).to.equal("plus")
+          expect(expression.join(" ")).to.equal("10 +")
+        })
+
+        it("calculates when nextOp is set", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "10" })
+          model.propose({ action: "nextOp", value: "plus" })
+
+          var { output, expression } = result
+
+          expect(output).to.equal("20")
+          expect(expression.join(" ")).to.equal("10 + 10 +")
+        })
       })
     })
 
@@ -215,8 +428,6 @@ describe("model", () => {
         model.propose({ action: "clear" })
       })
 
-      it("needs to be refactored after nextOp is done")
-
       it("resets to 0 if no operator has been entered", () => {
         var result
 
@@ -226,7 +437,7 @@ describe("model", () => {
 
         model.propose({ action: "percent" })
 
-        var { output, input, expression } = result
+        var { output, expression } = result
 
         expect(output).to.equal("0")
         // expect(result.expression).to.equal("")
@@ -242,7 +453,7 @@ describe("model", () => {
         model.propose({ action: "digit", value: "4" })
         model.propose({ action: "percent" })
 
-        var { output, input, expression } = result
+        var { output, expression } = result
 
         expect(output).to.equal("0")
       })
@@ -256,10 +467,9 @@ describe("model", () => {
 
         model.propose({ action: "digit", value: "9" })
         model.propose({ action: "nextOp", value: "plus" })
-
         model.propose({ action: "percent" })
 
-        var { output, input, expression } = result
+        var { output, expression } = result
 
         expect(output).to.equal("0.81")
       })
@@ -274,15 +484,14 @@ describe("model", () => {
         model.propose({ action: "digit", value: "9" })
         model.propose({ action: "nextOp", value: "plus" })
         model.propose({ action: "digit", value: "5" })
-
         model.propose({ action: "percent" })
 
-        var { output, input, expression } = result
+        var { output, expression } = result
 
         expect(output).to.equal("0.45")
       })
 
-      it("processes end of input", () => {
+      it("processes only last two operands", () => {
         var result
 
         state.transition = function ({ data }) {
@@ -295,13 +504,18 @@ describe("model", () => {
         model.propose({ action: "nextOp", value: "plus" })
         model.propose({ action: "digit", value: "3" })
         model.propose({ action: "nextOp", value: "plus" })
-        model.propose({ action: "digit", value: "5" })
 
+        expect(result.output).to.equal("6")
+
+        model.propose({ action: "digit", value: "5" })
         model.propose({ action: "percent" })
 
-        var { output, input, expression } = result
+        var { output, expression, operands } = result
+        var [left, right] = operands
 
         expect(output).to.equal("0.3")
+        expect(left).to.equal("6")
+        expect(right).to.equal("5")
       })
     })
 
@@ -318,7 +532,7 @@ describe("model", () => {
         var result
 
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
           result = output
         }
@@ -357,7 +571,7 @@ describe("model", () => {
         var result
 
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
           result = output
         }
@@ -381,7 +595,7 @@ describe("model", () => {
 
       it("returns square root of current entry", () => {
         state.transition = function ({ data }) {
-          var { output, input } = data
+          var { output } = data
 
           expect(output).to.equal("3")
         }
