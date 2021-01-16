@@ -1,6 +1,6 @@
 /** 
- * Safer Math operations in JavaScript, to fend off the binary-to-decimal
- * impedance mismatch.
+ * Safer floating-point math operations in JavaScript, to avoid binary-decimal
+ * impedance mismatches.
  * 
  * Examples:
  * 1. Adding 0.1 + 0.2 should return 0.3 instead of 0.30000000000000004.
@@ -8,41 +8,88 @@
  * 3. Any value can be an object whose valueOf() method returns a numeric value,
  *    i.e., a functionally numeric value.
  * 
- * Library contains 3 internal helper functions:
+ * Library contains 4 internal helper functions:
  * 1. for extracting values from a series and ignoring non-numeric values,
  * 2. checking that a value is at least functionally numeric,
- * 3. expanding values to the largest
+ * 3. expanding values to the largest integer string,
+ * 4. ascending sort function, used by median.
  */
 
-export { sum, product, mean, median, mode, range }
+export {
+  // operations
+  add, minus, multiply, divide,
+  // series
+  mean, median, mode, range,
+  // conversions
+  percent, power, reciprocal, square, sqrt
+}
 
 /**
- * @function sum, for safely adding numbers.
+ * @function add, for safely adding numbers.
  * 
  * @param  {...any} values
- * @returns {number}
+ * @returns {number} sum
  */
-function sum(...values) {
-  return getValues(...values).reduce(function (current, next) {
-    var { left, right, by } = expand(current, next);
+function add(...values) {
+  return getValues(...values).reduce(function (augend, addend) {
+    var { left, right, exponent } = expand(augend, addend);
 
-    return (left + right) / by;
+    return (left + right) / exponent;
   }, 0);
 }
 
 /**
- * @function product, for safely multiplying numbers.
+ * @function minus, for safely subtracting numbers.
  * 
  * @param  {...any} values
- * @returns {number}
+ * @returns {number} difference
  */
-function product(...values) {
-  return getValues(...values).reduce(function (current, next) {
-    var { left, right, by } = expand(current, next);
+function minus(...values) {
+  var numbers = getValues(...values);
+  var first = numbers.shift()
 
-    return (left * right) / (by * by);
+  return numbers.reduce(function (minuend, subtrahend) {
+    var { left, right, exponent } = expand(minuend, subtrahend);
+
+    return (left - right) / exponent;
+  }, first);
+}
+
+/**
+ * @function multiply, for safely multiplying numbers.
+ * 
+ * @param  {...any} values
+ * @returns {number} product
+ */
+function multiply(...values) {
+  return getValues(...values).reduce(function (multiplicand, multiplier) {
+    var { left, right, exponent } = expand(multiplicand, multiplier);
+
+    return (left * right) / (exponent * exponent);
   }, 1);
 }
+
+/**
+ * @function divide, for safely dividing numbers.
+ * 
+ * @param  {...any} values
+ * @returns {number} quotient
+ */
+function divide(...values) {
+  var numbers = getValues(...values);
+  var first = numbers.shift()
+
+  return numbers.reduce(function (dividend, divisor) {
+    var { left, right } = expand(dividend, divisor);
+
+    // exponent not needed
+    return left / right;
+  }, first);
+}
+
+
+/* Series functions */
+
 
 /**
  * @function mean, for safely calculating the average of a series of numbers.
@@ -53,25 +100,25 @@ function product(...values) {
 function mean(...values) {
   var size = 0;
 
-  var result = getValues(...values).reduce(function (current, next) {
+  var sum = getValues(...values).reduce(function (current, next) {
     // Expand only next value.
     var e = expand(next);
 
     /*
-     * If next is a number, call sum() and increment the set size.
-     * Else just return current sum.
+     * If next is a number, call add() and increment the set size, else just
+     * return current sum.
      */
 
     return (
       +e.left === +e.left
-        ? (size += 1, sum(current, next))
+        ? (size += 1, add(current, next))
         : current
     );
   }, size);
 
   return (
     size > 0
-      ? result / size
+      ? sum / size
       : size
   );
 }
@@ -90,18 +137,21 @@ function median(...values) {
     return 0;
   }
 
-  var floor = Math.floor(numbers.length / 2);
+  // Need to sort our numbers first, then find the middle index.
+  var sorted = ascending(numbers);
+
+  var floor = Math.floor(sorted.length / 2);
 
   // Coerce Strings, Booleans, and functionally numeric values.
-  return +(numbers[floor])
+  return +(sorted[floor])
 }
 
 /**
  * @function mode, for safely calculating the highest occurring numbers in a
  * series.
  * 
- * Note that function always returns an array. If the incoming series is empty,
- * an empty array is returned.
+ * Note that function always returns an Array. If the incoming series is empty,
+ * an empty Array is returned.
  * 
  * @param  {...any} values 
  * @returns {Array} 
@@ -131,8 +181,8 @@ function mode(...values) {
   Object.keys(map).forEach(value => {
 
     /*
-     * Push values whose count matches most to the modes array.
-     * Strict equality test means never matching NaN.
+     * Push values whose count matches `most` to the modes array. The strict
+     * equality test means never matching NaN.
      */
 
     (map[value] === most)
@@ -172,19 +222,153 @@ function range(...values) {
 
     value < low
       && (low = value);
-
   });
 
   /*
-   * Use sum with positive and negative values to insure internal use of the
+   * Use add with positive and negative values to insure internal use of the
    * expand function.
    */
 
-  return sum(high, -low);
+  return add(high, -low);
+}
+
+
+/* Conversion functions */
+
+
+/**
+ * @function percent returns 1/100th of a value.
+ * 
+ * If the value is not functionally numeric or falsy (0), the value is
+ * returned.
+ *
+ * @param {*}
+ * @returns {number}
+ */
+function percent(value) {
+  var number = Object(value).valueOf();
+
+  if (!isNumeric(value) || !number) {
+    return value
+  }
+
+  return divide(number, 100);
+}
+
+/**
+ * @function power returns a value raised to the exponent, e.g., 2 to the power
+ * of 3 returns 8.
+ * 
+ * If either the value or the exponent is not functionally numeric, the value
+ * is returned.
+ * 
+ * If the exponent is not provided, it is assigned 1 by default, to mitigate
+ * these cases with Math.pow():
+ * 
+ *  Math.pow(9, undefined) => NaN
+ *  Math.pow(9, null) => 1
+ *  Math.pow(9, "") => 1
+ *  Math.pow(9, "  ") => 1
+ * 
+ * Function ultimately relies on multiply() to guard against impedance cases,
+ * such as `Math.pow(1.1, 2) => 1.2100000000000002`.
+ * 
+ * @param {{value: *, exponent: *}} param0
+ * @returns {number} 
+ */
+function power({ value = undefined, exponent = 1 }) {
+  if (!isNumeric(value) || !isNumeric(exponent)) {
+    return value
+  }
+
+  var number = Object(value).valueOf();
+  var power = Object(exponent).valueOf();
+  var { "0": length, "1": fraction } = power.toString().split('.');
+
+  if (fraction) {
+
+    /*
+     * 26 November 2020: Solving for fractional exponents.
+     * If power contains a fraction, sign it the same as the integer length,
+     * then use Math.pow on number to the fraction, and multiply that by number
+     * to the integer length.
+     */
+
+    fraction = +("." + fraction);
+
+    if (power < 0) {
+      fraction = fraction * -1
+    }
+
+    var left = Math.pow(number, fraction)
+    var right = Math.pow(number, length)
+
+    return multiply(left, right)
+  } else {
+
+    /*
+     * 26 November 2020 continued: Otherwise, if the power is positive, fill a
+     * series array of length equal to exponent power with the number and pass
+     * that to multiply to proces the series. If power is negative, fill the
+     * series with the reciprocal of the number, which is ironic as reciprocal
+     * function delegates to the power function.
+     */
+
+    var abs = Math.abs(power);
+    var field = power > 0
+      ? number
+      : 1 / number;
+    var series = Array(abs).fill(field);
+
+    return multiply(series)
+  }
+}
+
+/**
+ * @function reciprocal returns the reciprocal of a value.
+ * 
+ * If the value is not functionally numeric, the value is returned.
+ *
+ * @param {*}
+ * @returns {number} 
+ */
+function reciprocal(value) {
+  return power({ value, exponent: -1 });
+}
+
+/**
+ * @function square returns the square of a value.
+ * 
+ * If the value is not functionally numeric, the value is returned.
+ *
+ * @param {*}
+ * @returns {number} 
+ */
+function square(value) {
+  return power({ value, exponent: 2 })
+}
+
+/**
+ * @function sqrt returns the square root of a value.
+ * 
+ * If the value is numerically negative, an Error object is returned.
+ * 
+ * If the value is not functionally numeric the value is returned.
+ *
+ * @param {*}
+ * @returns {number} 
+ */
+function sqrt(value) {
+  if (value < 0) {
+    return new Error("Invalid Input")
+  }
+
+  return power({ value, exponent: 0.5 });
 }
 
 
 /* Helper functions */
+
 
 /**
  * @function getValues, extracts functionally numeric values in a series,
@@ -198,17 +382,7 @@ function getValues(...values) {
     values = values[0];
   }
 
-  return values.filter(isNumeric).sort((a, b) => {
-    if (a < b) {
-      return -1
-    }
-
-    if (a > b) {
-      return 1;
-    }
-
-    return 0;
-  });
+  return values.filter(isNumeric)
 }
 
 /**
@@ -237,56 +411,89 @@ function isNumeric(a) {
    * string,
    */
 
-  var reVoid = /^(NaN|null|undefined|)$/;
+  var reInvalid = /^(NaN|null|undefined|)$/;
 
-  return !reVoid.test(v);
+  return !reInvalid.test(v);
 }
 
 /**
  * @function expand, accepts two parameters, coerces them to integers, and
- * returns an object containing the left & right integer pair, plus an
- * expansion factor by which to reduce the result of an operation on them to
- * their original decimal precision.
+ * returns an object containing the x & y integer pair, plus the exponent by
+ * which to reduce the result of an operation on them to their original decimal
+ * precision.
+ *  
+ * Example: given 1.23 and 1.234, function returns an object with 3 integers:
+ * 
+ *    left: 1230
+ *    right: 1234
+ *    exponent: 1000
  *
  * Originally part of gist at
  * https://gist.github.com/dfkaye/c2210ceb0f813dda498d22776f98d48a
  * 
- * @param {*} left 
- * @param {*} right
- * @returns {object}
+ * @param {*} x 
+ * @param {*} y
+ * @returns {{ x: number, y: number, exponent: number }}
  */
-function expand(left, right) {
+function expand(x, y) {
   // Object(value).valueOf() trick for "functionally numeric" objects.
-  left = Object(left).valueOf();
-  right = Object(right).valueOf();
 
-  // Coerce to strings to numbers (and remove formatting commas).
-  var reMatch = /string/
+  x = Object(x).valueOf();
+  y = Object(y).valueOf();
+
+  // Format strings and convert into numbers.
+
   var reCommas = /[\,]/g
 
-  if (reMatch.test(typeof left)) {
-    left = +left.toString().replace(reCommas, '');
+  if (typeof x == "string") {
+    x = +x.toString().replace(reCommas, '');
   }
 
-  if (reMatch.test(typeof right)) {
-    right = +right.toString().replace(reCommas, '');
+  if (typeof y == "string") {
+    y = +y.toString().replace(reCommas, '');
   }
 
-  // Expand each to integer values based on largest mantissa length.
+  // Determine exponent based on largest mantissa length.
+
   var reDecimal = /[\.]/
-  var ml = reDecimal.test(left) && left.toString().split('.')[1].length
-  var mr = reDecimal.test(right) && right.toString().split('.')[1].length
-  var pow = ml > mr ? ml : mr
-  var by = Math.pow(10, pow)
+  var a = reDecimal.test(x) && x.toString().split('.')[1].length
+  var b = reDecimal.test(y) && y.toString().split('.')[1].length
+  var c = a > b ? a : b
+  var d = Math.pow(10, c)
 
   /*
-   * left & right number pair, plus the expansion factor.
-   * The multiplication operator, *, coerces non-numerics to their equivalent,
-   * e.g., {} => NaN, true => 1, [4] => '4' => 4
+   * Expand x and y to integer values multiplying by exponent, converting
+   * non-numeric values to their numeric equivalent. For examples,
+   *  {} becomes NaN,
+   *  true becomes 1,
+   *  [4] becomes '4' which becomes 4,
+   * and so on.
    */
+
   return {
-    left: left * by,
-    right: right * by,
-    by
+    left: x * d,
+    right: y * d,
+    exponent: d
   }
+}
+
+/**
+ * @function ascending returns a copy of given values sorted in ascending
+ * numeric order.
+ * 
+ * @param  {...any} values 
+ * @returns {Array} sorted values
+ */
+function ascending(values) {
+  return values.sort((a, b) => {
+    if (a < b) {
+      return -1
+    }
+
+    if (a > b) {
+      return 1;
+    }
+
+    return 0;
+  });
 }

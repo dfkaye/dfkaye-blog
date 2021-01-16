@@ -132,15 +132,19 @@ describe("model", () => {
       })
 
       it("ignores entry if decimal already present", () => {
-        state.transition = function ({ data }) {
-          var { output } = data
+        var result
 
-          expect(output).to.equal("0.")
+        state.transition = function ({ data }) {
+          result = data
         }
 
         model.propose({ action: "decimal" })
+        model.propose({ action: "digit", value: "3" })
         model.propose({ action: "decimal" })
-        model.propose({ action: "decimal" })
+
+        var { output } = result
+
+        expect(output).to.equal("0.3")
       })
     })
 
@@ -414,6 +418,99 @@ describe("model", () => {
 
           expect(output).to.equal("20")
           expect(expression.join(" ")).to.equal("10 + 10 +")
+        })
+      })
+
+      describe("uses safe math operations", () => {
+        var { model, state } = app;
+
+        beforeEach(() => {
+          state.transition = function ({ data }) { }
+
+          model.propose({ action: "clear" })
+        })
+
+        it("0.1 + 0.2 = 0.3", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          // 15 Jan 2021: this sequence found a bug in decimal and digit.
+          model.propose({ action: "decimal" })
+          model.propose({ action: "digit", value: "1" })
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "decimal" })
+          model.propose({ action: "digit", value: "2" })
+          model.propose({ action: "nextOp", value: "equals" })
+
+          var { output, expression } = result
+
+          expect(output).to.equal("0.3")
+          expect(expression.join(" ")).to.equal("0.1 + 0.2 =")
+        })
+
+        it("0.1 * 0.1 = 0.01", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "decimal" })
+          model.propose({ action: "digit", value: "1" })
+          model.propose({ action: "nextOp", value: "multiply" })
+          model.propose({ action: "decimal" })
+          model.propose({ action: "digit", value: "1" })
+          model.propose({ action: "nextOp", value: "equals" })
+
+          var { output, expression } = result
+
+          expect(output).to.equal("0.01")
+          expect(expression.join(" ")).to.equal("0.1 * 0.1 =")
+        })
+
+        it("0.1 - 0.3 = -0.2", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "decimal" })
+          model.propose({ action: "digit", value: "1" })
+          model.propose({ action: "nextOp", value: "minus" })
+          model.propose({ action: "decimal" })
+          model.propose({ action: "digit", value: "3" })
+          model.propose({ action: "nextOp", value: "equals" })
+
+          var { output, expression } = result
+
+          expect(output).to.equal("-0.2")
+          expect(expression.join(" ")).to.equal("0.1 - 0.3 =")
+        })
+
+        it("0.15 / 0.1 = 1.5", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          // 15 Jan 2021: this sequence found an error in safe-math divide!
+          model.propose({ action: "decimal" })
+          model.propose({ action: "digit", value: "1" })
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "nextOp", value: "divide" })
+          model.propose({ action: "decimal" })
+          model.propose({ action: "digit", value: "1" })
+          model.propose({ action: "nextOp", value: "equals" })
+
+          var { output, expression } = result
+
+          expect(output).to.equal("1.5")
+          expect(expression.join(" ")).to.equal("0.15 / 0.1 =")
         })
       })
     })

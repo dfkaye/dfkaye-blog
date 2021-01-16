@@ -1,11 +1,12 @@
+import { add, divide, minus, multiply } from "/js/lib/safe-math.js"
 
 export { model }
 
 var ops = {
-  "divide": { fn: (a, b) => a / b },
-  "minus": { fn: (a, b) => a - b },
-  "multiply": { fn: (a, b) => a * b },
-  "plus": { fn: (a, b) => +(a) + +(b) },
+  divide,
+  minus,
+  multiply,
+  plus: add
 }
 
 var symbols = {
@@ -103,8 +104,8 @@ function model(state) {
 
     // Destructuring to the rescue. Sure is nice here.
     var [left, right] = data.operands;
-    var { fn } = ops[data.nextOp]
-    var newValue = fn(left, right).toString();
+    var op = ops[data.nextOp]
+    var newValue = op(left, right).toString();
 
     var lastIndex = data.expression.length - 1;
     var lastEntry = data.expression[lastIndex];
@@ -171,10 +172,7 @@ function model(state) {
     },
 
     decimal() {
-      var { output } = data
-
-      if (output.indexOf(".") != -1) {
-        // Ignore repeated decimal input.
+      if (/\./.test(data.last)) {
         return
       }
 
