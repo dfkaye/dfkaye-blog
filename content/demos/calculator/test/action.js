@@ -18,7 +18,7 @@ describe("action", () => {
   describe("action.next", () => {
     var app = define({ action })
 
-    it("presents simple actions to the model", () => {
+    it("proposes simple actions to the model", () => {
       var { action, model } = app;
 
       var actions = [
@@ -38,7 +38,7 @@ describe("action", () => {
       var calls = 0;
 
       actions.forEach(entry => {
-        model.present = function ({ action, value }) {
+        model.propose = function ({ action, value }) {
           expect(action).to.equal(entry)
           calls += 1
         }
@@ -49,7 +49,7 @@ describe("action", () => {
       expect(calls).to.equal(actions.length)
     })
 
-    it("presents value actions to the model", () => {
+    it("proposes value actions to the model", () => {
       var { action, model } = app;
 
       var actions = [
@@ -63,7 +63,7 @@ describe("action", () => {
       var calls = 0;
 
       actions.forEach(entry => {
-        model.present = function (proposal) {
+        model.propose = function (proposal) {
           var { action, value } = proposal
 
           expect(action).to.equal(entry.action)
@@ -77,27 +77,36 @@ describe("action", () => {
       expect(calls).to.equal(actions.length)
     })
 
-    it("ignores empty action and invalid value actions", () => {
+    describe("on empty actions and invalid values", () => {
       var { action, model } = app;
 
-      var actions = [
-        { action: 0, value: "minus" },
-        { action: "", value: "minus" },
-        { action: "digit", value: "x" },
-        { action: "nextOp", value: "x" },
-      ]
+      model.propose = function (proposal) {
+        throw new Error(`Should not forward proposal to the model, {action: ${entry.action}, value: ${entry.value}}.`)
+      }
 
-      var calls = 0;
+      it("returns message for empty action", () => {
+        var error = action.next({ action: "", value: "minus" })
 
-      actions.forEach(entry => {
-        model.present = function (proposal) {
-          throw new Error(`Should not forward proposal to the model, {action: ${entry.action}, value: ${entry.value}}.`)
-        }
-
-        action.next({ action: entry.action, value: entry.value })
+        expect(error).to.equal(`Invalid action specified, ""`)
       })
 
-      expect(calls).to.equal(0)
+      it("returns message for invalid action", () => {
+        var error = action.next({ action: 0, value: "minus" })
+
+        expect(error).to.equal(`Invalid action specified, "0"`)
+      })
+
+      it("returns message for invalid digit value", () => {
+        var error = action.next({ action: "digit", value: "x" })
+
+        expect(error).to.equal(`Invalid value specified for digit, "x"`)
+      })
+
+      it("returns message for invalid nextOp value", () => {
+        var error = action.next({ action: "nextOp", value: "x" })
+
+        expect(error).to.equal(`Invalid value specified for nextOp, "x"`)
+      })
     })
   })
 })
