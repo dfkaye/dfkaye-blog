@@ -18,6 +18,8 @@ describe("model", () => {
   describe("steps", () => {
     var app = define({ model })
 
+    it("unified error api")
+
     it("sends error to state on invalid action step", () => {
       var { model, state } = app;
 
@@ -157,7 +159,7 @@ describe("model", () => {
         model.propose({ action: "clear" })
       })
 
-      it("with no entry, should only update equation to 0 =", () => {
+      it("with no entry, should only update expression to 0 =", () => {
         var result
 
         state.transition = function ({ data }) {
@@ -172,7 +174,7 @@ describe("model", () => {
         expect(expression.join(" ")).to.equal("0 =")
       })
 
-      it("should update equation with several operations", () => {
+      it("should update expression with several operations", () => {
         var result
 
         state.transition = function ({ data }) {
@@ -190,7 +192,7 @@ describe("model", () => {
         expect(expression.join(" ")).to.equal("123 + 123 =")
       })
 
-      it("should reset equation on consecutive equals actions", () => {
+      it("should reset expression on consecutive equals actions", () => {
         var result
 
         state.transition = function ({ data }) {
@@ -516,6 +518,9 @@ describe("model", () => {
     })
 
     describe("percent", () => {
+
+      it("updates last expression")
+
       // https://devblogs.microsoft.com/oldnewthing/20080110-00/?p=23853
       var { model, state } = app;
 
@@ -617,6 +622,9 @@ describe("model", () => {
     })
 
     describe("reciprocal", () => {
+
+      it("updates last expression")
+
       var { model, state } = app;
 
       beforeEach(() => {
@@ -656,6 +664,9 @@ describe("model", () => {
     })
 
     describe("square", () => {
+
+      it("updates last expression")
+
       var { model, state } = app;
 
       beforeEach(() => {
@@ -681,6 +692,9 @@ describe("model", () => {
     })
 
     describe("squareroot", () => {
+
+      it("updates last expression")
+
       var { model, state } = app;
 
       beforeEach(() => {
