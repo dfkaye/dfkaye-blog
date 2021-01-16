@@ -1,4 +1,4 @@
-import { add, divide, minus, multiply } from "/js/lib/safe-math.js"
+import { add, divide, minus, multiply } from "https://unpkg.com/@dfkaye/safe-math@0.0.15/safe-math.js"
 
 export { model }
 
