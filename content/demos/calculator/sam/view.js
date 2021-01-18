@@ -1,4 +1,5 @@
 
+import { format } from "/js/lib/sam/numbers.js"
 import { register } from "/js/lib/sam/register.js"
 
 export { view }
@@ -153,14 +154,17 @@ function view(action) {
       var output = calculator.querySelector(selectors.output)
       var alert = calculator.querySelector(selectors.alert)
 
+      // format output
+      var displayValue = format(data.output)
+
       // Modify the DOM with new data.
-      output.textContent = data.display.formatted
-      expression.textContent = data.expression.join(" ")
+      output.textContent = displayValue
+      expression.textContent = data.expression
 
       // This is to mimic MS Calculator output when read by Narrator.
-      var alertContent = data.expression.length == 2 // if ["6", "+"]
-        ? data.expression.join(" ") // show "6 +"
-        : data.display.formatted;
+      var alertContent = data.expression.split(" ").length == 2 // if ["6", "+"]
+        ? data.expression // show "6 +"
+        : displayValue;
 
       alert.textContent = `Display is ${alertContent}`.trim()
     },

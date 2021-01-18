@@ -14,18 +14,28 @@ describe("state", () => {
       expect(view).to.be.an("object")
       expect(action).to.be.an("object")
     })
+  })
+
+  describe("transition", () => {
+    var app = define({ state })
+
+    var representation = {
+      output: "",
+      expression: [],
+      error: ""
+    }
 
     it("transition calls render and next action", () => {
       var { state, view, action } = app;
-      var data = {
-        output: {
-          value: "12345.67890",
-          formatted: "12,345.67890"
-        }
-      }
+
+      var data = Object.assign({}, representation, {
+        output: "1234.567890",
+        expression: ["1234.567890 + 0 ="]
+      })
 
       view.render = function ({ data }) {
-        expect(data.output.formatted).to.equal("12,345.67890")
+        expect(data.output).to.equal("1234.567890")
+        expect(data.expression).to.equal("1234.567890 + 0 =")
       }
 
       action.next = function ({ action, value }) {
@@ -34,11 +44,5 @@ describe("state", () => {
 
       state.transition({ data })
     })
-
-    it("format value")
-    it("output value")
-    it("expression")
-    it("alert value")
-    it("error message")
   })
 })

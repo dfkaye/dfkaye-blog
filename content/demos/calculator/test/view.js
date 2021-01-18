@@ -46,76 +46,92 @@ describe("view", () => {
     var alert = calculator.querySelector(selectors.alert)
 
     var representation = {
-      display: {},
-      expression: [],
-      alert: ""
+      output: "",
+      expression: "",
+      error: ""
     }
 
-    it("output", () => {
+    describe("output", () => {
       var { view } = app;
-      var data = Object.assign({}, representation, {
-        display: {
-          value: "1234.567890",
-          formatted: "1,234.567890"
-        }
+
+      it("should be formatted", () => {
+        var data = Object.assign({}, representation, {
+          output: "1234.567890"
+        })
+
+        view.render({ data })
+
+        expect(output.textContent).to.equal("1,234.567890")
       })
-
-      view.render({ data })
-
-      expect(output.textContent).to.equal("1,234.567890")
     })
 
-    it("expression", () => {
+    describe("expression", () => {
       var { view } = app;
 
-      var data = Object.assign({}, representation, {
-        display: {
-          value: "9",
-          formatted: "9"
-        },
-        expression: ["6", "+", "3", "+"]
+      it("should render unchanged", () => {
+        var data = Object.assign({}, representation, {
+          output: "9",
+          expression: "6 + 3 +"
+        })
+
+        view.render({ data })
+
+        expect(expression.textContent).to.equal("6 + 3 +")
       })
-
-      view.render({ data })
-
-      expect(output.textContent).to.equal("9")
-      expect(expression.textContent).to.equal("6 + 3 +")
     })
 
     describe("alert", () => {
       var { view } = app;
 
-      it("contains expression when expression contains 2 or less inputs", () => {
-
+      it("should contain expression when expression has exactly 2 entries", () => {
         var data = Object.assign({}, representation, {
-          display: {
-            value: "6",
-            formatted: "6"
-          },
-          expression: ["6", "+"]
+          output: "6",
+          expression: "6 +"
         })
 
         view.render({ data })
 
         expect(alert.textContent).to.equal("Display is 6 +")
-        expect(expression.textContent).to.equal("6 +")
       })
 
-      it("contains display value when expression has 3 or more inputs", () => {
-
+      it("should contain output when expression has less than 2 inputs", () => {
         var data = Object.assign({}, representation, {
-          display: {
-            value: "9",
-            formatted: "9"
-          },
-          expression: ["6", "+", "3", "+"]
+          output: "9",
+          expression: ""
         })
 
         view.render({ data })
 
         expect(alert.textContent).to.equal("Display is 9")
-        expect(expression.textContent).to.equal("6 + 3 +")
       })
+
+      it("should contain output when expression has more than 2 inputs", () => {
+        var data = Object.assign({}, representation, {
+          output: "9",
+          expression: "should not use this"
+        })
+
+        view.render({ data })
+
+        expect(alert.textContent).to.equal("Display is 9")
+      })
+    })
+
+    describe("error", () => {
+      var { view } = app;
+
+      it("todo"
+        /*, () => {
+          // var data = Object.assign({}, representation, {
+          //   output: "1234.567890"
+          // })
+  
+          // view.render({ data })
+  
+          // expect(output.textContent).to.equal("1,234.567890")
+        }
+        */
+      )
     })
   })
 

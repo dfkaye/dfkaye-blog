@@ -1,17 +1,21 @@
-import { format } from "/js/lib/sam/numbers.js"
-
 export { state }
 
 function state(view, action) {
 
   var state = {
     transition({ data }) {
+      var { output, expression, error } = data
 
       // TODO:
-      // format values for output and alert
-      // pass expression array
+      // do not format output
+      // join the expression array
+      // pass error if non-empty
 
-      var representation = Object.assign({}, data)
+      var representation = Object.assign({}, {
+        output,
+        expression: expression.join(" "),
+        error
+      })
 
       // Demonstrate the dependency on view.
       view.render({ data: representation })

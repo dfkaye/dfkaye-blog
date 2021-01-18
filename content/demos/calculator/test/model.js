@@ -15,7 +15,7 @@ describe("model", () => {
     })
   })
 
-  describe("steps", () => {
+  describe("model.propose", () => {
     var app = define({ model })
 
     it("sends error to state on invalid action step", () => {
