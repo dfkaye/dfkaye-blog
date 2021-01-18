@@ -9,7 +9,7 @@ function state(view, action) {
 
       // TODO:
       // format values for output and alert
-      // pass equation array
+      // pass expression array
 
       var representation = Object.assign({}, data)
 

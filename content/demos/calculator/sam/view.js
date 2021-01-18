@@ -149,17 +149,17 @@ function view(action) {
 
       // Find our output elements.
       var calculator = document.querySelector(selectors.calculator)
-      var equation = calculator.querySelector(selectors.equation)
+      var expression = calculator.querySelector(selectors.expression)
       var output = calculator.querySelector(selectors.output)
       var alert = calculator.querySelector(selectors.alert)
 
       // Modify the DOM with new data.
       output.textContent = data.display.formatted
-      equation.textContent = data.equation.join(" ")
+      expression.textContent = data.expression.join(" ")
 
       // This is to mimic MS Calculator output when read by Narrator.
-      var alertContent = data.equation.length == 2 // if ["6", "+"]
-        ? data.equation.join(" ") // show "6 +"
+      var alertContent = data.expression.length == 2 // if ["6", "+"]
+        ? data.expression.join(" ") // show "6 +"
         : data.display.formatted;
 
       alert.textContent = `Display is ${alertContent}`.trim()
@@ -168,7 +168,7 @@ function view(action) {
     selectors: {
       calculator: "#fixture [calculator]",
       keys: "[value]",
-      equation: "[equation]",
+      expression: "[expression]",
       output: '[output]',
       alert: '[role="alert"]'
     }

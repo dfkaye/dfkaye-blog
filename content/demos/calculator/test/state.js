@@ -37,7 +37,8 @@ describe("state", () => {
 
     it("format value")
     it("output value")
-    it("equation")
+    it("expression")
     it("alert value")
+    it("error message")
   })
 })

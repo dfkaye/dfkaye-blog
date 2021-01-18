@@ -41,13 +41,13 @@ describe("view", () => {
     var { selectors } = app.view
 
     var calculator = document.querySelector(selectors.calculator)
-    var equation = calculator.querySelector(selectors.equation)
+    var expression = calculator.querySelector(selectors.expression)
     var output = calculator.querySelector(selectors.output)
     var alert = calculator.querySelector(selectors.alert)
 
     var representation = {
       display: {},
-      equation: [],
+      expression: [],
       alert: ""
     }
 
@@ -65,7 +65,7 @@ describe("view", () => {
       expect(output.textContent).to.equal("1,234.567890")
     })
 
-    it("equation", () => {
+    it("expression", () => {
       var { view } = app;
 
       var data = Object.assign({}, representation, {
@@ -73,48 +73,48 @@ describe("view", () => {
           value: "9",
           formatted: "9"
         },
-        equation: ["6", "+", "3", "+"]
+        expression: ["6", "+", "3", "+"]
       })
 
       view.render({ data })
 
       expect(output.textContent).to.equal("9")
-      expect(equation.textContent).to.equal("6 + 3 +")
+      expect(expression.textContent).to.equal("6 + 3 +")
     })
 
     describe("alert", () => {
       var { view } = app;
 
-      it("contains equation when equation contains 2 or less inputs", () => {
+      it("contains expression when expression contains 2 or less inputs", () => {
 
         var data = Object.assign({}, representation, {
           display: {
             value: "6",
             formatted: "6"
           },
-          equation: ["6", "+"]
+          expression: ["6", "+"]
         })
 
         view.render({ data })
 
         expect(alert.textContent).to.equal("Display is 6 +")
-        expect(equation.textContent).to.equal("6 +")
+        expect(expression.textContent).to.equal("6 +")
       })
 
-      it("contains display value when equation has 3 or more inputs", () => {
+      it("contains display value when expression has 3 or more inputs", () => {
 
         var data = Object.assign({}, representation, {
           display: {
             value: "9",
             formatted: "9"
           },
-          equation: ["6", "+", "3", "+"]
+          expression: ["6", "+", "3", "+"]
         })
 
         view.render({ data })
 
         expect(alert.textContent).to.equal("Display is 9")
-        expect(equation.textContent).to.equal("6 + 3 +")
+        expect(expression.textContent).to.equal("6 + 3 +")
       })
     })
   })
