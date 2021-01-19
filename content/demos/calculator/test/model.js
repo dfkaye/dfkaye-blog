@@ -939,6 +939,8 @@ describe("model", () => {
       describe("expression", () => {
         var { model, state } = app;
 
+        var symbol = "&radic;"
+
         beforeEach(() => {
           state.transition = function ({ data }) { }
 
@@ -946,7 +948,7 @@ describe("model", () => {
           model.propose({ action: "digit", value: "9" })
         })
 
-        it("return sqrt(current)", () => {
+        it(`return ${symbol}(current)`, () => {
           var result
 
           state.transition = function ({ data }) {
@@ -957,7 +959,7 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("sqrt(9)")
+          expect(expression.join(" ")).to.equal(`${symbol}(9)`)
         })
 
         it("updates expression even when output results in error", () => {
@@ -975,7 +977,7 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("sqrt(-9)")
+          expect(expression.join(" ")).to.equal(`${symbol}(-9)`)
         })
       })
     })

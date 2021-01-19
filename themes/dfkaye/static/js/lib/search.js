@@ -1,5 +1,7 @@
 /* /js/lib/search.js */
 
+import { normalize } from "/js/lib/dom/text-normalize.js"
+
 // Our handlers.
 function clearResults(list) {
   while (list.firstElementChild) {
@@ -60,17 +62,6 @@ function render({ results, list }) {
   })
 
   list.appendChild(aside)
-}
-
-function normalize(text) {
-  // Textarea for normalizing HTML
-  // See https://blog.jeremylikness.com/blog/dynamic-search-in-a-static-hugo-website/#preparing-the-index
-  // var normalizer = document.querySelector("[text-normalize]")
-  var normalizer = document.createElement('textarea')
-
-  normalizer.innerHTML = text;
-
-  return normalizer.value;
 }
 
 function search({ text, entries }) {

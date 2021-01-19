@@ -362,8 +362,7 @@ function model(state) {
         : Math.sqrt(output)
 
       var newExpression = shiftExpression({ data, symbols })
-
-      newExpression.push(`sqrt(${output})`)
+      newExpression.push(`&radic;(${output})`)
 
       var changes = {
         output: newOutput.toString(),

@@ -6,14 +6,9 @@ function state(view, action) {
     transition({ data }) {
       var { output, expression, error } = data
 
-      // TODO:
-      // do not format output
-      // join the expression array
-      // pass error if non-empty
-
       var representation = Object.assign({}, {
         output,
-        expression: expression.join(" "),
+        expression: expression.slice(),
         error
       })
 

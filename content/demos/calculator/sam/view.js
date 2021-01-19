@@ -1,6 +1,7 @@
 
-import { format } from "/js/lib/sam/numbers.js"
 import { register } from "/js/lib/sam/register.js"
+import { format } from "/js/lib/sam/numbers.js"
+import { normalize } from "/js/lib/dom/text-normalize.js"
 
 export { view }
 
@@ -157,16 +158,29 @@ function view(action) {
       // format output
       var displayValue = format(data.output)
 
+      // normalize expression text
+      var expressionText = normalize(data.expression.join(" "))
+
+      // normalize error text
+      var errorText = normalize(data.error)
+
+      if (errorText) {
+        calculator.setAttribute("error", "")
+        displayValue = errorText
+      } else {
+        calculator.removeAttribute("error")
+      }
+
       // Modify the DOM with new data.
       output.textContent = displayValue
-      expression.textContent = data.expression
+      expression.textContent = expressionText
 
       // This is to mimic MS Calculator output when read by Narrator.
-      var alertContent = data.expression.split(" ").length == 2 // if ["6", "+"]
-        ? data.expression // show "6 +"
+      var alertText = !errorText && data.expression.length == 2 // if ["6", "+"]
+        ? expressionText // show "6 +"
         : displayValue;
 
-      alert.textContent = `Display is ${alertContent}`.trim()
+      alert.textContent = `Display is "${alertText}"`.trim()
     },
 
     selectors: {

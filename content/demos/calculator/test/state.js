@@ -30,17 +30,35 @@ describe("state", () => {
 
       var data = Object.assign({}, representation, {
         output: "1234.567890",
-        expression: ["1234.567890 + 0 ="]
+        expression: ["1234.567890", "+", "0", "="]
       })
 
       view.render = function ({ data }) {
         expect(data.output).to.equal("1234.567890")
-        expect(data.expression).to.equal("1234.567890 + 0 =")
+        expect(data.expression).to.deep.equal(["1234.567890", "+", "0", "="])
       }
 
       action.next = function ({ action, value }) {
         expect(action).to.equal("test")
       }
+
+      state.transition({ data })
+    })
+
+    it("passes HTML entities in expression unchanged", () => {
+      var { state, view, action } = app;
+
+      var data = Object.assign({}, representation, {
+        output: "3",
+        expression: ["5", "+", "&radic;(9)"]
+      })
+
+      view.render = function ({ data }) {
+        expect(data.output).to.equal("3")
+        expect(data.expression).to.deep.equal(["5", "+", "&radic;(9)"])
+      }
+
+      action.next = function ({ action, value }) { }
 
       state.transition({ data })
     })

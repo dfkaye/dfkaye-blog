@@ -47,7 +47,7 @@ describe("view", () => {
 
     var representation = {
       output: "",
-      expression: "",
+      expression: [""],
       error: ""
     }
 
@@ -68,10 +68,9 @@ describe("view", () => {
     describe("expression", () => {
       var { view } = app;
 
-      it("should render unchanged", () => {
+      it("should render as string", () => {
         var data = Object.assign({}, representation, {
-          output: "9",
-          expression: "6 + 3 +"
+          expression: ["6", "+", "3", "+"]
         })
 
         view.render({ data })
@@ -86,52 +85,84 @@ describe("view", () => {
       it("should contain expression when expression has exactly 2 entries", () => {
         var data = Object.assign({}, representation, {
           output: "6",
-          expression: "6 +"
+          expression: ["6", "+"]
         })
 
         view.render({ data })
 
-        expect(alert.textContent).to.equal("Display is 6 +")
+        expect(alert.textContent).to.equal(`Display is "6 +"`)
       })
 
       it("should contain output when expression has less than 2 inputs", () => {
         var data = Object.assign({}, representation, {
           output: "9",
-          expression: ""
+          expression: [""]
         })
 
         view.render({ data })
 
-        expect(alert.textContent).to.equal("Display is 9")
+        expect(alert.textContent).to.equal(`Display is "9"`)
       })
 
       it("should contain output when expression has more than 2 inputs", () => {
         var data = Object.assign({}, representation, {
           output: "9",
-          expression: "should not use this"
+          expression: ["should", "ignore", "this"]
         })
 
         view.render({ data })
 
-        expect(alert.textContent).to.equal("Display is 9")
+        expect(alert.textContent).to.equal(`Display is "9"`)
       })
     })
 
-    describe("error", () => {
+    describe("error text", () => {
       var { view } = app;
 
-      it("todo"
-        /*, () => {
-          // var data = Object.assign({}, representation, {
-          //   output: "1234.567890"
-          // })
-  
-          // view.render({ data })
-  
-          // expect(output.textContent).to.equal("1,234.567890")
-        }
-        */
-      )
+      it("should render error text in place of output", () => {
+        var data = Object.assign({}, representation, {
+          error: "Cannot divide by zero",
+          expression: ["1/(0)"]
+        })
+
+        view.render({ data })
+
+        expect(output.textContent).to.equal("Cannot divide by zero")
+      })
+
+      it("should render error text in place of alert text", () => {
+        var data = Object.assign({}, representation, {
+          error: "Cannot divide by zero",
+          expression: ["1/(0)"]
+        })
+
+        view.render({ data })
+
+        expect(alert.textContent).to.equal(`Display is "Cannot divide by zero"`)
+      })
+
+      it("should set error attribute on calculator element", () => {
+        var data = Object.assign({}, representation, {
+          error: "Cannot divide by zero",
+          expression: ["1/(0)"]
+        })
+
+        view.render({ data })
+
+        expect(calculator.getAttribute("error")).to.be
+      })
+
+      it("should remove error attribute when error text removed", () => {
+        var data = Object.assign({}, representation, {
+          error: "",
+          expression: ["1/(0)"],
+          output: "All is good"
+        })
+
+        view.render({ data })
+
+        expect(calculator.getAttribute("error")).not.to.be
+      })
     })
   })
 
