@@ -21,11 +21,25 @@ describe("model", () => {
     it("sends error to state on invalid action step", () => {
       var { model, state } = app;
 
-      state.transition = function ({ error }) {
+      state.transition = function ({ data }) {
+        var { error } = data
+
         expect(error).to.equal(`invalid action step, "bonk"`)
       }
 
       model.propose({ action: "bonk" })
+    })
+
+    describe("unhandled cases", () => {
+      it("after error, then next valid button, should clear previous expression")
+      it("9 +, then square, should print 9 + sqr(9), output is 81")
+      it("9 +, then squareroot, should print 9 + &radic(9), output is 3")
+      it("6 =, then 3, should print 3 =")
+      it("3 =, then +, should print 3 +")
+      it("3 +, then =, should print 3 + 3 =, output is 6")
+      it("7 + 8, then =, should print 7 + 8 =, output is 15")
+      it("7 + 8 =, then *, should print 15 *, output is 15")
+      it("15 *, then 6, then =, should print 15 * 6 =, output is 90")
     })
 
     describe("clear", () => {
@@ -572,7 +586,7 @@ describe("model", () => {
           model.propose({ action: "digit", value: "4" })
           model.propose({ action: "percent" })
 
-          var { output, expression } = result
+          var { output } = result
 
           expect(output).to.equal("0")
         })
@@ -629,12 +643,12 @@ describe("model", () => {
           model.propose({ action: "digit", value: "5" })
           model.propose({ action: "percent" })
 
-          var { output, expression, operands } = result
+          var { output, operands } = result
           var [left, right] = operands
 
           expect(output).to.equal("0.3")
           expect(left).to.equal("6")
-          expect(right).to.equal("5")
+          expect(right).to.equal("0.3")
         })
       })
 
@@ -736,14 +750,14 @@ describe("model", () => {
           expect(result).to.equal("0.25")
         })
 
-        it("returns error if current entry is less than zero", () => {
+        it("returns error if current entry is zero", () => {
           var result
 
           state.transition = function ({ data }) {
             result = data
           }
 
-          model.propose({ action: "negate" })
+          model.propose({ action: "clear" })
           model.propose({ action: "reciprocal" })
 
           var { error } = result
@@ -910,8 +924,8 @@ describe("model", () => {
             result = data
           }
 
-          model.propose({ action: "squareroot" })
 
+          model.propose({ action: "squareroot" })
           var { output } = result
 
           expect(output).to.equal("3")
@@ -962,7 +976,22 @@ describe("model", () => {
           expect(expression.join(" ")).to.equal(`${symbol}(9)`)
         })
 
-        it("updates expression even when output results in error", () => {
+        it(`returns ${symbol}(${symbol}(current))`, () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "squareroot" })
+          model.propose({ action: "squareroot" })
+
+          var { expression } = result
+
+          expect(expression.join(" ")).to.equal(`${symbol}(${symbol}(9))`)
+        })
+
+        it("updates expression even when operation results in error", () => {
           var result
 
           state.transition = function ({ data }) {

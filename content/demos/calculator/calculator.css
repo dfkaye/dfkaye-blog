@@ -25,7 +25,7 @@
 	background-color: whitesmoke;
 
   border: 1px solid deepskyblue;
-  border-radius: 5px;
+  border-radius: 5px 5px 0 0;
   font-size: 1.25em;
 	
 	grid-column: span 4;
@@ -36,6 +36,7 @@
 
 [keypad] {
   background-color: rgba(224, 224, 224, .75);
+  border-radius: 0 0 5px 5px;
   display: grid;
   font-size: 1em;
   grid-template-columns: 1fr 1fr 1fr 1fr;
@@ -60,11 +61,48 @@
 
 [value] {
   border: 0;
+  border: 1px outset gainsboro;
+  background-color: gainsboro;
   font-size: inherit;
   font-weight: inherit;
   margin: .05rem .065rem .065rem;
   min-height: 3.25rem;
   min-width: 4.75rem;
+}
+
+[value] i {
+  font-family: "Times New Roman", serif;
+}
+
+[keypad] [value]:focus {
+  outline: 2px solid #333;
+}
+
+[keypad] [value]:hover {
+  background-color: rgba(225, 225, 225,.85);
+}
+
+[keypad] [value]:active {
+  background-color: rgba(200, 200, 200,.85);
+  /* outline: 2px solid rgba(200, 200, 200,.85); */
+  outline: 0;
+}
+
+[operators] [value] {
+  font-size: smaller;
+}
+
+[operators] [value="equals"] {
+  background-color: rgba(0, 128, 255, .35);
+}
+
+[operators] [value="equals"]:hover {
+  background-color: rgba(0, 128, 255, .65);
+}
+
+[operators] [value="equals"]:active {
+  background-color: rgba(0, 128, 235, .8);
+  /* outline: 2px solid rgba(0, 128, 235, .8); */
 }
 
 [numbers] [value]:nth-of-type(8),
@@ -98,29 +136,92 @@
   background-color: rgb(255, 255, 255, .9);
 }
 
-[operators] [value="equals"] {
-  background-color: rgba(0, 128, 255, .35);
+/* error state - need to disable these programmatically,
+   or show otherwise-hidden-inert element */
+[error] [value="percent"],
+[error] [value="reciprocal"],
+[error] [value="square"],
+[error] [value*="squareroot"],
+[error] [value="divide"],
+[error] [value="multiply"],
+[error] [value="plus"],
+[error] [value="minus"],
+[error] [value="negate"],
+[error] [value="decimal"] {
+  visibility: hidden;
 }
 
-[keypad] [value]:focus {
-  outline: 2px solid #333;
+[error] [value]:before,
+[error] [value]:after {
+ /* background: gainsboro; */
+  color: lightslategray;
+  font-family: "Times New Roman", serif;
+  font-style: italic;
+  font-weight: bold;
+  position: relative;
+  visibility: visible;
+  /* display: inline-block; */
 }
 
-[keypad] [value]:hover {
-  background-color: rgba(225, 225, 225,.85);
+[error] [value]:after {
+  display: none
 }
 
-[keypad] [value]:active {
-  background-color: rgba(200, 200, 200,.85);
-  /* outline: 2px solid rgba(200, 200, 200,.85); */
-  outline: 0;
+[error] [value="percent"]:before {
+  content: "%";
+  left: 0.5em;
 }
 
-[operators] [value="equals"]:hover {
-  background-color: rgba(0, 128, 255, .65);
+[error] [value="reciprocal"]:before {
+  content: "1/x";
+  font-size: smaller;
+  left: .75rem;
 }
 
-[operators] [value="equals"]:active {
-  background-color: rgba(0, 128, 235, .8);
-  /* outline: 2px solid rgba(0, 128, 235, .8); */
+[error] [value="square"]:before {
+  content: "x^2";
+  font-size: smaller;
+  left: .75rem;
+}
+
+[error] [value="squareroot"]:before {
+  content: "\221A x";
+  font-size: smaller;
+  left: .75rem;
+}
+
+[error] [value="divide"]:before {
+  content: "\00F7";
+  font-size: larger;
+  left: .5rem;
+}
+
+[error] [value="multiply"]:before {
+  content: "\00D7";
+  font-size: larger;
+  left: .5rem;
+}
+
+[error] [value="plus"]:before {
+  content: "\002B";
+  font-size: larger;
+  left: .5rem;
+}
+
+[error] [value="minus"]:before {
+  content: "\2212";
+  font-size: larger;
+  left: .5rem;
+}
+
+[error] [value="decimal"]:before {
+  content: ".";
+  font-size: larger;
+  left: .1em;
+}
+
+[error] [value="negate"]:before {
+  content: "\00B1";
+  font-size: larger;
+  left: .5em;
 }

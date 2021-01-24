@@ -20,7 +20,7 @@ function view(action) {
     ".": "decimal",
     "decimal": "decimal",
     "Equals": "equals",
-    "=": "equals",
+    "equals": "equals",
     "F9": "negate",
     "negate": "negate",
     "%": "percent",
@@ -131,7 +131,15 @@ function view(action) {
 
     on: {
       click(e) {
-        var { value } = e.target;
+        var { target } = e
+
+        target.matches("[value]") || (target = target.closest("[value]"))
+
+        if (!target) {
+          return
+        }
+
+        var { value } = target;
         var { handle } = view;
 
         handle.input({ key: value })

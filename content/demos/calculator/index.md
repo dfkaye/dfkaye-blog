@@ -17,7 +17,6 @@ tags:
 styles:
 - https://unpkg.com/mocha/mocha.css
 - /css/demos/mocha-css-override.css
-
 - ./calculator.css
 
 scripts:
@@ -26,11 +25,13 @@ scripts:
 - /js/demos/mocha-setup.js
 - ./suite.js
 - /js/demos/mocha-run.js
-
 - ./calculator.js
 ---
 
-***January 8, 2021: Work in progress. Functionality still being implemented.*** 
+## Track work in progress
++ *December 19, 2021: Work begun in earnest.*
++ *January 8, 2021: Work in progress. Functionality still being implemented.*
++ *January 23, 2021: Tests passing; more needed; calculator app runs after 5 second delay.*
 
 ## Calculator
 

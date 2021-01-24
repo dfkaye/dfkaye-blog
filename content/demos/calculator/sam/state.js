@@ -16,7 +16,7 @@ function state(view, action) {
       view.render({ data: representation })
 
       // Demonstrate dependency on next action.
-      action.next({ action: "test", value: "" })
+      // action.next({ action: "test", value: "" })
     }
   }
 

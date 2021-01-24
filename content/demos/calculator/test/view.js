@@ -1,7 +1,7 @@
 import { view } from "../sam/view.js"
 import { define } from "/js/lib/sam/define.js"
 
-describe("view", () => {
+describe("view", (done) => {
   var { expect } = chai
 
   describe("define({ view })", () => {
@@ -35,140 +35,8 @@ describe("view", () => {
     })
   })
 
-  describe("render", () => {
-    var app = define({ view })
-
-    var { selectors } = app.view
-
-    var calculator = document.querySelector(selectors.calculator)
-    var expression = calculator.querySelector(selectors.expression)
-    var output = calculator.querySelector(selectors.output)
-    var alert = calculator.querySelector(selectors.alert)
-
-    var representation = {
-      output: "",
-      expression: [""],
-      error: ""
-    }
-
-    describe("output", () => {
-      var { view } = app;
-
-      it("should be formatted", () => {
-        var data = Object.assign({}, representation, {
-          output: "1234.567890"
-        })
-
-        view.render({ data })
-
-        expect(output.textContent).to.equal("1,234.567890")
-      })
-    })
-
-    describe("expression", () => {
-      var { view } = app;
-
-      it("should render as string", () => {
-        var data = Object.assign({}, representation, {
-          expression: ["6", "+", "3", "+"]
-        })
-
-        view.render({ data })
-
-        expect(expression.textContent).to.equal("6 + 3 +")
-      })
-    })
-
-    describe("alert", () => {
-      var { view } = app;
-
-      it("should contain expression when expression has exactly 2 entries", () => {
-        var data = Object.assign({}, representation, {
-          output: "6",
-          expression: ["6", "+"]
-        })
-
-        view.render({ data })
-
-        expect(alert.textContent).to.equal(`Display is "6 +"`)
-      })
-
-      it("should contain output when expression has less than 2 inputs", () => {
-        var data = Object.assign({}, representation, {
-          output: "9",
-          expression: [""]
-        })
-
-        view.render({ data })
-
-        expect(alert.textContent).to.equal(`Display is "9"`)
-      })
-
-      it("should contain output when expression has more than 2 inputs", () => {
-        var data = Object.assign({}, representation, {
-          output: "9",
-          expression: ["should", "ignore", "this"]
-        })
-
-        view.render({ data })
-
-        expect(alert.textContent).to.equal(`Display is "9"`)
-      })
-    })
-
-    describe("error text", () => {
-      var { view } = app;
-
-      it("should render error text in place of output", () => {
-        var data = Object.assign({}, representation, {
-          error: "Cannot divide by zero",
-          expression: ["1/(0)"]
-        })
-
-        view.render({ data })
-
-        expect(output.textContent).to.equal("Cannot divide by zero")
-      })
-
-      it("should render error text in place of alert text", () => {
-        var data = Object.assign({}, representation, {
-          error: "Cannot divide by zero",
-          expression: ["1/(0)"]
-        })
-
-        view.render({ data })
-
-        expect(alert.textContent).to.equal(`Display is "Cannot divide by zero"`)
-      })
-
-      it("should set error attribute on calculator element", () => {
-        var data = Object.assign({}, representation, {
-          error: "Cannot divide by zero",
-          expression: ["1/(0)"]
-        })
-
-        view.render({ data })
-
-        expect(calculator.getAttribute("error")).to.be
-      })
-
-      it("should remove error attribute when error text removed", () => {
-        var data = Object.assign({}, representation, {
-          error: "",
-          expression: ["1/(0)"],
-          output: "All is good"
-        })
-
-        view.render({ data })
-
-        expect(calculator.getAttribute("error")).not.to.be
-      })
-    })
-  })
-
   describe("on", () => {
     describe("keydown", () => {
-
       var app = define({ view })
 
       it("handles Backspace keys", () => {
@@ -496,7 +364,9 @@ describe("view", () => {
           expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value: key } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles CE (clear entry)", () => {
@@ -509,7 +379,9 @@ describe("view", () => {
           expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value: key } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles C (clear all)", () => {
@@ -522,7 +394,9 @@ describe("view", () => {
           expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value: key } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles '=' (Equals)", () => {
@@ -535,7 +409,9 @@ describe("view", () => {
           expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value: key } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles Negate (positive-negative)", () => {
@@ -548,7 +424,9 @@ describe("view", () => {
           expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value: key } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles Percent", () => {
@@ -561,7 +439,9 @@ describe("view", () => {
           expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value: key } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles Reciprocal", () => {
@@ -574,20 +454,24 @@ describe("view", () => {
           expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value: key } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles Square", () => {
         var { view, action } = app
 
-        var value = "square"
+        var key = "square"
 
         action.next = function ({ action, value }) {
           expect(action).to.equal("square")
-          expect(value).to.equal(value)
+          expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles Squareroot", () => {
@@ -600,7 +484,9 @@ describe("view", () => {
           expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value: key } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles Decimal separator", () => {
@@ -613,7 +499,9 @@ describe("view", () => {
           expect(value).to.equal(key)
         }
 
-        view.on.click({ target: { value: key } })
+        var target = document.createElement("button")
+        target.value = key
+        view.on.click({ target })
       })
 
       it("handles Digits", () => {
@@ -631,7 +519,9 @@ describe("view", () => {
             expect(value).to.equal(key)
           }
 
-          view.on.click({ target: { value: key } })
+          var target = document.createElement("button")
+          target.value = key
+          view.on.click({ target })
         })
 
         expect(calls).to.equal(digits.length)
@@ -659,10 +549,143 @@ describe("view", () => {
             expect(value).to.equal(key)
           }
 
-          view.on.click({ target: { value: key } })
+          var target = document.createElement("button")
+          target.value = key
+          view.on.click({ target })
         })
 
         expect(calls).to.equal(operators.length)
+      })
+    })
+  })
+
+  describe("render", () => {
+    var app = define({ view })
+
+    var { selectors } = app.view
+
+    var calculator = document.querySelector(selectors.calculator)
+    var expression = calculator.querySelector(selectors.expression)
+    var output = calculator.querySelector(selectors.output)
+    var alert = calculator.querySelector(selectors.alert)
+
+    var representation = {
+      output: "",
+      expression: [""],
+      error: ""
+    }
+
+    describe("output", () => {
+      var { view } = app;
+
+      it("should be formatted", () => {
+        var data = Object.assign({}, representation, {
+          output: "1234.567890"
+        })
+
+        view.render({ data })
+
+        expect(output.textContent).to.equal("1,234.567890")
+      })
+    })
+
+    describe("expression", () => {
+      var { view } = app;
+
+      it("should render as string", () => {
+        var data = Object.assign({}, representation, {
+          expression: ["6", "+", "3", "+"]
+        })
+
+        view.render({ data })
+
+        expect(expression.textContent).to.equal("6 + 3 +")
+      })
+    })
+
+    describe("alert", () => {
+      var { view } = app;
+
+      it("should contain expression when expression has exactly 2 entries", () => {
+        var data = Object.assign({}, representation, {
+          output: "6",
+          expression: ["6", "+"]
+        })
+
+        view.render({ data })
+
+        expect(alert.textContent).to.equal(`Display is "6 +"`)
+      })
+
+      it("should contain output when expression has less than 2 inputs", () => {
+        var data = Object.assign({}, representation, {
+          output: "9",
+          expression: [""]
+        })
+
+        view.render({ data })
+
+        expect(alert.textContent).to.equal(`Display is "9"`)
+      })
+
+      it("should contain output when expression has more than 2 inputs", () => {
+        var data = Object.assign({}, representation, {
+          output: "9",
+          expression: ["should", "ignore", "this"]
+        })
+
+        view.render({ data })
+
+        expect(alert.textContent).to.equal(`Display is "9"`)
+      })
+    })
+
+    describe("error state", () => {
+      var { view } = app;
+
+      it("should set error attribute on calculator element", () => {
+        var data = Object.assign({}, representation, {
+          error: "Cannot divide by zero",
+          expression: ["1/(0)"]
+        })
+
+        view.render({ data })
+
+        expect(calculator.getAttribute("error")).to.be
+      })
+
+      it("should remove error attribute when error text removed", () => {
+        var data = Object.assign({}, representation, {
+          error: "",
+          expression: ["1/(0)"],
+          output: "All is good"
+        })
+
+        view.render({ data })
+
+        expect(calculator.getAttribute("error")).not.to.be
+      })
+
+      it("should render error text in place of output", () => {
+        var data = Object.assign({}, representation, {
+          error: "Cannot divide by zero",
+          expression: ["1/(0)"]
+        })
+
+        view.render({ data })
+
+        expect(output.textContent).to.equal("Cannot divide by zero")
+      })
+
+      it("should render error text in place of alert text", () => {
+        var data = Object.assign({}, representation, {
+          error: "Cannot divide by zero",
+          expression: ["1/(0)"]
+        })
+
+        view.render({ data })
+
+        expect(alert.textContent).to.equal(`Display is "Cannot divide by zero"`)
       })
     })
   })
