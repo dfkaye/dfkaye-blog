@@ -32,8 +32,8 @@ describe("model", () => {
 
     describe("unhandled cases", () => {
       it("after error, then next valid button, should clear previous expression")
-      it("9 +, then square, should print 9 + sqr(9), output is 81")
-      it("9 +, then squareroot, should print 9 + &radic(9), output is 3")
+      // it("9 +, then square, should print 9 + sqr(9), output is 81")
+      // it("9 +, then squareroot, should print 9 + &radic(9), output is 3")
       it("6 =, then 3, should print 3 =")
       it("3 =, then +, should print 3 +")
       it("3 +, then =, should print 3 + 3 =, output is 6")
@@ -813,6 +813,21 @@ describe("model", () => {
           }
 
           model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "reciprocal" })
+
+          var { expression } = result
+
+          expect(expression.join(" ")).to.equal("4 + 1/(4)")
+        })
+
+        it("returns current, operator, and 1/next if next value entered", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "plus" })
           model.propose({ action: "digit", value: "8" })
           model.propose({ action: "reciprocal" })
 
@@ -831,7 +846,6 @@ describe("model", () => {
           state.transition = function ({ data }) { }
 
           model.propose({ action: "clear" })
-          model.propose({ action: "digit", value: "9" })
         })
 
         it("returns the square of current entry", () => {
@@ -843,9 +857,28 @@ describe("model", () => {
             result = output
           }
 
+          model.propose({ action: "digit", value: "9" })
           model.propose({ action: "square" })
 
           expect(result).to.equal("81")
+        })
+
+        it("0.2 * 0.2 returns 0.04", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            var { output } = data
+
+            result = output
+          }
+
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "reciprocal" })
+          // converts to 0.2
+          model.propose({ action: "square" })
+
+          // 0.2 * 0.2 => 0.04 (not 0.04000000000000001)
+          expect(result).to.equal("0.04")
         })
       })
 
@@ -859,7 +892,7 @@ describe("model", () => {
           model.propose({ action: "digit", value: "9" })
         })
 
-        it("returns current ouput", () => {
+        it("returns current output", () => {
           var result
 
           state.transition = function ({ data }) {
@@ -873,7 +906,7 @@ describe("model", () => {
           expect(expression.join(" ")).to.equal("sqr(9)")
         })
 
-        it("returns current ouput, operator, sqr(current)", () => {
+        it("returns current output, operator, sqr(current)", () => {
           var result
 
           state.transition = function ({ data }) {
@@ -888,7 +921,7 @@ describe("model", () => {
           expect(expression.join(" ")).to.equal("9 + sqr(9)")
         })
 
-        it("returns current ouput, operator, sqr(next) if next value entered", () => {
+        it("returns current output, operator, sqr(next) if next value entered", () => {
           var result
 
           state.transition = function ({ data }) {
@@ -902,6 +935,23 @@ describe("model", () => {
           var { expression } = result
 
           expect(expression.join(" ")).to.equal("9 + sqr(8)")
+        })
+
+        it("returns 9 + sqr(sqr(8)) on consecutive square operations", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "8" })
+          model.propose({ action: "square" })
+          model.propose({ action: "square" })
+
+          var { expression } = result
+
+          expect(expression.join(" ")).to.equal("9 + sqr(sqr(8))")
         })
       })
     })
@@ -924,8 +974,8 @@ describe("model", () => {
             result = data
           }
 
-
           model.propose({ action: "squareroot" })
+
           var { output } = result
 
           expect(output).to.equal("3")
@@ -962,7 +1012,7 @@ describe("model", () => {
           model.propose({ action: "digit", value: "9" })
         })
 
-        it(`return ${symbol}(current)`, () => {
+        it(`return current output`, () => {
           var result
 
           state.transition = function ({ data }) {
@@ -976,19 +1026,52 @@ describe("model", () => {
           expect(expression.join(" ")).to.equal(`${symbol}(9)`)
         })
 
-        it(`returns ${symbol}(${symbol}(current))`, () => {
+        it(`return current output, operator, Q(current)`, () => {
           var result
 
           state.transition = function ({ data }) {
             result = data
           }
 
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "squareroot" })
+
+          var { expression } = result
+
+          expect(expression.join(" ")).to.equal(`9 + ${symbol}(9)`)
+        })
+
+        it("returns current output, operator, Q(next) if next value entered", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "8" })
+          model.propose({ action: "squareroot" })
+
+          var { expression } = result
+
+          expect(expression.join(" ")).to.equal(`9 + ${symbol}(8)`)
+        })
+
+        it("returns 9 + Q(Q(current)) on consecutive operations", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "8" })
           model.propose({ action: "squareroot" })
           model.propose({ action: "squareroot" })
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal(`${symbol}(${symbol}(9))`)
+          expect(expression.join(" ")).to.equal(`9 + ${symbol}(${symbol}(8))`)
         })
 
         it("updates expression even when operation results in error", () => {

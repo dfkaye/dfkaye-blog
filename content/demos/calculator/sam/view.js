@@ -21,6 +21,7 @@ function view(action) {
     "decimal": "decimal",
     "Equals": "equals",
     "equals": "equals",
+    "=": "equals",
     "F9": "negate",
     "negate": "negate",
     "%": "percent",

@@ -375,11 +375,13 @@ function model(state) {
     square() {
       var { output, expression } = data
 
-      var lastEntry = expression.length
-        ? expression[expression.length - 1]
-        : output
+      var lastEntry = expression.length < 3
+        ? output
+        : expression[expression.length - 1]
 
-      var value = output * output
+      // Safe multiply for 0.2 * 0.2 => 0.04
+      // and 0.04000000000000001
+      var value = multiply(output, output)
       var newValue = value.toString()
       var newOperands = shiftOperands({ data, newValue })
       var newExpression = shiftExpression({ data, symbols })
@@ -403,9 +405,9 @@ function model(state) {
         ? `invalid input for square root, "${output}"`
         : ""
 
-      var lastEntry = expression.length
-        ? expression[expression.length - 1]
-        : output
+      var lastEntry = expression.length < 3
+        ? output
+        : expression[expression.length - 1]
 
       var value = error
         ? output

@@ -112,6 +112,19 @@ describe("view", (done) => {
         view.on.keydown({ key })
       })
 
+      it(`handles "=" symbol`, () => {
+        var { view, action } = app
+
+        var key = "="
+
+        action.next = function ({ action, value }) {
+          expect(action).to.equal("equals")
+          expect(value).to.equal(key)
+        }
+
+        view.on.keydown({ key })
+      })
+
       it("handles Escape (Clear) keys", () => {
         var { view, action } = app
 
@@ -440,7 +453,9 @@ describe("view", (done) => {
         }
 
         var target = document.createElement("button")
+
         target.value = key
+
         view.on.click({ target })
       })
 
@@ -455,7 +470,9 @@ describe("view", (done) => {
         }
 
         var target = document.createElement("button")
+
         target.value = key
+
         view.on.click({ target })
       })
 
@@ -470,7 +487,9 @@ describe("view", (done) => {
         }
 
         var target = document.createElement("button")
+
         target.value = key
+
         view.on.click({ target })
       })
 
@@ -485,7 +504,9 @@ describe("view", (done) => {
         }
 
         var target = document.createElement("button")
+
         target.value = key
+
         view.on.click({ target })
       })
 
@@ -500,7 +521,9 @@ describe("view", (done) => {
         }
 
         var target = document.createElement("button")
+
         target.value = key
+
         view.on.click({ target })
       })
 
@@ -520,7 +543,9 @@ describe("view", (done) => {
           }
 
           var target = document.createElement("button")
+
           target.value = key
+
           view.on.click({ target })
         })
 
@@ -550,7 +575,9 @@ describe("view", (done) => {
           }
 
           var target = document.createElement("button")
+
           target.value = key
+
           view.on.click({ target })
         })
 
