@@ -1,12 +1,21 @@
-import { add, divide, minus, multiply } from "https://unpkg.com/@dfkaye/safe-math@0.0.15/safe-math.js"
+import {
+  add as safe_plus,
+  divide as safe_divide,
+  minus as safe_minus,
+  multiply as safe_multiply,
+  percent as safe_percent,
+  reciprocal as safe_recripocal,
+  square as safe_square,
+  sqrt as safe_sqrt
+} from "https://unpkg.com/@dfkaye/safe-math@0.0.15/safe-math.js"
 
 export { model }
 
 var ops = {
-  divide,
-  minus,
-  multiply,
-  plus: add
+  divide: safe_divide,
+  minus: safe_minus,
+  multiply: safe_multiply,
+  plus: safe_plus
 }
 
 var symbols = {
@@ -102,8 +111,6 @@ function model(state) {
       });
     }
 
-    console.log("append", value, data.last, data.output)
-
     // If the current display value is non-zero, append the new character;
     // otherwise replace it.
     operand = Number(operand) || operand.length > 1
@@ -130,11 +137,10 @@ function model(state) {
   }
 
   function calculate({ step }) {
-    console.error(step)
     if (!data.nextOp && step == "equals") {
       // take current output and append "=" to the expression
       var changes = {
-        // nextOp: step,
+        // last: step,
         expression: [data.output, symbols[step]],
         operands: [data.output, data.output]
       }
@@ -143,22 +149,25 @@ function model(state) {
     }
 
     if (!ops[data.nextOp]) {
-      console.error("not ready to calculate with ", data.nextOp)
-
+      // console.error("not ready to calculate with ", data.nextOp)
       return
     }
 
-    console.warn(data)
-
     // Destructuring to the rescue. Sure is nice here.
     var [left, right] = data.operands;
-    var op = ops[data.nextOp]
-    var value = op(left, right)
+    // run math operation...
+    var value = ops[data.nextOp](left, right)
     var newValue = value.toString()
 
     var lastIndex = data.expression.length - 1;
     var lastEntry = data.expression[lastIndex];
     var { equals } = symbols;
+
+    console.log({
+      last: data.last,
+      operands: data.operands,
+      expression: data.expression
+    })
 
     // Logic here is tricky. If the expression ends with '=', then we're ready to
     // shorten its output, so replace the expression with a new array of
@@ -167,12 +176,11 @@ function model(state) {
       ? [left, symbols[data.nextOp], right, equals]
       : /\d/.test(lastEntry)
         // ...it's more tricky: if the lastEntry in the expression is numeric,
-        // append the equals operator; otherwise, append the right operands and
+        // append the equals operator; otherwise, append the right operand and
         // the equals operator.
         ? data.expression.concat(equals)
         : data.expression.concat(right, equals);
 
-    console.error(data.last, step, lastEntry)
     var changes = {
       output: newValue,
       // Assign the calculated value to the result field
@@ -281,6 +289,9 @@ function model(state) {
         calculate({ step: value });
       }
 
+      console.log("nextOp", value)
+      console.log(data)
+
       var { output } = data;
 
       var lastIndex = data.expression.length - 1;
@@ -292,6 +303,8 @@ function model(state) {
       var newExpression = !/\d(\.)?/.test(lastEntry)
         ? data.expression.slice(0, lastIndex).concat(symbol)
         : data.expression.concat(symbol);
+
+      console.warn(newExpression)
 
       var changes = {
         nextOp: value,
@@ -325,7 +338,8 @@ function model(state) {
           b = a
         }
 
-        value = a * b / 100
+        // safe-math combo
+        value = safe_multiply(a, safe_percent(b))
       }
 
       var newValue = value.toString()
@@ -353,7 +367,8 @@ function model(state) {
 
       var value = error
         ? output
-        : 1 / output
+        // safe-math
+        : safe_recripocal(output)
 
       var newValue = value.toString()
       var newOperands = shiftOperands({ data, newValue });
@@ -381,7 +396,7 @@ function model(state) {
 
       // Safe multiply for 0.2 * 0.2 => 0.04
       // and 0.04000000000000001
-      var value = multiply(output, output)
+      var value = safe_square(output)
       var newValue = value.toString()
       var newOperands = shiftOperands({ data, newValue })
       var newExpression = shiftExpression({ data, symbols })
@@ -411,7 +426,8 @@ function model(state) {
 
       var value = error
         ? output
-        : Math.sqrt(output)
+        // safe-math
+        : safe_sqrt(output)
 
       var newValue = value.toString()
       var newExpression = shiftExpression({ data, symbols })
@@ -446,8 +462,6 @@ function model(state) {
         // skip transition if data not updated
         return
       }
-
-      console.log(action, changes)
 
       state.transition({ data: Object.assign({}, changes) })
     }

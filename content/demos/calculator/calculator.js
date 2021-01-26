@@ -5,10 +5,14 @@ import { state } from "./sam/state.js";
 
 import { define } from "/js/lib/sam/define.js";
 
-console.log("loaded")
+var app = define({ view, action, model, state })
 
-var f = function () {
-  console.log(document.querySelectorAll(".fail").length)
+var start = function () {
+  if (document.querySelectorAll(".fail").length) {
+    console.log("there were some failed tests")
+
+    // return
+  }
 
   var { view, action } = app;
 
@@ -16,13 +20,12 @@ var f = function () {
     //view.selectors.calculator = "#calculator"
     var calculator = document.querySelector(view.selectors.calculator);
 
-    console.log("should run")
     calculator.addEventListener("keydown", view.on.keydown);
     calculator.addEventListener("click", view.on.click);
 
     action.next({ action: "clear" })
   })
 }
-var app = define({ view, action, model, state })
 
-setTimeout(f, 5000)
+// Give the test suite a moment to finish, then call start().
+setTimeout(start, 5000)

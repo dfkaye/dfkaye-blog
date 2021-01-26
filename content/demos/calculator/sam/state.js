@@ -16,7 +16,12 @@ function state(view, action) {
       view.render({ data: representation })
 
       // Demonstrate dependency on next action.
-      // action.next({ action: "test", value: "" })
+      // if (!error) {
+      //   // this will return an error in the next transition, and prevent the
+      //   // this action from repeating
+      //   // console.log("state calling next action with 'test'")
+      //   // action.next({ action: "test", value: "" })
+      // }
     }
   }
 
