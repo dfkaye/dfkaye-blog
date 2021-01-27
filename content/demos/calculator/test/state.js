@@ -8,7 +8,7 @@ describe("state", () => {
     var app = define({ state })
 
     it("returns app with state, view and action", () => {
-      var { state, view, action } = app;
+      var { state, view, action } = app
 
       expect(state).to.be.an("object")
       expect(view).to.be.an("object")
@@ -26,7 +26,7 @@ describe("state", () => {
     }
 
     it("transition calls render and next action", () => {
-      var { state, view, action } = app;
+      var { state, view, action } = app
 
       var data = Object.assign({}, representation, {
         output: "1234.567890",
@@ -46,7 +46,7 @@ describe("state", () => {
     })
 
     it("passes HTML entities in expression unchanged", () => {
-      var { state, view, action } = app;
+      var { state, view, action } = app
 
       var data = Object.assign({}, representation, {
         output: "3",

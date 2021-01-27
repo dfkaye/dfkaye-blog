@@ -8,7 +8,7 @@ describe("model", () => {
     var app = define({ model })
 
     it("returns app with model and state", () => {
-      var { model, state } = app;
+      var { model, state } = app
 
       expect(state).to.be.an("object")
       expect(model).to.be.an("object")
@@ -19,12 +19,12 @@ describe("model", () => {
     var app = define({ model })
 
     it("sends error to state on invalid action step", () => {
-      var { model, state } = app;
+      var { model, state } = app
 
       state.transition = function ({ data }) {
         var { error } = data
 
-        expect(error).to.equal(`invalid action step, "bonk"`)
+        expect(error).to.equal(`Invalid action step, "bonk"`)
       }
 
       model.propose({ action: "bonk" })
@@ -43,7 +43,7 @@ describe("model", () => {
 
     describe("clear", () => {
       it("clears the model", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         state.transition = function ({ data }) {
           var { output } = data
@@ -56,7 +56,7 @@ describe("model", () => {
     })
 
     describe("digit", () => {
-      var { model, state } = app;
+      var { model, state } = app
 
       beforeEach(() => {
         state.transition = function ({ data }) { }
@@ -85,12 +85,12 @@ describe("model", () => {
 
         var { error } = result
 
-        expect(error).to.equal(`invalid digit value, "6y6"`)
+        expect(error).to.equal(`Invalid digit value, "6y6"`)
       })
     })
 
     describe("clearentry", () => {
-      var { model, state } = app;
+      var { model, state } = app
 
       beforeEach(() => {
         state.transition = function ({ data }) { }
@@ -111,7 +111,7 @@ describe("model", () => {
     })
 
     describe("backspace", () => {
-      var { model, state } = app;
+      var { model, state } = app
 
       beforeEach(() => {
         state.transition = function ({ data }) { }
@@ -147,7 +147,7 @@ describe("model", () => {
     })
 
     describe("decimal", () => {
-      var { model, state } = app;
+      var { model, state } = app
 
       beforeEach(() => {
         state.transition = function ({ data }) { }
@@ -183,7 +183,7 @@ describe("model", () => {
     })
 
     describe("equals", () => {
-      var { model, state } = app;
+      var { model, state } = app
 
       beforeEach(() => {
         state.transition = function ({ data }) { }
@@ -246,7 +246,7 @@ describe("model", () => {
     })
 
     describe("negate", () => {
-      var { model, state } = app;
+      var { model, state } = app
 
       beforeEach(() => {
         state.transition = function ({ data }) { }
@@ -266,7 +266,7 @@ describe("model", () => {
       })
 
       it("negates negative entry to positive", () => {
-        var entry;
+        var entry
 
         state.transition = function ({ data }) {
           var { output } = data
@@ -283,7 +283,7 @@ describe("model", () => {
 
     describe("nextOp", () => {
       describe("divide", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -326,7 +326,7 @@ describe("model", () => {
       })
 
       describe("minus", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -370,7 +370,7 @@ describe("model", () => {
       })
 
       describe("multiply", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -413,7 +413,7 @@ describe("model", () => {
       })
 
       describe("plus", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -456,7 +456,7 @@ describe("model", () => {
       })
 
       describe("uses safe math operations", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -553,7 +553,7 @@ describe("model", () => {
       // See How the percent key works in Windows Calculator at
       // https://devblogs.microsoft.com/oldnewthing/20080110-00/?p=23853
       describe("output", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -652,7 +652,7 @@ describe("model", () => {
       })
 
       describe("expression", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -746,7 +746,7 @@ describe("model", () => {
 
     describe("reciprocal", () => {
       describe("output", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -786,7 +786,7 @@ describe("model", () => {
       })
 
       describe("expression", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -878,7 +878,7 @@ describe("model", () => {
 
     describe("square", () => {
       describe("output", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -940,7 +940,7 @@ describe("model", () => {
       })
 
       describe("expression", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -1051,7 +1051,7 @@ describe("model", () => {
 
     describe("squareroot", () => {
       describe("output", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         beforeEach(() => {
           state.transition = function ({ data }) { }
@@ -1087,7 +1087,7 @@ describe("model", () => {
 
           var { error } = result
 
-          expect(error).to.equal(`invalid input for square root, "-9"`)
+          expect(error).to.equal(`Invalid input for square root, "-9"`)
         })
 
         it("5 + sqrt(9) + should print 8", () => {
@@ -1111,7 +1111,7 @@ describe("model", () => {
       })
 
       describe("expression", () => {
-        var { model, state } = app;
+        var { model, state } = app
 
         var symbol = "&radic;"
 

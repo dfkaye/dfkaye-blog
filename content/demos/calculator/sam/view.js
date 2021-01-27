@@ -88,8 +88,8 @@ function view(action) {
     handle: {
       arrow(e) {
         var { key, target } = e
-        var { rows, find } = keypad;
-        var { selectors } = view;
+        var { rows, find } = keypad
+        var { selectors } = view
 
         // Find our keypad buttons.
         var calculator = document.querySelector(selectors.calculator)
@@ -140,13 +140,13 @@ function view(action) {
           return
         }
 
-        var { value } = target;
-        var { handle } = view;
+        var { value } = target
+        var { handle } = view
 
         handle.input({ key: value })
       },
       keydown(e) {
-        var { key } = e;
+        var { key } = e
         var { handle } = view;
 
         /^Arrow(Up|Down|Right|Left)$/.test(key)

@@ -8,7 +8,7 @@ describe("view", (done) => {
     var app = define({ view })
 
     it("returns app with view and action", () => {
-      var { view, action } = app;
+      var { view, action } = app
 
       expect(view).to.be.an("object")
       expect(action).to.be.an("object")
@@ -19,7 +19,7 @@ describe("view", (done) => {
     var app = define({ view })
 
     it("runs handler on document ready", (done) => {
-      var { view } = app;
+      var { view } = app
       var calls = 0
 
       var handler = function () {
@@ -248,7 +248,7 @@ describe("view", (done) => {
           var app = define({ view })
 
           it("no effect in top row", () => {
-            var { view } = app;
+            var { view } = app
 
             ["percent", "clearentry", "clear", "backspace"].forEach(key => {
               var target = keys[key]
@@ -262,7 +262,7 @@ describe("view", (done) => {
           })
 
           it("moves focus up one row", () => {
-            var { view } = app;
+            var { view } = app
 
             var target = keys["negate"]
 
@@ -276,7 +276,7 @@ describe("view", (done) => {
 
         describe("ArrowRight", () => {
           it("no effect in right column", () => {
-            var { view } = app;
+            var { view } = app
 
             ["backspace", "divide", "multiply", "plus", "minus", "equals"].forEach(key => {
               var target = keys[key]
@@ -290,7 +290,7 @@ describe("view", (done) => {
           })
 
           it("moves focus right one column", () => {
-            var { view } = app;
+            var { view } = app
 
             var target = keys["percent"]
 
@@ -306,7 +306,7 @@ describe("view", (done) => {
           var app = define({ view })
 
           it("no effect in bottom row", () => {
-            var { view } = app;
+            var { view } = app
 
             ["negate", "0", "decimal", "equals"].forEach(key => {
               var target = keys[key]
@@ -320,7 +320,7 @@ describe("view", (done) => {
           })
 
           it("moves focus down one row", () => {
-            var { view } = app;
+            var { view } = app
 
             var target = keys["squareroot"]
 
@@ -336,7 +336,7 @@ describe("view", (done) => {
           var app = define({ view })
 
           it("no effect in left column", () => {
-            var { view } = app;
+            var { view } = app
 
             ["percent", "reciprocal", "7", "4", "1", "negate"].forEach(key => {
               var target = keys[key]
@@ -350,7 +350,7 @@ describe("view", (done) => {
           })
 
           it("moves focus left one column", () => {
-            var { view } = app;
+            var { view } = app
 
             var target = keys["3"]
 
@@ -603,7 +603,7 @@ describe("view", (done) => {
     }
 
     describe("output", () => {
-      var { view } = app;
+      var { view } = app
 
       it("should be formatted", () => {
         var data = Object.assign({}, representation, {
@@ -617,7 +617,7 @@ describe("view", (done) => {
     })
 
     describe("expression", () => {
-      var { view } = app;
+      var { view } = app
 
       it("should render as string", () => {
         var data = Object.assign({}, representation, {
@@ -631,7 +631,7 @@ describe("view", (done) => {
     })
 
     describe("alert", () => {
-      var { view } = app;
+      var { view } = app
 
       it("should contain expression when expression has exactly 2 entries", () => {
         var data = Object.assign({}, representation, {
@@ -668,7 +668,7 @@ describe("view", (done) => {
     })
 
     describe("error state", () => {
-      var { view } = app;
+      var { view } = app
 
       it("should set error attribute on calculator element", () => {
         var data = Object.assign({}, representation, {

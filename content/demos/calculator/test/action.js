@@ -8,7 +8,7 @@ describe("action", () => {
     var app = define({ action })
 
     it("returns app with action and model", () => {
-      var { action, model } = app;
+      var { action, model } = app
 
       expect(action).to.be.an("object")
       expect(model).to.be.an("object")
@@ -19,7 +19,7 @@ describe("action", () => {
     var app = define({ action })
 
     it("proposes simple actions to the model", () => {
-      var { action, model } = app;
+      var { action, model } = app
 
       var actions = [
         "backspace",
@@ -35,7 +35,7 @@ describe("action", () => {
         "squareroot"
       ]
 
-      var calls = 0;
+      var calls = 0
 
       actions.forEach(entry => {
         model.propose = function ({ action, value }) {
@@ -50,7 +50,7 @@ describe("action", () => {
     })
 
     it("proposes value actions to the model", () => {
-      var { action, model } = app;
+      var { action, model } = app
 
       var actions = [
         { action: "digit", value: "3" },
@@ -60,7 +60,7 @@ describe("action", () => {
         { action: "nextOp", value: "divide" }
       ]
 
-      var calls = 0;
+      var calls = 0
 
       actions.forEach(entry => {
         model.propose = function (proposal) {
@@ -78,7 +78,7 @@ describe("action", () => {
     })
 
     describe("on empty actions and invalid values", () => {
-      var { action, model } = app;
+      var { action, model } = app
 
       model.propose = function (proposal) {
         throw new Error(`Should not forward proposal to the model, {action: ${entry.action}, value: ${entry.value}}.`)
