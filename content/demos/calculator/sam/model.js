@@ -19,11 +19,11 @@ var ops = {
 }
 
 var symbols = {
-  equals: "=",
-  divide: "/",
-  minus: "-",
-  multiply: "*",
-  plus: "+"
+  equals: "&equals;",
+  divide: "&divide;",
+  minus: "&minus;",
+  multiply: "&times;",
+  plus: "&plus;"
 }
 
 var base = {
@@ -124,7 +124,6 @@ function model(state) {
 
     var newValue = value.toString()
 
-
     var newOperands = shiftOperands({ data, newValue });
 
     var changes = {
@@ -162,12 +161,6 @@ function model(state) {
     var lastIndex = data.expression.length - 1;
     var lastEntry = data.expression[lastIndex];
     var { equals } = symbols;
-
-    console.log({
-      last: data.last,
-      operands: data.operands,
-      expression: data.expression
-    })
 
     // Logic here is tricky. If the expression ends with '=', then we're ready to
     // shorten its output, so replace the expression with a new array of
@@ -289,22 +282,25 @@ function model(state) {
         calculate({ step: value });
       }
 
-      console.log("nextOp", value)
-      console.log(data)
+      var { output, expression } = data;
+      var symbol = symbols[value]
 
-      var { output } = data;
+      // If the expression ends with an operator, replace it with the output
+      // and the incoming operator. Otherwise, append the incoming operator to
+      // the current expression.
+      // var newExpression = !/\d/.test(last) // === "equals"
+      //   ? [output, symbol]
+      //   : data.expression.concat(symbol);
 
-      var lastIndex = data.expression.length - 1;
-      var lastEntry = data.expression[lastIndex];
+      var lastIndex = expression.length - 1;
+      var lastEntry = expression[lastIndex];
       var symbol = symbols[value]
 
       // If the expression ends with an operator, replace it with the incoming
       // operator. Otherwise, append it to the output expression.
       var newExpression = !/\d(\.)?/.test(lastEntry)
-        ? data.expression.slice(0, lastIndex).concat(symbol)
-        : data.expression.concat(symbol);
-
-      console.warn(newExpression)
+        ? expression.slice(0, lastIndex).concat(symbol)
+        : expression.concat(symbol);
 
       var changes = {
         nextOp: value,
@@ -327,29 +323,31 @@ function model(state) {
 
       var value = 0
 
-      // get operands
       var { operands } = data
-      var { length } = operands
 
-      if (length) {
-        var [a, b] = operands
+      if (operands.length) {
+        var [left, right] = operands
 
-        if (!/\d/.test(b)) {
-          b = a
+        if (!/\d/.test(right)) {
+          // right operand may not have been entered yet
+          right = left
         }
 
         // safe-math combo
-        value = safe_multiply(a, safe_percent(b))
+        value = safe_multiply(left, safe_percent(right))
       }
 
       var newValue = value.toString()
       var newOperands = shiftOperands({ data, newValue });
-      var newExpression = shiftExpression({ data, symbols })
 
-      newExpression.push(newValue)
+      var { last } = data
+      var newExpression = last === "equals"
+        ? [newValue]
+        : shiftExpression({ data, symbols })
+          .concat(newValue)
 
       var changes = {
-        last: "percent",
+        last: newValue,
         operands: newOperands,
         output: newValue,
         expression: newExpression
@@ -372,14 +370,18 @@ function model(state) {
 
       var newValue = value.toString()
       var newOperands = shiftOperands({ data, newValue });
-      var newExpression = shiftExpression({ data, symbols })
 
-      newExpression.push(`1/(${output})`)
+      var { last } = data
+      var exprValue = `1/(${output})`
+      var newExpression = last === "equals"
+        ? [exprValue]
+        : shiftExpression({ data, symbols })
+          .concat(exprValue)
 
       var changes = {
-        last: "reciprocal",
+        last: newValue,
         operands: newOperands,
-        output: newValue.toString(),
+        output: newValue,
         expression: newExpression,
         error
       }
@@ -390,21 +392,27 @@ function model(state) {
     square() {
       var { output, expression } = data
 
-      var lastEntry = expression.length < 3
-        ? output
-        : expression[expression.length - 1]
-
       // Safe multiply for 0.2 * 0.2 => 0.04
       // and 0.04000000000000001
       var value = safe_square(output)
       var newValue = value.toString()
       var newOperands = shiftOperands({ data, newValue })
-      var newExpression = shiftExpression({ data, symbols })
 
-      newExpression.push(`sqr(${lastEntry})`)
+      // Update expression to account for sqr(value) notation.
+      var lastToken = expression[expression.length - 1]
+      var lastEntry = !/\d/.test(lastToken)
+        ? output // use output if last token is an operation but not sqr.
+        : lastToken
+      var exprValue = `sqr(${lastEntry})`
+
+      var { last } = data
+      var newExpression = last === "equals"
+        ? [exprValue]
+        : shiftExpression({ data, symbols })
+          .concat(exprValue)
 
       var changes = {
-        last: "square",
+        last: newValue,
         operands: newOperands,
         output: newValue,
         expression: newExpression
@@ -420,22 +428,29 @@ function model(state) {
         ? `invalid input for square root, "${output}"`
         : ""
 
-      var lastEntry = expression.length < 3
-        ? output
-        : expression[expression.length - 1]
-
       var value = error
         ? output
         // safe-math
-        : safe_sqrt(output)
-
+        : safe_sqrt(output);
       var newValue = value.toString()
-      var newExpression = shiftExpression({ data, symbols })
+      var newOperands = shiftOperands({ data, newValue })
 
-      newExpression.push(`&radic;(${lastEntry})`)
+      // Update expression to account for sqrt(value) notation.
+      var lastToken = expression[expression.length - 1]
+      var lastEntry = !/\d/.test(lastToken)
+        ? output // use output if last token is an operation but not sqrt
+        : lastToken
+      var exprValue = `&radic;(${lastEntry})`
+
+      var { last } = data
+      var newExpression = last === "equals"
+        ? [exprValue]
+        : shiftExpression({ data, symbols })
+          .concat(exprValue)
 
       var changes = {
-        last: "squareroot",
+        last: newValue,
+        operands: newOperands,
         output: newValue,
         expression: newExpression,
         error

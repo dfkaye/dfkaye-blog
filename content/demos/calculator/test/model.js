@@ -30,16 +30,15 @@ describe("model", () => {
       model.propose({ action: "bonk" })
     })
 
-    describe("unhandled cases", () => {
-      it("after error, then next valid button, should clear previous expression")
-      // it("9 +, then square, should print 9 + sqr(9), output is 81")
-      // it("9 +, then squareroot, should print 9 + &radic(9), output is 3")
+    describe("sequence checks", () => {
+      it("after an equals op, a conversion op should replace the expression")
       it("6 =, then 3, should print 3 =")
       it("3 =, then +, should print 3 +")
       it("3 +, then =, should print 3 + 3 =, output is 6")
       it("7 + 8, then =, should print 7 + 8 =, output is 15")
       it("7 + 8 =, then *, should print 15 *, output is 15")
       it("15 *, then 6, then =, should print 15 * 6 =, output is 90")
+      it("15 * 6 =, then =, should print 90 * 6 =, output is 540")
     })
 
     describe("clear", () => {
@@ -204,7 +203,7 @@ describe("model", () => {
         var { output, expression } = result
 
         expect(output).to.equal("0")
-        expect(expression.join(" ")).to.equal("0 =")
+        expect(expression.join(" ")).to.equal("0 &equals;")
       })
 
       it("should update expression with several operations", () => {
@@ -222,7 +221,7 @@ describe("model", () => {
         var { output, expression } = result
 
         expect(output).to.equal("246")
-        expect(expression.join(" ")).to.equal("123 + 123 =")
+        expect(expression.join(" ")).to.equal("123 &plus; 123 &equals;")
       })
 
       it("should reset expression on consecutive equals actions", () => {
@@ -242,7 +241,7 @@ describe("model", () => {
         var { output, expression } = result
 
         expect(output).to.equal(String(246 + 123))
-        expect(expression.join(" ")).to.equal("246 + 123 =")
+        expect(expression.join(" ")).to.equal("246 &plus; 123 &equals;")
       })
     })
 
@@ -305,7 +304,7 @@ describe("model", () => {
           var { expression, last } = result
 
           expect(last).to.equal("divide")
-          expect(expression.join(" ")).to.equal("123 /")
+          expect(expression.join(" ")).to.equal("123 &divide;")
         })
 
         it("calculates when nextOp is set", () => {
@@ -322,7 +321,7 @@ describe("model", () => {
           var { output, expression } = result
 
           expect(output).to.equal("1")
-          expect(expression.join(" ")).to.equal("123 / 123 /")
+          expect(expression.join(" ")).to.equal("123 &divide; 123 &divide;")
         })
       })
 
@@ -349,7 +348,7 @@ describe("model", () => {
 
 
           expect(last).to.equal("minus")
-          expect(expression.join(" ")).to.equal("123 -")
+          expect(expression.join(" ")).to.equal("123 &minus;")
         })
 
         it("calculates when nextOp is set", () => {
@@ -366,7 +365,7 @@ describe("model", () => {
           var { output, expression } = result
 
           expect(output).to.equal("3")
-          expect(expression.join(" ")).to.equal("123 - 120 -")
+          expect(expression.join(" ")).to.equal("123 &minus; 120 &minus;")
         })
       })
 
@@ -392,7 +391,7 @@ describe("model", () => {
           var { expression, last } = result
 
           expect(last).to.equal("multiply")
-          expect(expression.join(" ")).to.equal("10 *")
+          expect(expression.join(" ")).to.equal("10 &times;")
         })
 
         it("calculates when nextOp is set", () => {
@@ -409,7 +408,7 @@ describe("model", () => {
           var { output, expression } = result
 
           expect(output).to.equal("100")
-          expect(expression.join(" ")).to.equal("10 * 10 *")
+          expect(expression.join(" ")).to.equal("10 &times; 10 &times;")
         })
       })
 
@@ -435,7 +434,7 @@ describe("model", () => {
           var { expression, last } = result
 
           expect(last).to.equal("plus")
-          expect(expression.join(" ")).to.equal("10 +")
+          expect(expression.join(" ")).to.equal("10 &plus;")
         })
 
         it("calculates when nextOp is set", () => {
@@ -452,7 +451,7 @@ describe("model", () => {
           var { output, expression } = result
 
           expect(output).to.equal("20")
-          expect(expression.join(" ")).to.equal("10 + 10 +")
+          expect(expression.join(" ")).to.equal("10 &plus; 10 &plus;")
         })
       })
 
@@ -483,7 +482,7 @@ describe("model", () => {
           var { output, expression } = result
 
           expect(output).to.equal("0.3")
-          expect(expression.join(" ")).to.equal("0.1 + 0.2 =")
+          expect(expression.join(" ")).to.equal("0.1 &plus; 0.2 &equals;")
         })
 
         it("0.1 * 0.1 = 0.01", () => {
@@ -503,7 +502,7 @@ describe("model", () => {
           var { output, expression } = result
 
           expect(output).to.equal("0.01")
-          expect(expression.join(" ")).to.equal("0.1 * 0.1 =")
+          expect(expression.join(" ")).to.equal("0.1 &times; 0.1 &equals;")
         })
 
         it("0.1 - 0.3 = -0.2", () => {
@@ -523,7 +522,7 @@ describe("model", () => {
           var { output, expression } = result
 
           expect(output).to.equal("-0.2")
-          expect(expression.join(" ")).to.equal("0.1 - 0.3 =")
+          expect(expression.join(" ")).to.equal("0.1 &minus; 0.3 &equals;")
         })
 
         it("0.15 / 0.1 = 1.5", () => {
@@ -545,7 +544,7 @@ describe("model", () => {
           var { output, expression } = result
 
           expect(output).to.equal("1.5")
-          expect(expression.join(" ")).to.equal("0.15 / 0.1 =")
+          expect(expression.join(" ")).to.equal("0.15 &divide; 0.1 &equals;")
         })
       })
     })
@@ -703,7 +702,7 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("9 + 0.81")
+          expect(expression.join(" ")).to.equal("9 &plus; 0.81")
         })
 
         it("returns current, operator, and current * (next / 100) if next digit entered", () => {
@@ -720,7 +719,27 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("9 + 0.45")
+          expect(expression.join(" ")).to.equal("9 &plus; 0.45")
+        })
+
+        it("after an equals op, percent op should clear the expression", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "digit", value: "9" })
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "equals" })
+
+          model.propose({ action: "percent" })
+
+          var { expression } = result
+
+          // 14 * 0.05
+          expect(expression.join(" ")).to.equal("0.7")
         })
       })
     })
@@ -802,7 +821,7 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("4 + 1/(4)")
+          expect(expression.join(" ")).to.equal("4 &plus; 1/(4)")
         })
 
         it("returns current, operator, and 1/current if operator entered", () => {
@@ -817,7 +836,7 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("4 + 1/(4)")
+          expect(expression.join(" ")).to.equal("4 &plus; 1/(4)")
         })
 
         it("returns current, operator, and 1/next if next value entered", () => {
@@ -833,7 +852,26 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("4 + 1/(8)")
+          expect(expression.join(" ")).to.equal("4 &plus; 1/(8)")
+        })
+
+        it("after an equals op, reciprocal op should clear the expression", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "equals" })
+
+          model.propose({ action: "reciprocal" })
+
+          var { expression } = result
+
+          // R of 4+ 5 =; 9 in outupt
+          expect(expression.join(" ")).to.equal("1/(9)")
         })
       })
     })
@@ -880,6 +918,25 @@ describe("model", () => {
           // 0.2 * 0.2 => 0.04 (not 0.04000000000000001)
           expect(result).to.equal("0.04")
         })
+
+        it("9 + sqr(5) + should print 34", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "digit", value: "9" })
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "square" })
+          model.propose({ action: "nextOp", value: "plus" })
+
+          var { output } = result
+
+          // sqr of 9 + 25 =; 25 in output
+          expect(output).to.equal("34")
+        })
       })
 
       describe("expression", () => {
@@ -918,7 +975,7 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("9 + sqr(9)")
+          expect(expression.join(" ")).to.equal("9 &plus; sqr(9)")
         })
 
         it("returns current output, operator, sqr(next) if next value entered", () => {
@@ -934,7 +991,7 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("9 + sqr(8)")
+          expect(expression.join(" ")).to.equal("9 &plus; sqr(8)")
         })
 
         it("returns 9 + sqr(sqr(8)) on consecutive square operations", () => {
@@ -951,7 +1008,43 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal("9 + sqr(sqr(8))")
+          expect(expression.join(" ")).to.equal("9 &plus; sqr(sqr(8))")
+        })
+
+        it("should append &plus; after 9 + sqr(5)", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "square" })
+          model.propose({ action: "nextOp", value: "plus" })
+
+          var { expression } = result
+
+          // sqr of 9 + 25 =; 25 in output
+          expect(expression.join(" ")).to.equal("9 &plus; sqr(5) &plus;")
+        })
+
+        it("after an equals op, square op should clear the expression", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "equals" })
+          model.propose({ action: "square" })
+
+          var { expression } = result
+
+          // sqr of 9 + 5 =; 14 in outupt
+          expect(expression.join(" ")).to.equal("sqr(14)")
         })
       })
     })
@@ -964,7 +1057,6 @@ describe("model", () => {
           state.transition = function ({ data }) { }
 
           model.propose({ action: "clear" })
-          model.propose({ action: "digit", value: "9" })
         })
 
         it("returns square root of current entry", () => {
@@ -974,6 +1066,7 @@ describe("model", () => {
             result = data
           }
 
+          model.propose({ action: "digit", value: "9" })
           model.propose({ action: "squareroot" })
 
           var { output } = result
@@ -988,15 +1081,32 @@ describe("model", () => {
             result = data
           }
 
-          model.propose({ action: "clear" })
           model.propose({ action: "digit", value: "9" })
           model.propose({ action: "negate" })
-
           model.propose({ action: "squareroot" })
 
           var { error } = result
 
           expect(error).to.equal(`invalid input for square root, "-9"`)
+        })
+
+        it("5 + sqrt(9) + should print 8", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "9" })
+          model.propose({ action: "squareroot" })
+          model.propose({ action: "nextOp", value: "plus" })
+
+          var { output } = result
+
+          // 5 + sqrt(9) =; 8 in output
+          expect(output).to.equal("8")
         })
       })
 
@@ -1009,7 +1119,6 @@ describe("model", () => {
           state.transition = function ({ data }) { }
 
           model.propose({ action: "clear" })
-          model.propose({ action: "digit", value: "9" })
         })
 
         it(`return current output`, () => {
@@ -1019,6 +1128,7 @@ describe("model", () => {
             result = data
           }
 
+          model.propose({ action: "digit", value: "9" })
           model.propose({ action: "squareroot" })
 
           var { expression } = result
@@ -1033,12 +1143,13 @@ describe("model", () => {
             result = data
           }
 
+          model.propose({ action: "digit", value: "9" })
           model.propose({ action: "nextOp", value: "plus" })
           model.propose({ action: "squareroot" })
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal(`9 + ${symbol}(9)`)
+          expect(expression.join(" ")).to.equal(`9 &plus; ${symbol}(9)`)
         })
 
         it("returns current output, operator, Q(next) if next value entered", () => {
@@ -1048,13 +1159,14 @@ describe("model", () => {
             result = data
           }
 
+          model.propose({ action: "digit", value: "9" })
           model.propose({ action: "nextOp", value: "plus" })
           model.propose({ action: "digit", value: "8" })
           model.propose({ action: "squareroot" })
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal(`9 + ${symbol}(8)`)
+          expect(expression.join(" ")).to.equal(`9 &plus; ${symbol}(8)`)
         })
 
         it("returns 9 + Q(Q(current)) on consecutive operations", () => {
@@ -1064,6 +1176,7 @@ describe("model", () => {
             result = data
           }
 
+          model.propose({ action: "digit", value: "9" })
           model.propose({ action: "nextOp", value: "plus" })
           model.propose({ action: "digit", value: "8" })
           model.propose({ action: "squareroot" })
@@ -1071,7 +1184,7 @@ describe("model", () => {
 
           var { expression } = result
 
-          expect(expression.join(" ")).to.equal(`9 + ${symbol}(${symbol}(8))`)
+          expect(expression.join(" ")).to.equal(`9 &plus; ${symbol}(${symbol}(8))`)
         })
 
         it("updates expression even when operation results in error", () => {
@@ -1081,15 +1194,51 @@ describe("model", () => {
             result = data
           }
 
-          model.propose({ action: "clear" })
           model.propose({ action: "digit", value: "9" })
           model.propose({ action: "negate" })
-
           model.propose({ action: "squareroot" })
 
           var { expression } = result
 
           expect(expression.join(" ")).to.equal(`${symbol}(-9)`)
+        })
+
+        it("should append &plus; after 5 + sqrt(9)", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "9" })
+          model.propose({ action: "squareroot" })
+          model.propose({ action: "nextOp", value: "plus" })
+
+          var { expression } = result
+
+          // sqr of 5 + 3 =; 8 in output
+          expect(expression.join(" ")).to.equal("5 &plus; &radic;(9) &plus;")
+        })
+
+        it("after an equals op, squareroot op should clear the expression", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          model.propose({ action: "digit", value: "9" })
+          model.propose({ action: "nextOp", value: "plus" })
+          model.propose({ action: "digit", value: "5" })
+          model.propose({ action: "equals" })
+          model.propose({ action: "squareroot" })
+
+          var { expression } = result
+
+          // sqrt of 9 + 5 =; 14 in outupt
+          expect(expression.join(" ")).to.equal("&radic;(14)")
         })
       })
     })
