@@ -248,7 +248,7 @@ describe("view", (done) => {
           var app = define({ view })
 
           it("no effect in top row", () => {
-            var { view } = app
+            var { view } = app;
 
             ["percent", "clearentry", "clear", "backspace"].forEach(key => {
               var target = keys[key]
@@ -276,7 +276,7 @@ describe("view", (done) => {
 
         describe("ArrowRight", () => {
           it("no effect in right column", () => {
-            var { view } = app
+            var { view } = app;
 
             ["backspace", "divide", "multiply", "plus", "minus", "equals"].forEach(key => {
               var target = keys[key]
@@ -306,7 +306,7 @@ describe("view", (done) => {
           var app = define({ view })
 
           it("no effect in bottom row", () => {
-            var { view } = app
+            var { view } = app;
 
             ["negate", "0", "decimal", "equals"].forEach(key => {
               var target = keys[key]
@@ -336,7 +336,7 @@ describe("view", (done) => {
           var app = define({ view })
 
           it("no effect in left column", () => {
-            var { view } = app
+            var { view } = app;
 
             ["percent", "reciprocal", "7", "4", "1", "negate"].forEach(key => {
               var target = keys[key]
