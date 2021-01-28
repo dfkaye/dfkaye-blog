@@ -62,7 +62,15 @@ The {{< rawhtml >}}<kbd>Arrow</kbd>{{< /rawhtml >}} keys navigate the keypad by 
 
 Keypad accepts click and touch events on each key, or keyboard input.
 
-TODO: list of key aliases for actions (e.g., Escape for Clear, Enter and Space for a click, `r` for `reciprocal`, `q`, `@`, `F9`, and so on).
+### TODO:
++ list of key aliases for actions (e.g., Escape for Clear, Enter and Space for a click, `r` for `reciprocal`, `q`, `@`, `F9`, and so on).
++ accessibility support - screen readers, alert text, keyboard navigation and input
++ mimmicking MS Windows Calculator expressions
++ 2 safe-math bugs found
++ explain the SAM pattern and why the calculator is based on it
++ error states
++ explain the CSS grid rules to mimic keyboard navigation in MS Windows Calculator
+
 
 
 {{< rawhtml >}}
