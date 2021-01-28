@@ -7,7 +7,7 @@ import {
   reciprocal as safe_recripocal,
   square as safe_square,
   sqrt as safe_sqrt
-} from "https://unpkg.com/@dfkaye/safe-math@0.0.15/safe-math.js"
+} from "https://unpkg.com/@dfkaye/safe-math@0.0.16/safe-math.js"
 
 export { model }
 
@@ -39,6 +39,17 @@ function model(state) {
   var data = Object.assign({}, base)
 
   function merge({ data, changes }) {
+    // Manage error state first.
+    if (data.error.length && !('error' in changes)) {
+      // Clear previous errors if no new errors coming.
+      changes.error = base.error
+
+      // Clear previous expression if no new expression coming.
+      if (data.expression.length && !('expression' in changes)) {
+        changes.expression = base.expression.slice()
+      }
+    }
+
     // Enforce any type consistency requirements.
 
     if ('output' in changes) {
@@ -46,15 +57,11 @@ function model(state) {
     }
 
     if ('operands' in changes) {
-      changes.operands = changes.operands.map(entry => entry.toString())
+      changes.operands = changes.operands.map(entry => String(entry))
     }
 
     if ('expression' in changes) {
-      changes.expression = changes.expression.map(entry => entry.toString())
-    }
-
-    if (!('error' in changes)) {
-      changes.error = base.error
+      changes.expression = changes.expression.map(entry => String(entry))
     }
 
     // Merge changes directly into data.
@@ -89,6 +96,28 @@ function model(state) {
     if (data.last == "equals") {
       // If last action was calculate(), reinitialize to clean state.
       steps.clear()
+    }
+
+    var { expression } = data;
+    var { length } = expression;
+
+    if (length < 3 && expression[length - 1] === symbols.equals) {
+      // 27 January 2021 - Special case:
+      // If "6 =", then "3", should become "3 ="
+
+      // If all we have is the decimal point, prefix '0' to it.
+      var newValue = value == '.'
+        ? ['0' + value].join('')
+        : value;
+
+      var changes = {
+        output: newValue,
+        operands: [newValue],
+        expression: [newValue, expression[length - 1]],
+        last: newValue
+      }
+
+      return merge({ data, changes })
     }
 
     // If last entry is numeric, continue with it; otherwise, it was an
@@ -135,13 +164,14 @@ function model(state) {
   }
 
   function calculate({ step }) {
-    if (!data.nextOp && step == "equals") {
-      // Take current output and append "=" to the expression, and return
-      // without calculating.
+    if (!data.nextOp /*&& step == "equals"*/) {
+      // Take current output
+      // append "=" to the expression
+      // return without calculating.
       var changes = {
         // last: step,
         expression: [data.output, symbols[step]],
-        operands: [data.output, data.output]
+        operands: [data.output]
       }
 
       return merge({ data, changes })
@@ -166,13 +196,19 @@ function model(state) {
     // shorten its output, so replace the expression with a new array of
     // operands and operators. Otherwise...
     var newExpression = lastEntry === equals
-      ? [left, symbols[data.nextOp], right, equals]
-      : /\d/.test(lastEntry)
+      ? [left, symbols[data.nextOp], right]
+      : !/\d/.test(lastEntry)
         // ...it's more tricky: if the lastEntry in the expression is numeric,
         // append the equals operator; otherwise, append the right operand and
         // the equals operator.
-        ? data.expression.concat(equals)
-        : data.expression.concat(right, equals);
+        //? data.expression.concat(equals)
+        //: 
+        ? data.expression.concat(right)
+        : data.expression;
+
+    if (step == "equals") {
+      newExpression.push(equals)
+    }
 
     var changes = {
       // Assign the calculated value to the result field...
@@ -295,6 +331,12 @@ function model(state) {
         ? expression.slice(0, lastIndex).concat(symbol)
         : expression.concat(symbol);
 
+      // Shorten the expression if the last op was "equals" and the nextOp
+      // is NOT "equals".
+      if (data.last == "equals" && symbol != symbols.equals) {
+        newExpression = [output, symbol]
+      }
+
       var changes = {
         nextOp: value,
         last: value,
@@ -314,27 +356,33 @@ function model(state) {
       // Apply percent to current entry, then multiply that by the previous
       // entry, and replace the current entry with that answer.
       var { operands, last } = data
-
       var value = 0
+      var newOperands = []
 
       if (operands.length) {
         var [left, right] = operands
 
-        if (!/\d/.test(right)) {
+        if (!/\d/.test(right) || last === "equals") {
           // The right operand may not have been entered yet.
           right = left
         }
 
         // safe-math combo
         value = safe_multiply(left, safe_percent(right))
+
+        newOperands = [safe_percent(right)]
       }
 
       var newValue = value.toString()
-      var newOperands = shiftOperands({ data, newValue })
+
       var newExpression = last === "equals"
         ? [newValue]
         : shiftExpression({ data, symbols })
           .concat(newValue);
+
+      newExpression.length < 2
+        ? newOperands = [newValue]
+        : newOperands.concat(newValue)
 
       var changes = {
         last: newValue,
@@ -399,6 +447,10 @@ function model(state) {
         : shiftExpression({ data, symbols })
           .concat(exprValue);
 
+      if (newExpression.length < 2) {
+        newOperands = [newValue]
+      }
+
       var changes = {
         last: newValue,
         operands: newOperands,
@@ -433,6 +485,10 @@ function model(state) {
         ? [exprValue]
         : shiftExpression({ data, symbols })
           .concat(exprValue);
+
+      if (newExpression.length < 2) {
+        newOperands = [newValue]
+      }
 
       var changes = {
         last: newValue,

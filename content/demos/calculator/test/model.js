@@ -30,17 +30,6 @@ describe("model", () => {
       model.propose({ action: "bonk" })
     })
 
-    describe("sequence checks", () => {
-      it("after an equals op, a conversion op should replace the expression")
-      it("6 =, then 3, should print 3 =")
-      it("3 =, then +, should print 3 +")
-      it("3 +, then =, should print 3 + 3 =, output is 6")
-      it("7 + 8, then =, should print 7 + 8 =, output is 15")
-      it("7 + 8 =, then *, should print 15 *, output is 15")
-      it("15 *, then 6, then =, should print 15 * 6 =, output is 90")
-      it("15 * 6 =, then =, should print 90 * 6 =, output is 540")
-    })
-
     describe("clear", () => {
       it("clears the model", () => {
         var { model, state } = app
@@ -242,6 +231,42 @@ describe("model", () => {
 
         expect(output).to.equal(String(246 + 123))
         expect(expression.join(" ")).to.equal("246 &plus; 123 &equals;")
+      })
+
+      it(`given "6 =", then "3", should print expression: "3 ="`, () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "digit", value: "6" })
+        model.propose({ action: "equals" })
+        model.propose({ action: "digit", value: "3" })
+
+        var { output, expression } = result
+
+        expect(output).to.equal("3")
+        expect(expression.join(" ")).to.equal("3 &equals;")
+      })
+
+      it(`given "7 + 8 =", then "*", should print expression "15 *", output "15"`, () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        model.propose({ action: "digit", value: "7" })
+        model.propose({ action: "nextOp", value: "plus" })
+        model.propose({ action: "digit", value: "8" })
+        model.propose({ action: "equals" })
+        model.propose({ action: "nextOp", value: "multiply" })
+
+        var { output, expression } = result
+
+        expect(output).to.equal("15")
+        expect(expression.join(" ")).to.equal("15 &times;")
       })
     })
 
@@ -546,6 +571,26 @@ describe("model", () => {
           expect(output).to.equal("1.5")
           expect(expression.join(" ")).to.equal("0.15 &divide; 0.1 &equals;")
         })
+
+        it("0.14 * 100 = 14", () => {
+          var result
+
+          state.transition = function ({ data }) {
+            result = data
+          }
+
+          // 27 Jan 2021: this found an error in safe-math expand()!
+          model.propose({ action: "decimal" })
+          model.propose({ action: "digit", value: "14" })
+          model.propose({ action: "nextOp", value: "multiply" })
+          model.propose({ action: "digit", value: "100" })
+          model.propose({ action: "nextOp", value: "equals" })
+
+          var { output, expression } = result
+
+          expect(output).to.equal("14")
+          expect(expression.join(" ")).to.equal("0.14 &times; 100 &equals;")
+        })
       })
     })
 
@@ -637,17 +682,16 @@ describe("model", () => {
           model.propose({ action: "digit", value: "3" })
           model.propose({ action: "nextOp", value: "plus" })
 
+          // checkpoint
           expect(result.output).to.equal("6")
 
           model.propose({ action: "digit", value: "5" })
+
+          // previous output 6, current output 5
+          expect(result.operands).to.deep.equal(["6", "5"])
+
           model.propose({ action: "percent" })
-
-          var { output, operands } = result
-          var [left, right] = operands
-
-          expect(output).to.equal("0.3")
-          expect(left).to.equal("6")
-          expect(right).to.equal("0.3")
+          expect(result.output).to.equal("0.3")
         })
       })
 
@@ -738,8 +782,9 @@ describe("model", () => {
 
           var { expression } = result
 
-          // 14 * 0.05
-          expect(expression.join(" ")).to.equal("0.7")
+          // 27 January 2021: 14 * .14 - which turned up a bug in safe-math
+          // expand(): should use parseInt(x * d), etc.
+          expect(expression.join(" ")).to.equal("1.96")
         })
       })
     })

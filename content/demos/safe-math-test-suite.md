@@ -1,7 +1,7 @@
 ---
 title: "Test suite: Safer math operations in JavaScript"
 date: 2020-08-17T11:01:43-07:00
-lastmod: 2020-11-27T13:07:43-07:00
+lastmod: 2021-01-27T21:37:43-07:00
 description: "Test suite for safe-math.js module."
 tags:
 - "TDD"
@@ -18,7 +18,7 @@ scripts:
 - https://unpkg.com/mocha/mocha.js
 - https://unpkg.com/chai/chai.js
 - /js/demos/mocha-setup.js
-- https://unpkg.com/@dfkaye/safe-math@0.0.15/test/browser-suite.js
+- https://unpkg.com/@dfkaye/safe-math@0.0.16/test/browser-suite.js
 - /js/demos/mocha-run.js
 ---
 

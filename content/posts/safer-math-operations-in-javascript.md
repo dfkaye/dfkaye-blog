@@ -1,7 +1,7 @@
 ---
 title: "Safer math operations in JavaScript (using TDD)"
 date: 2020-08-17T11:01:43-07:00
-lastmod: 2020-11-26T14:49:43-07:00
+lastmod: 2021-01-27T21:39:43-07:00
 description: "In this post we examine my safe-math.js module that enables floating-point math operations that return results we expect, so that 0.1 + 0.2 adds up to 0.3, e.g."
 tags:
 - "functionally numeric"
@@ -67,16 +67,28 @@ function expand(x, y) {
 
   /*
    * Expand x and y to integer values multiplying by exponent, converting
-   * non-numeric values to their numeric equivalent. For examples,
+   * non-numeric values to their numeric equivalent, AND passing conversions to
+   * the parseInt() function.
+   * 
+   * Some examples:
    *  {} becomes NaN,
    *  true becomes 1,
    *  [4] becomes '4' which becomes 4,
-   * and so on.
+   * and so on. 
+   * 
+   * Why parseInt()?
+   *  Because, for example, .14 * 100 still produces 14.000000000000002.
+   * 
+   * Why the self equality checks?
+   *  Those are !NaN checks. parseInt(Infinity) returns NaN
    */
 
+  var left = parseInt(x * d);
+  var right = parseInt(y * d);
+
   return {
-    left: x * d,
-    right: y * d,
+    left: left === left ? left : x * d,
+    right: right === right ? right : y * d,
     exponent: d
   }
 }
