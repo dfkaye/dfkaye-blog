@@ -67,7 +67,8 @@
   font-weight: inherit;
   margin: .05rem .065rem .065rem;
   min-height: 3.25rem;
-  min-width: 4.75rem;
+  /* min-width: 4.75rem; */
+  min-width: 12vw; /* more flexible for narrow viewports like Galaxy Fold */
 }
 
 [value] i {
