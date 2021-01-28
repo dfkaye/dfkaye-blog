@@ -1,5 +1,5 @@
-import { define } from "/js/lib/sam/define.js";
-import { register } from "/js/lib/sam/register.js"
+import { define } from "/js/lib/dependency/define.js";
+import { register } from "/js/lib/dom/register.js"
 
 describe("SAM pattern Countdown demo", function () {
 

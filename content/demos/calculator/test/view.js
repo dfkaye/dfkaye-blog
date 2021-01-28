@@ -1,5 +1,5 @@
 import { view } from "../sam/view.js"
-import { define } from "/js/lib/sam/define.js"
+import { define } from "/js/lib/dependency/define.js"
 
 describe("view", (done) => {
   var { expect } = chai

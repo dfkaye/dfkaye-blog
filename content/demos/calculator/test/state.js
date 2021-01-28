@@ -1,5 +1,5 @@
 import { state } from "../sam/state.js"
-import { define } from "/js/lib/sam/define.js"
+import { define } from "/js/lib/dependency/define.js"
 
 describe("state", () => {
   var { expect } = chai
@@ -61,6 +61,78 @@ describe("state", () => {
       action.next = function ({ action, value }) { }
 
       state.transition({ data })
+    })
+  })
+
+  describe("history", () => {
+    var app = define({ state })
+
+    var data = {
+      output: "6", expression: ["6"], error: "", last: "6"
+    }
+
+    it("returns list of transitions in current computation", () => {
+      var { state, view } = app
+
+      view.render = function ({ data }) { }
+      state.transition({ data })
+
+      var entries = state.history()
+      var { current } = entries
+      var { output, expression, error, last } = current.shift()
+
+      expect(output).to.equal("6")
+      expect(expression).to.deep.equal(["6"])
+      expect(error).to.equal("")
+      expect(last).to.equal("6")
+    })
+
+    it("saves and renders transitions only if they differ from the previous", () => {
+      var { state, view } = app
+
+      view.render = function ({ data }) { }
+
+      var transitions = [
+        data,
+        data,
+        data
+      ]
+
+      transitions.forEach(transition => {
+        state.transition({ data: transition })
+      })
+
+      var entries = state.history()
+      var { current, completed } = entries
+
+      expect(current.length).to.equal(1)
+      expect(completed.length).to.equal(0)
+    })
+
+    it("represents completed computations ending with an equals step", () => {
+      var { state, view } = app
+
+      var result
+
+      view.render = function ({ data }) {
+        result = data
+      }
+
+      var transitions = [
+        data,
+        { last: "equals", output: "done", expression: ["done"] },
+      ]
+
+      transitions.forEach(transition => {
+        state.transition({ data: transition })
+      })
+
+      var entries = state.history()
+      var { current, completed } = entries
+
+      expect(current.length).to.equal(0)
+      expect(completed.length).to.equal(1)
+      expect(result.output).to.equal("done")
     })
   })
 })

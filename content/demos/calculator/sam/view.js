@@ -1,6 +1,5 @@
-
-import { register } from "/js/lib/sam/register.js"
-import { format } from "/js/lib/sam/numbers.js"
+import { register } from "/js/lib/dom/register.js"
+import { format } from "/js/lib/numbers/format.js"
 import { normalize } from "/js/lib/dom/text-normalize.js"
 
 export { view }

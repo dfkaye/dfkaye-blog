@@ -3,15 +3,14 @@ import { action } from "./sam/action.js";
 import { model } from "./sam/model.js";
 import { state } from "./sam/state.js";
 
-import { define } from "/js/lib/sam/define.js";
+import { define } from "/js/lib/dependency/define.js";
 
 var app = define({ view, action, model, state })
 
 var start = function () {
-  if (document.querySelectorAll(".fail").length) {
+  if (document.querySelectorAll("#mocha-report .fail").length) {
+    // Dependency on mocha report.
     console.log("there were some failed tests")
-
-    // return
   }
 
   var { view, action } = app;

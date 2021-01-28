@@ -107,7 +107,7 @@ function model(state) {
 
       // If all we have is the decimal point, prefix '0' to it.
       var newValue = value == '.'
-        ? ['0' + value].join('')
+        ? "0" + value
         : value;
 
       var changes = {
@@ -148,7 +148,7 @@ function model(state) {
 
     // If all we have is the decimal point, prefix '0' to it.
     var newOperand = operand == '.'
-      ? ['0' + operand].join('')
+      ? "0" + operand
       : operand;
 
     var newValue = newOperand.toString()
@@ -198,14 +198,13 @@ function model(state) {
     var newExpression = lastEntry === equals
       ? [left, symbols[data.nextOp], right]
       : !/\d/.test(lastEntry)
-        // ...it's more tricky: if the lastEntry in the expression is numeric,
-        // append the equals operator; otherwise, append the right operand and
-        // the equals operator.
-        //? data.expression.concat(equals)
-        //: 
+        // ...it's more tricky: if the lastEntry in the expression is an
+        // operator, append the right operand; otherwise, use the current
+        // expression.
         ? data.expression.concat(right)
         : data.expression;
 
+    // Append equals symbol if the requested step is the equals calculation.
     if (step == "equals") {
       newExpression.push(equals)
     }
@@ -229,7 +228,7 @@ function model(state) {
 
       if (!Math.abs(output)) {
         // If absolute value is already 0, don't update.
-        return { message: 'Value is already 0' }
+        // return { message: 'Value is already 0' }
       }
 
       var value = output.substring(0, output.length - 1)
@@ -282,6 +281,7 @@ function model(state) {
       var { output } = data
 
       if (!Math.abs(output)) {
+        // Don't negate zero.
         return
       }
 

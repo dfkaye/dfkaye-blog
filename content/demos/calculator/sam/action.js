@@ -1,9 +1,11 @@
-
 export { action }
 
 function action(model) {
   var action = {
     next({ action, value }) {
+
+      // The return statements are provided for ease of testing.
+
       if (!action || typeof action != "string") {
         return `Invalid action specified, "${action}"`
       }
