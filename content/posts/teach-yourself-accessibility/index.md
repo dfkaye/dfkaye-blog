@@ -1,7 +1,7 @@
 ---
 title: "Teach Yourself Accessibility"
 date: 2020-08-27T11:12:43-07:00
-lastmod: 2020-09-02T09:43:41-07:00
+lastmod: 2021-01-28T12:43:41-07:00
 description: "Make web interfaces that are accessible to keyboard navigation and screen readers through progressive enhancement."
 tags:
 - "CSS"
@@ -11,10 +11,10 @@ tags:
 - "Semantics"
 
 styles:
-- /css/posts/teach-yourself-accessibility.css
+- a11y.css
 
 scripts:
-- /js/posts/teach-yourself-accessibility.js
+- a11y.js
 
 ---
 
@@ -385,4 +385,3 @@ Here again are the steps we took, in order.
 - [Trigger behavior with `Space` and `Enter` keys](#trigger-behavior-with-space-and-enter-keys)
 - [Add keydown handlers in JavaScript to detect `Space` and `Enter` key events](#add-keydown-handlers-in-javascript-to-detect-space-and-enter-key-events)
 - [Add JavaScript to set `aria` state attributes](#add-javascript-to-set-aria-state-attributes)
-

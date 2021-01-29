@@ -1,4 +1,4 @@
-/* /posts/teach-yourself-accessibility.md */
+/* /posts/teach-yourself-accessibility/ */
 
 document.querySelectorAll("[js-button]")
   .forEach(function (button) {

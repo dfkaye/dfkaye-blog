@@ -173,7 +173,7 @@ function view(action) {
       var errorText = normalize(data.error)
 
       if (errorText) {
-        calculator.setAttribute("error", "")
+        calculator.setAttribute("error", errorText)
         displayValue = errorText
       } else {
         calculator.removeAttribute("error")
@@ -192,7 +192,7 @@ function view(action) {
     },
 
     selectors: {
-      calculator: "#fixture [calculator]",
+      calculator: "[calculator]",
       keys: "[value]",
       expression: "[expression]",
       output: '[output]',
