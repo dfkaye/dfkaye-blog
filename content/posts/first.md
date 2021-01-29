@@ -9,6 +9,8 @@ tags:
 - "Gatsby"
 - "Static site generator"
 - "SPA"
+- "vanilla JavaScript"
+
 
 ---
 
@@ -39,7 +41,7 @@ Hugo was not my first choice. Here's the back story that led me to it.
 
 ## I wanted to do more than write or rant about something
 
-I really wanted to create a blog with working CSS and JavaScript demos and test suites.
+I really wanted to create a blog with working CSS and vanilla JavaScript demos and test suites.
 
 However, my then-latest blog hosted on Wordpress at https://dfkaye.wordpress.com does not allow including JavaScript on the free plan.
 

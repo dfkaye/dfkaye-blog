@@ -9,6 +9,7 @@ tags:
 - "TDD"
 - "Accessibility"
 - "Safety"
+- "vanilla JavaScript"
 
 ---
 

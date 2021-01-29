@@ -5,6 +5,7 @@ lastmod: 2020-08-13T20:13:41-07:00
 description: "Instead of guard clauses or type annotations, you can use JavaScript's Object() constructor for safe type and value access."
 tags: 
 - "JavaScript"
+- "vanilla JavaScript"
 - "Object"
 - "Safety"
 

@@ -5,7 +5,7 @@ date: 2020-09-23T14:52:41-07:00
 lastmod: 2020-09-27T21:34:41-07:00
 tags:
 - "CSS"
-- "JavaScript"
+- "vanilla JavaScript"
 - "Accessibility"
 - "Minimalism"
 
