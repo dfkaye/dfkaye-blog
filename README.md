@@ -1,6 +1,6 @@
-# dfkaye.com
+# My Hugo Blog
 
-Hugo Blog
+Visit https://dfkaye.com, built with [Hugo](https://gohugo.io), currently hosted on [Netlify](https://www.netlify.com/)
 
 ## Set up
 
@@ -46,10 +46,10 @@ git push -u origin master
 
 ## Run locally, test with multiple devices
 
-Find your local ip address and bind to it as the base URL.
+Find your local IP address and bind to it as the base URL (using 192.168.0.108 as an example) with the following command:
 
 ```
 hugo server --bind 0.0.0.0 --baseURL 192.168.0.108 --cleanDestinationDir
 ```
 
-Now you can test your build with any device on your network.
+Now you can test your build with any device on your network at (per example) http://192.168.0.108:1313/.

@@ -7,7 +7,7 @@ import {
   reciprocal as safe_recripocal,
   square as safe_square,
   sqrt as safe_sqrt
-} from "https://unpkg.com/@dfkaye/safe-math@0.0.16/safe-math.js"
+} from "https://unpkg.com/@dfkaye/safe-math@0.0.17/safe-math.js"
 
 export { model }
 
