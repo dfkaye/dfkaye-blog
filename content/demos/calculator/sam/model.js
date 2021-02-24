@@ -36,9 +36,17 @@ var base = {
 }
 
 function model(state) {
+
+  // Model state object.
   var data = Object.assign({}, base)
 
-  function merge({ data, changes }) {
+  // Merge changes into model state.
+  function merge({ changes }) {
+    if (Object(changes).valueOf() != changes) {
+      // If changes is not an object return without updating.
+      return
+    }
+
     // Manage error state first.
     if (data.error.length && !('error' in changes)) {
       // Clear previous errors if no new errors coming.
@@ -95,7 +103,7 @@ function model(state) {
   function append({ value }) {
     if (data.last == "equals") {
       // If last action was calculate(), reinitialize to clean state.
-      steps.clear()
+      merge({ changes: steps.clear() })
     }
 
     var { expression } = data;
@@ -110,14 +118,12 @@ function model(state) {
         ? "0" + value
         : value;
 
-      var changes = {
+      return {
         output: newValue,
         operands: [newValue],
         expression: [newValue, expression[length - 1]],
         last: newValue
       }
-
-      return merge({ data, changes })
     }
 
     // If last entry is numeric, continue with it; otherwise, it was an
@@ -133,11 +139,9 @@ function model(state) {
 
     // Send error to state if value is neither digit or decimal.
     if (/([^\d^\.])/.test(value)) {
-      var changes = {
+      return {
         error: `Invalid digit value, "${value}"`
       }
-
-      return merge({ data, changes })
     }
 
     // If the current display value is non-zero, append the new character;
@@ -147,47 +151,42 @@ function model(state) {
       : value;
 
     // If all we have is the decimal point, prefix '0' to it.
-    var newOperand = operand == '.'
+    var newValue = operand == '.'
       ? "0" + operand
       : operand;
 
-    var newValue = newOperand.toString()
     var newOperands = shiftOperands({ data, newValue })
 
-    var changes = {
+    return {
       output: newValue,
       last: newValue,
       operands: newOperands
     }
-
-    return merge({ data, changes })
   }
 
   function calculate({ step }) {
-    if (!data.nextOp /*&& step == "equals"*/) {
-      // Take current output
-      // append "=" to the expression
-      // return without calculating.
-      var changes = {
+    if (!data.nextOp) {
+      // Take current output, append "=" to the expression, and return without
+      // calculating.
+      return {
         // last: step,
         expression: [data.output, symbols[step]],
         operands: [data.output]
       }
-
-      return merge({ data, changes })
     }
 
     if (!ops[data.nextOp]) {
-      // console.error("not ready to calculate with ", data.nextOp)
+      console.error("not ready to calculate with ", data.nextOp)
       return
     }
 
     // Destructuring to the rescue. Sure is nice here.
     var [left, right] = data.operands
-    // Run math operation...
-    var value = ops[data.nextOp](left, right)
-    var newValue = value.toString()
 
+    // Run math operation...
+    var newValue = ops[data.nextOp](left, right).toString()
+
+    // Determine next expression.
     var lastIndex = data.expression.length - 1
     var lastEntry = data.expression[lastIndex]
     var { equals } = symbols
@@ -209,7 +208,7 @@ function model(state) {
       newExpression.push(equals)
     }
 
-    var changes = {
+    return {
       // Assign the calculated value to the result field...
       output: newValue,
       // ... but leave the right operand value unchanged.
@@ -218,9 +217,8 @@ function model(state) {
       // append() tests this on first digit after calculate() call.
       last: step
     }
-
-    return merge({ data, changes })
   }
+
 
   var steps = {
     backspace() {
@@ -228,38 +226,34 @@ function model(state) {
 
       if (!Math.abs(output)) {
         // If absolute value is already 0, don't update.
-        // return { message: 'Value is already 0' }
+        console.log({ message: 'Value is already 0' })
+        return
       }
 
-      var value = output.substring(0, output.length - 1)
+      var newValue = output.substring(0, output.length - 1)
 
-      if (!value) {
+      if (!newValue) {
         // If the last digital character has been removed, replace it with 0.
-        value = 0
+        newValue = "0"
       }
 
-      var newValue = value.toString()
       var newOperands = shiftOperands({ data, newValue })
 
-      var changes = {
+      return {
         last: newValue,
         output: newValue,
         operands: newOperands
       }
-
-      return merge({ data, changes })
     },
 
     clear() {
-      var changes = Object.assign({}, base)
-
-      return merge({ data, changes })
+      // Reset to base object
+      return Object.assign({}, base)
     },
 
     clearentry() {
-      var changes = { output: base.output }
-
-      return merge({ data, changes })
+      // Reset output to base output
+      return { output: base.output }
     },
 
     decimal() {
@@ -292,18 +286,18 @@ function model(state) {
       var newValue = value.toString()
       var newOperands = shiftOperands({ data, newValue })
 
-      var changes = {
+      return {
         last: newValue,
         output: newValue,
         operands: newOperands
       }
-
-      return merge({ data, changes })
     },
 
     nextOp({ value }) {
       if (value === data.last) {
-        return { message: `Operation [${value}] already pending.` }
+        // No update if this operation is already pending.
+        console.log({ message: `Operation [${value}] already pending.` })
+        return
       }
 
       if (!data.expression.length) {
@@ -313,9 +307,8 @@ function model(state) {
       }
 
       if (/\d|\./.test(data.last)) {
-        // Call calculate() if last entry was numeric.
-        // Remember, the data is mutated by this call.
-        calculate({ step: value })
+        // Call calculate() data changes if last entry was numeric.
+        merge({ changes: calculate({ step: value }) })
       }
 
       var { output, expression } = data
@@ -325,28 +318,26 @@ function model(state) {
       var symbol = symbols[value]
 
       // If the expression ends with an operator, replace it with the incoming
-      // operator. Otherwise, append the incoming operator to
-      // the current expression.
+      // operator. Otherwise, append the incoming operator to the current
+      // expression.
       var newExpression = !/\d/.test(lastEntry)
         ? expression.slice(0, lastIndex).concat(symbol)
         : expression.concat(symbol);
 
-      // Shorten the expression if the last op was "equals" and the nextOp
-      // is NOT "equals".
+      // Simplify the expression if the last op was "equals" and the nextOp is
+      // NOT "equals".
       if (data.last == "equals" && symbol != symbols.equals) {
         newExpression = [output, symbol]
       }
 
-      var changes = {
+      return {
         nextOp: value,
         last: value,
-        // Assign the calculated value to the result field
-        // AND set the calculated value as the new right operand value.
+        // Assign the calculated output to the result field (left operand)
+        // AND set it as the new right operand value.
         operands: [output, output],
         expression: newExpression
       }
-
-      return merge({ data, changes })
     },
 
     percent() {
@@ -356,7 +347,7 @@ function model(state) {
       // Apply percent to current entry, then multiply that by the previous
       // entry, and replace the current entry with that answer.
       var { operands, last } = data
-      var value = 0
+      var newValue = "0"
       var newOperands = []
 
       if (operands.length) {
@@ -367,13 +358,9 @@ function model(state) {
           right = left
         }
 
-        // safe-math combo
-        value = safe_multiply(left, safe_percent(right))
-
+        newValue = safe_multiply(left, safe_percent(right)).toString()
         newOperands = [safe_percent(right)]
       }
-
-      var newValue = value.toString()
 
       var newExpression = last === "equals"
         ? [newValue]
@@ -384,14 +371,12 @@ function model(state) {
         ? newOperands = [newValue]
         : newOperands.concat(newValue)
 
-      var changes = {
+      return {
         last: newValue,
         operands: newOperands,
         output: newValue,
         expression: newExpression
       }
-
-      return merge({ data, changes })
     },
 
     reciprocal() {
@@ -401,39 +386,32 @@ function model(state) {
         ? "Cannot divide by zero"
         : "";
 
-      var value = error
+      var newValue = error
         ? output
-        // safe-math
-        : safe_recripocal(output);
+        : safe_recripocal(output).toString();
 
-      var newValue = value.toString()
       var newOperands = shiftOperands({ data, newValue })
 
       // Update expression to account for 1/(value) notation.
       var exprValue = `1/(${output})`
       var newExpression = last === "equals"
         ? [exprValue]
-        : shiftExpression({ data, symbols })
-          .concat(exprValue);
+        : shiftExpression({ data, symbols }).concat(exprValue);
 
-      var changes = {
+      return {
         last: newValue,
         operands: newOperands,
         output: newValue,
         expression: newExpression,
         error
       }
-
-      return merge({ data, changes })
     },
 
     square() {
       var { output, expression, last } = data
 
-      // Safe multiply for 0.2 * 0.2 => 0.04
-      // and 0.04000000000000001
-      var value = safe_square(output)
-      var newValue = value.toString()
+      // Safe multiply for 0.2 * 0.2 => 0.04 and 0.04000000000000001.
+      var newValue = safe_square(output).toString()
       var newOperands = shiftOperands({ data, newValue })
 
       // Update expression to account for sqr(value) notation.
@@ -444,21 +422,18 @@ function model(state) {
       var exprValue = `sqr(${lastEntry})`
       var newExpression = last === "equals"
         ? [exprValue]
-        : shiftExpression({ data, symbols })
-          .concat(exprValue);
+        : shiftExpression({ data, symbols }).concat(exprValue);
 
       if (newExpression.length < 2) {
         newOperands = [newValue]
       }
 
-      var changes = {
+      return {
         last: newValue,
         operands: newOperands,
         output: newValue,
         expression: newExpression
       }
-
-      return merge({ data, changes })
     },
 
     squareroot() {
@@ -468,11 +443,9 @@ function model(state) {
         ? `Invalid input for square root, "${output}"`
         : "";
 
-      var value = error
+      var newValue = error
         ? output
-        // safe-math
-        : safe_sqrt(output);
-      var newValue = value.toString()
+        : safe_sqrt(output).toString()
       var newOperands = shiftOperands({ data, newValue })
 
       // Update expression to account for sqrt(value) notation.
@@ -483,44 +456,37 @@ function model(state) {
       var exprValue = `&radic;(${lastEntry})`
       var newExpression = last === "equals"
         ? [exprValue]
-        : shiftExpression({ data, symbols })
-          .concat(exprValue);
+        : shiftExpression({ data, symbols }).concat(exprValue);
 
       if (newExpression.length < 2) {
         newOperands = [newValue]
       }
 
-      var changes = {
+      return {
         last: newValue,
         operands: newOperands,
         output: newValue,
         expression: newExpression,
         error
       }
-
-      return merge({ data, changes })
     }
   }
 
   var model = {
     propose({ action, value }) {
-      if (!(action in steps)) {
-        // Send error to state.
-        return state.transition({
-          data: Object.assign({}, data, {
-            error: `Invalid action step, "${action}"`
-          })
-        })
-      }
+      var changes = action in steps
+        ? steps[action]({ value })
+        : { error: `Invalid action step, "${action}"` }
 
-      var changes = steps[action]({ value })
-
-      if (changes !== data) {
-        // Skip transition if data not updated.
+      if (!changes) {
         return
       }
 
-      state.transition({ data: Object.assign({}, changes) })
+      merge({ changes })
+
+      return state.transition({
+        data: Object.assign({}, data)
+      })
     }
   }
 
