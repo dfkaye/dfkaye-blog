@@ -10,7 +10,7 @@ tags:
 
 ---
 
-As of February 26, 2021 (and since November 2020 or so), [Heydon Pickering](https:twitter.com/heydonworks) displays on [his site](https://heydonworks.com/) the following message:
+As of February 26, 2021 (and since November 2020 or so), [Heydon Pickering](https://twitter.com/heydonworks) displays on [his site](https://heydonworks.com/) the following message:
 
 > Please disable JavaScript to view this site.
 
