@@ -9,7 +9,7 @@ tags:
 - "JavaScript"
 - "Math"
 - "Safety"
-- "TDD"
+- "Testing"
 
 ---
 

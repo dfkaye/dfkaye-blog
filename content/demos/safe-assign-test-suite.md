@@ -4,7 +4,7 @@ date: 2020-08-21T11:56:43-07:00
 lastmod: 2020-11-18T21:37:41-07:00
 description: "Test suite for safe-object-assign.js module."
 tags:
-- "TDD"
+- "Testing"
 - "JavaScript"
 - "Safety"
 

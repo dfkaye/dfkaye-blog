@@ -4,7 +4,7 @@ date: 2020-08-17T11:01:43-07:00
 lastmod: 2021-02-03T17:29:43-07:00
 description: "Test suite for safe-math.js module."
 tags:
-- "TDD"
+- "Testing"
 - "JavaScript"
 - "Safety"
 

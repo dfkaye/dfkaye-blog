@@ -4,7 +4,7 @@ date: 2020-12-10T12:23:42-08:00
 lastmod: 2020-12-10T12:37:42-08:00
 description: "How I use Hugo server for test-driving JavaScript development, with hugo server, github, npm, and unpkg."
 tags:
-- "TDD"
+- "Testing"
 - "Hugo"
 - "Node.js"
 - "unpkg"

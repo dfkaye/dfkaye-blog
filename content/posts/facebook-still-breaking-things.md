@@ -4,7 +4,7 @@ date: 2020-11-07T12:34:49-08:00
 lastmod: 2020-12-02T12:58:49-08:00
 description: "Mocha v8.1.0 breaking change due to new Facebook library dependency"
 tags:
-- "TDD"
+- "Testing"
 - "JavaScript"
 - "Content Security Policy"
 - "Function"

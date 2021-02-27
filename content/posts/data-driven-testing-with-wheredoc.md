@@ -4,7 +4,7 @@ date: 2020-12-02T14:30:21-08:00
 lastmod: 2020-12-02T14:30:21-08:00
 description: "wheredoc is the ES6-friendly successor to where.js, a JavaScript module for data-driven tests in Mocha, QUnit, tape, and others."
 tags:
-- "TDD"
+- "Testing"
 - "JavaScript"
 
 ---

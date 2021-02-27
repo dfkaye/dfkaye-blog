@@ -6,7 +6,7 @@ description: "How we wrote a plain JavaScript app from scratch using Mocha for t
 tags: 
 - "Minimalism"
 - "Attributes"
-- "TDD"
+- "Testing"
 - "Accessibility"
 - "Safety"
 - "vanilla JavaScript"

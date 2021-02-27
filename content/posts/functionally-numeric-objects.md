@@ -6,7 +6,7 @@ description: "Quick note to answer, what is a functionally numeric object and ho
 tags:
 - "functionally numeric"
 - "JavaScript"
-- "TDD"
+- "Testing"
 
 ---
 

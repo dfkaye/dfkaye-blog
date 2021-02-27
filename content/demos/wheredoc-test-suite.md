@@ -4,7 +4,7 @@ date: 2020-12-02T12:36:59-08:00
 lastmod: 2020-12-02T12:36:59-08:00
 description: "Test suite for wheredoc data table testing module."
 tags:
-- "TDD"
+- "Testing"
 - "JavaScript"
 
 # load styles and scripts in strict order

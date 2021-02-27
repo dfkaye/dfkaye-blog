@@ -6,7 +6,7 @@ description: "A few red lines in the sand (subject to revision without notice)."
 tags: 
 - "Minimalism"
 - "Attributes"
-- "TDD"
+- "Testing"
 - "Accessibility"
 - "Safety"
 
