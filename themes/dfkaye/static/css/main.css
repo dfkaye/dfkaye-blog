@@ -459,9 +459,10 @@ a:not([icon]):active {
 }
 
 [rel*="external"] {
+  border: 1px solid rgba(22,22,254,.5);
+  border-radius: .25em;  
   margin: .5em .5em .5em 0;
-  outline: 1px solid rgba(22, 22, 254, .5);
-  padding: 0.5em;
+  padding: .25em .5em;
   white-space: nowrap;
 }
 
