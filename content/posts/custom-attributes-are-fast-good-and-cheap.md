@@ -2,7 +2,7 @@
 title: "Custom Attributes Are Fast Good and Cheap"
 date: 2021-05-07T13:02:51-07:00
 lastmod: 2021-05-07T13:02:51-07:00
-description: "Avoid CSS classes when deriving styles based on state. Prefer HTML element attributes, and CSS attribute selectors."
+description: "On using HTML element attributes, and CSS attribute selectors when deriving styles based on state."
 tags:
 - "CSS"
 - "HTML"
@@ -10,14 +10,14 @@ tags:
 - "Semantics"
 ---
 
+*\[This post, first begun August 28, 2016, originally appeared on my slowly deteriorating wordpress blog August 16, 2019. I also [tweeted](https://twitter.com/dfkaye/status/957373096104665088) about this approach in 2018.\]*
+
 After years working with HTML and CSS, we have come to a surprising conclusion.
 
 <!--more-->
 
-> Avoid using CSS classes and className and classList when deriving styles based on some “state.” Instead, prefer HTML element attributes, and CSS attribute selectors.
-— Me, this week, all the time
+> Avoid CSS classes when deriving styles based on state. Prefer HTML element attributes, and CSS attribute selectors.
 
-*\[This post, first begun August 28, 2016, was not completed until August 16, 2019. See the [orignal tweet](https://twitter.com/dfkaye/status/957373096104665088).\]*
 
 ## CSS Class Selectors
 
