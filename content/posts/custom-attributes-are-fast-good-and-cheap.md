@@ -223,7 +223,7 @@ They are supported in all browsers after IE6. They are easy to add, modify, and 
 
 {{< rawhtml >}}
 <p lang="fr-FR">
-<em>Voil&aacute;.</em>
+<em>Voil&agrave;.</em>
 </p>
 {{< /rawhtml >}}
 
@@ -263,6 +263,6 @@ And the corresponding CSS:
 
 {{< rawhtml >}}
 <p lang="fr-FR">
-<strong><em>Voil&aacute;!</em></strong>
+<strong><em>Voil&agrave;!</em></strong>
 </p>
 {{< /rawhtml >}}
