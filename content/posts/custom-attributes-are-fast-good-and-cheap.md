@@ -1,7 +1,7 @@
 ---
 title: "Custom Attributes Are Fast Good and Cheap"
 date: 2021-05-07T13:02:51-07:00
-lastmod: 2021-05-07T13:02:51-07:00
+lastmod: 2021-05-11T10:36:51-07:00
 description: "On using HTML element attributes, and CSS attribute selectors when deriving styles based on state."
 tags:
 - "CSS"
@@ -10,7 +10,7 @@ tags:
 - "Semantics"
 ---
 
-*\[This post, first begun August 28, 2016, originally appeared on my slowly deteriorating wordpress blog August 16, 2019. I also [tweeted](https://twitter.com/dfkaye/status/957373096104665088) about this approach in 2018.\]*
+*This post, first begun August 28, 2016, originally appeared on my slowly deteriorating wordpress blog August 16, 2019. I also [tweeted](https://twitter.com/dfkaye/status/957373096104665088) about this approach in 2018.*
 
 After years working with HTML and CSS, we have come to a surprising conclusion.
 
@@ -57,7 +57,7 @@ Classes in combination can work – that is the basis for [utility-first CSS fra
 
 But utility-first CSS has nothing to do with communicating state, and everything to do with re-usable composition of rules.
 
-Of course, the industry habit has been to create three classes for re-use, them combine them, e.g., as a `signin.main.button` selector, to specify one-off styles when all three are present in a unique situation – to override inherited specificity.
+Of course, the industry habit has been to create three classes for re-use, them combine them, e.g., as a `.signin.main.button` selector, to specify one-off styles when all three are present in a unique situation – to override inherited specificity.
 
 ## Classes are the wrong “abstraction”.
 
@@ -65,7 +65,7 @@ You can still use a class for an element, but should *avoid multi-classing anyth
 
 Classes are not singular attributes, they represent **groups** of attributes. Combining more than one class into an element creates more dependencies for that element.
 
-When you modify any of the shared classes, expected the unexpected results.
+When you modify any of the shared classes, expect the unexpected results.
 
 ## Prefer *attributes* in combination instead.
 
@@ -83,7 +83,7 @@ Because attributes are in sets, they can be written in any order: `[active][stop
 
 An attribute selector has the same specificity as a class. You can use an attribute selector to find any element with an `href` attribute, for example, using `[href] {}`.
 
-An attribute selector with a value increases the specificity. Sou can find any element with an *empty* href attribute using `[href=""] {}`.
+An attribute selector with a value increases the specificity. You can find any element with an *empty* href attribute using `[href=""] {}`.
 
 You can increase the specificity and/or fine-tune selection by states using any of the partial combinators, matching by:
 
@@ -114,7 +114,7 @@ We define a traffic signal as a list of lamps using custom attributes for the "s
 <button next>
 ```
 
-Style it with very base CSS:
+Style it with very base CSS (shaping rules omitted for brevity):
 
 ```css
 [signal] {
