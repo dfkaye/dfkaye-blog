@@ -5,7 +5,7 @@
 
 <!-- Migrate CSS vars to *the template css* and minify the output. -->
 {{ $templateStyle := resources.Get "css/test.css" | resources.Minify }}
-{{ $style := $templateStyle | resources.ExecuteAsTemplate "css/style.css" .  }}
+{{ $style := $templateStyle | resources.ExecuteAsTemplate "css/style.css" . }}
 <link rel="stylesheet" href="{{ $style.Permalink }}" nonce="{{ $nonce }}">
 
 <!-- processs list of CSS URLs from page params -->

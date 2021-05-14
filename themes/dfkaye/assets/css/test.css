@@ -9,6 +9,7 @@
 {{ $fillColor := "#ababab" }}
 {{ $fontSizeBase := "calc(1em + .15vw)" }}
 {{ $fontSizeLarge := "1.75em" }}
+{{ $fontSizeMediumLarge := "1.35em" }}
 {{ $fontSizeNormal := "1em" }}
 {{ $fontSizeReduced := ".85em" }}
 {{ $fontSizeSmall := ".75em" }}
@@ -538,6 +539,12 @@ a:not([icon]):active {
   font-size: {{ $fontSizeSmall }};
 }
 
+/* input elements */
+
+input, select, textarea {
+  font-size: {{ $fontSizeNormal }};
+}
+
 /* search form */
 
 [for="input-search"] {
@@ -546,7 +553,6 @@ a:not([icon]):active {
 
 [search-text] {
   border-width: 1px;
-  font-size: 1em;
   min-width: 15em;
   padding: .25em 1em;
 }
@@ -573,7 +579,7 @@ a:not([icon]):active {
 
 [result-count] {
   font-weight: bold;
-  font-size: 1.25em;
+  font-size: {{ $fontSizeMediumLarge }};
   margin: 1em 0;
 }
 
