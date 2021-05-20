@@ -34,7 +34,9 @@ The {{< rawhtml >}}<kbd>TAB</kbd>{{< /rawhtml >}} key navigates the keypad in th
 
 The {{< rawhtml >}}<kbd>Arrow</kbd>{{< /rawhtml >}} keys navigate the keypad by rows or columns, in the same order as the Windows Calculator app.
 
-Keypad accepts click and touch events on each key, or keyboard input.
+The keypad accepts click and touch events on each key.
+
+The calculator container accepts focus in order to accept keyboard events.
 
 ## Status
 
@@ -55,8 +57,12 @@ January 28, 2021: **Calling it done.  Blog post to follow.**
     + ("15 *, then 6, then =, should print 15 * 6 =, output is 90") // Yes!!
     + ("15 * 6 =, then =, should print 90 * 6 =, output is 540")
 + January 28, 2021:
-  - added `state.history()` for fun
+  - *remove this*: added `state.history()` for fun
   - Calling it done.
++ May 20, 2021:
+  - re-think the history part: state can generate a history for the view to store.
+  - why? the view is the *client* and therefore must manage its own concerns separately from "the state."
+
 
 ### Blog post elements to cover
 
@@ -69,6 +75,7 @@ January 28, 2021: **Calling it done.  Blog post to follow.**
 + explain SAM pattern and why the calculator is based on it
 + explain Dependency injection and why the pattern uses it (tests!)
 + fix expression text overflow (layout breakages)
++ the view is the *client* and therefore must manage its own concerns separately from "the state."
 
 {{< rawhtml >}}
 <div id="fixture">

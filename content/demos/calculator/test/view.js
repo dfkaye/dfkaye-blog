@@ -18,20 +18,17 @@ describe("view", (done) => {
   describe("init", () => {
     var app = define({ view })
 
-    it("runs handler on document ready", (done) => {
+    it("runs handler when document.readystate is complete", (done) => {
       var { view } = app
-      var calls = 0
+      var interactive = document.readyState
 
-      var handler = function () {
-        calls += 1
-      }
+      var handler = () => {
+        expect(interactive).to.equal("interactive")
+        expect(document.readyState).to.equal("complete")
+        done()
+      };
 
       view.init(handler)
-
-      setTimeout(() => {
-        expect(calls).to.equal(1)
-        done()
-      })
     })
   })
 
