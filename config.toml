@@ -18,7 +18,7 @@ canonifyURLs = true
 
 [params]
   description = "Thoughts on building &amp; Testing JavaScript, CSS, HTML, et al…"
-  siteStatus = "(conversion to Hugo in progress...)"
+  siteStatus = "~ building & testing JavaScript, CSS, HTML ~"
 
 # Syntax Highlighting
 [markup]
