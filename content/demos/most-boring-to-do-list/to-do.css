@@ -2,9 +2,10 @@
   CSS for plain To-do list.
   Created Feb 8, 2017.
   Updated for blog demo 23 Sept 2020.
+  Updated for blog (form, save-message, et al) 7 June 2021.
   */
 
-todo {
+[todo] {
   display: block;
   padding: 1em;
   outline: 1px solid #eee;
@@ -15,7 +16,7 @@ todo {
   display: none;
 }
 
-[alert-message] {
+[role="alert"] {
   display: none;
 }
 
@@ -61,6 +62,19 @@ todo {
   text-decoration: line-through;
 }
 
+[empty] {
+  display: none;
+  font-style: italic;
+}
+
+[todo-list]:empty + [empty] {
+  display: block;
+}
+
+[todo-list]:empty {
+  display: none;
+}
+
 [todo-list] {
   list-style-type: none;
   padding: 0;
@@ -68,4 +82,8 @@ todo {
 
 [item]:focus-within {
   background-color: rgb(240, 240, 240);
+}
+
+[todo-list] [item] {
+  margin: unset;
 }

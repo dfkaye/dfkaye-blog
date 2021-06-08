@@ -2,6 +2,7 @@
   JavaScript for plain To-do list.
   Created Feb 8, 2017.
   Updated for blog demo 23 Sept 2020.
+  Updated for blog (form, save-message, et al) 7 June 2021.
   */
 
 document.addEventListener('DOMContentLoaded', (function () {
@@ -12,7 +13,16 @@ document.addEventListener('DOMContentLoaded', (function () {
     input.setAttribute('readonly', true)
 
     // unselect/un-highlight text value
-    input.selectionEnd = null
+    // input.selectionEnd = null
+
+    // If this is a newly added item, remove the id from the input...
+    input.hasAttribute("id") && (input.removeAttribute("id"))
+
+    // ...and remove the label element...
+    var label = item.querySelector('label')
+    label && (item.removeChild(label))
+
+    // TODO: Show status: "blah blah" added
 
     var save = item.querySelector('[handle="save"]')
     save.setAttribute('handle', 'edit')
@@ -24,8 +34,8 @@ document.addEventListener('DOMContentLoaded', (function () {
     input.removeAttribute('readonly')
 
     // select/highlight text value
-    input.selectionStart = 0
-    input.selectionEnd = input.value.length
+    // input.selectionStart = 0
+    // input.selectionEnd = input.value.length
     input.focus()
 
     var edit = item.querySelector('[handle="edit"]')
@@ -34,7 +44,11 @@ document.addEventListener('DOMContentLoaded', (function () {
   })
 
   var handleRemove = (function (item) {
-    item.parentNode.removeChild(item)
+    var parentElement = item.parentElement;
+
+    parentElement.removeChild(item)
+
+    normalize(parentElement)
   })
 
   var handleComplete = (function (item) {
@@ -51,15 +65,15 @@ document.addEventListener('DOMContentLoaded', (function () {
     }
   })
 
-  var handleMessage = (function (item) {
-    var message = item.querySelector('[alert-message]');
+  var handleMessage = (function (item, selector) {
+    var message = item.querySelector(selector);
 
     if (message.hasAttribute('open')) {
       return;
     }
 
     var text = document.createElement('p')
-    text.textContent = message.getAttribute("alert-message")
+    text.textContent = message.getAttribute(selector.substring(1, selector.length - 1))
     text.setAttribute("tabindex", "0")
     text.setAttribute("text", "");
 
@@ -99,13 +113,63 @@ document.addEventListener('DOMContentLoaded', (function () {
   })
 
   var handleListClick = (function (e) {
-    var list = e.currentTarget
-    var target = e.target
-    var handle = target.getAttribute('handle')
-    var item = target.parentNode
+    var handle = e.target.getAttribute('handle')
 
+    if (!handle) {
+      return
+    }
+
+    var item = e.target.parentElement
+    var list = e.currentTarget
+
+    handleAction(handle, item, list)
+  })
+
+  var handleKeydown = (function (e) {
+    // 7-8 June, 2021.
+
+    // Use keydown and type="button" to prevent form submission on "Enter"
+    // keydown on the Add Todo input, which curiously fires a mouse event
+    // on the first button in the form (if the form isn't empty).
+
+    // Decision tree shows that certain HTML element and DOM event combinations
+    // lead to curious "default" behavior.
+
+    if (e.key != "Enter" || e.target.type != "text") {
+      // Return early to allow "Tab" traversal, button presses, and other
+      // normal, accessible behavior.
+      return
+    }
+
+    if (e.target.hasAttribute("readonly")) {
+      // Prevent form submissions on "readonly" input *and* return to allow
+      // normal, accessible behavior.
+      e.preventDefault()
+
+      return
+    }
+
+    if (e.key == "Enter" && e.target.type == "text") {
+      // Prevent "Enter" form submission on interactive text input, *and* allow
+      // further processing.
+      e.preventDefault()
+    }
+
+    var handle = "save"
+    var item = e.target.parentElement
+    var list = e.currentTarget
+
+    handleAction(handle, item, list)
+  })
+
+  var handleAction = (function (handle, item, list) {
     if (handle == 'edit' && list.querySelector("[name]:not([readonly]")) {
-      return handleMessage(list.parentNode)
+      return handleMessage(list.parentElement, "[alert-message]")
+    }
+
+    if (handle == 'save' && !item.querySelector('input').value) {
+      // TODO: maybe modify input value by trimming before saving?
+      return handleMessage(list.parentElement, "[save-message]")
     }
 
     handle == 'save' && (handleSave(item))
@@ -116,13 +180,13 @@ document.addEventListener('DOMContentLoaded', (function () {
 
   var handleAdd = (function (list) {
     if (list.querySelector("[name]:not([readonly]")) {
-      return handleMessage(list.parentNode)
+      return handleMessage(list.parentElement, "[alert-message]")
     }
 
-    var template = list.querySelector('[data-template]')
-    var item = template.cloneNode(true)
+    var template = list.parentElement.querySelector('[item-template]')
+    var item = template.content.cloneNode(true).firstElementChild
 
-    item.removeAttribute('data-template')
+    item.removeAttribute('item-template')
     item.setAttribute('item', "")
 
     requestAnimationFrame(function () {
@@ -137,23 +201,35 @@ document.addEventListener('DOMContentLoaded', (function () {
   })
 
   var handleAddClick = (function (e) {
-    var list = e.target.parentNode.querySelector('[todo-list]')
+    var list = e.target.parentElement.querySelector('[todo-list]')
 
     list && (handleAdd(list))
   })
 
+  // Remove text and comment nodes from Todo block.
+  var normalize = (function (element) {
+    Array.from(element.childNodes).forEach(node => {
+      /3|8/.test(node.nodeType) && (element.removeChild(node))
+    })
+  })
+
   // handle focus transitions between dialog and first open item in the list.
-  function restoreLastActive(message) {
+  var restoreLastActive = (function (message) {
     var active = message.parentElement.querySelector("[name]:not([readonly]")
 
-    active.focus()
-  }
+    active && (active.focus())
+  })
 
   // finally, initialize UI
-  var todos = [].slice.call(document.querySelectorAll('todo')).map(function (todo) {
+  var todos = Array.from(document.querySelectorAll('[todo]')).map(function (todo) {
+    todo.querySelector('[todo-list]').addEventListener('keydown', handleKeydown)
     todo.querySelector('[todo-list]').addEventListener('click', handleListClick)
     todo.querySelector('[handle="add"]').addEventListener('click', handleAddClick)
-    todo.querySelector('[alert-message]').addEventListener('click', handleMessageClick)
+    todo.querySelectorAll('[role="alert"]').forEach(dialog => {
+      dialog.addEventListener('click', handleMessageClick)
+    })
+
+    normalize(todo)
 
     return todo
   })
