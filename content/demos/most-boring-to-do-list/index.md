@@ -33,13 +33,13 @@ Design may change further as this is not fully tested with screen readers yet.
     <dialog role="alert" aria-live="assertive" save-message="This to-do item is empty. Add text to Save it, or press Remove to delete it." alert-close="Close"></dialog>
     <ul todo-list>
       <li item>
-        <input name maxlength="100" readonly value="first">
+        <input name maxlength="100" readonly value="Show status on save (X added)">
         <button type="button" handle="edit">Edit</button>
         <button type="button" handle="remove">Remove</button>
         <button type="button" handle="done">Complete</button>
       </li>
       <li item>
-        <input name maxlength="100" readonly value="second" done="true">
+        <input name maxlength="100" readonly value="Trim value on save" done="true">
         <button type="button" handle="edit">Edit</button>
         <button type="button" handle="remove">Remove</button>
         <button type="button" handle="done">Incomplete</button>
@@ -61,7 +61,7 @@ Design may change further as this is not fully tested with screen readers yet.
   <form todo aria-labelledby="empty-list">
     <!-- gratuitous comment -->
     <h2 id="empty-list">Empty list</h2>
-    <dialog alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close"></dialog>
+    <dialog role="alert" alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close"></dialog>
     <dialog role="alert" aria-live="assertive" save-message="This to-do item is empty. Add text to Save it, or press Remove to delete it." alert-close="Close"></dialog>
     <ul todo-list></ul>
     <p empty>List is currently empty. Add a new item below.</p>
@@ -87,7 +87,7 @@ Here's the entire markup for the "Empty" list:
 <form todo aria-labelledby="empty-list">
   <!-- gratuitous comment -->
   <h2 id="empty-list">Empty list</h2>
-  <dialog alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close"></dialog>
+  <dialog role="alert" alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close"></dialog>
   <dialog role="alert" aria-live="assertive" save-message="This to-do item is empty. Add text to Save it, or press Remove to delete it." alert-close="Close"></dialog>
   <ul todo-list></ul>
   <p empty>List is currently empty. Add a new item below.</p>

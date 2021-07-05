@@ -64,7 +64,6 @@
 /* and use rem for button box models */
 
 [value] {
-  border: 0;
   border: 1px outset gainsboro;
   background-color: gainsboro;
   font-size: inherit;
@@ -73,6 +72,9 @@
   max-width: 12vw;
   min-height: 3.25rem;
   width: 10rem;
+
+  /* prevent zoom on double tap in mobile */
+  touch-action: manipulation;
 }
 
 [value] i {

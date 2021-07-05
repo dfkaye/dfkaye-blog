@@ -10,10 +10,14 @@ document.addEventListener('DOMContentLoaded', (function () {
 
   var handleSave = (function (item) {
     var input = item.querySelector('input')
+
+    // Done: Trim input value on save.
+    input.value = input.value.normalize().trim()
+
     input.setAttribute('readonly', true)
 
-    // unselect/un-highlight text value
-    // input.selectionEnd = null
+    // unselect/un-highlight text to prevent persistent selection in mobile.
+    input.selectionEnd = null
 
     // If this is a newly added item, remove the id from the input...
     input.hasAttribute("id") && (input.removeAttribute("id"))
@@ -22,7 +26,7 @@ document.addEventListener('DOMContentLoaded', (function () {
     var label = item.querySelector('label')
     label && (item.removeChild(label))
 
-    // TODO: Show status: "blah blah" added
+    // TODO: Show status on save: "blah blah" added
 
     var save = item.querySelector('[handle="save"]')
     save.setAttribute('handle', 'edit')
@@ -79,7 +83,7 @@ document.addEventListener('DOMContentLoaded', (function () {
 
     var close = document.createElement('button')
     close.setAttribute('type', 'button')
-    close.setAttribute("close", "")
+    close.setAttribute("handle", "close")
     close.textContent = message.getAttribute("alert-close")
 
     var fragment = document.createDocumentFragment()
@@ -168,7 +172,6 @@ document.addEventListener('DOMContentLoaded', (function () {
     }
 
     if (handle == 'save' && !item.querySelector('input').value) {
-      // TODO: maybe modify input value by trimming before saving?
       return handleMessage(list.parentElement, "[save-message]")
     }
 
@@ -192,10 +195,7 @@ document.addEventListener('DOMContentLoaded', (function () {
     requestAnimationFrame(function () {
       list.appendChild(item)
 
-      /*
-       * Make it editable so user can change the boilerplate
-       * name value.
-       */
+      // Make it editable so user can change the boilerplate name value.
       handleEdit(item)
     })
   })
@@ -213,7 +213,7 @@ document.addEventListener('DOMContentLoaded', (function () {
     })
   })
 
-  // handle focus transitions between dialog and first open item in the list.
+  // Handle focus transitions between dialog and first open item in the list.
   var restoreLastActive = (function (message) {
     var active = message.parentElement.querySelector("[name]:not([readonly]")
 

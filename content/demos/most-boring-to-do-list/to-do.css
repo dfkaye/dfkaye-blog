@@ -36,11 +36,26 @@
   z-index: 100;
 }
 
-[close] {
+[handle="close"] {
   border: 1px solid #999;
   border-radius: 0.25em;
   margin-top: 2em;
   padding: 0.5em;
+}
+
+[handle] {
+  background-color: gainsboro;  
+  border: 1px outset gainsboro;
+  border-radius: .25em;
+  font-size: inherit;
+  font-weight: inherit;
+  height: 2em;
+  margin: .05em .065em .065em;
+  min-width: auto;
+  padding: 0.15em 0.25em;
+
+  /* prevent zoom on double tap in mobile */
+  touch-action: manipulation;  
 }
 
 [name] {
@@ -52,10 +67,18 @@
   outline: 1px dotted currentColor;
 }
 
+[value] {
+  /* Value being edited, push subsequent siblings to next visual line. */
+  width: 100%;
+}
+
 [readonly] {
   background-color: transparent;
   border: none;
   padding: 2px;
+
+  /* default width of Value allows button siblings to ride on same visual line. */
+  width: 25%;
 }
 
 [done] {
