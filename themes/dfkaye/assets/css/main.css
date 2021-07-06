@@ -325,8 +325,15 @@ a:not([icon]):active {
 
 [nav] {
   display: flex;
-  justify-content: space-between;
   width: 100%;
+}
+
+[nav="header"] {
+  justify-content: space-between;
+}
+
+[nav="footer"] {
+  justify-content: space-evenly;
 }
 
 [nav] ul {
