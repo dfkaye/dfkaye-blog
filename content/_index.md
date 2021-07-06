@@ -14,11 +14,7 @@ This is my Home page.
 At content/_index.md, using layouts/index.html.
 -->
 
-You have found David Kaye's blog, focused almost entirely on front-end web development topics.
-
-## Work in progress
-
-What you see is a [Hugo](https://gohugo.io) blog under construction.
+You have found David Kaye's blog, focused almost entirely on front-end web development topics. Blog is built with [Hugo](https://gohugo.io).
 
 I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on [github](http://dfkaye.github.io/) using [hexo](https://github.com/hexojs/hexo).
 
@@ -40,15 +36,15 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 
 ## To-do set-up
 
-+ ~~better code snippet styles (not one element per line but well-framed and readable)~~
-  - *Surprise!* To support this on Netlify, see https://wilks.co/articles/custom-hugo-version-with-netlify/ -- *done*
++ ~~better code snippet styles (not one element per line but well-framed and readable)~~ - *done*
+  - *Surprise!* To support this on Netlify, see https://wilks.co/articles/custom-hugo-version-with-netlify/
 + ~~set up RSS feed~~ -- *done*
 + ~~sitemap.xml~~ -- *done*
 + ~~categories and tags layout and keywords~~ -- *done* for tags and keywords
 + ~~resize datetime and reading-time~~ -- *done*
 + ~~improve the doc-summary style on list pages~~ -- *done*
 + ~~pagination in list pages (by year, by count (100), or...?)~~ -- *done*
-+ ~~use Hugo templating (--instead-of-css-vars) in the CSS~~
++ ~~use Hugo templating (--instead-of-css-vars) in the CSS~~ - *done*
   - see https://zwbetz.com/use-hugo-templating-in-your-external-css/
   - *All lies. Every post on how to do this is wrong.*
   - *Do not put your theme into config.toml, put it all in a css template in assets/css as hugo variables, and minify the result.*
@@ -57,7 +53,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 ## To-do posts
 
 + ~~"we threw out the rule book"~~ -- *done*
-+ "custom attributes are fast, good, and cheap"
++ ~~"custom attributes are fast, good, and cheap"~~ - *done*
   - traffic signal states
   - factoring BEM out
 + ~~post about "Making the Switch to Hugo"~~ -- *done*
@@ -74,10 +70,10 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + post about the footer company icons
   - especially https://github.com/simple-icons/simple-icons
 + post about mobile white space breaks
-  - word-break for long link text
-  - white-space: break-spaces (and using spaces) inside of code elements
-  - mocha pre overrides: white-space: pre-line;
-+ post about body {position:relative } to set the body width to 100% across mobile devices (galaxy fold, iPhone 5, etc.).
+  - `word-break` for long link text
+  - `white-space: break-spaces` (and using spaces) inside of code elements
+  - Mocha.css pre overrides: `white-space: pre-line;`
++ post about `body {position:relative }` to set the body width to 100% across mobile devices (galaxy fold, iPhone 5, etc.).
 + post about dot file all the things png
 + post about minimalism
   - sans serif font is the only font, and all others are "art" or belong in `@print` styles
@@ -92,8 +88,8 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
   - the tweet, https://twitter.com/dfkaye/status/999332316492120064
 + copy content from the wordpress site
   - add "archives" for the wordpress and hexo posts
-+ future awesome post about Function() (safe-eval) with strict CSP and web workers.
-+ future awesome post about the SAM pattern
++ future awesome post about `Function() (safe-eval)` with strict CSP and web workers.
++ future awesome post about the [SAM pattern](https://sam.js.org)
   - see the HEX article at https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c
   - see JJ's original article "No More MVC Frameworks" at https://www.infoq.com/articles/no-more-mvc-frameworks/
 + escaping hugo shortcodes, https://liatas.com/posts/escaping-hugo-shortcodes/
@@ -112,7 +108,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + resize attribute polyfill (textarea, div, overflow: hidden)
   - https://developer.mozilla.org/en-US/docs/Web/CSS/resize
   - textarea gist - https://gist.github.com/dfkaye/bdaa6bb621154a1366de85c139bf7b23
-+ Calculator demo with TDD
++ ~~Calculator demo with TDD~~ - *done*
 + Accessible date-input demo
 + S | p | r | e | a | d | S | h | e | e | t, with web workers demo and TDD
 + Sudoku demo with TDD
@@ -123,8 +119,9 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + traffic light CSS states demo
   + using custom attributes (vevo interview) at https://codepen.io/dfkaye/pen/eYJzQbX
   + using :target pseudo class and conditionally displayed links inside button at https://codepen.io/dfkaye/pen/KKzEbdY
-+ refactor [where.js](https://github.com/dfkaye/where.js) to handle ES6 imports and arrow functions
++ ~~refactor [where.js](https://github.com/dfkaye/where.js) to handle ES6 imports and arrow functions~~ - *done*
   + ~~should deprecate and start a new one as "wheredoc" (because heredoc...)~~ - *done*
   + using chai-http: https://pjcalvo.github.io/testing,/mocha,/javascript/2019/12/09/webdriverio-and-ddt.html
   + jest already has `it.each` and `describe.each`: https://dev.to/flyingdot/data-driven-unit-tests-with-jest-26bh
   + original inspiration, spock expect+where tables: http://spockframework.org/spock/docs/1.0/data_driven_testing.html
++ post on [Behavioral programming](https://lmatteis.github.io/react-behavioral/)
