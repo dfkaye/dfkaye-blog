@@ -30,7 +30,7 @@ The selling point of Hugo is its speed, and support for Markdown, plus the [Go p
 </svg>
 <a icon="hugo" href="https://gohugo.io/" title="Hugo link">
   Learn more about Hugo.
-  <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+  <svg role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" height="24px">
     <title>Hugo icon</title>
     <use xlink:href="#icon-hugo"></use>
   </svg>
