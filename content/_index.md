@@ -25,6 +25,7 @@ Some of that content will be posted here eventually, along with updated takes.
 + [Demos](/demos/)
 
 
+
 ## RSS
 
 Site now has two content feeds, listing up to seven of the latest seven items:
@@ -34,7 +35,8 @@ Site now has two content feeds, listing up to seven of the latest seven items:
 
 The default feed lists everything but only with descriptions, at [/index.xml](/index.xml).
 
-## To-do set-up
+
+## To Do: Setup
 
 + ~~better code snippet styles (not one element per line but well-framed and readable)~~ - *done*
   - *Surprise!* To support this on Netlify, see https://wilks.co/articles/custom-hugo-version-with-netlify/
@@ -49,8 +51,9 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
   - *All lies. Every post on how to do this is wrong.*
   - *Do not put your theme into config.toml, put it all in a css template in assets/css as hugo variables, and minify the result.*
 + mermaid diagrams
++ replace the custom attributes with data-prefixed attributes.
 
-## To-do posts
+## To Do: Posts
 
 + ~~"we threw out the rule book"~~ -- *done*
 + ~~"custom attributes are fast, good, and cheap"~~ - *done*
@@ -61,7 +64,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + post about post prev next and CSS content ISO values
   - https://stackoverflow.com/questions/44186778/link-to-next-post
   - https://brajeshwar.github.io/entities/
-+ post about Content Security Policy setup
++ post about `Content Security Policy` setup
   - scratch-variables partial
   - csp partial
   - css partial
@@ -93,8 +96,10 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
   - see the HEX article at https://medium.com/@metapgmr/hex-a-no-framework-approach-to-building-modern-web-apps-e43f74190b9c
   - see JJ's original article "No More MVC Frameworks" at https://www.infoq.com/articles/no-more-mvc-frameworks/
 + escaping hugo shortcodes, https://liatas.com/posts/escaping-hugo-shortcodes/
++ post on [Behavioral programming](https://lmatteis.github.io/react-behavioral/)
 
-## To-do pages
+
+## To Do: Pages
 
 + add **R&eacute;sum&eacute;** page with @page and @print stylesheets
 + a **Tools I Use** page (see https://benjamincongdon.me/tools example)
@@ -102,7 +107,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + list of engineering sites I might recommend
 + monthly list of dev-links - see https://github.com/dfkaye/dev-links/, with followup to https://twitter.com/dfkaye/status/1288155766092738561
 
-## To-do demos
+## To Do: demos
 
 + ~~CSS tabs demo and post~~ - *done*
 + resize attribute polyfill (textarea, div, overflow: hidden)
@@ -120,8 +125,44 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
   + using custom attributes (vevo interview) at https://codepen.io/dfkaye/pen/eYJzQbX
   + using :target pseudo class and conditionally displayed links inside button at https://codepen.io/dfkaye/pen/KKzEbdY
 + ~~refactor [where.js](https://github.com/dfkaye/where.js) to handle ES6 imports and arrow functions~~ - *done*
-  + ~~should deprecate and start a new one as "wheredoc" (because heredoc...)~~ - *done*
+  + ~~should deprecate and start a new one as `wheredoc` (because heredoc...)~~ - *done*
   + using chai-http: https://pjcalvo.github.io/testing,/mocha,/javascript/2019/12/09/webdriverio-and-ddt.html
   + jest already has `it.each` and `describe.each`: https://dev.to/flyingdot/data-driven-unit-tests-with-jest-26bh
   + original inspiration, spock expect+where tables: http://spockframework.org/spock/docs/1.0/data_driven_testing.html
-+ post on [Behavioral programming](https://lmatteis.github.io/react-behavioral/)
+
+
+## To Do: Screenreader support for MathML
+
+I've used Narrator on Windows 10, and have been trying out [JAWS](https://support.freedomscientific.com/Downloads/JAWS) instead for better browser-based support. So far I have not been successful reading the following MathML fragments as math with either screen reader.
+
+{{< rawhtml >}} 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+    <apply>
+        <plus/>
+        <apply>
+            <times/>
+            <ci>a</ci>
+            <apply>
+                <power/>
+                <ci>x</ci>
+                <cn>2</cn>
+            </apply>
+        </apply>
+        <apply>
+            <times/>
+            <ci>b</ci>
+            <ci>x</ci>
+        </apply>
+        <ci>c</ci>
+    </apply>
+</math>
+{{< /rawhtml >}} 
+
+{{< rawhtml >}} 
+<math xmlns="http://www.w3.org/1998/Math/MathML">
+  <msup>
+    <mi>a</mi>
+    <mn>2</mn>
+  </msup>
+</math>
+{{< /rawhtml >}}

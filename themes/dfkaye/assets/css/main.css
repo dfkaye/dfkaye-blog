@@ -617,3 +617,7 @@ input, select, textarea {
   margin-left: .5em; 
   position: absolute;
 }
+
+math {
+  display: block;
+}
