@@ -30,7 +30,8 @@ document.addEventListener('DOMContentLoaded', (function () {
 
     var save = item.querySelector('[handle="save"]')
     save.setAttribute('handle', 'edit')
-    save.textContent = 'Edit'
+    save.setAttribute("aria-label", "edit")
+    save.innerHTML = '&#9997;' // Edit'
   })
 
   var handleEdit = (function (item) {
@@ -45,6 +46,7 @@ document.addEventListener('DOMContentLoaded', (function () {
     var edit = item.querySelector('[handle="edit"]')
     edit.setAttribute('handle', 'save')
     edit.textContent = 'Save'
+    edit.setAttribute("aria-label", "save")
   })
 
   var handleRemove = (function (item) {
@@ -60,12 +62,15 @@ document.addEventListener('DOMContentLoaded', (function () {
     var done = input.getAttribute('done');
     var btn = item.querySelector('[handle="done"]')
 
+    // To-do: set aria attribute on list item or input,
+    // indicating item is marked complete.
+
     if (done) {
       input.removeAttribute('done')
-      btn.textContent = 'Complete'
+      btn.setAttribute("aria-label", "mark complete")
     } else {
       input.setAttribute('done', true)
-      btn.textContent = 'Incomplete'
+      btn.setAttribute("aria-label", "mark incomplete")
     }
   })
 
@@ -206,7 +211,7 @@ document.addEventListener('DOMContentLoaded', (function () {
     list && (handleAdd(list))
   })
 
-  // Remove text and comment nodes from Todo block.
+  // Remove text and comment nodes from to-do block.
   var normalize = (function (element) {
     Array.from(element.childNodes).forEach(node => {
       /3|8/.test(node.nodeType) && (element.removeChild(node))

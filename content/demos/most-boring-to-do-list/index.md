@@ -28,21 +28,21 @@ Design may change further as this is not fully tested with screen readers yet.
 
   <form todo aria-labelledby="populated-list">
     <!-- gratuitous comment -->
-    <h2 id="populated-list">Populated list</h2>
     <dialog role="alert" aria-live="assertive" alert-message="You have another item open. Please close it before editing another one." alert-close="Close"></dialog>
-    <dialog role="alert" aria-live="assertive" save-message="This to-do item is empty. Add text to Save it, or press Remove to delete it." alert-close="Close"></dialog>
+    <dialog role="alert" aria-live="assertive" save-message="This to-do item is empty. Add text to Save it, or press Remove to delete it." alert-close="Close"></dialog>    
+    <h2 id="populated-list">Populated list</h2>
     <ul todo-list>
       <li item>
         <input name maxlength="100" readonly value="Show status on save (X added)">
-        <button type="button" handle="edit">Edit</button>
-        <button type="button" handle="remove">Remove</button>
-        <button type="button" handle="done">Complete</button>
+        <button type="button" handle="edit" aria-label="edit">&#9997;</button>
+        <button type="button" handle="done" aria-label="mark complete">&check;</button>
+        <button type="button" handle="remove" aria-label="remove">&cross;</button>
       </li>
       <li item>
         <input name maxlength="100" readonly value="Trim value on save" done="true">
-        <button type="button" handle="edit">Edit</button>
-        <button type="button" handle="remove">Remove</button>
-        <button type="button" handle="done">Incomplete</button>
+        <button type="button" handle="edit" aria-label="edit">&#9997;</button>
+        <button type="button" handle="done" aria-label="mark incomplete">&check;</button>
+        <button type="button" handle="remove" aria-label="remove">&cross;</button>
       </li>
     </ul>
     <p empty>List is currently empty. Add a new item below.</p>
@@ -50,29 +50,29 @@ Design may change further as this is not fully tested with screen readers yet.
     <template item-template>
       <li>
         <label visually-hidden for="populated-list-input">Add a to-do item</label>
-        <input id="populated-list-input" name maxlength="100" readonly placeholder="E.g., Add a to-do item">
-        <button type="button" handle="edit">Edit</button>
-        <button type="button" handle="remove">Remove</button>
-        <button type="button" handle="done">Complete</button>
+        <input id="populated-list-input" name maxlength="100" readonly placeholder="E.g., Add a to-do item" value>
+        <button type="button" handle="edit" aria-label="edit">&#9997;</button>
+        <button type="button" handle="done" aria-label="mark complete">&check;</button>
+        <button type="button" handle="remove" aria-label="remove">&cross;</button>
       </li>
     </template>
   </form>
 
   <form todo aria-labelledby="empty-list">
     <!-- gratuitous comment -->
-    <h2 id="empty-list">Empty list</h2>
     <dialog role="alert" alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close"></dialog>
     <dialog role="alert" aria-live="assertive" save-message="This to-do item is empty. Add text to Save it, or press Remove to delete it." alert-close="Close"></dialog>
+    <h2 id="empty-list">Empty list</h2>
     <ul todo-list></ul>
     <p empty>List is currently empty. Add a new item below.</p>
     <button type="button" handle="add">Add item</button>
     <template item-template>
       <li>
         <label visually-hidden for="empty-list-input">Add a to-do item</label>
-        <input id="empty-list-input" name maxlength="100" readonly placeholder="E.g., Add a to-do item">
-        <button type="button" handle="edit">Edit</button>
-        <button type="button" handle="remove">Remove</button>
-        <button type="button" handle="done">Complete</button>
+        <input id="empty-list-input" name maxlength="100" readonly placeholder="E.g., Add a to-do item" value>
+        <button type="button" handle="edit" aria-label="edit">&#9997;</button>
+        <button type="button" handle="done" aria-label="mark complete">&check;</button>
+        <button type="button" handle="remove" aria-label="remove">&cross;</button>
       </li>
     </template>
   </form>
@@ -86,19 +86,19 @@ Here's the entire markup for the "Empty" list:
 ```html
 <form todo aria-labelledby="empty-list">
   <!-- gratuitous comment -->
-  <h2 id="empty-list">Empty list</h2>
   <dialog role="alert" alert-message="Hold it. You have another item open. Save it before editing a new one." alert-close="Close"></dialog>
-  <dialog role="alert" aria-live="assertive" save-message="This to-do item is empty. Add text to Save it, or press Remove to delete it." alert-close="Close"></dialog>
+  <dialog role="alert" aria-live="assertive" save-message="This to-do item is empty. Add text to Save it, or press Remove to delete it." alert-close="Close"></dialog>  
+  <h2 id="empty-list">Empty list</h2>
   <ul todo-list></ul>
   <p empty>List is currently empty. Add a new item below.</p>
   <button type="button" handle="add">Add item</button>
   <template item-template>
     <li>
       <label visually-hidden for="empty-list-input">Add a to-do item</label>
-      <input id="empty-list-input" name maxlength="100" readonly placeholder="E.g., Add a to-do item">
-      <button type="button" handle="edit">Edit</button>
-      <button type="button" handle="remove">Remove</button>
-      <button type="button" handle="done">Complete</button>
+      <input id="empty-list-input" name maxlength="100" readonly placeholder="E.g., Add a to-do item" value>
+      <button type="button" handle="edit" aria-label="edit">&#9997;</button>
+      <button type="button" handle="done" aria-label="mark complete">&check;</button>
+      <button type="button" handle="remove" aria-label="remove">&cross;</button>
     </li>
   </template>
 </form>
