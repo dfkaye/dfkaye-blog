@@ -1,7 +1,7 @@
 ---
 title: "Test Suite: SAM pattern Calculator app"
 date: 2021-01-28T14:38:27-08:00
-lastmod: 2021-01-28T14:38:27-08:00
+lastmod: 2021-07-14T13:16:27-08:00
 description: "Test suite for an Accessible Calculator supporting keyboard navigation and input, built with CSS grid, ARIA alert, and vanilla JavaScript using the SAM pattern and dependency injection."
 
 tags:
@@ -62,7 +62,9 @@ January 28, 2021: **Calling it done.  Blog post to follow.**
 + May 20, 2021:
   - re-think the history part: state can generate a history for the view to store.
   - why? the view is the *client* and therefore must manage its own concerns separately from "the state."
-
++ July 14, 2021:
+  - Bug fix for appending digits: When new value exceeds safe integer limit, do *not* append new digit.
+  - Fix view test for `document.readyState`.
 
 ### Blog post elements to cover
 
@@ -70,6 +72,7 @@ January 28, 2021: **Calling it done.  Blog post to follow.**
 + accessibility support - screen readers, alert text, keyboard navigation and input
 + mimmicking MS Windows Calculator expressions: output is fairly straight-forward, but the expression text logic is **complicated**.
 + 2 safe-math bugs found
++ no-op when appending digit creates value greater than safe integer limit.
 + error states
 + explain CSS grid rules to mimic keyboard navigation in MS Windows Calculator
 + explain SAM pattern and why the calculator is based on it

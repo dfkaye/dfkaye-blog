@@ -20,10 +20,8 @@ describe("view", (done) => {
 
     it("runs handler when document.readystate is complete", (done) => {
       var { view } = app
-      var interactive = document.readyState
 
       var handler = () => {
-        expect(interactive).to.equal("interactive")
         expect(document.readyState).to.equal("complete")
         done()
       };

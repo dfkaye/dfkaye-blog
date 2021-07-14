@@ -115,7 +115,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
   - textarea gist - https://gist.github.com/dfkaye/bdaa6bb621154a1366de85c139bf7b23
 + ~~Calculator demo with TDD~~ - *done*
 + Accessible date-input demo
-+ S | p | r | e | a | d | S | h | e | e | t, with web workers demo and TDD
++ SpreadSheet, with web workers, SAM pattern, local storage or indexeddb: demo and TDD
 + Sudoku demo with TDD
 + *interactive* tests using web workers for the server part
   - example: souders site CSS test page (class vs. attribute selector speeds)

@@ -76,6 +76,24 @@ describe("model", () => {
 
         expect(error).to.equal(`Invalid digit value, "6y6"`)
       })
+
+      it("does not update if new value exceeds safe integer limit", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        var initial = "1234567890123456";
+
+        initial.split("").forEach(value => {
+          model.propose({ action: "digit", value })
+        })
+
+        model.propose({ action: "digit", value: 7 })
+
+        expect(result.output).to.equal(initial)
+      })
     })
 
     describe("clearentry", () => {

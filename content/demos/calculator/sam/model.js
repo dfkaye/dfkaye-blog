@@ -263,7 +263,15 @@ function model(state) {
 
     digit({ value }) {
       // Defer to append.
-      return append({ value })
+      var changes = append({ value })
+
+      /*
+       * Special case taken from Windows Calculator when appending digits:
+       * If new output exceeds safe integer limit, do not update.
+       */
+      return Math.abs(changes.output) > Number.MAX_SAFE_INTEGER
+        ? false
+        : changes;
     },
 
     equals() {

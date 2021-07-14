@@ -65,6 +65,7 @@
 
 [value] {
   border: 1px outset gainsboro;
+  border-radius: .25em;
   background-color: gainsboro;
   font-size: inherit;
   font-weight: inherit;
