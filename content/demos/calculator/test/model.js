@@ -77,20 +77,42 @@ describe("model", () => {
         expect(error).to.equal(`Invalid digit value, "6y6"`)
       })
 
-      it("does not update if new value exceeds safe integer limit", () => {
+      it("does not update if new value exceeds MAX_SAFE_INTEGER", () => {
         var result
 
         state.transition = function ({ data }) {
           result = data
         }
 
-        var initial = "1234567890123456";
+        var initial = Number.MAX_SAFE_INTEGER.toString();
 
         initial.split("").forEach(value => {
           model.propose({ action: "digit", value })
         })
 
-        model.propose({ action: "digit", value: 7 })
+        model.propose({ action: "digit", value: 1 })
+
+        expect(result.output).to.equal(initial)
+      })
+
+      it("does not update if new value less than MIN_SAFE_INTEGER", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        var initial = Number.MIN_SAFE_INTEGER.toString();
+
+        initial.split("").forEach(value => {
+          // Leading minus sign is ignored...
+          model.propose({ action: "digit", value })
+        })
+
+        // ...we negate the output here:
+        model.propose({ action: "negate" })
+
+        model.propose({ action: "digit", value: 1 })
 
         expect(result.output).to.equal(initial)
       })
@@ -162,7 +184,7 @@ describe("model", () => {
         model.propose({ action: "clear" })
       })
 
-      it("pushes decimal separator", () => {
+      it("prefixes 0 on empty input", () => {
         state.transition = function ({ data }) {
           var { output } = data
 
@@ -186,6 +208,46 @@ describe("model", () => {
         var { output } = result
 
         expect(output).to.equal("0.3")
+      })
+
+      it("pushes decimal if current output does not exceed MAX_SAFE_INTEGER", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        var initial = (Number.MAX_SAFE_INTEGER).toString();
+
+        initial.split("").forEach(value => {
+          model.propose({ action: "digit", value })
+        })
+
+        model.propose({ action: "decimal" })
+
+        expect(result.output).to.equal(initial + ".")
+      })
+
+      it("pushes decimal if current output is not less than MIN_SAFE_INTEGER", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        var initial = Number.MIN_SAFE_INTEGER.toString();
+
+        initial.split("").forEach(value => {
+          // Leading minus sign is ignored...
+          model.propose({ action: "digit", value })
+        })
+
+        // ...we negate the output here:
+        model.propose({ action: "negate" })
+
+        model.propose({ action: "decimal" })
+
+        expect(result.output).to.equal(initial + ".")
       })
     })
 

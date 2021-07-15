@@ -157,11 +157,22 @@ function model(state) {
 
     var newOperands = shiftOperands({ data, newValue })
 
-    return {
+    var changes = {
       output: newValue,
       last: newValue,
       operands: newOperands
     }
+
+    /*
+     * Special case taken from Windows Calculator when appending digits:
+     * If new output exceeds safe integer limit, do not update.
+     */
+    var abs = Math.abs(newValue)
+    var safe = Number.MAX_SAFE_INTEGER
+
+    return abs <= safe
+      ? changes
+      : false;
   }
 
   function calculate({ step }) {
@@ -263,15 +274,7 @@ function model(state) {
 
     digit({ value }) {
       // Defer to append.
-      var changes = append({ value })
-
-      /*
-       * Special case taken from Windows Calculator when appending digits:
-       * If new output exceeds safe integer limit, do not update.
-       */
-      return Math.abs(changes.output) > Number.MAX_SAFE_INTEGER
-        ? false
-        : changes;
+      return append({ value })
     },
 
     equals() {
