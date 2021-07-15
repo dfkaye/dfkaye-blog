@@ -153,26 +153,40 @@ function model(state) {
     // If all we have is the decimal point, prefix '0' to it.
     var newValue = operand == '.'
       ? "0" + operand
-      : operand;
+      : operand.toString();
+
+    /*
+     * Special case observed in Windows Calculator when appending digits or a
+     * decimal.
+     * 
+     * Do not update when:
+     *  - new output exceeds safe integer limit,
+     *  - new output character length exceeds the character length of its
+     *    absolute by more than 1.
+     * 
+     * This guards against a quirk where
+     * `Number.MAX_SAFE_INTEGER + 0.4 > Number.MAX_SAFE_INTEGER` evaluates to false.
+     * My tweet: https://twitter.com/dfkaye/status/1415520827047485442
+     */
+    var abs = Math.abs(newValue)
+    var asl = abs.toString().length
+    var nvl = newValue[0] === "-"
+      ? newValue.substring(1).length
+      : newValue.length;
+
+    if (abs > Number.MAX_SAFE_INTEGER || nvl - asl > 1) {
+      return
+    }
+
+    // OK to update.
 
     var newOperands = shiftOperands({ data, newValue })
 
-    var changes = {
+    return {
       output: newValue,
       last: newValue,
       operands: newOperands
     }
-
-    /*
-     * Special case taken from Windows Calculator when appending digits:
-     * If new output exceeds safe integer limit, do not update.
-     */
-    var abs = Math.abs(newValue)
-    var safe = Number.MAX_SAFE_INTEGER
-
-    return abs <= safe
-      ? changes
-      : false;
   }
 
   function calculate({ step }) {

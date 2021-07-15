@@ -95,6 +95,26 @@ describe("model", () => {
         expect(result.output).to.equal(initial)
       })
 
+      it("does not update if current value is MAX_SAFE_INTEGER plus a decimal", () => {
+        var result
+
+        state.transition = function ({ data }) {
+          result = data
+        }
+
+        var initial = Number.MAX_SAFE_INTEGER.toString();
+
+        initial.split("").forEach(value => {
+          model.propose({ action: "digit", value })
+        })
+
+        model.propose({ action: "decimal" })
+
+        model.propose({ action: "digit", value: 4 })
+
+        expect(result.output).to.equal(initial + ".")
+      })
+
       it("does not update if new value less than MIN_SAFE_INTEGER", () => {
         var result
 

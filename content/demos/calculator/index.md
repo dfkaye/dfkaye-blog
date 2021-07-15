@@ -1,7 +1,7 @@
 ---
 title: "Test Suite: SAM pattern Calculator app"
 date: 2021-01-28T14:38:27-08:00
-lastmod: 2021-07-14T17:27:27-08:00
+lastmod: 2021-07-14T21:20:27-08:00
 description: "Test suite for an Accessible Calculator supporting keyboard navigation and input, built with CSS grid, ARIA alert, and vanilla JavaScript using the SAM pattern and dependency injection."
 
 tags:
@@ -75,6 +75,8 @@ January 28, 2021: **Calling it done.  Blog post to follow.**
 + 2 safe-math bugs found
 + no update if next digit creates output greater than safe integer limit
 + appends decimal even if output at safe integer limit
++ Edge case in JavaScript numbers, MAX + 0.4 === MAX, MAX + 0.5 === MAX.5
+  - tweet: https://twitter.com/dfkaye/status/1415520827047485442
 + error states
 + explain CSS grid rules to mimic keyboard navigation in MS Windows Calculator
 + explain SAM pattern and why the calculator is based on it
