@@ -2,7 +2,7 @@
 title: "Fixing Number.toFixed()"
 description: "I found a rounding bug in Number.toFixed() in every JavaScript environment I've tried (Chrome, Firefox, Internet Explorer, Brave, and Node.js). The fix is surprisingly simple. Read on…"
 date: 2021-07-17T16:57:27-07:00
-lastmod: 2021-07-17T18:23:27-07:00
+lastmod: 2021-07-18T10:17:27-07:00
 tags: 
 - "JavaScript"
 - "Testing"
@@ -166,7 +166,7 @@ That means there's a simple fix for all implementations of `toFixed()`: If the v
 Until all implementations are modified, you can use the following polyfill to overwrite `toFixed()`, if you're comfortable doing that (not everyone is).
 
 ```js
-(1.005).toFixed(2) == "1.01" || (function(prototype) {
+(1.005).toFixed(2) == "1.01" || (function (prototype) {
   var toFixed = prototype.toFixed;
 
   prototype.toFixed = function(fractionDigits) {
@@ -179,7 +179,8 @@ Until all implementations are modified, you can use the following polyfill to ov
     var number = Number(string);
 
     return toFixed.call(number, fractionDigits);
-});
+  }
+}(Number.prototype));
 ```
 
 Then run the test again and check that the length of the results is zero.
