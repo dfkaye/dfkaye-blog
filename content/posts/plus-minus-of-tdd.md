@@ -5,6 +5,7 @@ lastmod: 2021-07-19T10:30:55-07:00
 description: "One commenter’s great response to Cedric Beust on the pro's and cons of test-driven development."
 tags:
 - "Testing"
+- "TDD"
 
 ---
 
