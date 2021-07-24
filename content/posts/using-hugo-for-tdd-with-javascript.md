@@ -167,9 +167,9 @@ Finally, add the scripts test command pointing to the `mocha` command in the `/n
 
 ## The `/test` directory
 
-At this point I create the `/test` directory in the github repo, containing two files, `node-site.js` and `browser-suite.js`.
+At this point I create the `/test` directory in the github repo, containing two files, `node-suite.js` and `browser-suite.js`.
 
-The ultimate goal is to run the node suite from the command line using `npm test`, and enabling the browser suite to run on my Hugo site (eventually).
+The ultimate goal is to run the node suite from the command line using `npm test`, and enable the browser suite to run on my Hugo site (eventually).
 
 The browser-suite is a copy-paste of the blog's `/js/demos/my-suite.js` file.
 
