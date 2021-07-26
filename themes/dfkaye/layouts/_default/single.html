@@ -5,10 +5,10 @@
 
 <ul publish-date>
   <li>Publish Date:
-    <time datetime="{{ .PublishDate }}" pubdate>{{ dateFormat "January 2, 2006" .Date }}</time>
+    <time datetime="{{ .PublishDate }}" pubdate>{{ .PublishDate.Format "January 2, 2006, 15:04:01 MST" }}</time>
   </li>
   <li>Last Update:
-    <time datetime="{{ .Lastmod }}" lastmod>{{ dateFormat "January 2, 2006" .Lastmod  }}</time>
+    <time datetime="{{ .Lastmod }}" lastmod>{{ .Lastmod.Format "January 2, 2006, 15:04:01 MST" }}</time>
   </li>
 </ul>
 

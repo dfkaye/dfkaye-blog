@@ -49,10 +49,8 @@ function render({ results, list }) {
     var { datetime, date, url, title, description } = result;
     var html = `
     <li page-item="${i}">
-      <aside>
-        <time datetime="${datetime}">${date}</time>
-      </aside>
       <h2 page-heading><a href="${url}">${title}</a></h2>
+      <aside><time datetime="${datetime}">${date}</time></aside>
       <p page-description>${description}</p>
     </li>
     `;

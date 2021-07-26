@@ -40,10 +40,6 @@ The calculator container accepts focus in order to accept keyboard events.
 
 ## Status
 
-{{<rawhtml>}}<time datetime="2021-01-28">January 28, 2021</time>{{</rawhtml>}}
-
-{{<rawhtml>}}<time datetime="2021-01-28">January 28, 2021</time>{{</rawhtml>}}: **Calling it done.  Blog post to follow.**
-
 + *{{<rawhtml>}}<time datetime="2020-12-19">December 19, 2020</time>{{</rawhtml>}}: Work begun in earnest.*
 + *{{<rawhtml>}}<time datetime="2021-01-08">January 8, 2021</time>{{</rawhtml>}}: Work in progress. Functionality still being implemented.*
 + *{{<rawhtml>}}<time datetime="2021-01-23">January 23, 2021</time>{{</rawhtml>}}: Tests passing; more needed; calculator app runs after 5 second delay.*
@@ -60,7 +56,7 @@ The calculator container accepts focus in order to accept keyboard events.
     + ("15 * 6 =, then =, should print 90 * 6 =, output is 540")
 + {{<rawhtml>}}<time datetime="2021-01-28">January 28, 2021</time>{{</rawhtml>}}:
   - *remove this*: added `state.history()` for fun
-  - Calling it done.
+  - **Calling it done.  Blog post to follow.**
 + {{<rawhtml>}}<time datetime="2021-05-20">May 20, 2021</time>{{</rawhtml>}}:
   - re-think the history part: state can generate a history for the view to store.
   - why? the view is the *client* and therefore must manage its own concerns separately from "the state."

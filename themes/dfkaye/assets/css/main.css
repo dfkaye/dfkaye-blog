@@ -178,14 +178,8 @@ h2, h3 {
 
 /* could use more polish here */
 * ~ blockquote {
-  background-color:rgba(24, 143, 255, 0.05); /* rgba(22, 22, 254, .15); */
-  /* rgba(24, 143, 255, 0.32); */
+  background-color:rgba(24, 143, 255, 0.05);
   border-left: var(--fence-border-width) solid rgba(22, 22, 254, .5);
-  /* 2px solid #188fff; */
-  /*
-  font-family: consolas, monospace;
-  font-size: 1.5em;
-  */
   font-style: italic;
   margin: 2em 0;
   padding: .5em 1em;
@@ -533,15 +527,17 @@ a:not([icon]):active {
   font-weight: normal;
 }
 
-[datetime] {
+/* datetime */
+
+[page-list] [pubdate] {
   color: var(--date-time-color);
-  /* font-size: calc(.5em + .75vw); */
-  /* padding: 0 .5em; */
+  font-size: var(--font-size-reduced);
+  font-style: italic;
+  vertical-align: text-top;
 }
 
 [reading-time] {
   color: var(--date-time-color);
-  /* font-size: calc(.5em + .75vw); */
 }
 
 [publish-date] {
@@ -618,6 +614,8 @@ input, select, textarea {
   margin-left: .5em; 
   position: absolute;
 }
+
+/* experimental */
 
 math {
   display: block;
