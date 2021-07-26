@@ -40,12 +40,14 @@ The calculator container accepts focus in order to accept keyboard events.
 
 ## Status
 
-January 28, 2021: **Calling it done.  Blog post to follow.**
+{{<rawhtml>}}<time datetime="2021-01-28">January 28, 2021</time>{{</rawhtml>}}
 
-+ *December 19, 2021: Work begun in earnest.*
-+ *January 8, 2021: Work in progress. Functionality still being implemented.*
-+ *January 23, 2021: Tests passing; more needed; calculator app runs after 5 second delay.*
-+ January 27, 2021:
+{{<rawhtml>}}<time datetime="2021-01-28">January 28, 2021</time>{{</rawhtml>}}: **Calling it done.  Blog post to follow.**
+
++ *{{<rawhtml>}}<time datetime="2020-12-19">December 19, 2020</time>{{</rawhtml>}}: Work begun in earnest.*
++ *{{<rawhtml>}}<time datetime="2021-01-08">January 8, 2021</time>{{</rawhtml>}}: Work in progress. Functionality still being implemented.*
++ *{{<rawhtml>}}<time datetime="2021-01-23">January 23, 2021</time>{{</rawhtml>}}: Tests passing; more needed; calculator app runs after 5 second delay.*
++ {{<rawhtml>}}<time datetime="2021-01-27">January 27, 2021</time>{{</rawhtml>}}:
   - Getting very close now! The model logic is the most involved part, when trying to match the behavior of the Microsoft Windows Calculator.
   - Found another safe-math issue, this time *inside* `expand()` - `.14 * 100` returns `14.000000000000002` where 100 is the exponsion factor. Solve with parseInt(), fallback to previous if that results in `NaN`.
   - Covered the remaining expression update sequence issues:
@@ -56,13 +58,13 @@ January 28, 2021: **Calling it done.  Blog post to follow.**
     + ("7 + 8 =, then *, should print 15 *, output is 15") // Yes!!!
     + ("15 *, then 6, then =, should print 15 * 6 =, output is 90") // Yes!!
     + ("15 * 6 =, then =, should print 90 * 6 =, output is 540")
-+ January 28, 2021:
++ {{<rawhtml>}}<time datetime="2021-01-28">January 28, 2021</time>{{</rawhtml>}}:
   - *remove this*: added `state.history()` for fun
   - Calling it done.
-+ May 20, 2021:
++ {{<rawhtml>}}<time datetime="2021-05-20">May 20, 2021</time>{{</rawhtml>}}:
   - re-think the history part: state can generate a history for the view to store.
   - why? the view is the *client* and therefore must manage its own concerns separately from "the state."
-+ July 14, 2021:
++ {{<rawhtml>}}<time datetime="2021-07-14">July 14, 2021</time>{{</rawhtml>}}:
   - Bug fix for appending digits: When new value exceeds safe integer limit, do *not* append new digit.
   - Add decimal test for appending when output less than or equal safe integer limit.
   - Fix view test for `document.readyState`.
