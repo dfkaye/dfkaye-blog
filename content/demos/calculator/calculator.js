@@ -8,9 +8,21 @@ import { define } from "/js/lib/dependency/define.js";
 var app = define({ view, action, model, state })
 
 var start = function () {
-  if (document.querySelectorAll("#mocha-report .fail").length) {
-    // Dependency on mocha report.
-    console.log("there were some failed tests")
+  // Dependency on mocha report.
+  var failing = document.querySelectorAll("#mocha-report .fail");
+  var { length = 0 } = failing;
+
+  if (length) {
+    console.log(`%cThere were ${length} failing tests.`, `color: red; font-weight: bold;`);
+    failing.forEach(test => {
+      console.info(test.querySelector("h2").firstChild.textContent)
+      console.error(test.querySelector(`[class="error"]`).textContent)
+      console.log(test.querySelector("a").href)
+    })
+  }
+
+  if (!length) {
+    console.log(`%cAll tests are passing.`, `color: green; font-weight: bold;`);
   }
 
   var { view, action } = app;
