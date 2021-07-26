@@ -19,7 +19,7 @@ First off, I'd like to thank [Jason Karns](https://twitter.com/jasonkarns), [Tim
 <!--more-->
 
 {{< rawhtml >}}
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The h2 also needs `tabindex=&quot;-1&quot;` to move tab focus. Otherwise, your next arrow or tab press returns to the previously &quot;next&quot; item.<br><br>You could also use `tabindex=&quot;0&quot;` to make your headings discoverable via the tab key.<br><br>2/2</p>&mdash; david Kaye (--The &quot;K&quot; stands for Quality) (@dfkaye) <a href="https://twitter.com/dfkaye/status/1311001814104305664?ref_src=twsrc%5Etfw">September 29, 2020</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">The h2 also needs `tabindex=&quot;-1&quot;` to move tab focus. Otherwise, your next arrow or tab press returns to the previously &quot;next&quot; item.<br><br>You could also use `tabindex=&quot;0&quot;` to make your headings discoverable via the tab key.<br><br>2/2</p>&mdash; david Kaye (--The &quot;K&quot; stands for Quality) (@dfkaye) <a href="https://twitter.com/dfkaye/status/1311001814104305664?ref_src=twsrc%5Etfw"><time datetime="2020-09-29">September 29, 2020</time></a></blockquote>
 {{< /rawhtml >}}
 
 ## The Problem

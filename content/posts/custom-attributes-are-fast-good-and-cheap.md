@@ -10,7 +10,7 @@ tags:
 - "Semantics"
 ---
 
-*This post, first begun August 28, 2016, originally appeared on my slowly deteriorating wordpress blog August 16, 2019. I also [tweeted](https://twitter.com/dfkaye/status/957373096104665088) about this approach in 2018.*
+*This post, first begun {{<rawhtml>}}<time datetime="2016-08-28">August 28, 2016</time>{{</rawhtml>}}, originally appeared on my slowly deteriorating wordpress blog {{<rawhtml>}}<time datetime="2019-08-16">August 16, 2019</time>{{</rawhtml>}}. I also [tweeted](https://twitter.com/dfkaye/status/957373096104665088) about this approach in 2018.*
 
 After years working with HTML and CSS, we have come to a surprising conclusion.
 

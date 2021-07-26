@@ -24,7 +24,7 @@ I'm aware that this is part of the whole integer-to-binary bug set introduced in
 
 ## Acknowledgement
 
-May 28, 2020, the original polyfill created in this post was updated with a fix from reader **A. Shah**, to account for the padding case, so that `(1.005).toFixed(4)` produces "1.0050" and not "1.0051".
+{{<rawhtml>}}<time datetime="2020-05-28">May 28, 2020</time>{{</rawhtml>}}, the original polyfill created in this post was updated with a fix from reader **A. Shah**, to account for the padding case, so that `(1.005).toFixed(4)` produces "1.0050" and not "1.0051".
 
 ## Warm up
 
@@ -51,8 +51,8 @@ There is a long history of bug reports with respect to rounding errors using `to
 
 Here is a short sample of StackOverflow questions about this problem:
 
-+ August 24, 2012, [https://stackoverflow.com/questions/12105787/tofixed-javascript-function-giving-strange-results](toFixed javascript function giving strange results?) - 
-+ March 11, 2011, [https://stackoverflow.com/questions/5490687/broken-tofixed-implementation](broken toFixed implementation).
++ {{<rawhtml>}}<time datetime="2012-08-24">August 24, 2012</time>{{</rawhtml>}}, [toFixed javascript function giving strange results?](https://stackoverflow.com/questions/12105787/tofixed-javascript-function-giving-strange-results)
++ {{<rawhtml>}}<time datetime="2011-03-11">March 11, 2011</time>{{</rawhtml>}}, [broken toFixed implementation](https://stackoverflow.com/questions/5490687/broken-tofixed-implementation).
 
 In general, these point out *a* bug for *a* value, but none reports a range or pattern of values returning erroneous results (at least none that I have found, I may have missed something). That leaves the programmers to focus on the small without seeing a larger pattern. I don't blame them for that.
 

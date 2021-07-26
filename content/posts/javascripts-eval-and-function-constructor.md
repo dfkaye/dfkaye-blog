@@ -11,7 +11,7 @@ tags:
 - "performance"
 ---
 
-*First published March 14, 2014 on the hexo+github blog. I have cleaned this version a little bit, but left older browser references and ES5 code practices in place.*
+*First published {{<rawhtml>}}<time datetime="2014-03-14">March 14, 2014</time>{{</rawhtml>}} on the hexo+github blog. I have cleaned this version a little bit, but left older browser references and ES5 code practices in place.*
 
 <!-- more -->
 

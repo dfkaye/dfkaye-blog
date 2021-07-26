@@ -11,9 +11,9 @@ tags:
 
 The test below is not my own; it is copied from a comment by [Talbott Crowell](https://talbottcrowell.wordpress.com) on Cedric Beust’s blog. (Cedric is the creator of [TestNG](https://testng.org/).)
 
-Cedric's post, [Agile people still don’t get it](https://www.beust.com/weblog/agile-people-still-dont-get-it/), dates back to June 7, 2006, and contains hard words for Agilists pushing TDD without acknowledging any associated costs.
+Cedric's post, [Agile people still don’t get it](https://www.beust.com/weblog/agile-people-still-dont-get-it/), dates back to {{<rawhtml>}}<time datetime="2006-06-07">June 7, 2006</time>{{</rawhtml>}}, and contains hard words for Agilists pushing TDD without acknowledging any associated costs.
 
-[Talbott's comment](https://www.beust.com/weblog/agile-people-still-dont-get-it/#comment-5569) dates to August 23, 2010, two days after the post was picked up on reddit.com. Talbott lists some advantages and disadvantages of TDD.
+[Talbott's comment](https://www.beust.com/weblog/agile-people-still-dont-get-it/#comment-5569) dates to {{<rawhtml>}}<time datetime="2010-08-23">August 23, 2010</time>{{</rawhtml>}}, two days after the post was picked up on reddit.com. Talbott lists some advantages and disadvantages of TDD.
 
 *I posted this previously on the wordpress blog in 2015 (and in a gist in 2013).*
 

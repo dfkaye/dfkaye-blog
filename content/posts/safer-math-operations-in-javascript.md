@@ -13,7 +13,7 @@ tags:
 
 ---
 
-*{{< rawhtml >}}<time>22 November 2020</time>{{< /rawhtml >}}: This post has been completely rewritten and (one hopes) simplified.*
+*{{< rawhtml >}}<time datetime="2020-11-22">November 22, 2020</time>{{< /rawhtml >}}: This post has been completely rewritten and (one hopes) simplified.*
 
 ## Problem
 
@@ -161,7 +161,7 @@ You can pass anything, but only coercibly numeric values are processed, any `NaN
 
 ## API
 
-As of November 25, 2020, the safe-math.js module exports the following functions.
+As of {{<rawhtml>}}<time datetime="2020-11-25">November 25, 2020</time>{{<rawhtml>}}, the safe-math.js module exports the following functions.
 
 ### Operators
 

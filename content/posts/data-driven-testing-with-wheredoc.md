@@ -12,7 +12,7 @@ tags:
 
 <!--more-->
 
-*The previous incarnation of this project is [where.js](https://github.com/dfkaye/where.js) created in 2014, now deprecated as of November 17, 2020.*
+*The previous incarnation of this project is [where.js](https://github.com/dfkaye/where.js) created in 2014, now deprecated as of {{<rawhtml>}}<time datetime="2020-11-17">November 17, 2020</time>{{</rawhtml>}}.*
 
 ## Data-driven tests
 

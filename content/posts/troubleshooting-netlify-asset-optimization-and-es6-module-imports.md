@@ -14,7 +14,7 @@ tags:
 
 ## My Hugo blog's JavaScript demos stopped working
 
-I use [Netlify](https://www.netlify.com) to host my [Hugo](https://gohugo.io) blog. On <time>September 7, 2020</time>, I discovered that two demos on my site that use ES2015 module imports no longer worked. 
+I use [Netlify](https://www.netlify.com) to host my [Hugo](https://gohugo.io) blog. On {{<rawhtml>}}<time datetime="2020-09-07">September 7, 2020</time>{{</rawhtml>}}, I discovered that two demos on my site that use ES2015 module imports no longer worked. 
 
 <!--more-->
 

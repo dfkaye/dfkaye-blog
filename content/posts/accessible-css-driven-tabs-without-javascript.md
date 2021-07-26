@@ -211,13 +211,13 @@ Using the `aria-hidden="true"` attribute on the label elements which have the `r
 
 Another thing, I *originally* omitted the `role="tablist"` attribute on the parent demo element. Adding it had no effect in Windows 10 Narrator, which I assume is due to the element not being a list (`<ul>` or `<ol>`).
 
-## *Update September 1, 2020: Replacing the media query with flex-box*
+## *Update {{<rawhtml>}}<time datetime="2020-09-01">September 1, 2020</time>{{</rawhtml>}}: Replacing the media query with flex-box*
 
 On CSS-tricks, Geoffrey Crofte has posted a solution for responsive card elements using flex-box instead of media queries, [How to Make a Media Query-less Card Component](https://css-tricks.com/how-to-make-a-media-query-less-card-component/). After reading that, I modified the CSS and markup in the Tabs demo to work the same way.
 
 In the new layout, the tabs grow or shrink in size relative to each other within the flex-box container width. Given a narrow window, there may be three tabs above three other tabs, all of equal width, whereas in a wider window, there may be five tabs above one tab which will stretch to the width of the container.
 
-## *Update September 8, 2020: Apply `aria-roledescription="tab"` to each radio element
+## *Update {{<rawhtml>}}<time datetime="2020-09-08">September 8, 2020</time>{{</rawhtml>}}: Apply `aria-roledescription="tab"` to each radio element
 
 For a better screen reader experience, we can change the role announcement from "radio" to "tab" by adding `aria-roledescription="tab"` attributes to each radio element.
 
@@ -257,7 +257,7 @@ For more information about this attribute, read Leonie Watson's post from 2018 a
 Before we celebrate too much, keep in mind this advice from Sara Soueidan:
 
 {{< rawhtml >}}
-<blockquote class="twitter-tweet"><p lang="en" dir="ltr">CSS-only interactive widgets are, most of the times, inaccessible hacks. JavaScript is *required* to build certain components accessibly. Please don’t advocate CSS-only alternatives when JS is needed for accessible state/functionality. The Web has enough inaccessible UIs as is.</p>&mdash; Sara Soueidan (@SaraSoueidan) <a href="https://twitter.com/SaraSoueidan/status/1167079557402386435?ref_src=twsrc%5Etfw">August 29, 2019</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">CSS-only interactive widgets are, most of the times, inaccessible hacks. JavaScript is *required* to build certain components accessibly. Please don’t advocate CSS-only alternatives when JS is needed for accessible state/functionality. The Web has enough inaccessible UIs as is.</p>&mdash; Sara Soueidan (@SaraSoueidan) <a href="https://twitter.com/SaraSoueidan/status/1167079557402386435?ref_src=twsrc%5Etfw"><time datetime="2019-08-29">August 29, 2019</time></a></blockquote>
 <!--
 Put script src in the scripts list to pass strict CSP:
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8" nonce="{"></script>

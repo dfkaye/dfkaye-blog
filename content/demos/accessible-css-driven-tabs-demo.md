@@ -29,7 +29,7 @@ styles:
   <li><em>Screen readers:</em> Only tested with Windows Narrator.</li>
   <li>Navigate tabs by the <kbd>ArrowDown</kbd> and<kbd>ArrowUp</kbd> keys.
     <del>each requires 2 presses to hop from radio to radio.</del></li>
-  <li><em><time>August 22, 2020, 4 PM PDT</time></em>: Arrow navigation between tabs is fixed by setting labels as
+  <li>{{<rawhtml>}}<em><time datetime="2020-08-22">August 22, 2020, 4 PM PDT</time></em>{{</rawhtml>}}: Arrow navigation between tabs is fixed by setting labels as
     aria-hidden, and aria-labelledby on each radio instead.</li>
   <li>To select a tab, press <kbd>Enter</kbd> or <kbd>Space</kbd>.</li>
   <li>To focus on content of a <strong>selected</strong> tab, press the <kbd>Tab</kbd> key once.</li>
