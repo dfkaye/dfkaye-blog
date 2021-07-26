@@ -10,7 +10,8 @@ tags:
 - "TDD"
 - "Accessibility"
 - "Safety"
-- "vanilla JavaScript"
+- "Vanilla"
+- "JavaScript"
 
 ---
 

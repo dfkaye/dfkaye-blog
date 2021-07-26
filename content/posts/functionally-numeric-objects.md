@@ -4,7 +4,7 @@ date: 2020-11-22T14:07:36-08:00
 lastmod: 2020-11-22T14:07:36-08:00
 description: "Quick note to answer, what is a functionally numeric object and how would you create and use one?"
 tags:
-- "functionally numeric"
+- "Functionally numeric"
 - "JavaScript"
 - "Testing"
 

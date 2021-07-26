@@ -7,8 +7,9 @@ description: "Test suite for an Accessible Calculator supporting keyboard naviga
 tags:
 - "SAM pattern"
 - "Accessibility"
-- "vanilla JavaScript"
-- "dependency injection"
+- "JavaScript"
+- "Vanilla"
+- "Dependency injection"
 
 # load styles and scripts in strict order
 

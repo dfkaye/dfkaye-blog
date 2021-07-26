@@ -5,10 +5,10 @@ lastmod: 2021-06-02T16:11:08-07:00
 description: In a *future* post, I argue that the `Function()` constructor in JavaScript can be used for good, solving specific problems. Preparatory to that, in *this* post, I examine the `eval()` function and the `Function()` constructor to highlight their similarities as well as their subtle differences, and how to use them without problems.
 tags:
 - "JavaScript"
-- "eval"
-- "Function"
-- "metaprogramming"
-- "performance"
+- "eval()"
+- "Function()"
+- "Metaprogramming"
+- "Performance"
 ---
 
 *First published {{<rawhtml>}}<time datetime="2014-03-14">March 14, 2014</time>{{</rawhtml>}} on the hexo+github blog. I have cleaned this version a little bit, but left older browser references and ES5 code practices in place.*
@@ -17,7 +17,7 @@ tags:
 
 ## Good or bad?
 
-As JavaScript developers we have long been warned about using the functions 1. `eval()`, 2. `Function()`, 3. `setInterval()` and 4. `setTimeout()`, most famously by [Douglas Crockford](https://crockford.com/code.html) (*scroll to the bottom*).
+As JavaScript developers we have long been warned about using the functions `eval()`, `Function()`, `setInterval()`, and `setTimeout()`, most famously by [Douglas Crockford](https://crockford.com/code.html) (*scroll to the bottom*).
 
 Since then several authors have shown safe use cases for the `eval()` function and the `Function()` constructor:
 

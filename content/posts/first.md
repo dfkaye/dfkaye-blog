@@ -9,7 +9,8 @@ tags:
 - "Gatsby"
 - "Static site generator"
 - "SPA"
-- "vanilla JavaScript"
+- "Vanilla"
+- "JavaScript"
 
 
 ---

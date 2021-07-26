@@ -5,7 +5,7 @@ lastmod: 2020-08-31T20:31:41-07:00
 description: "Some differences between JavaScript's Object() and Object.create() functions."
 tags: 
 - "JavaScript"
-- "Object"
+- "Object()"
 - "Prototype"
 
 ---

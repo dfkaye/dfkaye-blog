@@ -4,13 +4,14 @@ date: 2020-12-10T12:23:42-08:00
 lastmod: 2020-12-10T12:37:42-08:00
 description: "How I use Hugo server for test-driving JavaScript development, with hugo server, github, npm, and unpkg."
 tags:
+- "JavaScript"
 - "Testing"
 - "TDD"
 - "Hugo"
 - "Node.js"
-- "unpkg"
-- "github"
-- "npm"
+- "Unpkg.com"
+- "Github.com"
+- "NPM"
 ---
 
 As a fan of test-driven development (TDD), I have been delighted to discover a way to do it directly in web pages served by [Hugo](https://gohugo.io/), while running `hugo server` locally. It's the main reason [why I switched to Hugo](/posts/2019/11/11/first-post-why-hugo/).
@@ -21,12 +22,12 @@ With Hugo, I can even [view test suites running locally](/posts/2020/05/23/switc
 
 ## Links to things we'll depend on
 
-- [Mocha](https://mochajs.org), an easy to use JavaScript test runner.
-- [Chai](https://www.chaijs.com), an assertion library used with Mocha.
+- [Mocha.js](https://mochajs.org), an easy to use JavaScript test runner.
+- [Chai.js](https://www.chaijs.com), an assertion library used with Mocha.
 - [Node.js](https://nodejs.org), a server-side JavaScript environment.
-- [github](https://github.com), site for hosting projects built on `git`, a distributed version control system. 
-- [npm](https://www.npmjs.com), a Node.js package management system.
-- [unpkg](https://unpkg.com), a distribution network service for downloading npm packages.
+- [Github.com](https://github.com), site for hosting projects built on `git`, a distributed version control system. 
+- [NPM](https://www.npmjs.com), a Node.js package management system.
+- [Unpkg.com](https://unpkg.com), a distribution network service for downloading npm packages.
 
 <!--more-->
 

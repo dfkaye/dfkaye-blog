@@ -7,7 +7,7 @@ tags:
 - "Testing"
 - "JavaScript"
 - "Content Security Policy"
-- "Function"
+- "Function()"
 ---
 
 I've been deprecating my old library, [where.js](https://github.com/dfkaye/where.js), this month and replacing it as [wheredoc](https://github.com/dfkaye/wheredoc), which uses ES6 import syntax, which means it always runs in "strict" mode. 

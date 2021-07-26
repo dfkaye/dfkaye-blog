@@ -5,7 +5,8 @@ date: 2020-09-23T14:52:41-07:00
 lastmod: 2021-06-08T12:19:41-07:00
 tags:
 - "CSS"
-- "vanilla JavaScript"
+- "Vanilla"
+- "JavaScript"
 - "Accessibility"
 - "Minimalism"
 

@@ -5,7 +5,7 @@ lastmod: 2020-11-18T21:50:41-07:00
 description: "In this post we examine my safe-object-assign.js module for safely merging an object or array (o) onto another (p) only if p is also an object or array, merging onto a copy of p, and returning the copy; otherwise, just returning the original target, p."
 tags: 
 - "JavaScript"
-- "Object"
+- "Object()"
 - "Assignment"
 - "Safety"
 

@@ -5,7 +5,7 @@ lastmod: 2021-01-02T15:10:54-08:00
 description: "Test suite and Countdown demo for a SAM pattern module that uses dependency injection and factory functions."
 tags:
 - "SAM pattern"
-- "dependency injection"
+- "Dependency injection"
 
 # load styles and scripts in strict order
 

@@ -436,7 +436,7 @@ function isNumeric(a) {
  * @returns {{ x: number, y: number, exponent: number }}
  */
 function expand(x, y) {
-  // Object(value).valueOf() trick for "functionally numeric" objects.
+  // Object(value).valueOf() trick for "Functionally numeric" objects.
 
   x = Object(x).valueOf();
   y = Object(y).valueOf();

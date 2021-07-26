@@ -1,9 +1,10 @@
 ---
-title: "Data-driven testing with wheredoc"
+title: "Data-driven testing with `wheredoc`"
 date: 2020-12-02T14:30:21-08:00
 lastmod: 2020-12-02T14:30:21-08:00
-description: "wheredoc is the ES6-friendly successor to where.js, a JavaScript module for data-driven tests in Mocha, QUnit, tape, and others."
+description: "`wheredoc` is the ES6-friendly successor to where.js, a JavaScript module for data-driven tests in Mocha, QUnit, tape, and others."
 tags:
+- "Data-driven"
 - "Testing"
 - "TDD"
 - "JavaScript"
@@ -38,11 +39,11 @@ describe("username validation", function() {
 
 JP's `using()` function accepts an array of values plus a test callback that runs over each item in the array.
 
-## wheredoc
+## `wheredoc`
 
 My main goal was to remove the need for a lengthy array argument.
 
-With wheredoc, you can use docstring-like data tables in JavaScript tests, [Spock's `where:` block](http://spockframework.org/spock/docs/1.0/data_driven_testing.html) and [Cucumber's Scenario Outline `Examples:` block](https://javapointers.com/automation/cucumber/cucumber-scenario-outline-example/).
+With `wheredoc`, you can use docstring-like data tables in JavaScript tests, [Spock's `where:` block](http://spockframework.org/spock/docs/1.0/data_driven_testing.html) and [Cucumber's Scenario Outline `Examples:` block](https://javapointers.com/automation/cucumber/cucumber-scenario-outline-example/).
 
 The data table can be specified inside a function using a labeled statement followed by a template literal or multiline string.
 
@@ -102,7 +103,7 @@ The `where` function returns an array of scenarios (or corrections to be made if
 
 ## Live Test Suite
 
-You can view a demo of the wheredoc test suite running on this blog at [{{< baseurl >}}/demos/wheredoc-test-suite/]({{< baseurl >}}/demos/wheredoc-test-suite/).
+You can view a demo of the `wheredoc` test suite running on this blog at [{{< baseurl >}}/demos/wheredoc-test-suite/]({{< baseurl >}}/demos/wheredoc-test-suite/).
 
 ## Github repo
 

@@ -5,6 +5,7 @@ lastmod: 2020-11-18T21:37:41-07:00
 description: "Test suite for safe-object-assign.js module."
 tags:
 - "Testing"
+- "Object()"
 - "JavaScript"
 - "Safety"
 
