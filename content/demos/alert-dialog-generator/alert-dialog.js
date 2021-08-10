@@ -430,7 +430,7 @@ window.prompt = async function (title, message) {
 
 // Enable the demo buttons.
 
-document.querySelector("[data-bullpen-alert]")
+document.querySelector("[data-alert-opener]")
   .addEventListener("click", async function (e) {
     var response = await window.alert(
       "This is an alert."
@@ -439,7 +439,7 @@ document.querySelector("[data-bullpen-alert]")
     console.warn(response);
   });
 
-document.querySelector("[data-bullpen-confirm]")
+document.querySelector("[data-confirm-opener]")
   .addEventListener("click", async function (e) {
     var response = await window.confirm(
       "Can you confirm this?"
@@ -448,7 +448,7 @@ document.querySelector("[data-bullpen-confirm]")
     console.warn(response);
   });
 
-document.querySelector("[data-bullpen-prompt]")
+document.querySelector("[data-prompt-opener]")
   .addEventListener("click", async function (e) {
     var response = await window.prompt(
       "Make any changes and save this prompt.",

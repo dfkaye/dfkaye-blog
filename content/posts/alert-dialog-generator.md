@@ -153,13 +153,20 @@ Could do better.
 + The dialog width is percentage-based, rather than fixed unit, so the dialog will expand its width as the viewport width increases. 
 + The JavaScript itself is a single execution that does not export anything. That could be added when the time comes for modular re-use.
 
+## Bugs
+
++ A press on the {{< rawhtml >}}<kbd>Space</kbd>{{< /rawhtml >}} key still scrolls the document body behind the dialog and underlay elements.
++ Opening a dialog from an {{< rawhtml >}}<kbd>Enter</kbd>{{< /rawhtml >}} key press on a button may result in closing the dialog immediately after opening.
+
+These are fixes I leave to the reader (or myself at a later time).
+
 ## Accessibility
 
 OK, but may need improvement.
 
-+ Reasonably accessible on the Windows Navigator screen reader so far.
++ Reasonably accessible on screen readers (Navigator and Jaws) that I've tested so far.
 + Works on Chrome, Edge, and Firefox on Windows 10 laptop.
-+ Works on iOS Safari (however, top-level await not supported as of 10 August 2021).
++ Works on iOS Safari. (Note: top-level `await` is not supported iOS Safari as of {{< rawhtml >}}<time datetime="2021-08-10">10 August 2021</time>{{< /rawhtml >}}).
 
 ## Try it out
 

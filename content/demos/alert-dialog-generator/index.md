@@ -31,7 +31,7 @@ To close a custom modal dialog, you can either press the {{< rawhtml >}}<kbd>Esc
 
 ## Code samples
 
-Use it in an event listener:
+1. Use it in an event listener:
 
 ```js
 document.querySelector("[data-bullpen-prompt]")
@@ -45,7 +45,7 @@ document.querySelector("[data-bullpen-prompt]")
   });
 ```
 
-Use it in the console on this page right now:
+2. Use it in the developer console on this page right now:
 
 ```js
 var response = await window.prompt(
@@ -56,20 +56,15 @@ var response = await window.prompt(
 console.warn(response);
 ```
 
-Try it by choosing one of the following buttons:
+3. Try it by choosing one of the following buttons. (Open the developer console to read the responses.)
 
 {{< rawhtml >}}
 <p>
 <button type="button" data-alert-opener>Open alert()</button>
 <button type="button" data-confirm-opener>Open confirm()</button>
 <button type="button" data-prompt-opener>Open prompt()</button>
-
-<p>
-<button type="button" data-bullpen-alert>Bullpen alert</button>
-<button type="button" data-bullpen-confirm>Bullpen confirm</button>
-<button type="button" data-bullpen-prompt>Bullpen prompt</button>
 {{< /rawhtml >}}
 
-## alert-dialog script
+## The alert-dialog script
 
-View the JavaScript "alert-dialog.js" [source file](./alert-dialog.js);
+Feel free to view the JavaScript "alert-dialog.js" [source file](./alert-dialog.js);
