@@ -8,7 +8,6 @@
  *
  * You are free to copy and modify this file for your purposes, so long as you
  * preserve the copyright notice. Thank you!
- *
  */
 
 /*
@@ -22,7 +21,9 @@
  * code to preserve my understanding as I worked out the solution.
  */
 
-// should close?
+
+// Dialog action event handler calls this to determine whether the user intends
+// to close the dialog.
 function shouldClose({ type, target, code }) {
   var closer = target.getAttribute("data-close-dialog");
 
@@ -42,6 +43,8 @@ function shouldClose({ type, target, code }) {
   return { done: !!done, closer, saveOnEnter, closeOnClick }
 }
 
+// Dialog action event handler calls this to determine what value to set in the
+// response.
 function getValue({ input, prompt, confirm, closer, saveOnEnter, closeOnClick }) {
   // Default return value, depending on modal type, used when user presses 
   // Escape key.
@@ -77,7 +80,8 @@ function getValue({ input, prompt, confirm, closer, saveOnEnter, closeOnClick })
   return value;
 }
 
-// Close it up, remove handlers and nodes.
+// Dialog action event handler calls this to remove the event handlers and the
+// DOM elements.
 function remove({ dialog, underlay, ok, cancel, handler }) {
   ok.removeEventListener("click", handler);
   cancel && (cancel.removeEventListener("click", handler));
@@ -94,19 +98,25 @@ function remove({ dialog, underlay, ok, cancel, handler }) {
 
 // A coroutine generator, from http://syzygy.st/javascript-coroutines/,
 // which sadly no longer exists. This version is copied from Adam Boduch,
-// "JavaScript Concurrency", Pavkt Publishing, 2015, p. 86.
+// "JavaScript Concurrency", Packt Publishing, 2015, p. 86.
 function co(G, data) {
   var g = G(data);
   g.next();
   return (data) => g.next(data);
 }
 
-// A template string helper for style attributes.
+// A template string helper for the dialog elements' style attributes.
 function flat(s) {
   return String(s).replace(/\n/g, function () { return "" });
 }
 
-/* Dialog parts. */
+/*
+  Dialog parts.
+
+  These factories could be reduced to a single function that accepts a node
+  name and set of attributes but being explicit let me get this part done more
+  quickly so I could experiment with the interactive logic.
+  */
 
 function Actions() {
   var actions = document.createElement("div");
@@ -123,27 +133,20 @@ function Actions() {
 function Button(label) {
   var button = document.createElement("button");
 
-  var bgcolor = label == "OK"
-    ? "blue"
-    : "white";
-
-  var border = label == "OK"
-    ? 0
-    : "1px solid black";
-
-  var color = label == "OK"
-    ? "white"
-    : "black";
-
-  label == "OK" && (button.setAttribute("value", label));
-
+  button.setAttribute("value", label);
   button.setAttribute("data-close-dialog", label);
   button.setAttribute("type", "button");
   button.setAttribute("style", flat(`
-    background-color: ${bgcolor};
-    border: ${border};
+    background-color: ${label == "OK"
+      ? "blue"
+      : "white"};
+    border: ${label == "OK"
+      ? 0
+      : "1px solid black"};
     border-radius: .35rem;
-    color: ${color};
+    color: ${label == "OK"
+      ? "white"
+      : "black"};
     font-size: 16px;
     margin: 1em .5em;
     padding: .25em .5em;
@@ -208,21 +211,25 @@ function Underlay() {
   return underlay;
 }
 
-// Since the dialog is "modal" we use the name Modal for the dialog factory.
-// Follow the numbered comments for the construction sequence logic.
+/*
+ * This factory creates the dialog and attaches it to the DOM.
+ *
+ * Since the dialog is "modal" we use the name Modal for the dialog factory.
+ * 
+ * You can follow the numbered comments for the construction sequence logic.
+ */
 function Modal({ type, message, defaultValue }) {
 
   // 1. declare our return value first.
 
   var response = { done: false };
 
-  // 2. Create our dialog from parts.
+  // 2. Create our dialog element and populate it with various parts.
 
   // We'll use these flags for conditional layout logic.
   var prompt = /^prompt$/.test(type);
   var confirm = /^confirm$/.test(type);
 
-  // Container.
   var dialog = document.createElement("dialog");
 
   dialog.setAttribute("role", "alertdialog");
@@ -377,7 +384,7 @@ function Modal({ type, message, defaultValue }) {
   return { response, wait: new Promise(init) };
 }
 
-// API foralert, confirm, and prompt functions.
+// API for alert, confirm, and prompt functions.
 
 async function alert(message = "") {
   var { wait, response } = Modal({ type: "alert", message });

@@ -1,12 +1,14 @@
 ---
-title: "Alert-Dialog Generator"
+title: "Demo: Alert-Dialog Polyfill"
 date: 2021-08-06T09:36:29-07:00
-lastmod: 2021-08-06T09:36:29-07:00
-description: "Polyfill the window alert(), confirm(), prompt() methods in case Google really decides to remove them all and break the web."
+lastmod: 2021-08-11T13:05:29-07:00
+description: "Demo of a vanilla JavaScript polyfill for the browser's modal dialog methods alert(), confirm(), and prompt(), in case Google really removes them and breaks the web."
 tags:
 - "Alert-Dialog"
 - "Accessibility"
 - "Polyfill"
+- "JavaScript"
+- "Vanilla"
 
 # load styles and scripts in strict order
 
@@ -17,17 +19,19 @@ scripts:
 - ./alert-dialog.js
 ---
 
-## Async modal dialogs
+## Summary
 
-Summary: This page uses a custom modal dialog with async/await syntax and a generator function to return responses to awaited Promises. 
+The modal dialog polyfill uses `async/await` syntax and a `generator` function to return responses to awaited `Promises`. For more detail, [consult this post](/posts/2021/08/10/alert-dialog-generator/)
+
+## Results
 
 + Reasonably accessible on screen readers, but I've tested only with Windows Navigator and Jaws so far.
-+ Works on Chrome and Firefox on Windows 10 laptop.
-+ Works on iOS Safari (iPhone 7-plus; however, top-level `await` is not supported), as of 10 August 2021.
++ Tested on Chrome, Edge, Firefox, and Falkon on a Windows 10 laptop.
++ Tested on iOS Safari (iPhone 7-plus; however, top-level `await` is not supported), as of {{< rawhtml >}}<time datetime="2021-08-10">10 August 2021</time>{{< /rawhtml >}}.
 
 ## Accessibility
 
-To close a custom modal dialog, you can either press the {{< rawhtml >}}<kbd>Escape</kbd>{{< /rawhtml >}} key, or {{< rawhtml >}}<kbd>Tab</kbd>{{< /rawhtml >}} over to the OK button and press the button or the {{< rawhtml >}}<kbd>Enter</kbd>{{< /rawhtml >}} key.
+To close a custom modal dialog, you can either press the {{< rawhtml >}}<kbd>Escape</kbd>{{< /rawhtml >}} key, or press {{< rawhtml >}}<kbd>Tab</kbd>{{< /rawhtml >}} to the `OK` button and press the button or the {{< rawhtml >}}<kbd>Enter</kbd>{{< /rawhtml >}} key.
 
 ## Code samples
 
@@ -56,7 +60,7 @@ var response = await window.prompt(
 console.warn(response);
 ```
 
-3. Try it by choosing one of the following buttons. (Open the developer console to read the responses.)
+3. Try one of the following buttons. (Open the developer console to read the responses.)
 
 {{< rawhtml >}}
 <p>
@@ -67,4 +71,4 @@ console.warn(response);
 
 ## The alert-dialog script
 
-Feel free to view the JavaScript "alert-dialog.js" [source file](./alert-dialog.js);
+View the JavaScript source file, [alert-dialog.js](./alert-dialog.js).
