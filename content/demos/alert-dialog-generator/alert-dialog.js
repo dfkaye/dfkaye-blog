@@ -313,7 +313,7 @@ function Modal({ type, message, defaultValue }) {
 
   /*
     Second approach modifies the first, changing the logic in the promise
-    initializer form polling timeouts to attaching the promise resolver
+    initializer from polling timeouts to attaching the promise resolver
     function directly to the response object, and using a generator function,
     send(), which is called when a dialog response value is ready. When send()
     receives a completed response object, it calls the resolve() method on the
