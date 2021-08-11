@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "DFKaye.com"
 date: 2020-06-12T14:10:43-07:00
 lastmod: 2020-09-08T16:17:43-07:00
 description: "dfkaye blog home"
@@ -14,6 +14,12 @@ This is my Home page.
 At content/_index.md, using layouts/index.html.
 -->
 
+{{< latest >}}
+
+{{< latestdemo >}}
+
+## What's here
+
 You have found David Kaye's blog, focused almost entirely on front-end web development topics. Blog is built with [Hugo](https://gohugo.io).
 
 I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on [github](http://dfkaye.github.io/) using [hexo](https://github.com/hexojs/hexo).
@@ -24,8 +30,6 @@ Some of that content will be posted here eventually, along with updated takes.
 + [Blog posts](/posts/)
 + [Demos](/demos/)
 
-
-
 ## RSS
 
 Site now has two content feeds, listing up to seven of the latest seven items:
@@ -35,8 +39,11 @@ Site now has two content feeds, listing up to seven of the latest seven items:
 
 The default feed lists everything but only with descriptions, at [/index.xml](/index.xml).
 
+## To do: A lot
 
-## To Do: Setup
+This site is still a work in progress as you can tell from the rest of the headings.
+
+## To do: Setup
 
 + ~~better code snippet styles (not one element per line but well-framed and readable)~~ - *done*
   - *Surprise!* To support this on Netlify, see https://wilks.co/articles/custom-hugo-version-with-netlify/
@@ -53,7 +60,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + mermaid diagrams
 + replace the custom attributes with data-prefixed attributes.
 
-## To Do: Posts
+## To do: Posts
 
 + ~~"we threw out the rule book"~~ -- *done*
 + ~~"custom attributes are fast, good, and cheap"~~ - *done*
@@ -99,7 +106,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + post on [Behavioral programming](https://lmatteis.github.io/react-behavioral/)
 
 
-## To Do: Pages
+## To do: Pages
 
 + add **R&eacute;sum&eacute;** page with @page and @print stylesheets
 + a **Tools I Use** page (see https://benjamincongdon.me/tools example)
@@ -107,7 +114,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
 + list of engineering sites I might recommend
 + monthly list of dev-links - see https://github.com/dfkaye/dev-links/, with followup to https://twitter.com/dfkaye/status/1288155766092738561
 
-## To Do: demos
+## To do: demos
 
 + ~~CSS tabs demo and post~~ - *done*
 + resize attribute polyfill (textarea, div, overflow: hidden)
@@ -131,7 +138,7 @@ The default feed lists everything but only with descriptions, at [/index.xml](/i
   + original inspiration, spock expect+where tables: http://spockframework.org/spock/docs/1.0/data_driven_testing.html
 
 
-## To Do: Screenreader support for MathML
+## To do: Screenreader support for MathML
 
 I've used Narrator on Windows 10, and have been trying out [JAWS](https://support.freedomscientific.com/Downloads/JAWS) instead for better browser-based support. So far I have not been successful reading the following MathML fragments as math with either screen reader.
 

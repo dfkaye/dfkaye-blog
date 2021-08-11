@@ -1,0 +1,19 @@
+{{ range first 1 (where site.Pages "Type" "in" "posts") }}
+<h2>Latest post</h2>
+<ul page-list>
+  <li page-item="post">
+    <h3 page-heading>
+      <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+    </h3>
+    <aside>
+      {{ $date := .Date.Format "2006-01-02T15:04:05Z0700" }}
+      <time datetime="{{ $date }}" pubdate>
+        {{ .Date.Format "January 2, 2006" }}
+      </time>
+    </aside>
+    <p page-description>
+      <i>{{ .Description }}</i>
+    </p>
+  </li>
+</ul>
+{{ end }}
