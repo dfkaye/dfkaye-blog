@@ -336,7 +336,6 @@ function Modal({ type, message, defaultValue }) {
   }
 
   var send = co(function* G(response, data) {
-    console.log(response)
     while (true) {
       data = yield;
       Object.assign(response, data);
@@ -443,7 +442,7 @@ document.querySelector("[data-alert-opener]")
       "This is an alert."
     );
 
-    console.warn(response);
+    console.log(response);
   });
 
 document.querySelector("[data-confirm-opener]")
@@ -452,7 +451,7 @@ document.querySelector("[data-confirm-opener]")
       "Can you confirm this?"
     );
 
-    console.warn(response);
+    console.log(response);
   });
 
 document.querySelector("[data-prompt-opener]")
@@ -462,7 +461,7 @@ document.querySelector("[data-prompt-opener]")
       "Some default text."
     );
 
-    console.warn(response);
+    console.log(response);
   });
 
 // Show alert() on load.
