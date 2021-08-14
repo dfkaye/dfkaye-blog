@@ -97,7 +97,7 @@ function remove({ dialog, underlay, ok, cancel, handler }) {
 }
 
 // A coroutine generator, from http://syzygy.st/javascript-coroutines/,
-// which sadly no longer exists. This version is copied from Adam Boduch,
+// which sadly no longer exists. This version is modified from Adam Boduch,
 // "JavaScript Concurrency", Packt Publishing, 2015, p. 86.
 function co(G, data) {
   var g = G(data);

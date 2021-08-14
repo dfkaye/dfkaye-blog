@@ -1,7 +1,7 @@
 ---
 title: "Alert-Dialog Generator"
 date: 2021-08-10T11:27:18-07:00
-lastmod: 2021-08-11T13:05:18-07:00
+lastmod: 2021-08-14T10:14:18-07:00
 description: "A vanilla JavaScript polyfill for the browser dialog methods alert(), confirm(), prompt(), in case Google really decides to remove them all and break the web."
 tags:
 - "Alert-Dialog"
@@ -25,9 +25,11 @@ I figured creating a polyfill couldn't be *that* hard, but allowed that it *migh
 
 ## First problem: Emulating synchronous blocking behavior
 
-All three native methods are synchronous, meaning they block other processing while displaying the modal dialogs. (There may an exception to this with respect to the `alert()` method in some browsers.)
+I tried several approaches that would block execution. What follows is the most successful approach so far.
 
-So, after getting the dialog open-and-display logic working, I tried several approaches that would block execution at the point of these calls. What follows is the most successful approach.
+All three native methods are synchronous, meaning they block other processing while displaying the modal dialogs. (There may an exception to this for certain methods in some browsers.)
+
+So, after getting the dialog open-and-display logic working, I started by looking at how to make the following into a blocking call.
 
 ```js
 var answer = window.confirm("Yes?");
@@ -47,7 +49,7 @@ async function prompt(title, defaultValue = "") {
 }
 ```
 
-And to get that Promise, we have to return an *unfulfilled* Promise from the dialog opener, along with the response object we will update when a user's response value is determined.
+But to get the value from the Promise, we have to return it *unfulfilled* from the dialog opener (we'll find out why in the next section), along with the response object that we update when a user's response value is determined.
 
 ```js
 var response = { done: false };
@@ -60,12 +62,14 @@ return {
 };
 ```
 
-The `wait` Promise is initialized by a function that attaches a reference to the `resolve` function that a Promise calls on itself to finish processing.
+In the dialog opener, the `wait` Promise is initialized by a function that attaches a reference to the `resolve` function that a Promise calls on itself to finish processing.
 
 ```js
 function init(resolve, reject) {
   response.resolve = resolve;
 }
+
+var wait = new Promise(init);
 ```
 
 ## Second problem: Detecting the response update
@@ -78,11 +82,11 @@ I then tried using a `generator function` because generators use a *suspend-and-
 
 So, rather then checking on the state of the response, I let the dialog's action event handler call the generator and pass the response to it when the user has decided to close the dialog.
 
-In the follwing snippet, I used a `co()` function (not my own as you'll read in the code comment) that accepts a generator, initializes it, advances it once with `gen.next()`, then returns a function `send` that allows the `keyup` and `click` event handler inside the dialog to update the `response` object, then call the `resolve()` function directly.
+In the following snippet, I used a `co()` function (not my own as you'll read in the code comment) that accepts a generator, initializes it, advances it once with `gen.next()`, then returns a function `send` that allows the `keyup` and `click` event handler inside the dialog to update the `response` object, then call the `resolve()` function directly.
 
 ```js
 // A coroutine generator, from http://syzygy.st/javascript-coroutines/,
-// which sadly no longer exists. This version is copied from Adam Boduch,
+// which sadly no longer exists. This version is modified from Adam Boduch,
 // "JavaScript Concurrency", Packt Publishing, 2015, p. 86.
 function co(G, options) {
   var g = G(options);
@@ -144,6 +148,13 @@ console.log(answer); // true or false
 Luckily we don't need to use `await` if we don't need to capture that value, so `alert() and window.alert()` should just work.
 
 And luckily, this solution is *only needed in the evergreen browsers* that may remove the modal methods.
+
+However, the result is *not truly blocking behavior*. I used this function the console and found that while a native alert pauses the entire thread (`setTimeout` is not called), the polyfill does not. Try it:
+
+```js
+setInterval(() => console.log(Date.now()), 1000);
+alert("stop");
+```
 
 ## Aesthetics
 
