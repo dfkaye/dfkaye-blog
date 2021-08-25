@@ -1,4 +1,4 @@
-{{ range first 1 (where site.Pages "Type" "in" "posts") }}
+{{ range first 1 (where site.RegularPages "Type" "in" "posts") }}
 <h2>Latest post</h2>
 <ul page-list>
   <li page-item="post">
