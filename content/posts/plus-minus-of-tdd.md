@@ -2,7 +2,7 @@
 title: "The Plus and Minus of TDD"
 date: 2021-07-19T10:30:55-07:00
 lastmod: 2021-07-19T10:30:55-07:00
-description: "One commenter’s great response to Cedric Beust on the pro's and cons of test-driven development."
+description: "One commenter’s great response to Cedric Beust on the pro's and cons of test-driven development. I posted this previously on the Wordpress blog in 2015 (and in a gist in 2013)."
 tags:
 - "Testing"
 - "TDD"
@@ -14,8 +14,6 @@ The test below is not my own; it is copied from a comment by [Talbott Crowell](h
 Cedric's post, [Agile people still don’t get it](https://www.beust.com/weblog/agile-people-still-dont-get-it/), dates back to {{<rawhtml>}}<time datetime="2006-06-07">June 7, 2006</time>{{</rawhtml>}}, and contains hard words for Agilists pushing TDD without acknowledging any associated costs.
 
 [Talbott's comment](https://www.beust.com/weblog/agile-people-still-dont-get-it/#comment-5569) dates to {{<rawhtml>}}<time datetime="2010-08-23">August 23, 2010</time>{{</rawhtml>}}, two days after the post was picked up on reddit.com. Talbott lists some advantages and disadvantages of TDD.
-
-*I posted this previously on the wordpress blog in 2015 (and in a gist in 2013).*
 
 <!--more-->
 

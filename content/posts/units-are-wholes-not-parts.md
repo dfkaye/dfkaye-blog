@@ -2,7 +2,7 @@
 title: "Units Are Wholes, Not Parts"
 date: 2021-07-19T11:15:30-07:00
 lastmod: 2021-07-19T11:15:30-07:00
-description: "Unit testing is not about making parts to be fitted together, but making wholes that work together."
+description: "Unit testing is not about making parts to be fitted together, but making wholes that work together. Re-post of my August 19, 2015 Wordpress blog."
 tags:
 - "Testing"
 - "TDD"
