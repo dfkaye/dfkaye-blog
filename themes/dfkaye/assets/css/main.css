@@ -171,7 +171,7 @@ h2, h3 {
 
 /* This pads the content - p tags, li, etc. */
 [page-title] ~ * {
-  margin: 1em 0;
+  margin: 1.25em 0 .75em;
 }
 
 /* quoted text */
@@ -181,8 +181,7 @@ h2, h3 {
   background-color:rgba(24, 143, 255, 0.05);
   border-left: var(--fence-border-width) solid rgba(22, 22, 254, .5);
   font-style: italic;
-  margin: 2em 0;
-  padding: .5em 1em;
+  padding: 1.5em 1em;
 }
 
 q {
@@ -268,6 +267,7 @@ pre code {
 .highlight {
   background-color: var(--highlight-background-color);
   border-left: var(--fence-border-width) solid var(--fence-border-color);
+  margin: 2em 0;
 }
 
 .highlight pre {
