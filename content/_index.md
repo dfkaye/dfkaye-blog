@@ -1,8 +1,8 @@
 ---
-title: "DFKaye.com"
+title: "Home page"
 date: 2020-06-12T14:10:43-07:00
 lastmod: 2020-09-08T16:17:43-07:00
-description: "dfkaye blog home"
+description: "You have found the blog home of David Kaye."
 tags:
 - "dfkaye"
 
@@ -14,13 +14,13 @@ This is my Home page.
 At content/_index.md, using layouts/index.html.
 -->
 
-{{< latest >}}
+{{< latest type="post">}}
 
-{{< latestdemo >}}
+{{< latest type="demo">}}
 
 ## What's here
 
-You have found David Kaye's blog, focused almost entirely on front-end web development topics. Blog is built with [Hugo](https://gohugo.io).
+I focus almost entirely on front-end web development topics on this blog which I have built with [Hugo](https://gohugo.io).
 
 I have blogged previously with [wordpress](https://dfkaye.wordpress.com/) and on [github](http://dfkaye.github.io/) using [hexo](https://github.com/hexojs/hexo).
 
@@ -64,8 +64,8 @@ This site is still a work in progress as you can tell from the rest of the headi
 
 + ~~"we threw out the rule book"~~ -- *done*
 + ~~"custom attributes are fast, good, and cheap"~~ - *done*
-  - traffic signal states
-  - factoring BEM out
+  - ~~traffic signal states~~
+  - ~~factoring BEM out~~
 + ~~post about "Making the Switch to Hugo"~~ -- *done*
 + ~~post about Hugo resources~~ -- *done*
 + post about post prev next and CSS content ISO values
@@ -94,6 +94,7 @@ This site is still a work in progress as you can tell from the rest of the headi
   - avoid extending anything
   - avoid npm (left-pad, is-promise, core-js)
   - package-lock makes everything worse
++ post about **form states are sudoku states are UI states**
 + post about **error-first design**
   - the tweet, https://twitter.com/dfkaye/status/999332316492120064
 + copy content from the wordpress site

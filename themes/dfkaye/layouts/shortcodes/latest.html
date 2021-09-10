@@ -1,5 +1,15 @@
-{{ range first 1 (where site.RegularPages "Type" "in" "posts") }}
-<h2>Latest post</h2>
+<!-- Print page-item link to Latest post, demo, etc. -->
+<!-- jump-heading -->
+{{ $type := or (.Get "type") "post" }}
+{{ $pages := "posts" }}
+
+{{ if eq $type "demo" }}
+{{ $pages = "demos"}}
+{{ else }}
+{{ end }}
+
+{{ range first 1 (where site.Pages "Type" "in" $pages) }}
+<h2>Latest {{$type}}</h2>
 <ul page-list>
   <li page-item="post">
     <h3 page-heading>
