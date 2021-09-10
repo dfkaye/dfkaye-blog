@@ -2,7 +2,7 @@
 title: "About Me"
 date: 2020-06-12T14:10:43-07:00
 lastmod: 2020-09-05T00:00:43-07:00
-description: "Some things about the dfkaye site author, David Kaye."
+description: "Some things about your dfkaye.com site author, David Kaye."
 tags:
 - "dfkaye"
 
@@ -18,7 +18,7 @@ Using `layouts/_default/single.html`
 <h2 author-status>I am currently available for hire.</h2>
 {{< /rawhtml >}}
 
-I have been working on the web since 1997, initially as a tester, then as a front-end developer/engineer since 2000. My roles have broadened considerably during that time, from individual contributor to project lead and mentoring other developers.
+I have been working on the web since 1997, initially as a tester, then as a front-end developer/engineer since 2000. My roles have broadened considerably during that time, from individual contributor to project lead to mentor.
 
 My web development philosophy centers on user safety, accessibility, and test-driven development. I prefer to keep things clean and documented for the next person.
 
@@ -30,10 +30,10 @@ Find me as "dfkaye" on [twitter](https://twitter.com/dfkaye) and [github](http:/
 
 You can also email me at dfkaye@yahoo.com.
 
-## Code, Demos
+## Code! Demos!
 
 You can get a flavor for how I think by perusing my [gists](https://gist.github.com/dfkaye) which tend to dwell on smaller code experiments.
 
-You can also see some working demos I've started making at [code pen](https://codepen.io/dfkaye/pens/).
+I have several running test suites and [demos](/demos) on this site.
 
-I intend to pull many of those in to this site, given world enough and time.
+You can visit other working demos I have on [code pen](https://codepen.io/dfkaye/pens/). I intend to pull many of those in to this site, given world enough and time.

@@ -1,8 +1,8 @@
 ---
-title: "Test Suite: SAM pattern Calculator app"
+title: "Test Suite: SAM pattern Calculator demo"
 date: 2021-01-28T14:38:27-08:00
 lastmod: 2021-07-14T21:20:27-08:00
-description: "Test suite for an Accessible Calculator supporting keyboard navigation and input, built with CSS grid, ARIA alert, and vanilla JavaScript using the SAM pattern and dependency injection."
+description: "Test suite and demo for an Accessible Calculator supporting keyboard navigation and input, built with CSS grid, ARIA alert, and vanilla JavaScript, using the SAM pattern and dependency injection."
 
 tags:
 - "SAM pattern"
