@@ -1,7 +1,7 @@
 ---
 title: "Data-driven testing with `wheredoc`"
 date: 2020-12-02T14:30:21-08:00
-lastmod: 2020-12-02T14:30:21-08:00
+lastmod: 2021-10-10T15:27:21-08:00
 description: "`wheredoc` is the ES6-friendly successor to where.js, a JavaScript module for data-driven tests in Mocha, QUnit, tape, and others."
 tags:
 - "Data-driven"
@@ -17,7 +17,7 @@ tags:
 
 ## Data-driven tests
 
-The intial inspiration comes from a post by [JP Castro](https://twitter.com/jphsf) from 2012, [DRYing Up Your JavaScript Jasmine Tests With the Data Provider Pattern](http://blog.jphpsf.com/2012/08/30/drying-up-your-javascript-jasmine-tests).
+The initial inspiration comes from a post by [JP Castro](https://twitter.com/jphsf) from 2012, [DRYing Up Your JavaScript Jasmine Tests With the Data Provider Pattern](http://blog.jphpsf.com/2012/08/30/drying-up-your-javascript-jasmine-tests).
 
 Here's JP's example with a custom `using()` function that wraps each Jasmine `it()` test.
 
