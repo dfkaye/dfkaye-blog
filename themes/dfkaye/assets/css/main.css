@@ -177,7 +177,8 @@ h2, h3 {
 /* quoted text */
 
 /* could use more polish here */
-* ~ blockquote {
+/* * ~ blockquote { */
+blockquote {
   background-color:rgba(24, 143, 255, 0.05);
   border-left: var(--fence-border-width) solid rgba(22, 22, 254, .5);
   font-style: italic;

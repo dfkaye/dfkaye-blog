@@ -59,6 +59,7 @@ This site is still a work in progress as you can tell from the rest of the headi
   - *Do not put your theme into config.toml, put it all in a css template in assets/css as hugo variables, and minify the result.*
 + mermaid diagrams
 + replace the custom attributes with data-prefixed attributes.
++ replace `<pre><code>output</code></pre>` with `<samp>output</samp>`.
 
 ## To do: Posts
 
@@ -105,7 +106,7 @@ This site is still a work in progress as you can tell from the rest of the headi
   - see JJ's original article "No More MVC Frameworks" at https://www.infoq.com/articles/no-more-mvc-frameworks/
 + escaping hugo shortcodes, https://liatas.com/posts/escaping-hugo-shortcodes/
 + post on [Behavioral programming](https://lmatteis.github.io/react-behavioral/)
-
++ > Markdown is for *notes*, HTML is for *articles*.
 
 ## To do: Pages
 
