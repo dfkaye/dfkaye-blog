@@ -198,7 +198,7 @@ Or just run the initial conversion that started off this post.
 
 ## Better solution
 
-Meanwhile, in February 2020 on StackOverflow, I found [another solution]((https://stackoverflow.com/questions/1726630/formatting-a-number-with-exactly-two-decimals-in-javascript/1726662#1726662)) that uses the built-in `Number.toLocaleString()` method without string hacking.
+Meanwhile, in February 2020 on StackOverflow, I found [another solution](https://stackoverflow.com/questions/1726630/formatting-a-number-with-exactly-two-decimals-in-javascript/1726662#1726662) that uses the built-in `Number.toLocaleString()` method without string hacking.
 
 ```js
 (1.005).toFixed(2) == "1.01" || (function() {
