@@ -123,7 +123,6 @@ function Actions() {
 
   actions.setAttribute("data-dialogue-actions", "");
   actions.setAttribute("style", flat(`
-    padding: 1em;
     text-align:right;
   `));
 
@@ -148,7 +147,7 @@ function Button(label) {
       ? "white"
       : "black"};
     font-size: 16px;
-    margin: 1em .5em;
+    margin-left: .25em;
     padding: .25em .5em;
   `));
   button.textContent = label;
@@ -242,9 +241,11 @@ function Modal({ type, message, defaultValue }) {
     padding: 1em;
     position: fixed;
     /* pseudo-responsive settings *\/
-    left: 10%;
-    top: 10%;
-    width: 80%;
+    --width: 412px;
+    --margin: auto calc(50% - calc(var(--width) / 2));
+    margin: var(--margin, auto 10%);
+    top: 15%;
+    width: var(--width, 80%);
     z-index: 100;
   `.replace(/\n/g, function () { return "" }));
 
