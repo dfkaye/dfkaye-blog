@@ -4,8 +4,8 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>{{ .Page.Title }} | {{ .Site.Title }}</title>
   <meta name="author" content="{{ .Site.Author.Name }}">
-  <meta name="description" content="{{ .Scratch.Get "pageDescription" }}">
-  <meta name="keywords" content="{{ if .Page.Params.Tags }}{{ delimit .Page.Params.Tags ", " }}{{ end}}">
+  <meta name="description" content="{{ .Scratch.Get " pageDescription" }}">
+  <meta name="keywords" content="{{ if .Page.Params.Tags }}{{ delimit .Page.Params.Tags " , " }}{{ end}}">
   <meta name="robots" content="index, follow">
 
   {{- partial "content-security-policy.html" . -}}
@@ -21,16 +21,16 @@
   <!-- Open Graph -->
   <meta property="og:type" content="article">
   <meta property="og:title" content="{{ .Page.Title }}">
-  <meta property="og:description" content="{{ .Scratch.Get "pageDescription" }}">
-  <meta property="og:image" content="{{ .Scratch.Get "seoImage" }}">
+  <meta property="og:description" content="{{ .Scratch.Get " pageDescription" }}">
+  <meta property="og:image" content="{{ .Scratch.Get " seoImage" }}">
   <meta property="og:url" content="{{ .Page.Permalink }}">
   <meta property="og:site_name" content="{{ .Site.Title }}">
   <meta name="twitter:card" content="summary">
   <meta name="twitter:creator" content="David F. Kaye">
-  <meta name="twitter:image" content="{{ .Scratch.Get "seoImage" }}">
-  <meta name=”twitter:title” content="{{ .Page.Title }}">
+  <meta name="twitter:image" content="{{ .Scratch.Get " seoImage" }}">
+  <meta name="twitter:title" content="{{ .Page.Title }}">
   <meta name="twitter:url" content="{{ .Page.Permalink }}">
-  <meta name=”twitter:description” content="{{ .Scratch.Get "pageDescription" }}">
+  <meta name="twitter:description" content="{{ .Scratch.Get " pageDescription" }}">
 
   <link rel="canonical" href="{{ .Page.Permalink }}">
 
