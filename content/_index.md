@@ -59,7 +59,17 @@ This site is still a work in progress as you can tell from the rest of the headi
   - *Do not put your theme into config.toml, put it all in a css template in assets/css as hugo variables, and minify the result.*
 + mermaid diagrams
 + replace the custom attributes with data-prefixed attributes.
-+ replace `<pre><code>output</code></pre>` with `<samp>output</samp>`.
++ replace `<pre><code>output</code></pre>` with `<samp>output</samp>`, add css:
+  ```
+  samp {
+    background: lightcyan;
+    white-space: pre-wrap;
+    outline: 1px dashed darkcyan;
+    width: 100%;
+    display: inline-block;
+    color: purple;
+  }
+  ```
 
 ## To do: Posts
 
