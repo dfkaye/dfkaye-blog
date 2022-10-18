@@ -161,7 +161,7 @@ alert("stop");
 Could do better.
 
 + All the styles are defined on inline `style` attributes.
-+ Whatever styles are defined are affected by (i.e., inherit from) rules in this site's own CSS file.
++ Styles may be affected by (i.e., inherit from) rules in this site's own CSS file.
 + The dialog width is percentage-based, rather than fixed unit, so the dialog will expand its width as the viewport width increases. 
 + The JavaScript itself is a single execution that does not export anything. That could be added when the time comes for modular re-use.
 
@@ -175,8 +175,8 @@ In a break from habit, I did *not* use test-driven development for this as I:
 
 ## Bugs
 
-+ A press on the {{< rawhtml >}}<kbd>Space</kbd>{{< /rawhtml >}} key still scrolls the document body behind the dialog and underlay elements.
-+ Opening a dialog from an {{< rawhtml >}}<kbd>Enter</kbd>{{< /rawhtml >}} key press on a button may result in closing the dialog immediately after opening.
++ ~~A press on the {{< rawhtml >}}<kbd>Space</kbd>{{< /rawhtml >}} key still scrolls the document body behind the dialog and underlay elements.~~ *17 October 2022: __This bug is fixed__ by adding a "focusout" event listener on the dialog adding an `overflow: hidden;` CSS rule to the `<body>` element and removing it when the dialog is closed.*
++ Opening a dialog from an {{< rawhtml >}}<kbd>Enter</kbd>{{< /rawhtml >}} key press on a button may result in closing the dialog immediately after opening.  *17 Octobeer 2022: __Suspect this is due to listening to `click` events rather than `mouseup` events and `keyup` events separately.*
 
 These are fixes I leave to the reader (or myself at a later time).
 

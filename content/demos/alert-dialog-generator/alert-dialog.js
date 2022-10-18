@@ -87,6 +87,13 @@ function remove({ dialog, underlay, ok, cancel, handler }) {
   cancel && (cancel.removeEventListener("click", handler));
   document.body.removeEventListener("keyup", handler);
 
+  /* remove the body's modal-aware style */
+
+  document.body.setAttribute("style",
+    document.body.getAttribute("style")
+      .replace(document.body.getAttribute("data-modal-open"), "")
+  );
+
   dialog.parentNode.removeChild(dialog);
 
   while (dialog.firstChild) {
@@ -231,6 +238,7 @@ function Modal({ type, message, defaultValue }) {
 
   var dialog = document.createElement("dialog");
 
+  dialog.setAttribute("tabindex", "0");
   dialog.setAttribute("role", "alertdialog");
   dialog.setAttribute("open", true);
   dialog.setAttribute("aria-describedby", "data-dialog-description");
@@ -286,14 +294,21 @@ function Modal({ type, message, defaultValue }) {
   document.body.insertBefore(underlay, document.body.firstChild);
   document.body.insertBefore(dialog, document.body.firstChild);
 
-  /* Set focus now that elements are in the DOM. */
+  /* make the body modal-aware */
 
-  if (input) {
-    input.select();
-    input.focus();
-  } else {
-    dialog.focus();
-  }
+  document.body.setAttribute("data-modal-open", flat(`
+    overflow: hidden;
+  `));
+  document.body.setAttribute("style", document.body.getAttribute("data-modal-open"));
+
+  // /* Set focus now that elements are in the DOM. */
+
+  // if (input) {
+  //   input.select();
+  //   input.focus();
+  // } else {
+  //   dialog.focus();
+  // }
 
   // 3. Define response promise handler.
 
@@ -379,6 +394,24 @@ function Modal({ type, message, defaultValue }) {
   cancel && (cancel.addEventListener("click", handler));
   document.body.addEventListener("keyup", handler);
 
+  /* Set focus now that elements are in the DOM. */
+  setTimeout(function () {
+    if (input) {
+      input.select();
+      input.focus();
+    } else {
+      dialog.focus();
+    }
+
+    /* trap focus if user tabs out */
+
+    dialog.addEventListener("focusout", function (e) {
+      if (!e.relatedTarget || !e.relatedTarget.closest("dialog")) {
+        dialog.focus();
+      }
+    });
+  }, 100);
+
   // 5. return response promise
 
   return { response, wait: new Promise(init) };
@@ -447,7 +480,7 @@ document.querySelector("[data-alert-opener]")
   });
 
 document.querySelector("[data-confirm-opener]")
-  .addEventListener("click", async function (e) {
+  .addEventListener("mouseup", async function (e) {
     var response = await window.confirm(
       "Can you confirm this?"
     );
@@ -456,7 +489,7 @@ document.querySelector("[data-confirm-opener]")
   });
 
 document.querySelector("[data-prompt-opener]")
-  .addEventListener("click", async function (e) {
+  .addEventListener("mouseup", async function (e) {
     var response = await window.prompt(
       "Make any changes and save this prompt.",
       "Some default text."
